@@ -11,17 +11,11 @@ public class TankController : MonoBehaviour
     [SerializeField]
     private float speed = 4f;
 
-    private Vector3 A;
-    private Vector3 B;
-
-    public int interpolationFramesCount = 60; // Number of frames to completely interpolate between the 2 positions
     private float startTime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        A = new Vector3(0, 0, 0);
-        B = new Vector3(1, 0, 1);
         startTime = Time.time;
         moveActionReference.action.Enable();
         boostActionReference.action.Enable();
