@@ -9,41 +9,128 @@ public class TankController : MonoBehaviour
     [SerializeField]
     private InputActionReference boostActionReference;
     [SerializeField]
-    private float speed = 4f;
+    private InputActionReference shootActionReference;
+    [SerializeField]
+    private float speed = 10f;
+    [SerializeField]
+    private float rotationSpeed = 10f; 
+    [SerializeField]
+    private GameObject shell;
+
+    private float shellSpeed = 500f;
+    private Rigidbody rbTank;
+    public Transform shellSpawnPoint;
+
+    public static float forwardBackward;
+    public static float leftRight;
+
+    private bool forward;
+    private bool backward;
+    private bool left;
+    private bool right;
 
     private float startTime;
 
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void Start()
+    private void Awake()
     {
-        startTime = Time.time;
+        rbTank = GetComponent<Rigidbody>();
         moveActionReference.action.Enable();
         boostActionReference.action.Enable();
-        speed = 4f;
+        shootActionReference.action.Enable();
+        speed = 10f;
+        rotationSpeed = 10f;
+    }
+
+    public void Forward()
+    {
+        forward = true;
+    }
+
+    public void Backward()
+    {
+        backward = true;
+    }
+    public void Left()
+    {
+        left = true;
+    }
+
+    public void Right()
+    {
+        right = true;
     }
 
     // Update is called once per frame
     private void Update()
     {
-        Vector2 frameMovement = moveActionReference.action.ReadValue<Vector2>();
-        Vector3 frameMovement3D = new Vector3(frameMovement.x, 0, frameMovement.y);
-        Vector3 newPosition;
-        if (boostActionReference.action.IsPressed() == true) {
+        forwardBackward = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+        leftRight = Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
 
-            newPosition = gameObject.transform.position + frameMovement3D * 5 * speed * Time.deltaTime;
-        } else {
-
-            newPosition = gameObject.transform.position + frameMovement3D * speed * Time.deltaTime;
-        }
-
-        Vector3 direction = newPosition - gameObject.transform.position;
-        gameObject.transform.position = newPosition;
-        if (direction.magnitude != 0)
+        if (forward)
         {
-            Quaternion tankOrientation = Quaternion.LookRotation(direction, Vector3.up);
-            gameObject.transform.rotation = tankOrientation;
+            forwardBackward = -1f;
+        }
+        if (backward)
+        {
+            forwardBackward = 1f;
+        }
+        if (left)
+        {
+            leftRight = -1f;
+        }
+        if (right)
+        {
+            leftRight = 1f;
         }
 
+        if (shootActionReference.action.IsPressed())
+        {
+            Shoot();
+        }
+    }
 
+    private void Shoot()
+    {
+        GameObject nom = Instantiate(shell, shellSpawnPoint.position, shellSpawnPoint.rotation);
+        shell.GetComponent<Rigidbody>().linearVelocity = shellSpawnPoint.forward * shellSpeed;
+        Destroy(nom, 3f);
+    }
+
+    private void FixedUpdate()
+    {
+        TankForwardBackward();
+        TankLeftRight();
+    }
+
+    private void TankForwardBackward()
+    {
+        Vector3 moveFB;
+        if (boostActionReference.action.IsPressed() == true)
+        {
+            moveFB = transform.forward * forwardBackward * 5 * speed * Time.deltaTime;
+            rbTank.MovePosition(rbTank.position + moveFB);
+        } 
+        else
+        {
+            moveFB = transform.forward * forwardBackward *  speed * Time.deltaTime;
+            rbTank.MovePosition(rbTank.position + moveFB);
+        }
+
+    }
+
+    private void TankLeftRight()
+    {
+        Quaternion rotateLR = Quaternion.Euler(0f, leftRight, 0f);
+        rbTank.MoveRotation(rbTank.rotation * rotateLR);
+    }
+
+    private void SwitchBoolsOff()
+    {
+        forward = false;
+        backward = false;
+        left = false;
+        right = false;
     }
 }
