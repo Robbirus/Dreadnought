@@ -8,12 +8,12 @@ public class TankController : MonoBehaviour
     private InputActionReference moveActionReference;
     [SerializeField]
     private InputActionReference boostActionReference;
+    //[SerializeField]
+    //private InputActionReference shootActionReference;
     [SerializeField]
-    private InputActionReference shootActionReference;
+    private float speed = 20f;
     [SerializeField]
-    private float speed = 10f;
-    [SerializeField]
-    private float rotationSpeed = 10f; 
+    private float rotationSpeed = 20f; 
     [SerializeField]
     private GameObject shell;
 
@@ -38,9 +38,9 @@ public class TankController : MonoBehaviour
         rbTank = GetComponent<Rigidbody>();
         moveActionReference.action.Enable();
         boostActionReference.action.Enable();
-        shootActionReference.action.Enable();
-        speed = 10f;
-        rotationSpeed = 10f;
+        //shootActionReference.action.Enable();
+        speed = 20f;
+        rotationSpeed = 20f;
     }
 
     public void Forward()
@@ -85,23 +85,20 @@ public class TankController : MonoBehaviour
             leftRight = 1f;
         }
 
-        if (shootActionReference.action.IsPressed())
-        {
-            Shoot();
-        }
+        TankForwardBackward();
+        TankLeftRight();
+
+        //if (shootActionReference.action.IsPressed())
+        //{
+        //    Shoot();
+        //}
     }
 
     private void Shoot()
     {
-        GameObject nom = Instantiate(shell, shellSpawnPoint.position, shellSpawnPoint.rotation);
+        GameObject projectile = Instantiate(shell, shellSpawnPoint.position, shellSpawnPoint.rotation);
         shell.GetComponent<Rigidbody>().linearVelocity = shellSpawnPoint.forward * shellSpeed;
-        Destroy(nom, 3f);
-    }
-
-    private void FixedUpdate()
-    {
-        TankForwardBackward();
-        TankLeftRight();
+        Destroy(projectile, 3f);
     }
 
     private void TankForwardBackward()
@@ -110,13 +107,12 @@ public class TankController : MonoBehaviour
         if (boostActionReference.action.IsPressed() == true)
         {
             moveFB = transform.forward * forwardBackward * 5 * speed * Time.deltaTime;
-            rbTank.MovePosition(rbTank.position + moveFB);
         } 
         else
         {
             moveFB = transform.forward * forwardBackward *  speed * Time.deltaTime;
-            rbTank.MovePosition(rbTank.position + moveFB);
         }
+        rbTank.MovePosition(rbTank.position + moveFB);
 
     }
 

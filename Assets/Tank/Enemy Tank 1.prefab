@@ -16,6 +16,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 384bef3717095ab4b9a40e5a9a21426a, type: 2}
+    - target: {fileID: 7636109057764059560, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
+      propertyPath: m_Radius
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7636109057764059560, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8166260276618623740, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20
@@ -58,6 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7122600112680235077, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
+    - {fileID: 656864388096562380, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4229499343352928250, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
     m_AddedGameObjects: []
@@ -105,5 +114,5 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 4
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 4.5
+  m_Center: {x: 0, y: 2, z: 0}
