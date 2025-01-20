@@ -18,7 +18,7 @@ public class EnemyController : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    private void FixedUpdate()
     {
         Vector3 direction = Vector3.MoveTowards(gameObject.transform.position, player.transform.position, 0.05f);
         Quaternion orientation = Quaternion.LookRotation(player.transform.position - transform.position, Vector3.up);

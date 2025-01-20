@@ -63,7 +63,7 @@ public class TankController : MonoBehaviour
     }
 
     // Update is called once per frame
-    private void Update()
+    private void FixedUpdate()
     {
         forwardBackward = Input.GetAxis("Vertical") * speed * Time.deltaTime;
         leftRight = Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
