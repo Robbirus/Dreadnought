@@ -160,7 +160,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3791565883231019888, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3791565883231019888, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3791565883231019888, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4343059958041269784, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
@@ -279,6 +287,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2032805337}
   m_SourcePrefab: {fileID: 100100000, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
+--- !u!4 &211844495 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3791565883231019888, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
+  m_PrefabInstance: {fileID: 211844494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,10 +618,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveActionReference: {fileID: -2455035216646587266, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+  moveTurretActionReference: {fileID: -446524657075902219, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
   boostActionReference: {fileID: -1382580764014445865, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
   speed: 20
   rotationSpeed: 20
   shell: {fileID: 3633209065182094968, guid: 48d518da0597a9e418d03349ad9bc941, type: 3}
+  turret: {fileID: 211844495}
   shellSpawnPoint: {fileID: 0}
 --- !u!136 &2032805337
 CapsuleCollider:

@@ -7,6 +7,8 @@ public class TankController : MonoBehaviour
     [SerializeField]
     private InputActionReference moveActionReference;
     [SerializeField]
+    private InputActionReference moveTurretActionReference;
+    [SerializeField]
     private InputActionReference boostActionReference;
     //[SerializeField]
     //private InputActionReference shootActionReference;
@@ -16,6 +18,8 @@ public class TankController : MonoBehaviour
     private float rotationSpeed = 20f; 
     [SerializeField]
     private GameObject shell;
+    [SerializeField]
+    private Transform turret;
 
     private float shellSpeed = 500f;
     private Rigidbody rbTank;
@@ -38,6 +42,7 @@ public class TankController : MonoBehaviour
         rbTank = GetComponent<Rigidbody>();
         moveActionReference.action.Enable();
         boostActionReference.action.Enable();
+        moveTurretActionReference.action.Enable();
         //shootActionReference.action.Enable();
         speed = 20f;
         rotationSpeed = 20f;
@@ -87,6 +92,7 @@ public class TankController : MonoBehaviour
 
         TankForwardBackward();
         TankLeftRight();
+        RotateTurret();
 
         //if (shootActionReference.action.IsPressed())
         //{
@@ -94,6 +100,15 @@ public class TankController : MonoBehaviour
         //}
     }
 
+    private void RotateTurret()
+    {
+        int value = moveTurretActionReference.action.ReadValue<int>();
+        if (value == 0) return;
+
+        Vector3 rotation = new Vector3(0, value * 20, 0);
+
+        turret.Rotate(rotation);
+    }
     private void Shoot()
     {
         GameObject projectile = Instantiate(shell, shellSpawnPoint.position, shellSpawnPoint.rotation);
