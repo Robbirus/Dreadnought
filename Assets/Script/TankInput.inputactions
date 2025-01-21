@@ -27,7 +27,7 @@
                     "name": "MoveTurret",
                     "type": "Value",
                     "id": "2f96eb05-62df-4671-b636-b82be1889845",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector3",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -114,7 +114,7 @@
                 {
                     "name": "negative",
                     "id": "27979adb-2445-4e80-85b7-1d74ffbf9024",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -125,7 +125,7 @@
                 {
                     "name": "positive",
                     "id": "50406030-31f2-4a37-848c-a4036cc5eead",
-                    "path": "<Keyboard>/rightArrow",
+                    "path": "<Keyboard>/semicolon",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
