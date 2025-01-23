@@ -3,6 +3,10 @@ using UnityEngine.InputSystem;
 
 public class TankController : MonoBehaviour
 {
+    private const string ANIMATOR_IS_RUNNING = "isRunning";
+
+    [SerializeField]
+    private Animator animator;
 
     [SerializeField]
     private InputActionReference moveActionReference;
@@ -19,15 +23,16 @@ public class TankController : MonoBehaviour
     private float rotationSpeed = 20f;
     [SerializeField]
     private float rotationTurretSpeed = 25f;
+    [SerializeField]
+    private float shellSpeed = 50f;
 
     [SerializeField]
-    private GameObject shell;
+    private GameObject turret; 
     [SerializeField]
-    private GameObject turret;
+    private GameObject shellPrefab;
     [SerializeField]
     private GameObject shellSpawnPoint;
 
-    private float shellSpeed = 500f;
     private Rigidbody rbTank;
 
     public static float forwardBackward;
@@ -46,8 +51,6 @@ public class TankController : MonoBehaviour
         boostActionReference.action.Enable();
         moveTurretActionReference.action.Enable();
         shootActionReference.action.Enable();
-        speed = 20f;
-        rotationSpeed = 20f;
     }
 
     public void Forward()
@@ -93,7 +96,6 @@ public class TankController : MonoBehaviour
             leftRight = 1f;
         }
 
-
         RotateTurret();
         TankForwardBackward();
         TankLeftRight();
@@ -103,10 +105,11 @@ public class TankController : MonoBehaviour
             Shoot();
         }
     }
+
     private void Shoot()
     {
-        GameObject projectile = Instantiate(shell, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
-        shell.GetComponent<Rigidbody>().linearVelocity = shellSpawnPoint.transform.forward * shellSpeed;
+        GameObject projectile = Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
+        projectile.GetComponent<Rigidbody>().linearVelocity = projectile.transform.forward * shellSpeed;
         Destroy(projectile, 3f);
     }
 
@@ -128,7 +131,6 @@ public class TankController : MonoBehaviour
         turret.transform.Rotate(rotationAxis * step, Space.Self);
     }
 
-
     private void TankForwardBackward()
     {
         Vector3 moveFB;
@@ -141,6 +143,7 @@ public class TankController : MonoBehaviour
             moveFB = transform.forward * forwardBackward *  speed * Time.deltaTime;
         }
         rbTank.MovePosition(rbTank.position + moveFB);
+        animator.SetBool(ANIMATOR_IS_RUNNING, moveFB.magnitude > 0);
 
     }
 
