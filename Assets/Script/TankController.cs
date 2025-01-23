@@ -15,13 +15,13 @@ public class TankController : MonoBehaviour
     [SerializeField]
     private float speed = 20f;
     [SerializeField]
-    private float rotationSpeed = 20f; 
+    private float rotationSpeed = 20f;
+    [SerializeField]
+    private float rotationTurretSpeed = 25f;
     [SerializeField]
     private GameObject shell;
     [SerializeField]
-    private Transform turret;
-    [SerializeField]
-    private GameObject shellSpawnPoint;
+    private GameObject turret;
 
     private float shellSpeed = 500f;
     private Rigidbody rbTank;
@@ -33,9 +33,6 @@ public class TankController : MonoBehaviour
     private bool backward;
     private bool left;
     private bool right;
-
-    private float startTime;
-
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
@@ -58,6 +55,7 @@ public class TankController : MonoBehaviour
     {
         backward = true;
     }
+
     public void Left()
     {
         left = true;
@@ -91,31 +89,41 @@ public class TankController : MonoBehaviour
             leftRight = 1f;
         }
 
+
+        RotateTurret();
         TankForwardBackward();
         TankLeftRight();
-        RotateTurret();
 
         if (shootActionReference.action.IsPressed())
         {
             Shoot();
         }
     }
+    private void Shoot()
+    {
+        GameObject projectile = Instantiate(shell, shellSpawnPoint.position, shellSpawnPoint.rotation);
+        shell.GetComponent<Rigidbody>().linearVelocity = shellSpawnPoint.forward * shellSpeed;
+        Destroy(projectile, 3f);
+    }
 
     private void RotateTurret()
     {
-        int value = moveTurretActionReference.action.ReadValue<int>();
+        Vector3 rotationAxis = Vector3.zero;
+        float step = rotationTurretSpeed * Time.deltaTime;
+        float value = moveTurretActionReference.action.ReadValue<float>();
         if (value == 0) return;
 
-        Vector3 rotation = new Vector3(0, value * 20, 0);
+        if(value < 0)
+        {
+            rotationAxis = Vector3.down;
+        }
+        if (value > 0)
+        {
+            rotationAxis = Vector3.up;
+        }
+        turret.transform.Rotate(rotationAxis * step, Space.Self);
+    }
 
-        turret.Rotate(rotation);
-    }
-    private void Shoot()
-    {
-        GameObject projectile = Instantiate(shell, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
-        shell.GetComponent<Rigidbody>().linearVelocity = shellSpawnPoint.transform.forward * shellSpeed;
-        Destroy(projectile, 3f);
-    }
 
     private void TankForwardBackward()
     {
@@ -144,5 +152,6 @@ public class TankController : MonoBehaviour
         backward = false;
         left = false;
         right = false;
+
     }
 }
