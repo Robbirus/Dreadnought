@@ -10,8 +10,8 @@ public class TankController : MonoBehaviour
     private InputActionReference moveTurretActionReference;
     [SerializeField]
     private InputActionReference boostActionReference;
-    //[SerializeField]
-    //private InputActionReference shootActionReference;
+    [SerializeField]
+    private InputActionReference shootActionReference;
     [SerializeField]
     private float speed = 20f;
     [SerializeField]
@@ -20,10 +20,11 @@ public class TankController : MonoBehaviour
     private GameObject shell;
     [SerializeField]
     private Transform turret;
+    [SerializeField]
+    private GameObject shellSpawnPoint;
 
     private float shellSpeed = 500f;
     private Rigidbody rbTank;
-    public Transform shellSpawnPoint;
 
     public static float forwardBackward;
     public static float leftRight;
@@ -43,7 +44,7 @@ public class TankController : MonoBehaviour
         moveActionReference.action.Enable();
         boostActionReference.action.Enable();
         moveTurretActionReference.action.Enable();
-        //shootActionReference.action.Enable();
+        shootActionReference.action.Enable();
         speed = 20f;
         rotationSpeed = 20f;
     }
@@ -94,10 +95,10 @@ public class TankController : MonoBehaviour
         TankLeftRight();
         RotateTurret();
 
-        //if (shootActionReference.action.IsPressed())
-        //{
-        //    Shoot();
-        //}
+        if (shootActionReference.action.IsPressed())
+        {
+            Shoot();
+        }
     }
 
     private void RotateTurret()
@@ -111,8 +112,8 @@ public class TankController : MonoBehaviour
     }
     private void Shoot()
     {
-        GameObject projectile = Instantiate(shell, shellSpawnPoint.position, shellSpawnPoint.rotation);
-        shell.GetComponent<Rigidbody>().linearVelocity = shellSpawnPoint.forward * shellSpeed;
+        GameObject projectile = Instantiate(shell, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
+        shell.GetComponent<Rigidbody>().linearVelocity = shellSpawnPoint.transform.forward * shellSpeed;
         Destroy(projectile, 3f);
     }
 

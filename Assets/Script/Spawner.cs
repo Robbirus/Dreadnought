@@ -7,6 +7,9 @@ public class Spawner : MonoBehaviour
     private GameObject enemy;
 
     [SerializeField]
+    private GameObject player;
+
+    [SerializeField]
     private float minimumSpawnTime;
 
     [SerializeField]
@@ -33,6 +36,11 @@ public class Spawner : MonoBehaviour
     private void SetTimeUntilSpawn()
     {
         timeUntilSpawn = Random.Range(minimumSpawnTime, maximumSpawnTime);
+    }
+
+    public void SetPlayer(GameObject player)
+    {
+        this.player = player;
     }
 
 }

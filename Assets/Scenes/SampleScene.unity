@@ -269,7 +269,10 @@ PrefabInstance:
     - {fileID: 701479421194214485, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4890324188500737051, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3791565883231019888, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 681408521}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 4343059958041269784, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
       insertIndex: -1
@@ -478,6 +481,37 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0e4d49258aa75b479dd0dade6d0b57e, type: 3}
+--- !u!1 &681408520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 681408521}
+  m_Layer: 0
+  m_Name: ShellSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &681408521
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 681408520}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.402}
+  m_LocalScale: {x: 0.33333334, y: 1, z: 0.3076923}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 211844495}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,11 +654,12 @@ MonoBehaviour:
   moveActionReference: {fileID: -2455035216646587266, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
   moveTurretActionReference: {fileID: -446524657075902219, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
   boostActionReference: {fileID: -1382580764014445865, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+  shootActionReference: {fileID: -4498393602578492936, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
   speed: 20
   rotationSpeed: 20
   shell: {fileID: 3633209065182094968, guid: 48d518da0597a9e418d03349ad9bc941, type: 3}
   turret: {fileID: 211844495}
-  shellSpawnPoint: {fileID: 0}
+  shellSpawnPoint: {fileID: 681408520}
 --- !u!136 &2032805337
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -726,6 +761,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1916779870742005245, guid: e0e4d49258aa75b479dd0dade6d0b57e, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2032805325}
     - target: {fileID: 1916779870742005245, guid: e0e4d49258aa75b479dd0dade6d0b57e, type: 3}
       propertyPath: maximumSpawnTime
       value: 20
