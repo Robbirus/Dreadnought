@@ -12,16 +12,20 @@ public class TankController : MonoBehaviour
     private InputActionReference boostActionReference;
     [SerializeField]
     private InputActionReference shootActionReference;
+
     [SerializeField]
     private float speed = 20f;
     [SerializeField]
     private float rotationSpeed = 20f;
     [SerializeField]
     private float rotationTurretSpeed = 25f;
+
     [SerializeField]
     private GameObject shell;
     [SerializeField]
     private GameObject turret;
+    [SerializeField]
+    private GameObject shellSpawnPoint;
 
     private float shellSpeed = 500f;
     private Rigidbody rbTank;
@@ -101,8 +105,8 @@ public class TankController : MonoBehaviour
     }
     private void Shoot()
     {
-        GameObject projectile = Instantiate(shell, shellSpawnPoint.position, shellSpawnPoint.rotation);
-        shell.GetComponent<Rigidbody>().linearVelocity = shellSpawnPoint.forward * shellSpeed;
+        GameObject projectile = Instantiate(shell, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
+        shell.GetComponent<Rigidbody>().linearVelocity = shellSpawnPoint.transform.forward * shellSpeed;
         Destroy(projectile, 3f);
     }
 
