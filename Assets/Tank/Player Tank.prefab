@@ -294,7 +294,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4229499343352928250}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.38268343, y: 0, z: -0, w: -0.92387956}
+  m_LocalRotation: {x: -0.38268343, y: -0, z: -0, w: -0.92387956}
   m_LocalPosition: {x: 0, y: 25, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -433,10 +433,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 5682452512603167585}
   - {fileID: 3622266647403780707}
   - {fileID: 2327676443205077315}
   - {fileID: 7443305768479606303}
-  - {fileID: 5682452512603167585}
   - {fileID: 3791565883231019888}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1228,10 +1228,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 617699624849083716}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d28c7e2a8638e204bb80788b5df47057, type: 3}
+  m_Script: {fileID: 11500000, guid: 5fe3fae8135da824795f09ee3a02aceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveTurretActionReference: {fileID: -3475914679883024676, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+  shellSpeed: 200
+  shellPrefab: {fileID: 0}
+  shellSpawnPoint: {fileID: 0}
 --- !u!4 &3791565883231019888 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6362962860804889423, guid: d1426db9881f7f747ad7e3c4b9b45b76, type: 3}

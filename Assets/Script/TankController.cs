@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
+using UnityEditor.Experimental.GraphView;
 
 public class TankController : MonoBehaviour
 {
-    private const string ANIMATOR_IS_RUNNING = "isRunning";
+    private const string ANIMATOR_IS_MOVING = "isMoving";
 
     [SerializeField]
     private Animator animator;
@@ -12,29 +14,21 @@ public class TankController : MonoBehaviour
     private InputActionReference moveActionReference;
     [SerializeField]
     private InputActionReference moveTurretActionReference;
-    [SerializeField]
-    private InputActionReference boostActionReference;
-    [SerializeField]
-    private InputActionReference shootActionReference;
 
     [SerializeField]
-    private float speed = 20f;
+    private float maxSpeed = 50f;
     [SerializeField]
     private float rotationSpeed = 20f;
     [SerializeField]
     private float rotationTurretSpeed = 25f;
-    [SerializeField]
-    private float shellSpeed = 50f;
 
     [SerializeField]
     private GameObject turret; 
-    [SerializeField]
-    private GameObject shellPrefab;
-    [SerializeField]
-    private GameObject shellSpawnPoint;
 
     private Rigidbody rbTank;
 
+    private float decelerationRate = 1f;
+    private Vector3 direction;
     public static float forwardBackward;
     public static float leftRight;
 
@@ -42,15 +36,16 @@ public class TankController : MonoBehaviour
     private bool backward;
     private bool left;
     private bool right;
-    
+
+    private float currentSpeed;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         rbTank = GetComponent<Rigidbody>();
         moveActionReference.action.Enable();
-        boostActionReference.action.Enable();
         moveTurretActionReference.action.Enable();
-        shootActionReference.action.Enable();
+        direction = transform.forward;
     }
 
     public void Forward()
@@ -76,8 +71,10 @@ public class TankController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        forwardBackward = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-        leftRight = Input.GetAxis("Horizontal") * rotationSpeed * Time.deltaTime;
+        direction = transform.forward;
+
+        forwardBackward = Input.GetAxis("Vertical");
+        leftRight = Input.GetAxis("Horizontal") * rotationSpeed * Time.fixedDeltaTime;
 
         if (forward)
         {
@@ -96,27 +93,36 @@ public class TankController : MonoBehaviour
             leftRight = 1f;
         }
 
+        if (forwardBackward == 0f)
+        {
+            Decelerate();
+
+        }
+        else
+        {
+            Accelerate();
+        }
         RotateTurret();
-        TankForwardBackward();
         TankLeftRight();
 
-        if (shootActionReference.action.IsPressed())
-        {
-            Shoot();
-        }
     }
 
-    private void Shoot()
+    private float CalculateAccelerate(float currentSpeed)
     {
-        GameObject projectile = Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
-        projectile.GetComponent<Rigidbody>().linearVelocity = projectile.transform.forward * shellSpeed;
-        Destroy(projectile, 3f);
+        // Si la vitesse maximale est atteinte, l'acceleration est nulle
+        if (currentSpeed >= maxSpeed)
+        {
+            return 0;
+        }
+
+        // Calcul de l'acceleration 
+        return (maxSpeed - currentSpeed) / 2f;
     }
 
     private void RotateTurret()
     {
         Vector3 rotationAxis = Vector3.zero;
-        float step = rotationTurretSpeed * Time.deltaTime;
+        float step = rotationTurretSpeed * Time.fixedDeltaTime;
         float value = moveTurretActionReference.action.ReadValue<float>();
         if (value == 0) return;
 
@@ -131,20 +137,50 @@ public class TankController : MonoBehaviour
         turret.transform.Rotate(rotationAxis * step, Space.Self);
     }
 
-    private void TankForwardBackward()
+    private void Decelerate()
     {
-        Vector3 moveFB;
-        if (boostActionReference.action.IsPressed() == true)
+        // Obtention de la vitesse actuel
+        this.currentSpeed = rbTank.linearVelocity.magnitude;
+        if (this.currentSpeed >= 0)
         {
-            moveFB = transform.forward * forwardBackward * 5 * speed * Time.deltaTime;
+            // Calcul de la force opposee pour ralentir le tank
+            Vector3 decelerationForce = - rbTank.linearVelocity * decelerationRate * rbTank.mass;
+            rbTank.AddForce(decelerationForce);
+
+            // Empecher que la vitesse devienne negative
+            if(rbTank.linearVelocity.magnitude < 0.1f)
+            {
+                rbTank.linearVelocity = Vector3.zero;
+            }
+        }
+    }
+
+    private void Accelerate()
+    {
+        // Obtention de la vitesse actuel
+        this.currentSpeed = rbTank.linearVelocity.magnitude;
+
+        // calcul de l'acceleration
+        float acceleration = CalculateAccelerate(this.currentSpeed);
+
+        if (direction != Vector3.zero) 
+        {
+            // Application de la force dans la direction specifiee
+            Vector3 force = direction * forwardBackward * acceleration * rbTank.mass;
+            rbTank.AddForce(force);
+
+            // Limitation de la vitesse
+            if (rbTank.linearVelocity.magnitude > maxSpeed)
+            {
+                rbTank.linearVelocity = rbTank.linearVelocity * maxSpeed;
+            }
+
+            animator.SetBool(ANIMATOR_IS_MOVING, force.magnitude > 0);
         } 
         else
         {
-            moveFB = transform.forward * forwardBackward *  speed * Time.deltaTime;
+            Debug.LogWarning("Vector is null, no force applied");
         }
-        rbTank.MovePosition(rbTank.position + moveFB);
-        animator.SetBool(ANIMATOR_IS_RUNNING, moveFB.magnitude > 0);
-
     }
 
     private void TankLeftRight()
@@ -160,5 +196,10 @@ public class TankController : MonoBehaviour
         left = false;
         right = false;
 
+    }
+
+    public float GetCurrentSpeed()
+    {
+        return this.currentSpeed;
     }
 }

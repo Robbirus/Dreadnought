@@ -12,4 +12,9 @@ public class SceneLoader : MonoBehaviour
         SceneManager.LoadScene(gameSceneName);
 
     }
+
+    public void ExitGame()
+    {
+        Application.Quit();
+    }
 }

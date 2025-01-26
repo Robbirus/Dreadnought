@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8166260276618623740, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8166260276618623740, guid: b86b0d74d00c49441bd037785c21fb38, type: 3}
       propertyPath: m_LocalPosition.z
@@ -110,7 +110,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  ennemySpeed: 20
 --- !u!135 &6687247505277778464
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -140,7 +139,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875157507726760050}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 28000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

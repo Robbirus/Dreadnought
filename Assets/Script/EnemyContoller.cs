@@ -10,12 +10,17 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField]
     private GameObject player;
-    [SerializeField]
-    private float ennemySpeed = 20f;
+
+    private Rigidbody rigibidbody;
+    private Vector3 direction = Vector3.forward;
+
+    private float ennemySpeed = 10f;
+    private float maxSpeed = 40f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
+        rigibidbody = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
@@ -30,12 +35,45 @@ public class EnemyController : MonoBehaviour
 
         transform.rotation = orientation;
     }
+
+    private float Accelerate(float currentSpeed)
+    {
+        // Si la vitesse maximale est atteinte, l'acceleration est nulle
+        if (currentSpeed >= maxSpeed)
+        {
+            return 0;
+        }
+
+        // Calcul de l'acceleration 
+        return (maxSpeed - currentSpeed) / 2f;
+    }
+
+    private void TankForwardBackward()
+    {
+        // Obtention de la vitesse actuel
+        float currentSpeed = rigibidbody.linearVelocity.magnitude;
+
+        // calcul de l'acceleration
+        float acceleration = Accelerate(currentSpeed);
+
+        Vector3 force = direction.normalized * 1 * acceleration * rigibidbody.mass * Time.deltaTime;
+        rigibidbody.AddForce(force);
+
+        // Limitation de la vitesse
+        if (rigibidbody.linearVelocity.magnitude > maxSpeed)
+        {
+            rigibidbody.linearVelocity = rigibidbody.linearVelocity.normalized * maxSpeed;
+        }
+
+    }
+
     private void OnTriggerEnter(Collider collision)
     {
-        Debug.Log($"Trigger enter started on gameObject {gameObject.name}");
+        //Debug.Log($"Trigger enter started on gameObject {gameObject.name}");
         if (collision.tag.Equals("Player") || collision.tag.Equals("Shell"))
         {
             Destroy(gameObject);
+
         }
     }
 }
