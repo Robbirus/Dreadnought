@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-using System.Collections;
-using UnityEditor.Experimental.GraphView;
+using UnityEngine.UI;
 
 public class TankController : MonoBehaviour
 {
@@ -14,6 +13,15 @@ public class TankController : MonoBehaviour
     private InputActionReference moveActionReference;
     [SerializeField]
     private InputActionReference moveTurretActionReference;
+
+    [SerializeField]
+    private float maxHealth = 100f;
+    [SerializeField]
+    private float chipSpeed = 2f;
+    [SerializeField]
+    private Image frontHealthBar;
+    [SerializeField]
+    private Image backHealthBar;
 
     [SerializeField]
     private float maxSpeed = 50f;
@@ -37,6 +45,10 @@ public class TankController : MonoBehaviour
     private bool left;
     private bool right;
 
+    private float health;
+    private float lerpTimer;
+
+
     private float currentSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -46,6 +58,8 @@ public class TankController : MonoBehaviour
         moveActionReference.action.Enable();
         moveTurretActionReference.action.Enable();
         direction = transform.forward;
+
+        health = maxHealth;
     }
 
     public void Forward()
@@ -71,6 +85,19 @@ public class TankController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
+        // UI
+        health = Mathf.Clamp(health, 0, maxHealth);
+        UpdateHealthUI();
+        if (Input.GetKey(KeyCode.X))
+        {
+            TakeDamage(Random.Range(5, 10));
+        }
+        if (Input.GetKey(KeyCode.V))
+        {
+            RestoreHealth(Random.Range(5, 10));
+        }
+
+        // Movement
         direction = transform.forward;
 
         forwardBackward = Input.GetAxis("Vertical");
@@ -106,6 +133,47 @@ public class TankController : MonoBehaviour
         TankLeftRight();
 
     }
+
+    public void UpdateHealthUI()
+    {
+        Debug.Log(health);
+        float fillFront = frontHealthBar.fillAmount;
+        float fillBack = backHealthBar.fillAmount;
+        float healthFraction = health / maxHealth;
+
+        if(fillBack > healthFraction)
+        {
+            frontHealthBar.fillAmount = healthFraction;
+            backHealthBar.color = Color.red;
+            lerpTimer += Time.fixedDeltaTime;
+            float percentComplete = lerpTimer / chipSpeed;
+            percentComplete = percentComplete * percentComplete;
+            backHealthBar.fillAmount = Mathf.Lerp(fillBack, healthFraction, percentComplete);
+        }
+
+        if(fillFront < healthFraction)
+        {
+            backHealthBar.color = Color.green;
+            backHealthBar.fillAmount = healthFraction;
+            lerpTimer += Time.fixedDeltaTime;
+            float percentComplete = lerpTimer / chipSpeed;
+            percentComplete = percentComplete * percentComplete;
+            frontHealthBar.fillAmount = Mathf.Lerp(fillFront, backHealthBar.fillAmount, percentComplete);
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        lerpTimer = 0f;
+    }
+
+    public void RestoreHealth(float healAmount)
+    {
+        health += healAmount;
+        lerpTimer = 0f;
+    }
+
 
     private float CalculateAccelerate(float currentSpeed)
     {
@@ -175,7 +243,7 @@ public class TankController : MonoBehaviour
                 rbTank.linearVelocity = rbTank.linearVelocity * maxSpeed;
             }
 
-            animator.SetBool(ANIMATOR_IS_MOVING, force.magnitude > 0);
+            animator.SetBool(ANIMATOR_IS_MOVING, true);
         } 
         else
         {

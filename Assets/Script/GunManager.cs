@@ -5,13 +5,10 @@ using UnityEngine.InputSystem;
 public class GunManager : MonoBehaviour
 {
     [SerializeField]
-    private float shellSpeed = 200f;
-    [SerializeField]
     private GameObject shellPrefab;
     [SerializeField]
     private GameObject shellSpawnPoint;
 
-    private float damage = 110f;
     private float fireRate = 15f;
 
     private int maxAmmo = 1;
@@ -61,10 +58,6 @@ public class GunManager : MonoBehaviour
     private void Shoot()
     {
         currentAmmo--;
-
-        GameObject projectile = Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
-        projectile.GetComponent<Rigidbody>().linearVelocity = projectile.transform.forward * shellSpeed;
-        
-        Destroy(projectile, 3f);
+        Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
     }
 }

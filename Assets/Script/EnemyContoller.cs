@@ -67,13 +67,17 @@ public class EnemyController : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        //Debug.Log($"Trigger enter started on gameObject {gameObject.name}");
-        if (collision.tag.Equals("Player") || collision.tag.Equals("Shell"))
+        if(collider.gameObject.tag == "Player")
         {
             Destroy(gameObject);
-
         }
     }
+
+    public void death()
+    {
+        Destroy(gameObject);
+    }
+
 }
