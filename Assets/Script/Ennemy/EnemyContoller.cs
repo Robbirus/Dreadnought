@@ -1,9 +1,4 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
-using static UnityEngine.GraphicsBuffer;
-using UnityEngine.Rendering;
-using UnityEngine.EventSystems;
-using UnityEngine.AI;
 using System;
 
 public class EnemyController : MonoBehaviour
@@ -12,16 +7,18 @@ public class EnemyController : MonoBehaviour
     private GameObject player;
 
     private Rigidbody rigibidbody;
-    private Vector3 direction = Vector3.forward;
+    private Vector3 direction;
 
     private float ennemySpeed = 10f;
     private float maxSpeed = 40f;
+    private float currentSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         rigibidbody = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
+        direction = transform.forward;
     }
 
     // Update is called once per frame
@@ -36,7 +33,7 @@ public class EnemyController : MonoBehaviour
         transform.rotation = orientation;
     }
 
-    private float Accelerate(float currentSpeed)
+    private float CalculateAccelerate(float currentSpeed)
     {
         // Si la vitesse maximale est atteinte, l'acceleration est nulle
         if (currentSpeed >= maxSpeed)
@@ -51,29 +48,38 @@ public class EnemyController : MonoBehaviour
     private void TankForwardBackward()
     {
         // Obtention de la vitesse actuel
-        float currentSpeed = rigibidbody.linearVelocity.magnitude;
+        this.currentSpeed = rigibidbody.linearVelocity.magnitude;
 
         // calcul de l'acceleration
-        float acceleration = Accelerate(currentSpeed);
+        float acceleration = CalculateAccelerate(this.currentSpeed);
 
-        Vector3 force = direction.normalized * 1 * acceleration * rigibidbody.mass * Time.deltaTime;
-        rigibidbody.AddForce(force);
-
-        // Limitation de la vitesse
-        if (rigibidbody.linearVelocity.magnitude > maxSpeed)
+        if (direction != Vector3.zero) 
         {
-            rigibidbody.linearVelocity = rigibidbody.linearVelocity.normalized * maxSpeed;
-        }
+            // Application de la force dans la direction specifiee
+            Vector3 force = direction * 1 * acceleration * rigibidbody.mass;
+            rigibidbody.AddForce(force);
 
+            // Limitation de la vitesse
+            if (rigibidbody.linearVelocity.magnitude > maxSpeed)
+            {
+                rigibidbody.linearVelocity = rigibidbody.linearVelocity * maxSpeed;
+            }
+        } 
+        else
+        {
+            Debug.LogWarning("Vector is null, no force applied");
+        }
     }
 
     private void OnTriggerEnter(Collider collider)
     {
-        if(collider.gameObject.tag == "Player")
+        Transform hitTransform = collider.transform;
+        if(hitTransform.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            hitTransform.GetComponent<PlayerHealthManager>().TakeDamage(UnityEngine.Random.Range(5, 20));
         }
     }
+
 
     public void death()
     {

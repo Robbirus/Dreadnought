@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class GameManager : MonoBehaviour
     private GameObject needle;
     [SerializeField]
     private TankController tankController;
+    [SerializeField]
+    private PlayerHealthManager healthManager;
 
     private float tankSpeed;
 
@@ -22,6 +25,11 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if(healthManager.GetHealth() <= 0f)
+        {
+            SceneManager.LoadScene("Game Over Screen");
+        }
+
         tankSpeed = tankController.GetCurrentSpeed();
         UpdateNeedle();
     }

@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class GunManager : MonoBehaviour
 {
@@ -8,7 +7,7 @@ public class GunManager : MonoBehaviour
     private GameObject shellPrefab;
     [SerializeField]
     private GameObject shellSpawnPoint;
-
+    [SerializeField]
     private float fireRate = 15f;
 
     private int maxAmmo = 1;

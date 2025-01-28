@@ -1311,7 +1311,7 @@ GameObject:
   - component: {fileID: 1258210074786301809}
   - component: {fileID: 9190513568571667389}
   m_Layer: 0
-  m_Name: SpawnPoint
+  m_Name: Fabricator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1360,7 +1360,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef2864d5982b4444aef58e77285a7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 875157507726760050, guid: e5c1c2ea913779948827600747aefce5, type: 3}
+  enemy: {fileID: 5867880022226117371, guid: c7b60c6323fadf04797699c3f3141eb6, type: 3}
   player: {fileID: 0}
   minimumSpawnTime: 2
   maximumSpawnTime: 5
