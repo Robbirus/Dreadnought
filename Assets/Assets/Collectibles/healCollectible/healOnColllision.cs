@@ -9,7 +9,7 @@ public class HealOnCollision : MonoBehaviour
     private GameObject healCollectible;
     private void OnTriggerEnter(Collider other)
     {
-        player.GetComponent<PlayerHealthManager>().RestoreHealth(50.0f) ;
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthManager>().RestoreHealth(50.0f) ;
         Destroy(healCollectible);
 
     }
