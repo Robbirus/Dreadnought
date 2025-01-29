@@ -27,7 +27,7 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         direction = transform.forward;
         damage = UnityEngine.Random.Range(5, 20);
-        xp = UnityEngine.Random.Range(5, 20);
+        xp = UnityEngine.Random.Range(20, 80);
     }
 
     // Update is called once per frame
@@ -86,6 +86,10 @@ public class EnemyController : MonoBehaviour
         if(hitTransform.CompareTag("Player"))
         {
             hitTransform.GetComponent<PlayerHealthManager>().TakeDamage(damage);
+
+            // Destroy the ennemy when it touches the player
+            Destroy(gameObject);
+
         }
     }
 

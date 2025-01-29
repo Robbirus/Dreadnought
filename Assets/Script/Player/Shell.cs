@@ -9,6 +9,7 @@ public class Shell : MonoBehaviour
     private float lifeTime = 5f;
 
     private float damage = 110f;
+    private float crits = 2f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

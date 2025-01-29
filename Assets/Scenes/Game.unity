@@ -678,7 +678,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6544371426597996155, guid: 2f540f50b76b00a468db6ea8ffe79859, type: 3}
-      insertIndex: -1
+      insertIndex: 3
       addedObject: {fileID: 449157663}
     - targetCorrespondingSourceObject: {fileID: 8352722779152061063, guid: 2f540f50b76b00a468db6ea8ffe79859, type: 3}
       insertIndex: -1
@@ -729,35 +729,26 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
       outWeight: 0
     - serializedVersion: 3
-      time: 9.372903
-      value: 183194.98
-      inSlope: 19531.293
-      outSlope: 19531.293
+      time: 50.108326
+      value: 701278.56
+      inSlope: 14999.206
+      outSlope: 14999.206
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.27361426
+      inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 19.957726
-      value: 502195.8
-      inSlope: 19300.809
-      outSlope: 19300.809
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.27298418
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 99
+      time: 100
       value: 1000000
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0

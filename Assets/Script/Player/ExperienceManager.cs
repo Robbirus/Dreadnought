@@ -25,16 +25,25 @@ public class ExperienceManager : MonoBehaviour
     public void GainExperience(int xpAmount)
     {
         totalExperience += xpAmount;
-        CheckLevelUp();
+        CheckChange();
     }
 
-    private void CheckLevelUp()
+    private void CheckChange()
     {
         if (totalExperience >= nextLevelsExperience)
         {
             currentlevel++;
             UpdateLevel();
+        } 
+        else
+        {
+            UpdateExpBar();
         }
+    }
+
+    private void UpdateExpBar()
+    {
+
     }
 
     private void UpdateLevel()
@@ -46,9 +55,7 @@ public class ExperienceManager : MonoBehaviour
 
     private void UpdateInterface()
     {
-        int start = totalExperience - previousLevelsExperience;
-        int end = nextLevelsExperience - previousLevelsExperience;
-        frontExperienceBar.fillAmount = (float)start / (float)end;
+        frontExperienceBar.fillAmount = 0;
     }
 
 }

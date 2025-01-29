@@ -33,7 +33,7 @@ public class PlayerHealthManager : MonoBehaviour
         health = Mathf.Clamp(health, 0, maxHealth);
         UpdateHealthUI();
 
-        // Test heal / damage
+        // Debug Key heal / damage
         if (Input.GetKey(KeyCode.X))
         {
             TakeDamage(Random.Range(5, 10));
