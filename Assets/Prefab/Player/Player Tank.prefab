@@ -532,7 +532,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6544371426597996155}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.3609207, z: -0, w: 0.9325965}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -543,7 +543,7 @@ Transform:
   - {fileID: 8642888936016634780}
   - {fileID: 5757305120313326771}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 42.314, z: 0}
 --- !u!114 &8252672864265373387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -562,6 +562,8 @@ MonoBehaviour:
   maxSpeed: 50
   rotationSpeed: 20
   rotationTurretSpeed: 25
+  accelerationRate: 5
+  decelerationRate: 5
   turret: {fileID: 8352722779152061063}
 --- !u!114 &4779835780650837612
 MonoBehaviour:
@@ -1234,7 +1236,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   shellPrefab: {fileID: 3633209065182094968, guid: 48d518da0597a9e418d03349ad9bc941, type: 3}
   shellSpawnPoint: {fileID: 0}
-  fireRate: 15
+  shootActionReference: {fileID: 0}
 --- !u!1001 &2614276410398371340
 PrefabInstance:
   m_ObjectHideFlags: 0
