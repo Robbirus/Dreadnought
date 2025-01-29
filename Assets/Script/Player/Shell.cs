@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Shell : MonoBehaviour
 {
+    [Header("Shell Attribut")]
     [SerializeField]
     private float shellSpeed = 200;
     [SerializeField]
@@ -20,17 +21,19 @@ public class Shell : MonoBehaviour
     {
         gameObject.GetComponent<Rigidbody>().linearVelocity = gameObject.transform.forward * shellSpeed;
     }
+
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag != "Player")
+        Transform hitTransform = collision.transform;
+        if (hitTransform.CompareTag("Ennemy"))
         {
             try
             {
-                collision.gameObject.GetComponent<EnemyController>().death();
-            }
-            catch
+                hitTransform.GetComponent<EnemyController>().death();
+            }            
+            catch 
             {
-                Debug.Log("Not touching an enemy");
+                Debug.Log("Not an ennemy");
             }
             Destroy(gameObject);
         }

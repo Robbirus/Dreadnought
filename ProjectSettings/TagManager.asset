@@ -4,6 +4,7 @@
 TagManager:
   serializedVersion: 3
   tags:
+  - Ennemy
   - Shell
   layers:
   - Default

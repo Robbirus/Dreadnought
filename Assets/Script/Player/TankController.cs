@@ -6,14 +6,17 @@ public class TankController : MonoBehaviour
 {
     private const string ANIMATOR_IS_MOVING = "isMoving";
 
+    [Header("Animator")]
     [SerializeField]
     private Animator animator;
 
+    [Header("Input Action Reference")]
     [SerializeField]
     private InputActionReference moveActionReference;
     [SerializeField]
     private InputActionReference moveTurretActionReference;
 
+    [Header("Speed")]
     [SerializeField]
     private float maxSpeed = 50f;
     [SerializeField]
@@ -21,6 +24,7 @@ public class TankController : MonoBehaviour
     [SerializeField]
     private float rotationTurretSpeed = 25f;
 
+    [Header("GameObject Instance")]
     [SerializeField]
     private GameObject turret; 
 
@@ -153,6 +157,8 @@ public class TankController : MonoBehaviour
             {
                 rbTank.linearVelocity = Vector3.zero;
             }
+
+            animator.SetBool(ANIMATOR_IS_MOVING, decelerationForce.magnitude > 0);
         }
     }
 
@@ -176,7 +182,7 @@ public class TankController : MonoBehaviour
                 rbTank.linearVelocity = rbTank.linearVelocity * maxSpeed;
             }
 
-            animator.SetBool(ANIMATOR_IS_MOVING, true);
+            animator.SetBool(ANIMATOR_IS_MOVING, force.magnitude > 0);
         } 
         else
         {

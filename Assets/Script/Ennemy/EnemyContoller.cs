@@ -3,14 +3,21 @@ using System;
 
 public class EnemyController : MonoBehaviour
 {
+    [Header("GameObject Player")]
     [SerializeField]
     private GameObject player;
 
     private Rigidbody rigibidbody;
     private Vector3 direction;
 
+    [SerializeField]
     private float ennemySpeed = 10f;
+    [SerializeField]
     private float maxSpeed = 40f;
+    [SerializeField]
+    private int xp;
+    [SerializeField]
+    private int damage;
     private float currentSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -19,6 +26,8 @@ public class EnemyController : MonoBehaviour
         rigibidbody = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
         direction = transform.forward;
+        damage = UnityEngine.Random.Range(5, 20);
+        xp = UnityEngine.Random.Range(5, 20);
     }
 
     // Update is called once per frame
@@ -76,13 +85,13 @@ public class EnemyController : MonoBehaviour
         Transform hitTransform = collider.transform;
         if(hitTransform.CompareTag("Player"))
         {
-            hitTransform.GetComponent<PlayerHealthManager>().TakeDamage(UnityEngine.Random.Range(5, 20));
+            hitTransform.GetComponent<PlayerHealthManager>().TakeDamage(damage);
         }
     }
 
-
     public void death()
     {
+        player.transform.GetComponent<ExperienceManager>().GainExperience(xp);
         Destroy(gameObject);
     }
 

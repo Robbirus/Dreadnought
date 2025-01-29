@@ -66,12 +66,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6544371426597996155, guid: 2f540f50b76b00a468db6ea8ffe79859, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Ennemy
       objectReference: {fileID: 0}
     - target: {fileID: 6809880936815453934, guid: 2f540f50b76b00a468db6ea8ffe79859, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 384bef3717095ab4b9a40e5a9a21426a, type: 2}
+    - target: {fileID: 8945273061389824474, guid: 2f540f50b76b00a468db6ea8ffe79859, type: 3}
+      propertyPath: m_Mass
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 8945273061389824474, guid: 2f540f50b76b00a468db6ea8ffe79859, type: 3}
       propertyPath: m_Constraints
       value: 20
@@ -112,3 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
+  ennemySpeed: 10
+  maxSpeed: 40
+  xp: 0
+  damage: 0

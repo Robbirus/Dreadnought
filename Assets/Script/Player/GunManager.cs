@@ -1,62 +1,51 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GunManager : MonoBehaviour
 {
+    private const string ANIMATOR_IS_SHOOTING = "isShooting";
+
+    [Header("Animator")]
+    [SerializeField]
+    private Animator animator;
+
+    [Header("Shell Propreties")]
     [SerializeField]
     private GameObject shellPrefab;
     [SerializeField]
     private GameObject shellSpawnPoint;
+
+    [Header("Input Action Reference")]
     [SerializeField]
-    private float fireRate = 15f;
+    private InputActionReference shootActionReference;
 
-    private int maxAmmo = 1;
-    private int currentAmmo;
     private float reloadTime = 4f;
-    private bool isReloading = false;
 
-    private float nextTimeToFire = 0f;
 
     private void Start()
     {
-        currentAmmo = maxAmmo;
+        StartCoroutine(Shooting());
     }
 
-    // Update is called once per frame
-    private void FixedUpdate()
+    
+    IEnumerator Shooting()
     {
-        if (isReloading)
+        while (true)
         {
-            return;
-        }
-
-        if (currentAmmo <= 0) 
-        {
-            StartCoroutine(Reload());
-        }
-
-        if(Input.GetKey(KeyCode.Space) && Time.time >= nextTimeToFire)
-        {
-            nextTimeToFire = Time.time + 1f / fireRate;
+            // Wait for Input Shoot
+            yield return new WaitUntil(() => shootActionReference.action.IsPressed());
+            //animator.SetBool(ANIMATOR_IS_SHOOTING, );
             Shoot();
+
+            // Wait For ReloadTime
+            yield return new WaitForSeconds(reloadTime);
         }
     }
 
-
-    IEnumerator Reload()
-    {
-        isReloading = true;
-        Debug.Log("Reloading...");
-
-        yield return new WaitForSeconds(reloadTime);
-
-        currentAmmo = maxAmmo;
-        isReloading = false;
-    }
 
     private void Shoot()
     {
-        currentAmmo--;
         Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
     }
 }

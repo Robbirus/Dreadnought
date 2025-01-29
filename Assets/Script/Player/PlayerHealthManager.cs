@@ -1,13 +1,17 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class PlayerHealthManager : MonoBehaviour
 {
+    [Header("Health Properties")]
     [SerializeField]
     private float maxHealth = 100f;
+
+    [Header("GameObject Player")]
     [SerializeField]
     private float chipSpeed = 2f;
+
+    [Header("Health Bar UI")]
     [SerializeField]
     private Image frontHealthBar;
     [SerializeField]
@@ -15,6 +19,7 @@ public class PlayerHealthManager : MonoBehaviour
 
     private float health;
     private float lerpTimer;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -37,8 +42,6 @@ public class PlayerHealthManager : MonoBehaviour
         {
             RestoreHealth(Random.Range(5, 10));
         }
-
-
     }
 
     public void UpdateHealthUI()
@@ -67,6 +70,7 @@ public class PlayerHealthManager : MonoBehaviour
             frontHealthBar.fillAmount = Mathf.Lerp(fillFront, backHealthBar.fillAmount, percentComplete);
         }
     }
+
     public void TakeDamage(float damage)
     {
         health -= damage;
