@@ -15,15 +15,6 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Boost",
-                    "type": "Button",
-                    "id": "41b9875f-8335-44ad-ab7c-99b01086f3d3",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
                     "name": "MoveTurret",
                     "type": "Value",
                     "id": "2f96eb05-62df-4671-b636-b82be1889845",
@@ -31,6 +22,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Shoot",
+                    "type": "Button",
+                    "id": "03f10f91-d3eb-458d-8aea-483f069ef274",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -90,17 +90,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "",
-                    "id": "a4ba185c-3a03-4999-89bf-5c8548351264",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Boost",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
                     "name": "1D Axis",
                     "id": "7c77c674-2634-4924-8820-d4ca7d3d8dfc",
                     "path": "1DAxis",
@@ -132,6 +121,17 @@
                     "action": "MoveTurret",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "d045ba04-e03e-49f6-b4ed-79f68116664e",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }

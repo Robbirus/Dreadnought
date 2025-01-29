@@ -996,7 +996,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8945273061389824474, guid: 2f540f50b76b00a468db6ea8ffe79859, type: 3}
       propertyPath: m_Mass
-      value: 100
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8945273061389824474, guid: 2f540f50b76b00a468db6ea8ffe79859, type: 3}
       propertyPath: m_Constraints
@@ -1871,7 +1871,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 2ad85dfe2430c9944a67aabf28740c2d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2280,6 +2280,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2300004, guid: d0a6918bd0bfaa94c9b006f0fbf838ce, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 643da363d2f851a40959e91cff586ff9, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2785,6 +2789,79 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a903d305fee387c4ba6263f9a9a294d0, type: 3}
+--- !u!1001 &8767543284672192489
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3132443456851356533, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: frontExperienceBar
+      value: 
+      objectReference: {fileID: 531947286}
+    - target: {fileID: 4889392961947358280, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889392961947358280, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889392961947358280, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889392961947358280, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889392961947358280, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889392961947358280, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889392961947358280, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889392961947358280, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889392961947358280, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4889392961947358280, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229044561495101170, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: m_Name
+      value: Stb1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229044561495101170, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6044813384826855632, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: backHealthBar
+      value: 
+      objectReference: {fileID: 131643676}
+    - target: {fileID: 6044813384826855632, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: frontHealthBar
+      value: 
+      objectReference: {fileID: 996882677}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2792,10 +2869,11 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 961895625}
-  - {fileID: 1345026388042089619}
   - {fileID: 1206519938}
+  - {fileID: 1345026388042089619}
   - {fileID: 4227451305423962531}
   - {fileID: 483630979}
+  - {fileID: 8767543284672192489}
   - {fileID: 449157655}
   - {fileID: 184538026}
   - {fileID: 479571802}

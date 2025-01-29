@@ -19,10 +19,7 @@ public class GenerateCollectible : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(newCollectible);
-        Debug.Log(_canSpawn);
-        Debug.Log(newCollectible == null && _canSpawn);
-
+        
         if(newCollectible == null && _canSpawn)
         {
             Invoke("SpawnCollectible", spawnTimer);
