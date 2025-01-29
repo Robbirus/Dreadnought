@@ -16,13 +16,17 @@ public class TankController : MonoBehaviour
     [SerializeField]
     private InputActionReference moveTurretActionReference;
 
-    [Header("Speed")]
+    [Header("Speed Properties")]
     [SerializeField]
     private float maxSpeed = 50f;
     [SerializeField]
     private float rotationSpeed = 20f;
     [SerializeField]
     private float rotationTurretSpeed = 25f;
+    [SerializeField]
+    private int accelerationRate = 5;
+    [SerializeField]
+    private int decelerationRate = 5;
 
     [Header("GameObject Instance")]
     [SerializeField]
@@ -30,7 +34,6 @@ public class TankController : MonoBehaviour
 
     private Rigidbody rbTank;
 
-    private float decelerationRate = 1f;
     private Vector3 direction;
     public static float forwardBackward;
     public static float leftRight;
@@ -121,7 +124,7 @@ public class TankController : MonoBehaviour
         }
 
         // Calcul de l'acceleration 
-        return (maxSpeed - currentSpeed) / 2f;
+        return (maxSpeed - currentSpeed) / accelerationRate;
     }
 
     private void RotateTurret()
