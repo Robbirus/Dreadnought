@@ -4,19 +4,35 @@ using UnityEngine;
 public class GenerateCollectible : MonoBehaviour
 {
     [SerializeField]
-    private GameObject collectibles;
+    private GameObject collectible;
     [Range(1.0f, 2000.0f)]
     public float spawnRange;
-
+    [Range(1.0f, 120.0f)]
     public float spawnTimer;
-    private void Update()
+    private GameObject newCollectible;
+    private bool _canSpawn;
+
+    private void Start()
     {
-        InvokeRepeating(nameof(GenerateHealthCollectibles), 2.0f, spawnTimer);
+        SpawnCollectible();
     }
 
-    private void GenerateHealthCollectibles()
+    private void Update()
     {
-        Vector3 position = new Vector3(Random.Range(0f, spawnRange), 4, Random.Range(0f, spawnRange));
-        GameObject NewCollectible = Instantiate(collectibles, position, transform.rotation);
+        Debug.Log(newCollectible);
+        Debug.Log(_canSpawn);
+        Debug.Log(newCollectible == null && _canSpawn);
+
+        if(newCollectible == null && _canSpawn)
+        {
+            Invoke("SpawnCollectible", spawnTimer);
+            _canSpawn=false;
+        }
+    }
+    private void SpawnCollectible()
+    {
+        newCollectible = Instantiate(collectible,transform.position + new Vector3(0,4,0), Quaternion.identity);
+        _canSpawn = true;
+        
     }
 }
