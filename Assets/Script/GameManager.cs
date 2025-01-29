@@ -3,9 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
+    [Header("GameObject UI Instance")]
     [SerializeField]
     private GameObject needle;
+
+    [Header("Script Instance")]
     [SerializeField]
     private TankController tankController;
     [SerializeField]
