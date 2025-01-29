@@ -3,13 +3,14 @@ using System;
 
 public class EnemyController : MonoBehaviour
 {
-    [Header("GameObject Player")]
+    [Header("Player Instance")]
     [SerializeField]
     private GameObject player;
 
     private Rigidbody rigibidbody;
     private Vector3 direction;
 
+    [Header("Ennemy Stats")]
     [SerializeField]
     private float ennemySpeed = 10f;
     [SerializeField]

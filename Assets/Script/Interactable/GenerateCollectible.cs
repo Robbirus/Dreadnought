@@ -7,9 +7,8 @@ public class GenerateCollectible : MonoBehaviour
     private GameObject collectibles;
     [Range(1.0f, 2000.0f)]
     public float spawnRange;
-
     public float spawnTimer;
-    private void Update()
+    private void Start()
     {
         InvokeRepeating(nameof(GenerateHealthCollectibles), 2.0f, spawnTimer);
     }

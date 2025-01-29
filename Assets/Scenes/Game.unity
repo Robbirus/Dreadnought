@@ -806,8 +806,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
-      time: 0
-      value: 0
+      time: 1
+      value: 1
       inSlope: 2
       outSlope: 2
       tangentMode: 0
@@ -1220,7 +1220,7 @@ MonoBehaviour:
   needle: {fileID: 400418198}
   tankController: {fileID: 449157662}
   healthManager: {fileID: 449157656}
-  experienceManager: {fileID: 0}
+  experienceManager: {fileID: 449157663}
 --- !u!4 &961895625
 Transform:
   m_ObjectHideFlags: 0

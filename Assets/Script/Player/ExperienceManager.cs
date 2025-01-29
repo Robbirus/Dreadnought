@@ -7,14 +7,21 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField]
     private AnimationCurve experienceCurve;
 
-    [Header("Experience Bar UI")]
+    [Header("Interface")]
     [SerializeField]
     private Image frontExperienceBar;
+
+    public static ExperienceManager instance = null;
 
     private int currentlevel;
     private int totalExperience;
     private int previousLevelsExperience;
     private int nextLevelsExperience;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,6 +41,8 @@ public class ExperienceManager : MonoBehaviour
         {
             currentlevel++;
             UpdateLevel();
+
+            // Level Up Scene
         } 
         else
         {
@@ -43,7 +52,9 @@ public class ExperienceManager : MonoBehaviour
 
     private void UpdateExpBar()
     {
-
+        float expFraction = (float)totalExperience / (float)nextLevelsExperience;
+        float fillFront = frontExperienceBar.fillAmount;
+        frontExperienceBar.fillAmount = expFraction; 
     }
 
     private void UpdateLevel()
@@ -58,4 +69,8 @@ public class ExperienceManager : MonoBehaviour
         frontExperienceBar.fillAmount = 0;
     }
 
+    public int GetExperience()
+    {
+        return this.totalExperience;
+    }
 }
