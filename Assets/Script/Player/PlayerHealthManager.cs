@@ -23,7 +23,7 @@ public class PlayerHealthManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        health = maxHealth;
+        health = maxHealth/2;
     }
 
     // Update is called once per frame
@@ -33,7 +33,7 @@ public class PlayerHealthManager : MonoBehaviour
         health = Mathf.Clamp(health, 0, maxHealth);
         UpdateHealthUI();
 
-        // Test heal / damage
+        // Debug Key heal / damage
         if (Input.GetKey(KeyCode.X))
         {
             TakeDamage(Random.Range(5, 10));

@@ -3,13 +3,14 @@ using System;
 
 public class EnemyController : MonoBehaviour
 {
-    [Header("GameObject Player")]
+    [Header("Player Instance")]
     [SerializeField]
     private GameObject player;
 
     private Rigidbody rigibidbody;
     private Vector3 direction;
 
+    [Header("Ennemy Stats")]
     [SerializeField]
     private float ennemySpeed = 10f;
     [SerializeField]
@@ -27,7 +28,7 @@ public class EnemyController : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         direction = transform.forward;
         damage = UnityEngine.Random.Range(5, 20);
-        xp = UnityEngine.Random.Range(5, 20);
+        xp = UnityEngine.Random.Range(20, 80);
     }
 
     // Update is called once per frame
@@ -86,6 +87,10 @@ public class EnemyController : MonoBehaviour
         if(hitTransform.CompareTag("Player"))
         {
             hitTransform.GetComponent<PlayerHealthManager>().TakeDamage(damage);
+
+            // Destroy the ennemy when it touches the player
+            Destroy(gameObject);
+
         }
     }
 

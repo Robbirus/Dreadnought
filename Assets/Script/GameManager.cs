@@ -12,8 +12,6 @@ public class GameManager : MonoBehaviour
     private TankController tankController;
     [SerializeField]
     private PlayerHealthManager healthManager;
-    [SerializeField]
-    private ExperienceManager experienceManager;
 
     private float tankSpeed;
 
