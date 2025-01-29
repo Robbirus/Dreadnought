@@ -6,9 +6,11 @@ public class GunManager : MonoBehaviour
 {
     private const string ANIMATOR_IS_SHOOTING = "isShooting";
 
-    [Header("Animator")]
+    [Header("Animation")]
     [SerializeField]
     private Animator animator;
+    [SerializeField]
+    private ParticleSystem shootParticle;
 
     [Header("Shell Propreties")]
     [SerializeField]
@@ -22,8 +24,6 @@ public class GunManager : MonoBehaviour
 
     private float reloadTime = 4f;
 
-    [SerializeField]
-    private ParticleSystem shootParticle;
 
     private void Start()
     {
@@ -36,19 +36,21 @@ public class GunManager : MonoBehaviour
         while (true)
         {
             // Wait for Input Shoot
-            yield return new WaitUntil(() => shootActionReference.action.IsPressed());
-            //animator.SetBool(ANIMATOR_IS_SHOOTING, );
+            yield return new WaitUntil(() => Input.GetKey(KeyCode.Space));
             Shoot();
 
             // Wait For ReloadTime
+            Debug.Log("Reloading");
             yield return new WaitForSeconds(reloadTime);
+            Debug.Log("Ready to shoot");
         }
     }
 
 
     private void Shoot()
     {
+        Debug.Log("Shoot");
         Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
-        shootParticle.Play();
+        //shootParticle.Play();
     }
 }
