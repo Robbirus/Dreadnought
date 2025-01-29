@@ -22,6 +22,8 @@ public class GunManager : MonoBehaviour
 
     private float reloadTime = 4f;
 
+    [SerializeField]
+    private ParticleSystem shootParticle;
 
     private void Start()
     {
@@ -47,5 +49,6 @@ public class GunManager : MonoBehaviour
     private void Shoot()
     {
         Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
+        shootParticle.Play();
     }
 }
