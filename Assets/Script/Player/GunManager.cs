@@ -51,6 +51,6 @@ public class GunManager : MonoBehaviour
     {
         Debug.Log("Shoot");
         Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
-        //shootParticle.Play();
+        shootParticle.Play();
     }
 }
