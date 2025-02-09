@@ -11,17 +11,10 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField]
     private Image frontExperienceBar;
 
-    public static ExperienceManager instance = null;
-
     private int currentlevel;
     private int totalExperience;
     private int previousLevelsExperience;
     private int nextLevelsExperience;
-
-    private void Awake()
-    {
-        instance = this;
-    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,6 +36,7 @@ public class ExperienceManager : MonoBehaviour
             UpdateLevel();
 
             // Level Up Scene
+            GameManager.instance.ChangeState(GameManager.GameState.PerkSelection);
         } 
         else
         {
@@ -72,5 +66,9 @@ public class ExperienceManager : MonoBehaviour
     public int GetExperience()
     {
         return this.totalExperience;
+    }
+    public int GetCurrentLevel()
+    {
+        return this.currentlevel;
     }
 }

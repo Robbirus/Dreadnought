@@ -43,44 +43,6 @@ public class EnemyController : MonoBehaviour
         transform.rotation = orientation;
     }
 
-    private float CalculateAccelerate(float currentSpeed)
-    {
-        // Si la vitesse maximale est atteinte, l'acceleration est nulle
-        if (currentSpeed >= maxSpeed)
-        {
-            return 0;
-        }
-
-        // Calcul de l'acceleration 
-        return (maxSpeed - currentSpeed) / 2f;
-    }
-
-    private void TankForwardBackward()
-    {
-        // Obtention de la vitesse actuel
-        this.currentSpeed = rigibidbody.linearVelocity.magnitude;
-
-        // calcul de l'acceleration
-        float acceleration = CalculateAccelerate(this.currentSpeed);
-
-        if (direction != Vector3.zero) 
-        {
-            // Application de la force dans la direction specifiee
-            Vector3 force = direction * 1 * acceleration * rigibidbody.mass;
-            rigibidbody.AddForce(force);
-
-            // Limitation de la vitesse
-            if (rigibidbody.linearVelocity.magnitude > maxSpeed)
-            {
-                rigibidbody.linearVelocity = rigibidbody.linearVelocity * maxSpeed;
-            }
-        } 
-        else
-        {
-            Debug.LogWarning("Vector is null, no force applied");
-        }
-    }
-
     private void OnTriggerEnter(Collider collider)
     {
         Transform hitTransform = collider.transform;
@@ -96,6 +58,7 @@ public class EnemyController : MonoBehaviour
 
     public void death()
     {
+        AudioManager.instance.PlaySE(AudioManager.instance.hitSE);
         player.transform.GetComponent<ExperienceManager>().GainExperience(xp);
         Destroy(gameObject);
     }

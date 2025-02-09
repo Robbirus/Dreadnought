@@ -29,7 +29,6 @@ public class GunManager : MonoBehaviour
     {
         StartCoroutine(Shooting());
     }
-
     
     IEnumerator Shooting()
     {
@@ -41,16 +40,27 @@ public class GunManager : MonoBehaviour
 
             // Wait For ReloadTime
             Debug.Log("Reloading");
+            Debug.Log(reloadTime);
+            AudioManager.instance.PlaySE(AudioManager.instance.gunReloadSE);
             yield return new WaitForSeconds(reloadTime);
             Debug.Log("Ready to shoot");
         }
     }
 
-
     private void Shoot()
     {
         Debug.Log("Shoot");
+        AudioManager.instance.PlaySE(AudioManager.instance.gunFireSE);
         Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
         shootParticle.Play();
+    }
+
+    public float GetReloadTime()
+    {
+        return reloadTime;
+    }
+    public void SetReloadTime(float reloadTime)
+    {
+        this.reloadTime = reloadTime;
     }
 }

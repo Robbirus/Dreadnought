@@ -18,7 +18,7 @@ public class TankController : MonoBehaviour
 
     [Header("Speed Properties")]
     [SerializeField]
-    private float maxSpeed = 50f;
+    private float maxSpeed = 52f;
     [SerializeField]
     private float rotationSpeed = 20f;
     [SerializeField]
@@ -81,7 +81,7 @@ public class TankController : MonoBehaviour
         // Movement
         direction = transform.forward;
 
-        forwardBackward = Input.GetAxis("Vertical");
+        forwardBackward = Input.GetAxis("Vertical") * maxSpeed * Time.fixedDeltaTime;
         leftRight = Input.GetAxis("Horizontal") * rotationSpeed * Time.fixedDeltaTime;
 
         if (forward)
@@ -101,6 +101,8 @@ public class TankController : MonoBehaviour
             leftRight = 1f;
         }
 
+        // Utilisation de l'ancien systeme de deplacement
+        /* 
         if (forwardBackward == 0f)
         {
             Decelerate();
@@ -110,9 +112,18 @@ public class TankController : MonoBehaviour
         {
             Accelerate();
         }
-        RotateTurret();
-        TankLeftRight();
+        */
 
+        TankFowardBack();
+        TankLeftRight();
+        RotateTurret();
+
+    }
+
+    private void TankFowardBack()
+    {
+        Vector3 moveFB = transform.forward * forwardBackward * maxSpeed * Time.fixedDeltaTime;
+        rbTank.MovePosition(rbTank.position + moveFB);
     }
 
     private float CalculateAccelerate(float currentSpeed)
@@ -208,8 +219,19 @@ public class TankController : MonoBehaviour
 
     }
 
+    public float GetMaxSpeed()
+    {
+        return this.maxSpeed;
+    }
+    public void SetMaxSpeed(float maxSpeed)
+    {
+        this.maxSpeed = maxSpeed;
+    }
+
     public float GetCurrentSpeed()
     {
-        return this.currentSpeed;
+        return this.maxSpeed;
+        // A REMETTRE Quand l'acceleration sera regler
+        //return this.currentSpeed;
     }
 }

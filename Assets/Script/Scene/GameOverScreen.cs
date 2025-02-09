@@ -8,8 +8,10 @@ public class GameOverScreen : MonoBehaviour
     private TMP_Text score;
 
     private void Start()
-    {        
-        score.text = "You've scored : " + ExperienceManager.instance.GetExperience() + " points";
+    {
+        AudioManager.instance.musicSource.clip = AudioManager.instance.defeatMusic;
+        AudioManager.instance.musicSource.Play();
+        score.text = "You've scored : " + GameManager.instance.GetScore() + " points";
     }
 
     public void RestartGame()

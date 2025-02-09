@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b0a2f1536508a4194b165f5ad04a26, type: 3}
+  m_Name: HealthIncrease 1
+  m_EditorClassIdentifier: 
+  image: {fileID: 21300000, guid: 1cbd8e20be325de4e9e80e9e06163ba9, type: 3}
+  description: "Augmente la sant\xE9 de 10%"
+  effectType: 2
+  effectValue: 1.1
+  isUnique: 0
+  unlockLevel: 5

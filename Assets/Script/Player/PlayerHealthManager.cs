@@ -5,7 +5,7 @@ public class PlayerHealthManager : MonoBehaviour
 {
     [Header("Health Properties")]
     [SerializeField]
-    private float maxHealth = 100f;
+    private float maxHealth = 1950f;
 
     [Header("GameObject Player")]
     [SerializeField]
@@ -85,6 +85,11 @@ public class PlayerHealthManager : MonoBehaviour
 
     public float GetHealth()
     {
-        return health;
+        return this.maxHealth;
+    }
+
+    public void SetHealth(float maxHealth)
+    {
+        this.maxHealth = maxHealth;
     }
 }
