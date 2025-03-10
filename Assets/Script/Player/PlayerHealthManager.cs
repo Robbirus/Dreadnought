@@ -83,13 +83,13 @@ public class PlayerHealthManager : MonoBehaviour
         lerpTimer = 0f;
     }
 
-    public float GetHealth()
-    {
-        return this.maxHealth;
-    }
-
     public void SetHealth(float maxHealth)
     {
         this.maxHealth = maxHealth;
+    }
+
+    public float GetHealth()
+    {
+        return health;
     }
 }

@@ -18,21 +18,24 @@ public class TankController : MonoBehaviour
 
     [Header("Speed Properties")]
     [SerializeField]
-    private float maxSpeed = 52f;
+    private float maxSpeed = 53f;
+    [SerializeField]
+    private float maxReverseSpeed = 20f;
+    [SerializeField]
+    private float accelerationRate = 500f;
+    [SerializeField]
+    private float decelerationRate = 300f;
     [SerializeField]
     private float rotationSpeed = 20f;
     [SerializeField]
     private float rotationTurretSpeed = 25f;
-    [SerializeField]
-    private int accelerationRate = 5;
-    [SerializeField]
-    private int decelerationRate = 5;
 
     [Header("GameObject Instance")]
     [SerializeField]
     private GameObject turret; 
 
     private Rigidbody rbTank;
+    private float currentSpeed;
 
     private Vector3 direction;
     public static float forwardBackward;
@@ -43,8 +46,6 @@ public class TankController : MonoBehaviour
     private bool left;
     private bool right;
 
-    private float currentSpeed;
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
@@ -52,6 +53,7 @@ public class TankController : MonoBehaviour
         moveActionReference.action.Enable();
         moveTurretActionReference.action.Enable();
         direction = transform.forward;
+        currentSpeed = 0f;
 
     }
 
@@ -102,7 +104,7 @@ public class TankController : MonoBehaviour
         }
 
         // Utilisation de l'ancien systeme de deplacement
-        /* 
+        /*
         if (forwardBackward == 0f)
         {
             Decelerate();
@@ -117,25 +119,22 @@ public class TankController : MonoBehaviour
         TankFowardBack();
         TankLeftRight();
         RotateTurret();
-
     }
 
     private void TankFowardBack()
     {
-        Vector3 moveFB = transform.forward * forwardBackward * maxSpeed * Time.fixedDeltaTime;
-        rbTank.MovePosition(rbTank.position + moveFB);
-    }
-
-    private float CalculateAccelerate(float currentSpeed)
-    {
-        // Si la vitesse maximale est atteinte, l'acceleration est nulle
-        if (currentSpeed >= maxSpeed)
+        Vector3 moveFB;
+        if (forwardBackward < 0)
         {
-            return 0;
+            moveFB = transform.forward * forwardBackward * maxReverseSpeed * Time.fixedDeltaTime;
+            currentSpeed = maxReverseSpeed;
         }
-
-        // Calcul de l'acceleration 
-        return (maxSpeed - currentSpeed) / accelerationRate;
+        else
+        {
+            moveFB = transform.forward * forwardBackward * maxSpeed * Time.fixedDeltaTime;
+            currentSpeed = maxSpeed;
+        }
+        rbTank.MovePosition(rbTank.position + moveFB);
     }
 
     private void RotateTurret()
@@ -154,6 +153,23 @@ public class TankController : MonoBehaviour
             rotationAxis = Vector3.up;
         }
         turret.transform.Rotate(rotationAxis * step, Space.Self);
+    }
+    private void TankLeftRight()
+    {
+        Quaternion rotateLR = Quaternion.Euler(0f, leftRight, 0f);
+        rbTank.MoveRotation(rbTank.rotation * rotateLR);
+    }
+
+    private float CalculateAccelerate(float currentSpeed)
+    {
+        // Si la vitesse maximale est atteinte, l'acceleration est nulle
+        if (currentSpeed >= maxSpeed)
+        {
+            return 0;
+        }
+
+        // Calcul de l'acceleration 
+        return (maxSpeed - currentSpeed) / accelerationRate;
     }
 
     private void Decelerate()
@@ -204,33 +220,33 @@ public class TankController : MonoBehaviour
         }
     }
 
-    private void TankLeftRight()
-    {
-        Quaternion rotateLR = Quaternion.Euler(0f, leftRight, 0f);
-        rbTank.MoveRotation(rbTank.rotation * rotateLR);
-    }
-
     private void SwitchBoolsOff()
     {
         forward = false;
         backward = false;
         left = false;
         right = false;
-
     }
 
     public float GetMaxSpeed()
     {
         return this.maxSpeed;
-    }
+    }    
     public void SetMaxSpeed(float maxSpeed)
     {
         this.maxSpeed = maxSpeed;
     }
-
+    public float GetReverseSpeed()
+    {
+        return this.maxReverseSpeed;
+    }
+    public void SetReverseSpeed(float maxReverseSpeed)
+    {
+        this.maxReverseSpeed = maxReverseSpeed;
+    }
     public float GetCurrentSpeed()
     {
-        return this.maxSpeed;
+        return this.currentSpeed;
         // A REMETTRE Quand l'acceleration sera regler
         //return this.currentSpeed;
     }

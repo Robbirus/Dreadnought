@@ -16,19 +16,21 @@ public class EnemyController : MonoBehaviour
     [SerializeField]
     private float maxSpeed = 40f;
     [SerializeField]
-    private int xp;
-    [SerializeField]
     private int damage;
+
     private float currentSpeed;
+
+    private void Awake()
+    {
+        rigibidbody = GetComponent<Rigidbody>();
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        rigibidbody = GetComponent<Rigidbody>();
         player = GameObject.FindGameObjectWithTag("Player");
         direction = transform.forward;
         damage = UnityEngine.Random.Range(5, 20);
-        xp = UnityEngine.Random.Range(20, 80);
     }
 
     // Update is called once per frame
@@ -55,12 +57,4 @@ public class EnemyController : MonoBehaviour
 
         }
     }
-
-    public void death()
-    {
-        AudioManager.instance.PlaySE(AudioManager.instance.hitSE);
-        player.transform.GetComponent<ExperienceManager>().GainExperience(xp);
-        Destroy(gameObject);
-    }
-
 }

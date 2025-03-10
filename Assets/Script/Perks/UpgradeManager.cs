@@ -3,28 +3,28 @@ using UnityEngine;
 
 public class UpgradeManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject perkSelectionUI;
-    [SerializeField]
-    private GameObject perkPrefab;
-    [SerializeField]
-    private Transform perkPositionOne;
-    [SerializeField]
-    private Transform perkPositionTwo;
-    [SerializeField]
-    private Transform perkPositionThree;
-    [SerializeField]
-    private List<Upgrade> deck;
+    [Header("Perk Attributs")]
+    [SerializeField] GameObject perkSelectionUI;
+    [SerializeField] GameObject perkPrefab;
+    [SerializeField] Transform perkPositionOne;
+    [SerializeField] Transform perkPositionTwo;
+    [SerializeField] Transform perkPositionThree;
+    [SerializeField] List<PerkSO> deck;
 
     // Currently randomized perks
-    private GameObject perkOne;
-    private GameObject perkTwo;
-    private GameObject perkThree;
+    private GameObject perkOne, perkTwo, perkThree;
 
-    private List<Upgrade> alreadySelectedPerks = new List<Upgrade>();
+    private List<PerkSO> alreadySelectedPerks = new List<PerkSO>();
 
     public static UpgradeManager instance = null;
 
+    
+    public void Start()
+    {
+        RandomizeNewPerks();
+    }
+
+    
     private void Awake()
     {
         instance = this;
@@ -50,19 +50,18 @@ public class UpgradeManager : MonoBehaviour
             RandomizeNewPerks();
         }
     }
-
     private void RandomizeNewPerks()
     {
         if(perkOne != null) Destroy(perkOne);
         if (perkTwo != null) Destroy(perkTwo);
         if (perkThree != null) Destroy(perkThree);
 
-        List<Upgrade> randomizedPerks = new List<Upgrade>();
+        List<PerkSO> randomizedPerks = new List<PerkSO>();
 
-        List<Upgrade> availablePerks = new List<Upgrade>(deck);
+        List<PerkSO> availablePerks = new List<PerkSO>(deck);
         availablePerks.RemoveAll(perk =>
-            perk.isUnique && alreadySelectedPerks.Contains(perk) ||
-            perk.unlockLevel > GameManager.instance.GetCurrentLevel()
+            perk.isUnique && alreadySelectedPerks.Contains(perk) 
+         || perk.unlockLevel > GameManager.instance.GetCurrentLevel()
         );
 
         if(availablePerks.Count < 3)
@@ -73,7 +72,7 @@ public class UpgradeManager : MonoBehaviour
 
         while(randomizedPerks.Count < 3)
         {
-            Upgrade randomPerk = availablePerks[Random.Range(0, availablePerks.Count)];
+            PerkSO randomPerk = availablePerks[Random.Range(0, availablePerks.Count)];
             if (!randomizedPerks.Contains(randomPerk))
             {
                 randomizedPerks.Add(randomPerk); 
@@ -85,7 +84,7 @@ public class UpgradeManager : MonoBehaviour
         perkThree = InstantiatePerk(randomizedPerks[2], perkPositionThree);
     }
 
-    private GameObject InstantiatePerk(Upgrade perkSO, Transform position)
+    private GameObject InstantiatePerk(PerkSO perkSO, Transform position)
     {
         GameObject perkGO = Instantiate(perkPrefab, position.position, Quaternion.identity, position);
         Perk perk = perkGO.GetComponent<Perk>();
@@ -93,7 +92,7 @@ public class UpgradeManager : MonoBehaviour
         return perkGO;
     }
 
-    public void SelectPerk(Upgrade selectedPerk)
+    public void SelectPerk(PerkSO selectedPerk)
     {
         if (!alreadySelectedPerks.Contains(selectedPerk))
         {
@@ -104,46 +103,58 @@ public class UpgradeManager : MonoBehaviour
         GameManager.instance.ChangeState(GameManager.GameState.Playing);
     }
 
-    private void ApplyEffect(Upgrade selectedPerk)
+    
+    private void ApplyEffect(PerkSO selectedPerk)
     {
         switch (selectedPerk.effectType)
         {
+            /*
             case PerkEffect.HealthIncrease:
                 float maxHealth = GameManager.instance.GetPlayerHealthManager().GetHealth();
-                maxHealth = maxHealth * selectedPerk.effectValue;
+                maxHealth *= selectedPerk.effectValue;
                 GameManager.instance.GetPlayerHealthManager().SetHealth(maxHealth);
                 break;
-
+            */
             case PerkEffect.ReloadDecrease:
                 float reloadTime = GameManager.instance.GetGunManager().GetReloadTime();
-                reloadTime = reloadTime * selectedPerk.effectValue;
+                reloadTime *= selectedPerk.effectValue;
                 GameManager.instance.GetGunManager().SetReloadTime(reloadTime);
+                Debug.Log(reloadTime);
                 break;
 
             case PerkEffect.DamageIncrease:
+                float damage = GameManager.instance.GetGunManager().GetDamage();
+                damage *= selectedPerk.effectValue;
+                GameManager.instance.GetGunManager().SetDamage(damage);
                 break;
 
             case PerkEffect.SpeedIncrease:
                 float maxSpeed = GameManager.instance.GetTankController().GetMaxSpeed();
+                float reverseSpeed = GameManager.instance.GetTankController().GetReverseSpeed();
                 maxSpeed += selectedPerk.effectValue;
+                reverseSpeed += selectedPerk.effectValue/2;
                 GameManager.instance.GetTankController().SetMaxSpeed(maxSpeed);
+                GameManager.instance.GetTankController().SetReverseSpeed(reverseSpeed);
+                break;
+
+            case PerkEffect.CritsDamageIncrease:
                 break;
         }
     }
-
+    
     public void ShowPerkSelection()
     {
         perkSelectionUI.SetActive(true); 
-        AudioManager.instance.musicSource.clip = AudioManager.instance.levelUpMusic;
-        AudioManager.instance.musicSource.Play();
+        AudioManager.instance.bgm.clip = AudioManager.instance.levelUpMusic;
+        AudioManager.instance.bgm.Play();
         Time.timeScale = 0f;
     }
 
     public void HidePerkSelection()
     {
         perkSelectionUI.SetActive(false);
-        AudioManager.instance.musicSource.clip = AudioManager.instance.combatMusic;
-        AudioManager.instance.musicSource.Play();
+        AudioManager.instance.bgm.clip = AudioManager.instance.combatMusic;
+        AudioManager.instance.bgm.Play();
         Time.timeScale = 1f;
     }
 }

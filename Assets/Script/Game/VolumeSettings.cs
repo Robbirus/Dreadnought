@@ -7,28 +7,28 @@ public class VolumeSettings : MonoBehaviour
     [SerializeField]
     private AudioMixer audioMixer;
     [SerializeField]
-    private Slider musicSlider;
+    private Slider bgmSlider;
     [SerializeField]
     private Slider sfxSlider;
 
     private void Start()
     {
-        if (PlayerPrefs.HasKey("musicVolume"))
+        if (PlayerPrefs.HasKey("BGMVolume"))
         {
             LoadVolume();
         }
         else
         {
-            SetMusicVolume();
+            SetBGMVolume();
             SetSFXVolume();
         }
     }
 
-    public void SetMusicVolume()
+    public void SetBGMVolume()
     {
-        float volume = musicSlider.value;
-        audioMixer.SetFloat("music", Mathf.Log10(volume) * 20);
-        PlayerPrefs.SetFloat("musicVolume", volume);
+        float volume = bgmSlider.value;
+        audioMixer.SetFloat("BGM", Mathf.Log10(volume) * 20);
+        PlayerPrefs.SetFloat("BGMVolume", volume);
     }
     public void SetSFXVolume()
     {
@@ -39,10 +39,10 @@ public class VolumeSettings : MonoBehaviour
 
     private void LoadVolume()
     {
-        musicSlider.value = PlayerPrefs.GetFloat("musicVolume");
+        bgmSlider.value = PlayerPrefs.GetFloat("BGMVolume");
         sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume");
 
-        SetMusicVolume();
+        SetBGMVolume();
         SetSFXVolume();
     }
 }

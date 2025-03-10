@@ -6,17 +6,13 @@ public class GameManager : MonoBehaviour
 {
     [Header("GameObject UI Instance")]
     [SerializeField]
-    private GameObject needle;
-
-    [Header("Script Instance")]
-    [SerializeField]
+    private GameObject needle;    
+    
     private TankController tankController;
-    [SerializeField]
-    private GunManager gunManager;
-    [SerializeField]
     private PlayerHealthManager healthManager;
-    [SerializeField]
     private ExperienceManager xpManager;
+    private GunManager gunManager;
+    private GameObject player;
 
     private float tankSpeed;
 
@@ -25,6 +21,10 @@ public class GameManager : MonoBehaviour
     private float desiredPosition;
 
     private int score = 0;
+    private bool isPlayerAlive = false;
+    private bool wasPlayerAlive = false;
+    private bool isPlayerFound = false;
+    private bool gameOverCalled = false;
     private GameState currentState;
 
     public static GameManager instance = null;
@@ -45,20 +45,69 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.instance.musicSource.clip = AudioManager.instance.combatMusic;
-        AudioManager.instance.musicSource.Play();
+        AudioManager.instance.bgm.clip = AudioManager.instance.menuMusic;
+        AudioManager.instance.bgm.Play();
     }
 
     private void FixedUpdate()
     {
-        if(healthManager.GetHealth() <= 0f)
+        // Le jeu n'a pas encore commence
+        if (!isPlayerAlive && !wasPlayerAlive)
         {
-            score = xpManager.GetExperience();
-            SceneManager.LoadScene("Game Over Screen");
+            // Menu
         }
 
-        tankSpeed = tankController.GetCurrentSpeed();
-        UpdateNeedle();
+        // Le jeu commence
+        if (isPlayerAlive && !wasPlayerAlive)
+        {
+            // Game
+            if(!isPlayerFound)
+            {
+                AudioManager.instance.bgm.clip = AudioManager.instance.combatMusic;
+                AudioManager.instance.bgm.Play();
+
+                try
+                {
+                    player = GameObject.FindWithTag("Player");
+                    xpManager = player.GetComponent<ExperienceManager>();
+                    healthManager = player.GetComponent<PlayerHealthManager>();
+                    gunManager = player.GetComponent<GunManager>();
+                    tankController = player.GetComponent<TankController>();
+
+                    ChangeState(GameState.Playing);
+
+                    isPlayerFound = true;
+                }
+                catch
+                {
+                    Debug.Log("Player Not Found");
+                }
+            }
+
+            tankSpeed = tankController.GetCurrentSpeed();
+            //UpdateNeedle();
+            score = xpManager.GetExperience();
+            CheckPlayerAlive();
+        }
+
+        // Le jeu est fini
+        if (!isPlayerAlive && wasPlayerAlive && !gameOverCalled)
+        {
+            // Game Over
+            gameOverCalled = true;
+            SceneManager.LoadScene("Game Over Screen");
+            AudioManager.instance.bgm.clip = AudioManager.instance.defeatMusic;
+            AudioManager.instance.bgm.Play();
+        }
+    }
+
+    private void CheckPlayerAlive()
+    {
+        if(healthManager.GetHealth() <= 0f)
+        {
+            isPlayerAlive = false;
+            wasPlayerAlive = true;
+        }
     }
 
     private void UpdateNeedle()
@@ -82,6 +131,10 @@ public class GameManager : MonoBehaviour
             case GameState.Playing:
                 UpgradeManager.instance.HidePerkSelection();
                 break;
+            case GameState.Title:
+                break;
+            case GameState.GameOver:
+                break;
             case GameState.PerkSelection:
                 UpgradeManager.instance.ShowPerkSelection();
                 break;
@@ -95,7 +148,14 @@ public class GameManager : MonoBehaviour
 
     public int GetCurrentLevel()
     {
-        return xpManager.GetCurrentLevel();
+        if (xpManager == null)
+        {
+            return 0;
+        }
+        else
+        {
+            return xpManager.GetCurrentLevel();
+        }
     }
 
     public PlayerHealthManager GetPlayerHealthManager()
@@ -110,10 +170,32 @@ public class GameManager : MonoBehaviour
     {
         return tankController;
     }
+    public ExperienceManager GetExperienceManager()
+    {
+        return xpManager;
+    }
+    public void SetIsPlayerAlive(bool alive)
+    {
+        isPlayerAlive = alive;
+    }
+    public void SetWasPlayerAlive(bool wasAlive)
+    {
+        wasPlayerAlive = wasAlive;
+    }
+    public void SetGameOverCalled(bool methodCalled)
+    {
+        gameOverCalled = methodCalled;
+    }
+    public void SetPlayerFound(bool isPlayerFound)
+    {
+        this.isPlayerFound = isPlayerFound;
+    }
 
     public enum GameState
     {
+        Title,
         Playing,
+        GameOver,
         PerkSelection
     }
 }

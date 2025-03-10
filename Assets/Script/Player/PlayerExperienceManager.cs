@@ -11,7 +11,7 @@ public class ExperienceManager : MonoBehaviour
     [SerializeField]
     private Image frontExperienceBar;
 
-    private int currentlevel;
+    private int currentlevel = 0;
     private int totalExperience;
     private int previousLevelsExperience;
     private int nextLevelsExperience;
@@ -37,7 +37,7 @@ public class ExperienceManager : MonoBehaviour
 
             // Level Up Scene
             GameManager.instance.ChangeState(GameManager.GameState.PerkSelection);
-        } 
+        }
         else
         {
             UpdateExpBar();
@@ -48,13 +48,13 @@ public class ExperienceManager : MonoBehaviour
     {
         float expFraction = (float)totalExperience / (float)nextLevelsExperience;
         float fillFront = frontExperienceBar.fillAmount;
-        frontExperienceBar.fillAmount = expFraction; 
+        frontExperienceBar.fillAmount = expFraction;
     }
 
     private void UpdateLevel()
     {
-        previousLevelsExperience = (int) experienceCurve.Evaluate(currentlevel);
-        nextLevelsExperience = (int) experienceCurve.Evaluate(currentlevel + 1);
+        previousLevelsExperience = (int)experienceCurve.Evaluate(currentlevel);
+        nextLevelsExperience = (int)experienceCurve.Evaluate(currentlevel + 1);
         UpdateInterface();
     }
 
@@ -63,12 +63,12 @@ public class ExperienceManager : MonoBehaviour
         frontExperienceBar.fillAmount = 0;
     }
 
-    public int GetExperience()
-    {
-        return this.totalExperience;
-    }
     public int GetCurrentLevel()
     {
-        return this.currentlevel;
+        return currentlevel;
+    }
+    public int GetExperience()
+    {
+        return totalExperience;
     }
 }

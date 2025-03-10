@@ -4,7 +4,9 @@ public class AudioManager : MonoBehaviour
 {
     [Header("Audio Source")]
     [SerializeField]
-    public AudioSource musicSource;
+    public AudioSource bgm;
+    [SerializeField]
+    public AudioSource music;
     [SerializeField]
     public AudioSource soundEffectSource;
 

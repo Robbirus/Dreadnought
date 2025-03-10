@@ -3,17 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-
-    private void Start()
-    {
-        AudioManager.instance.musicSource.clip = AudioManager.instance.menuMusic;
-        AudioManager.instance.musicSource.Play();
-    }
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     public void StartGame()
     {
         SceneManager.LoadScene("Game");
+        GameManager.instance.SetIsPlayerAlive(true);
     }
 
     public void ExitGame()

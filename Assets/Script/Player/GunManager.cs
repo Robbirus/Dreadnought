@@ -17,6 +17,12 @@ public class GunManager : MonoBehaviour
     private GameObject shellPrefab;
     [SerializeField]
     private GameObject shellSpawnPoint;
+    [SerializeField]
+    private float damage = 110f;
+    [SerializeField]
+    private int critChance = 2;
+    [SerializeField]
+    private float critCoef = 1.01f;
 
     [Header("Input Action Reference")]
     [SerializeField]
@@ -62,5 +68,30 @@ public class GunManager : MonoBehaviour
     public void SetReloadTime(float reloadTime)
     {
         this.reloadTime = reloadTime;
+    }
+
+    public float GetDamage()
+    {
+        return this.damage;
+    }
+    public void SetDamage(float damage)
+    {
+        this.damage = damage;
+    }
+    public int GetCritChance()
+    {
+        return this.critChance;
+    }
+    public void SetCritChance(int critChance)
+    {
+        this.critChance = critChance;
+    }
+    public float GetCritCoef()
+    {
+        return this.critCoef;
+    }
+    public void SetCritCoef(float critCoef)
+    {
+        this.critCoef = critCoef;
     }
 }
