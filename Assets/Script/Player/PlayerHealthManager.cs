@@ -6,6 +6,8 @@ public class PlayerHealthManager : MonoBehaviour
     [Header("Health Properties")]
     [SerializeField]
     private float maxHealth = 1950f;
+    [SerializeField]
+    private int armor = 10;
 
     [Header("GameObject Player")]
     [SerializeField]
@@ -73,7 +75,7 @@ public class PlayerHealthManager : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= damage;
+        health -= damage - armor;
         lerpTimer = 0f;
     }
 
@@ -91,5 +93,14 @@ public class PlayerHealthManager : MonoBehaviour
     public float GetHealth()
     {
         return health;
+    }
+    public void SetArmor(int armor)
+    {
+        this.armor = armor;
+    }
+
+    public int GetArmor()
+    {
+        return this.armor;
     }
 }

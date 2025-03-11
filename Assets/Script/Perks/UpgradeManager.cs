@@ -133,6 +133,9 @@ public class UpgradeManager : MonoBehaviour
                 break;
 
             case PerkEffect.DefenseIncrease:
+                int armor = GameManager.instance.GetPlayerHealthManager().GetArmor();
+                armor += (int)selectedPerk.effectValue;
+                GameManager.instance.GetPlayerHealthManager().SetArmor(armor);
                 break;
 
             case PerkEffect.ExperienceIncrease:
