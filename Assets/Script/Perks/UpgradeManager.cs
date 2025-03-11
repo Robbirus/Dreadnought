@@ -108,18 +108,40 @@ public class UpgradeManager : MonoBehaviour
     {
         switch (selectedPerk.effectType)
         {
-            /*
+            case PerkEffect.TopSpeedIncrease:
+                float maxSpeed = GameManager.instance.GetTankController().GetMaxSpeed();
+                float reverseSpeed = GameManager.instance.GetTankController().GetReverseSpeed();
+                maxSpeed += selectedPerk.effectValue;
+                reverseSpeed += selectedPerk.effectValue / 2;
+                GameManager.instance.GetTankController().SetMaxSpeed(maxSpeed);
+                GameManager.instance.GetTankController().SetReverseSpeed(reverseSpeed);
+                break;
+
+            case PerkEffect.AccelerationSpeed:
+                break;
+
+            case PerkEffect.CritsDamageIncrease:
+                float critCoef = GameManager.instance.GetGunManager().GetCritCoef();
+                critCoef *= selectedPerk.effectValue;
+                GameManager.instance.GetGunManager().SetCritCoef(critCoef);
+                break;
+
+            case PerkEffect.CritsChanceIncrease:
+                float critChance = GameManager.instance.GetGunManager().GetCritChance();
+                critChance += selectedPerk.effectValue;
+                GameManager.instance.GetGunManager().SetCritChance(critChance);
+                break;
+
+            case PerkEffect.DefenseIncrease:
+                break;
+
+            case PerkEffect.ExperienceIncrease:
+                break;
+
             case PerkEffect.HealthIncrease:
                 float maxHealth = GameManager.instance.GetPlayerHealthManager().GetHealth();
                 maxHealth *= selectedPerk.effectValue;
                 GameManager.instance.GetPlayerHealthManager().SetHealth(maxHealth);
-                break;
-            */
-            case PerkEffect.ReloadDecrease:
-                float reloadTime = GameManager.instance.GetGunManager().GetReloadTime();
-                reloadTime *= selectedPerk.effectValue;
-                GameManager.instance.GetGunManager().SetReloadTime(reloadTime);
-                Debug.Log(reloadTime);
                 break;
 
             case PerkEffect.DamageIncrease:
@@ -127,18 +149,20 @@ public class UpgradeManager : MonoBehaviour
                 damage *= selectedPerk.effectValue;
                 GameManager.instance.GetGunManager().SetDamage(damage);
                 break;
-
-            case PerkEffect.SpeedIncrease:
-                float maxSpeed = GameManager.instance.GetTankController().GetMaxSpeed();
-                float reverseSpeed = GameManager.instance.GetTankController().GetReverseSpeed();
-                maxSpeed += selectedPerk.effectValue;
-                reverseSpeed += selectedPerk.effectValue/2;
-                GameManager.instance.GetTankController().SetMaxSpeed(maxSpeed);
-                GameManager.instance.GetTankController().SetReverseSpeed(reverseSpeed);
+    
+            case PerkEffect.ReloadDecrease:
+                float reloadTime = GameManager.instance.GetGunManager().GetReloadTime();
+                reloadTime *= selectedPerk.effectValue;
+                GameManager.instance.GetGunManager().SetReloadTime(reloadTime);
+                Debug.Log(reloadTime);
+                break;
+            
+            case PerkEffect.Bloodbath:
                 break;
 
-            case PerkEffect.CritsDamageIncrease:
+            case PerkEffect.LifeRip:
                 break;
+
         }
     }
     

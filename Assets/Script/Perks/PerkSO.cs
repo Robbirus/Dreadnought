@@ -13,8 +13,15 @@ public class PerkSO : ScriptableObject
 
 public enum PerkEffect
 {
-    SpeedIncrease,
-    DamageIncrease,
+    TopSpeedIncrease,
+    AccelerationSpeed,
     CritsDamageIncrease,
-    ReloadDecrease
+    CritsChanceIncrease,
+    DefenseIncrease,
+    ExperienceIncrease,
+    HealthIncrease,
+    DamageIncrease,
+    ReloadDecrease,
+    Bloodbath,
+    LifeRip
 }
