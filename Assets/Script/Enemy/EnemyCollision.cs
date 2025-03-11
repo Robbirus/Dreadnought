@@ -43,12 +43,13 @@ public class EnemyCollision : MonoBehaviour
         if (Random.Range(1, 100) == collider.gameObject.GetComponent<Shell>().GetCritChance())
         {
             damage = collider.gameObject.GetComponent<Shell>().GetDamage() * collider.gameObject.GetComponent<Shell>().GetCritCoef();
-            
+            lifeSteal = 0.2f * damage;
             gameObject.GetComponent<EnemyHealthManager>().TakeDamage(damage);
         }
         else
         {
-            float damage = collider.gameObject.GetComponent<Shell>().GetDamage();
+            damage = collider.gameObject.GetComponent<Shell>().GetDamage(); 
+            lifeSteal = 0.2f * damage;
             gameObject.GetComponent<EnemyHealthManager>().TakeDamage(collider.gameObject.GetComponent<Shell>().GetDamage());
         }
 
