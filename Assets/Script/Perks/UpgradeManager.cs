@@ -127,8 +127,8 @@ public class UpgradeManager : MonoBehaviour
                 break;
 
             case PerkEffect.CritsChanceIncrease:
-                float critChance = GameManager.instance.GetGunManager().GetCritChance();
-                critChance += selectedPerk.effectValue;
+                int critChance = GameManager.instance.GetGunManager().GetCritChance();
+                critChance += (int)selectedPerk.effectValue;
                 GameManager.instance.GetGunManager().SetCritChance(critChance);
                 break;
 
