@@ -18,7 +18,7 @@ public class GunManager : MonoBehaviour
     [SerializeField]
     private GameObject shellSpawnPoint;
     [SerializeField]
-    private float damage = 110f;
+    private float damage = 200f;
     [SerializeField]
     private int critChance = 2;
     [SerializeField]
@@ -46,7 +46,6 @@ public class GunManager : MonoBehaviour
 
             // Wait For ReloadTime
             Debug.Log("Reloading");
-            Debug.Log(reloadTime);
             AudioManager.instance.PlaySE(AudioManager.instance.gunReloadSE);
             yield return new WaitForSeconds(reloadTime);
             Debug.Log("Ready to shoot");
@@ -55,7 +54,6 @@ public class GunManager : MonoBehaviour
 
     private void Shoot()
     {
-        Debug.Log("Shoot");
         AudioManager.instance.PlaySE(AudioManager.instance.gunFireSE);
         Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
         shootParticle.Play();

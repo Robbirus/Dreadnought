@@ -35,6 +35,7 @@ public class EnemyHealthManager : MonoBehaviour
         if (health <= 0)
         {
             GameManager.instance.GetExperienceManager().GainExperience(xp);
+            GameManager.instance.GetPlayerHealthManager().SetBloodbath(true);
             Destroy(gameObject);
         }
     }

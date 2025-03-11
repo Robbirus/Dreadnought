@@ -22,6 +22,13 @@ public class PlayerHealthManager : MonoBehaviour
     private float health;
     private float lerpTimer;
 
+    private float lifeRip = 0;
+
+    private bool bloodbathObtained = false;
+    private bool isBloodbath = false;
+    private float bloodbathTime = 4f;
+    private float heal = 0.1f;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -44,6 +51,21 @@ public class PlayerHealthManager : MonoBehaviour
         {
             RestoreHealth(Random.Range(5, 10));
         }
+
+        if (isBloodbath && bloodbathObtained)
+        {
+            if (bloodbathTime > 0)
+            {
+                RestoreHealth(0.1f);
+                bloodbathTime--;
+            } 
+            else
+            {
+                bloodbathTime = 4f;
+                isBloodbath = false;
+            }
+        }
+
     }
 
     public void UpdateHealthUI()
@@ -102,5 +124,24 @@ public class PlayerHealthManager : MonoBehaviour
     public int GetArmor()
     {
         return this.armor;
+    }
+
+    public void SetBloodbath(bool isBloodbath)
+    {
+        this.isBloodbath = isBloodbath;
+    }
+
+    public void SetBloodbathObtained(bool bloodbathObtained)
+    {
+        this.bloodbathObtained = bloodbathObtained;
+    }
+    public void SetLifeRip(float lifeRip)
+    {
+        this.lifeRip = lifeRip;
+    }
+
+    public float GetLifeRip()
+    {
+        return this.lifeRip;
     }
 }

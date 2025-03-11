@@ -625,7 +625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8945273061389824474, guid: 2f540f50b76b00a468db6ea8ffe79859, type: 3}
       propertyPath: m_CollisionDetection
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8252672864265373387, guid: 2f540f50b76b00a468db6ea8ffe79859, type: 3}
@@ -648,6 +648,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6544371426597996155, guid: 2f540f50b76b00a468db6ea8ffe79859, type: 3}
       insertIndex: -1
       addedObject: {fileID: 227081424578727720}
+    - targetCorrespondingSourceObject: {fileID: 6544371426597996155, guid: 2f540f50b76b00a468db6ea8ffe79859, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -7665278974299221748}
   m_SourcePrefab: {fileID: 100100000, guid: 2f540f50b76b00a468db6ea8ffe79859, type: 3}
 --- !u!4 &4501632098009216406 stripped
 Transform:
@@ -690,3 +693,15 @@ MonoBehaviour:
   maxHealth: 1700
   healthBar: {fileID: 5408143212954185590}
   xp: 0
+--- !u!114 &-7665278974299221748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5867880022226117371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf1d657e11907cf45b380a2e44f4f992, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

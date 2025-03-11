@@ -25,21 +25,16 @@ public class Shell : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().linearVelocity = gameObject.transform.forward * shellSpeed;
     }
 
-    private void OnTriggerEnter(Collider collision)
+    public float GetCritChance()
     {
-        // Enemies to take damage
-        if(collision.transform.CompareTag("Ennemy"))
-        {
-            if (Random.Range(1, 100) == critChance)
-            {
-                collision.transform.GetComponent<EnemyHealthManager>().TakeDamage(damage * critCoef);
-            }
-            else
-            {
-                collision.transform.GetComponent<EnemyHealthManager>().TakeDamage(damage);
-            }
-        }
-
-        Destroy(gameObject); // Destroy shell in all cases
+        return critChance;
+    }
+    public float GetCritCoef()
+    {
+        return critCoef;
+    }
+    public float GetDamage()
+    {
+        return damage;
     }
 }

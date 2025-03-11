@@ -161,9 +161,17 @@ public class UpgradeManager : MonoBehaviour
                 break;
             
             case PerkEffect.Bloodbath:
+                GameManager.instance.GetPlayerHealthManager().SetBloodbathObtained(true);
                 break;
 
             case PerkEffect.LifeRip:
+                float lifeRip = GameManager.instance.GetPlayerHealthManager().GetLifeRip();
+                lifeRip += selectedPerk.effectValue;
+                if(lifeRip > 0.6f)
+                {
+                    lifeRip = 0.6f;
+                }
+                GameManager.instance.GetPlayerHealthManager().SetLifeRip(lifeRip);
                 break;
 
         }
