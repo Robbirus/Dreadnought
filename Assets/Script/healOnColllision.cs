@@ -7,6 +7,7 @@ public class HealOnCollision : MonoBehaviour
     private GameObject player;
     [SerializeField]
     private GameObject healCollectible;
+
     private void OnTriggerEnter(Collider other)
     {
         GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerHealthManager>().RestoreHealth(50.0f) ;

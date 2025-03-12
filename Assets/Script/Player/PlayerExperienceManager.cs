@@ -15,6 +15,7 @@ public class ExperienceManager : MonoBehaviour
     private int totalExperience;
     private int previousLevelsExperience;
     private int nextLevelsExperience;
+    private int bonus = 0;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,7 +25,7 @@ public class ExperienceManager : MonoBehaviour
 
     public void GainExperience(int xpAmount)
     {
-        totalExperience += xpAmount;
+        totalExperience += xpAmount + bonus;
         CheckChange();
     }
 
@@ -70,5 +71,13 @@ public class ExperienceManager : MonoBehaviour
     public int GetExperience()
     {
         return totalExperience;
+    }
+    public int GetBonus()
+    {
+        return bonus;
+    }
+    public void SetBonus(int bonus)
+    {
+        this.bonus = bonus;
     }
 }

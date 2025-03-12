@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8ffb0827e9f8bcf418e32cd2296f97b9, type: 3}
-  m_Name: ReloadDecrease
+  m_Name: DefenseIncrease
   m_EditorClassIdentifier: 
-  perkImage: {fileID: 21300000, guid: 05ba91e35693cd84d91bca236007b442, type: 3}
-  perkText: Reload 10% Faster
-  effectType: 8
-  effectValue: 0.9
+  perkImage: {fileID: 21300000, guid: 188d61c55530e5f40bab2705483e812a, type: 3}
+  perkText: Increase your armor value by 1
+  effectType: 4
+  effectValue: 1
   isUnique: 0
   unlockLevel: 0

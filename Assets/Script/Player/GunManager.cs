@@ -45,7 +45,6 @@ public class GunManager : MonoBehaviour
             Shoot();
 
             // Wait For ReloadTime
-            Debug.Log("Reloading");
             AudioManager.instance.PlaySE(AudioManager.instance.gunReloadSE);
             yield return new WaitForSeconds(reloadTime);
             Debug.Log("Ready to shoot");
@@ -57,6 +56,7 @@ public class GunManager : MonoBehaviour
         AudioManager.instance.PlaySE(AudioManager.instance.gunFireSE);
         Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
         shootParticle.Play();
+        Debug.Log("Damage : " + damage);
     }
 
     public float GetReloadTime()

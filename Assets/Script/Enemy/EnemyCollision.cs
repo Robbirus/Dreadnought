@@ -53,6 +53,7 @@ public class EnemyCollision : MonoBehaviour
             gameObject.GetComponent<EnemyHealthManager>().TakeDamage(collider.gameObject.GetComponent<Shell>().GetDamage());
         }
 
+        GameManager.instance.GetPlayerHealthManager().SetLifeRip(lifeSteal);
         Destroy(collider.gameObject);
     }
 }

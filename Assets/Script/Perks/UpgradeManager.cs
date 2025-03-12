@@ -14,8 +14,6 @@ public class UpgradeManager : MonoBehaviour
     // Currently randomized perks
     private GameObject perkOne, perkTwo, perkThree;
 
-    private List<PerkSO> alreadySelectedPerks = new List<PerkSO>();
-
     public static UpgradeManager instance = null;
 
     
@@ -50,6 +48,7 @@ public class UpgradeManager : MonoBehaviour
             RandomizeNewPerks();
         }
     }
+   
     private void RandomizeNewPerks()
     {
         if(perkOne != null) Destroy(perkOne);
@@ -60,8 +59,7 @@ public class UpgradeManager : MonoBehaviour
 
         List<PerkSO> availablePerks = new List<PerkSO>(deck);
         availablePerks.RemoveAll(perk =>
-            perk.isUnique && alreadySelectedPerks.Contains(perk) 
-         || perk.unlockLevel > GameManager.instance.GetCurrentLevel()
+            perk.isUnique || perk.unlockLevel > GameManager.instance.GetCurrentLevel()
         );
 
         if(availablePerks.Count < 3)
@@ -94,16 +92,10 @@ public class UpgradeManager : MonoBehaviour
 
     public void SelectPerk(PerkSO selectedPerk)
     {
-        if (!alreadySelectedPerks.Contains(selectedPerk))
-        {
-            alreadySelectedPerks.Add(selectedPerk);
-            ApplyEffect(selectedPerk);
-        }
-
+        ApplyEffect(selectedPerk);
         GameManager.instance.ChangeState(GameManager.GameState.Playing);
     }
 
-    
     private void ApplyEffect(PerkSO selectedPerk)
     {
         switch (selectedPerk.effectType)
@@ -139,6 +131,9 @@ public class UpgradeManager : MonoBehaviour
                 break;
 
             case PerkEffect.ExperienceIncrease:
+                int bonus = GameManager.instance.GetExperienceManager().GetBonus();
+                bonus = (int)selectedPerk.effectValue;
+                GameManager.instance.GetExperienceManager().SetBonus(bonus);
                 break;
 
             case PerkEffect.HealthIncrease:
@@ -162,16 +157,19 @@ public class UpgradeManager : MonoBehaviour
             
             case PerkEffect.Bloodbath:
                 GameManager.instance.GetPlayerHealthManager().SetBloodbathObtained(true);
+                selectedPerk.isUnique = true;
                 break;
 
             case PerkEffect.LifeRip:
-                float lifeRip = GameManager.instance.GetPlayerHealthManager().GetLifeRip();
-                lifeRip += selectedPerk.effectValue;
-                if(lifeRip > 0.6f)
+                int passage = 0;
+                if (passage < 3)
                 {
-                    lifeRip = 0.6f;
+                    float lifeRip = GameManager.instance.GetPlayerHealthManager().GetLifeRip();
+                    lifeRip += selectedPerk.effectValue;
+                    GameManager.instance.GetPlayerHealthManager().SetLifeRip(lifeRip);
+                    selectedPerk.isUnique = true;
+                    passage++;
                 }
-                GameManager.instance.GetPlayerHealthManager().SetLifeRip(lifeRip);
                 break;
 
         }

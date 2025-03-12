@@ -32,6 +32,11 @@ public class EnemyHealthManager : MonoBehaviour
         healthBar.UpdateHealthBar(health, maxHealth);
         AudioManager.instance.PlaySE(AudioManager.instance.hitSE);
 
+        CheckDeath();
+    }
+
+    private void CheckDeath()
+    {
         if (health <= 0)
         {
             GameManager.instance.GetExperienceManager().GainExperience(xp);

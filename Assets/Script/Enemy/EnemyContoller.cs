@@ -45,19 +45,6 @@ public class EnemyController : MonoBehaviour
         transform.rotation = orientation;
     }
 
-    private void OnTriggerEnter(Collider collider)
-    {
-        Transform hitTransform = collider.transform;
-        if(hitTransform.CompareTag("Player"))
-        {
-            hitTransform.GetComponent<PlayerHealthManager>().TakeDamage(damage);
-
-            // Destroy the ennemy when it touches the player
-            Destroy(gameObject);
-
-        }
-    }
-
     public float GetDamage()
     {
         return damage;

@@ -16,5 +16,5 @@ MonoBehaviour:
   perkText: Kills Heal you 360 hp over 4 sec
   effectType: 9
   effectValue: 0
-  isUnique: 1
+  isUnique: 0
   unlockLevel: 5
