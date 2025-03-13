@@ -14,6 +14,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip hitSE;
     public AudioClip gunFireSE;
     public AudioClip gunReloadSE;
+    public AudioClip tankMovingSE;
+    public AudioClip fabricatorSE;
 
     [Header("Audio Clip Music")]
     public AudioClip bossMusic;
