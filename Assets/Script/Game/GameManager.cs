@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     #endregion
 
-    private float tankSpeed;
 
     #region Needle attributes
     private float startPosition = 220f;
@@ -24,18 +23,24 @@ public class GameManager : MonoBehaviour
     private float desiredPosition;
     #endregion
 
-    #region player state
+    #region player Attributes
     private int score = 0;
     private bool isPlayerAlive = false;
     private bool wasPlayerAlive = false;
     private bool isPlayerFound = false;
     private bool gameOverCalled = false;
+
+    private float tankSpeed;
+    private bool invicibleActive = false;
+    private float invicibleActiveTime = 0f;
     #endregion
 
     private GameState currentState;
 
-    private const int ENEMY_LIMIT = 100;
-    private int enemyCount = 0;
+    #region Enemy limit
+    public const int ENEMY_LIMIT = 100;
+    public int enemyCount = 0;
+    #endregion
 
     public static GameManager instance = null;
     public event Action<GameState> OnStateChanged;
@@ -73,9 +78,6 @@ public class GameManager : MonoBehaviour
             // Game
             if(!isPlayerFound)
             {
-                AudioManager.instance.bgm.clip = AudioManager.instance.combatMusic;
-                AudioManager.instance.bgm.Play();
-
                 try
                 {
                     player = GameObject.FindWithTag("Player");
@@ -93,6 +95,25 @@ public class GameManager : MonoBehaviour
                     Debug.Log("Player Not Found");
                 }
             }
+
+            if (invicibleActive)
+            {
+                if (invicibleActiveTime > 0f)
+                {
+                    AudioManager.instance.bgm.clip = AudioManager.instance.invicibleMusic;
+                    invicibleActiveTime--;
+                }
+                else
+                {
+                    invicibleActive = false;
+                }
+            }
+            else
+            {
+                AudioManager.instance.bgm.clip = AudioManager.instance.combatMusic;                
+            }
+
+            AudioManager.instance.bgm.Play();
 
             tankSpeed = tankController.GetCurrentSpeed();
             //UpdateNeedle();
@@ -206,6 +227,16 @@ public class GameManager : MonoBehaviour
     public void SetPlayerFound(bool isPlayerFound)
     {
         this.isPlayerFound = isPlayerFound;
+    }
+
+    public void SetInvicibleActive(bool invicibleActive)
+    {
+        this.invicibleActive = invicibleActive;
+    }
+
+    public void SetInvicibleActiveTime(float invicibleActiveTime)
+    {
+        this.invicibleActiveTime = invicibleActiveTime;
     }
 
     public enum GameState

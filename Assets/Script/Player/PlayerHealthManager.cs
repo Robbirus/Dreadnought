@@ -22,14 +22,16 @@ public class PlayerHealthManager : MonoBehaviour
     private float health;
     private float lerpTimer;
 
-    // BloodBath
+    #region BloodBath
     private bool bloodbathObtained = false;
     private bool isBloodbath = false;
     private float bloodbathTime = 4f;
+    #endregion
 
-    // Life Rip
+    #region Life Rip
     private float lifeRip = 0;
     private bool lifeRipObtained = false;
+    #endregion
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

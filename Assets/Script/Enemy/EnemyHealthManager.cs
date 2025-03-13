@@ -41,6 +41,7 @@ public class EnemyHealthManager : MonoBehaviour
         {
             GameManager.instance.GetExperienceManager().GainExperience(xp);
             GameManager.instance.GetPlayerHealthManager().SetBloodbath(true);
+            GameManager.instance.enemyCount--;
             Destroy(gameObject);
         }
     }
