@@ -233,6 +233,8 @@ MonoBehaviour:
   hitSE: {fileID: 8300000, guid: 1544f73371922f444a45453b0ef47150, type: 3}
   gunFireSE: {fileID: 8300000, guid: d80230c64a105d84099ec7531a675c61, type: 3}
   gunReloadSE: {fileID: 8300000, guid: c87963d378b2972498f65e2029e64337, type: 3}
+  tankMovingSE: {fileID: 8300000, guid: 385a4a5ee91421b4e9053b12ebe0105e, type: 3}
+  fabricatorSE: {fileID: 8300000, guid: 2e6a4b036d73d974fbbd2a3ed527449e, type: 3}
   bossMusic: {fileID: 8300000, guid: 8610228bf77443f4e8b860a1e46f164a, type: 3}
   combatMusic: {fileID: 8300000, guid: 7ed230d54b810f841b79f7401c5fee8b, type: 3}
   invicibleMusic: {fileID: 8300000, guid: 2ebdf32c887b6754aa9dc093ca82a808, type: 3}
