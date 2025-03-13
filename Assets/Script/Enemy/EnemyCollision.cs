@@ -43,17 +43,27 @@ public class EnemyCollision : MonoBehaviour
         if (Random.Range(1, 100) == collider.gameObject.GetComponent<Shell>().GetCritChance())
         {
             damage = collider.gameObject.GetComponent<Shell>().GetDamage() * collider.gameObject.GetComponent<Shell>().GetCritCoef();
-            lifeSteal = 0.2f * damage;
+            lifeSteal = GameManager.instance.GetPlayerHealthManager().GetLifeRip() * damage;
             gameObject.GetComponent<EnemyHealthManager>().TakeDamage(damage);
         }
         else
         {
             damage = collider.gameObject.GetComponent<Shell>().GetDamage(); 
-            lifeSteal = 0.2f * damage;
+            lifeSteal = GameManager.instance.GetPlayerHealthManager().GetLifeRip() * damage;
             gameObject.GetComponent<EnemyHealthManager>().TakeDamage(collider.gameObject.GetComponent<Shell>().GetDamage());
         }
 
-        GameManager.instance.GetPlayerHealthManager().SetLifeRip(lifeSteal);
+        ApplyLifeRip(lifeSteal);
+
         Destroy(collider.gameObject);
+    }
+
+    private void ApplyLifeRip(float lifeSteal)
+    {
+        if (GameManager.instance.GetPlayerHealthManager().IsLifeRipObtained()) 
+        {
+            GameManager.instance.GetPlayerHealthManager().RestoreHealth(lifeSteal);
+        }
+        
     }
 }

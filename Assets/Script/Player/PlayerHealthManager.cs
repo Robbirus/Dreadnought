@@ -67,12 +67,6 @@ public class PlayerHealthManager : MonoBehaviour
                 isBloodbath = false;
             }
         }
-
-        if(lifeRipObtained)
-        {
-            RestoreHealth(lifeRip);
-        }
-
     }
 
     public void UpdateHealthUI()
@@ -130,10 +124,12 @@ public class PlayerHealthManager : MonoBehaviour
     {
         return health;
     }
+
     public void SetArmor(int armor)
     {
         this.armor = armor;
     }
+
     public int GetArmor()
     {
         return this.armor;
@@ -158,4 +154,15 @@ public class PlayerHealthManager : MonoBehaviour
     {
         return this.lifeRip;
     }
+
+    public void SetLifeRipObtained(bool lifeRipObtained)
+    {
+        this.lifeRipObtained = lifeRipObtained;
+    }
+
+    public bool IsLifeRipObtained()
+    {
+        return this.lifeRipObtained;
+    }
+
 }

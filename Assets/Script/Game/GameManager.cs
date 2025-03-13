@@ -6,26 +6,36 @@ public class GameManager : MonoBehaviour
 {
     [Header("GameObject UI Instance")]
     [SerializeField]
-    private GameObject needle;    
-    
+    private GameObject needle;
+
+    #region Player Script
     private TankController tankController;
     private PlayerHealthManager healthManager;
     private ExperienceManager xpManager;
     private GunManager gunManager;
     private GameObject player;
+    #endregion
 
     private float tankSpeed;
 
+    #region Needle attributes
     private float startPosition = 220f;
     private float endPosition = -41f ;
     private float desiredPosition;
+    #endregion
 
+    #region player state
     private int score = 0;
     private bool isPlayerAlive = false;
     private bool wasPlayerAlive = false;
     private bool isPlayerFound = false;
     private bool gameOverCalled = false;
+    #endregion
+
     private GameState currentState;
+
+    private const int ENEMY_LIMIT = 100;
+    private int enemyCount = 0;
 
     public static GameManager instance = null;
     public event Action<GameState> OnStateChanged;
@@ -162,30 +172,37 @@ public class GameManager : MonoBehaviour
     {
         return healthManager;
     }
+
     public GunManager GetGunManager()
     {
         return gunManager;
     }
+
     public TankController GetTankController()
     {
         return tankController;
     }
+
     public ExperienceManager GetExperienceManager()
     {
         return xpManager;
     }
+
     public void SetIsPlayerAlive(bool alive)
     {
         isPlayerAlive = alive;
     }
+
     public void SetWasPlayerAlive(bool wasAlive)
     {
         wasPlayerAlive = wasAlive;
     }
+
     public void SetGameOverCalled(bool methodCalled)
     {
         gameOverCalled = methodCalled;
     }
+
     public void SetPlayerFound(bool isPlayerFound)
     {
         this.isPlayerFound = isPlayerFound;
@@ -194,6 +211,7 @@ public class GameManager : MonoBehaviour
     public enum GameState
     {
         Title,
+        Menu,
         Playing,
         GameOver,
         PerkSelection

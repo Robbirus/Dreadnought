@@ -164,11 +164,15 @@ public class UpgradeManager : MonoBehaviour
                 int passage = 0;
                 if (passage < 3)
                 {
+                    GameManager.instance.GetPlayerHealthManager().SetLifeRipObtained(true);
                     float lifeRip = GameManager.instance.GetPlayerHealthManager().GetLifeRip();
                     lifeRip += selectedPerk.effectValue;
                     GameManager.instance.GetPlayerHealthManager().SetLifeRip(lifeRip);
-                    selectedPerk.isUnique = true;
                     passage++;
+                }
+                else
+                {
+                    selectedPerk.isUnique = true;
                 }
                 break;
 
