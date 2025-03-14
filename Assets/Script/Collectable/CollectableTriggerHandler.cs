@@ -3,8 +3,6 @@ using UnityEngine;
 public class CollectableTriggerHandler : MonoBehaviour
 {
     [SerializeField]
-    private LayerMask whoCanCollect = LayerMaskHelper.CreateLayerMask(9);
-
     private Collectable collectable;
 
     private void Awake()
@@ -14,12 +12,26 @@ public class CollectableTriggerHandler : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (LayerMaskHelper.ObjInLayerMask(collider.gameObject, whoCanCollect))
-        {
-            collectable.Collect(collider.gameObject);
+        ProcessCollision(collider.gameObject);
+    }
 
-            Destroy(gameObject);
+    private void OnCollisionEnter(Collision collision)
+    {
+        ProcessCollision(collision.gameObject);
+    }
+
+    private void ProcessCollision(GameObject collision)
+    {
+        // If the collectable touches the player
+        if (collision.transform.CompareTag("Player") && gameObject != null)
+        {
+            ContactWithPlayer(collision);
         }
-        
+    }
+    private void ContactWithPlayer(GameObject collider)
+    {
+        collectable.Collect(collider.gameObject);
+
+        Destroy(gameObject);
     }
 }

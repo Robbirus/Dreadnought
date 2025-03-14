@@ -16,7 +16,6 @@ public class GameManager : MonoBehaviour
     private GameObject player;
     #endregion
 
-
     #region Needle attributes
     private float startPosition = 220f;
     private float endPosition = -41f ;
@@ -38,7 +37,7 @@ public class GameManager : MonoBehaviour
     private GameState currentState;
 
     #region Enemy limit
-    public const int ENEMY_LIMIT = 100;
+    public const int ENEMY_LIMIT = 20;
     public int enemyCount = 0;
     #endregion
 
@@ -78,6 +77,9 @@ public class GameManager : MonoBehaviour
             // Game
             if(!isPlayerFound)
             {
+                AudioManager.instance.bgm.clip = AudioManager.instance.combatMusic;
+                AudioManager.instance.bgm.Play();
+
                 try
                 {
                     player = GameObject.FindWithTag("Player");
@@ -95,26 +97,7 @@ public class GameManager : MonoBehaviour
                     Debug.Log("Player Not Found");
                 }
             }
-
-            if (invicibleActive)
-            {
-                if (invicibleActiveTime > 0f)
-                {
-                    AudioManager.instance.bgm.clip = AudioManager.instance.invicibleMusic;
-                    invicibleActiveTime--;
-                }
-                else
-                {
-                    invicibleActive = false;
-                }
-            }
-            else
-            {
-                AudioManager.instance.bgm.clip = AudioManager.instance.combatMusic;                
-            }
-
-            AudioManager.instance.bgm.Play();
-
+            Debug.Log("nb enemy : " + enemyCount);
             tankSpeed = tankController.GetCurrentSpeed();
             //UpdateNeedle();
             score = xpManager.GetExperience();

@@ -20,8 +20,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.instance.music.clip = AudioManager.instance.fabricatorSE;
-        AudioManager.instance.music.Play();
+
     }
 
     private void Update()
@@ -30,7 +29,6 @@ public class Spawner : MonoBehaviour
         {
             SpawnAnEnemy();
         }
-
 
     }
 
