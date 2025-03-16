@@ -18,7 +18,7 @@ public class GunManager : MonoBehaviour
     [SerializeField]
     private GameObject shellSpawnPoint;
     [SerializeField]
-    private float damage = 200f;
+    private float damage = 420f;
     [SerializeField]
     private int critChance = 2;
     [SerializeField]
@@ -29,7 +29,6 @@ public class GunManager : MonoBehaviour
     private InputActionReference shootActionReference;
 
     private float reloadTime = 4f;
-
 
     private void Start()
     {
@@ -45,7 +44,7 @@ public class GunManager : MonoBehaviour
             Shoot();
 
             // Wait For ReloadTime
-            AudioManager.instance.PlaySE(AudioManager.instance.gunReloadSE);
+            PlayerSoundManager.instance.PlayReload();
             yield return new WaitForSeconds(reloadTime);
             Debug.Log("Ready to shoot");
         }
@@ -53,7 +52,7 @@ public class GunManager : MonoBehaviour
 
     private void Shoot()
     {
-        AudioManager.instance.PlaySE(AudioManager.instance.gunFireSE);
+        PlayerSoundManager.instance.PlayGunShot();
         Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
         shootParticle.Play();
         Debug.Log("Damage : " + damage);
@@ -63,6 +62,7 @@ public class GunManager : MonoBehaviour
     {
         return reloadTime;
     }
+
     public void SetReloadTime(float reloadTime)
     {
         this.reloadTime = reloadTime;
@@ -72,6 +72,7 @@ public class GunManager : MonoBehaviour
     {
         return this.damage;
     }
+
     public void SetDamage(float damage)
     {
         this.damage = damage;
@@ -80,14 +81,17 @@ public class GunManager : MonoBehaviour
     {
         return this.critChance;
     }
+
     public void SetCritChance(int critChance)
     {
         this.critChance = critChance;
     }
+
     public float GetCritCoef()
     {
         return this.critCoef;
     }
+
     public void SetCritCoef(float critCoef)
     {
         this.critCoef = critCoef;

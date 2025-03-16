@@ -4322,7 +4322,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6373239541653378979, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
       propertyPath: damage
-      value: 2000
+      value: 425
       objectReference: {fileID: 0}
     - target: {fileID: 7020948231001036867, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
       propertyPath: m_Size.x
@@ -4555,7 +4555,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9190513568571667389, guid: a903d305fee387c4ba6263f9a9a294d0, type: 3}
       propertyPath: maximumSpawnTime
-      value: 120
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 9190513568571667389, guid: a903d305fee387c4ba6263f9a9a294d0, type: 3}
       propertyPath: minimumSpawnTime

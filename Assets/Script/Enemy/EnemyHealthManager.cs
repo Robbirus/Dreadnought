@@ -30,7 +30,7 @@ public class EnemyHealthManager : MonoBehaviour
     {
         health -= damage;
         healthBar.UpdateHealthBar(health, maxHealth);
-        AudioManager.instance.PlaySE(AudioManager.instance.hitSE);
+        gameObject.GetComponent<EnemySoundManager>().PlayHitSound();
 
         CheckDeath();
     }
@@ -39,6 +39,8 @@ public class EnemyHealthManager : MonoBehaviour
     {
         if (health <= 0)
         {
+            gameObject.GetComponent<EnemySoundManager>().PlayDeathSound();
+
             GameManager.instance.GetExperienceManager().GainExperience(xp);
             GameManager.instance.GetPlayerHealthManager().SetBloodbath(true);
             GameManager.instance.enemyCount--;

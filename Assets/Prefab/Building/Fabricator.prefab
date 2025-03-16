@@ -1310,7 +1310,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1258210074786301809}
   - component: {fileID: 9190513568571667389}
-  - component: {fileID: -2080280972038070095}
+  - component: {fileID: 6422740305884154916}
+  - component: {fileID: 1879200329417449600}
+  - component: {fileID: 7702559640330011210}
   m_Layer: 0
   m_Name: Fabricator
   m_TagString: Untagged
@@ -1364,7 +1366,7 @@ MonoBehaviour:
   enemy: {fileID: 5867880022226117371, guid: c7b60c6323fadf04797699c3f3141eb6, type: 3}
   minimumSpawnTime: 2
   maximumSpawnTime: 5
---- !u!82 &-2080280972038070095
+--- !u!82 &6422740305884154916
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1373,7 +1375,7 @@ AudioSource:
   m_GameObject: {fileID: 6784152617100878355}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 6f3d6d505bbb1524fb9f53fc437167aa, type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2e6a4b036d73d974fbbd2a3ed527449e, type: 3}
   m_Resource: {fileID: 8300000, guid: 2e6a4b036d73d974fbbd2a3ed527449e, type: 3}
   m_PlayOnAwake: 0
@@ -1385,7 +1387,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 15
+  MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
@@ -1421,7 +1423,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 1
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -1461,6 +1463,119 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &1879200329417449600
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6784152617100878355}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &7702559640330011210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6784152617100878355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e3db0933adcdac49931339bcddd2e94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  factoryLoopSource: {fileID: 6422740305884154916}
+  spawnSoundSource: {fileID: 1879200329417449600}
+  factoryLoopSound: {fileID: 8300000, guid: 2e6a4b036d73d974fbbd2a3ed527449e, type: 3}
+  spawnSound: {fileID: 8300000, guid: 0bef411844124374297e4df2c4b26892, type: 3}
 --- !u!1 &7481323161292139341
 GameObject:
   m_ObjectHideFlags: 0

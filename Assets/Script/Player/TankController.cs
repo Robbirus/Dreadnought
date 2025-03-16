@@ -54,7 +54,6 @@ public class TankController : MonoBehaviour
         moveTurretActionReference.action.Enable();
         direction = transform.forward;
         currentSpeed = 0f;
-
     }
 
     public void Forward()
@@ -116,9 +115,22 @@ public class TankController : MonoBehaviour
         }
         */
 
+        PlayMovementSound();
         TankFowardBack();
         TankLeftRight();
         RotateTurret();
+    }
+
+    private void PlayMovementSound()
+    {
+        if (forwardBackward != 0 || leftRight != 0)
+        {
+            PlayerSoundManager.instance.PlayMovement();
+        }
+        else
+        {
+            PlayerSoundManager.instance.StopMovement();
+        }
     }
 
     private void TankFowardBack()
@@ -134,6 +146,7 @@ public class TankController : MonoBehaviour
             moveFB = transform.forward * forwardBackward * maxSpeed * Time.fixedDeltaTime;
             currentSpeed = maxSpeed;
         }
+
         rbTank.MovePosition(rbTank.position + moveFB);
     }
 
@@ -154,12 +167,14 @@ public class TankController : MonoBehaviour
         }
         turret.transform.Rotate(rotationAxis * step, Space.Self);
     }
+
     private void TankLeftRight()
     {
         Quaternion rotateLR = Quaternion.Euler(0f, leftRight, 0f);
         rbTank.MoveRotation(rbTank.rotation * rotateLR);
     }
 
+    #region Acceleration Methods
     private float CalculateAccelerate(float currentSpeed)
     {
         // Si la vitesse maximale est atteinte, l'acceleration est nulle
@@ -219,6 +234,7 @@ public class TankController : MonoBehaviour
             Debug.LogWarning("Vector is null, no force applied");
         }
     }
+    #endregion
 
     private void SwitchBoolsOff()
     {

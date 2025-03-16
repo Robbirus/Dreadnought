@@ -5,8 +5,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     [Header("GameObject UI Instance")]
-    [SerializeField]
-    private GameObject needle;
+    [SerializeField] private GameObject needle;
 
     #region Player Script
     private TankController tankController;
@@ -59,8 +58,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.instance.bgm.clip = AudioManager.instance.menuMusic;
-        AudioManager.instance.bgm.Play();
+        MusicManager.instance.PlayMenuMusic();
     }
 
     private void FixedUpdate()
@@ -77,8 +75,7 @@ public class GameManager : MonoBehaviour
             // Game
             if(!isPlayerFound)
             {
-                AudioManager.instance.bgm.clip = AudioManager.instance.combatMusic;
-                AudioManager.instance.bgm.Play();
+                MusicManager.instance.PlayBackgroundMusic();
 
                 try
                 {
@@ -97,7 +94,6 @@ public class GameManager : MonoBehaviour
                     Debug.Log("Player Not Found");
                 }
             }
-            Debug.Log("nb enemy : " + enemyCount);
             tankSpeed = tankController.GetCurrentSpeed();
             //UpdateNeedle();
             score = xpManager.GetExperience();
@@ -110,8 +106,7 @@ public class GameManager : MonoBehaviour
             // Game Over
             gameOverCalled = true;
             SceneManager.LoadScene("Game Over Screen");
-            AudioManager.instance.bgm.clip = AudioManager.instance.defeatMusic;
-            AudioManager.instance.bgm.Play();
+            MusicManager.instance.PlayGameOverMusic();
         }
     }
 
@@ -155,6 +150,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    #region Getter / Setter
     public int GetScore()
     {
         return score;
@@ -221,6 +217,7 @@ public class GameManager : MonoBehaviour
     {
         this.invicibleActiveTime = invicibleActiveTime;
     }
+    #endregion
 
     public enum GameState
     {

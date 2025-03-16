@@ -181,17 +181,15 @@ public class UpgradeManager : MonoBehaviour
     
     public void ShowPerkSelection()
     {
-        perkSelectionUI.SetActive(true); 
-        AudioManager.instance.bgm.clip = AudioManager.instance.levelUpMusic;
-        AudioManager.instance.bgm.Play();
+        perkSelectionUI.SetActive(true);
+        MusicManager.instance.PlayLevelUp();
         Time.timeScale = 0f;
     }
 
     public void HidePerkSelection()
     {
         perkSelectionUI.SetActive(false);
-        AudioManager.instance.bgm.clip = AudioManager.instance.combatMusic;
-        AudioManager.instance.bgm.Play();
+        MusicManager.instance.PlayBackgroundMusic();
         Time.timeScale = 1f;
     }
 }

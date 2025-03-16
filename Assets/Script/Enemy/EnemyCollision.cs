@@ -54,7 +54,6 @@ public class EnemyCollision : MonoBehaviour
         }
 
         ApplyLifeRip(lifeSteal);
-
         Destroy(collider.gameObject);
     }
 

@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-
+        gameObject.GetComponent<SpawnerSoundManager>().PlayFactory();
     }
 
     private void Update()
@@ -29,7 +29,6 @@ public class Spawner : MonoBehaviour
         {
             SpawnAnEnemy();
         }
-
     }
 
     private void SpawnAnEnemy()
@@ -37,6 +36,7 @@ public class Spawner : MonoBehaviour
         timeUntilSpawn -= Time.deltaTime;
         if (timeUntilSpawn < minimumSpawnTime)
         {
+            gameObject.GetComponent<SpawnerSoundManager>().PlaySpawnSound();
             Instantiate(enemy, transform.position, Quaternion.identity);
             GameManager.instance.enemyCount++;
             SetTimeUntilSpawn();
