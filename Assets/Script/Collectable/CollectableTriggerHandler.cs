@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent (typeof(AudioSource))]
 public class CollectableTriggerHandler : MonoBehaviour
 {
     [SerializeField]
@@ -28,10 +29,11 @@ public class CollectableTriggerHandler : MonoBehaviour
             ContactWithPlayer(collision);
         }
     }
+
     private void ContactWithPlayer(GameObject collider)
     {
+        gameObject.GetComponent<CollectableSoundManager>().PlayCollectSound();
         collectable.Collect(collider.gameObject);
-
         Destroy(gameObject);
     }
 }

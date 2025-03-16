@@ -73,15 +73,16 @@
     <Compile Include="Assets\Script\Enemy\EnemyCollision.cs" />
     <Compile Include="Assets\Script\Game\GameManager.cs" />
     <Compile Include="Assets\Script\Building\Spawner\Spawner.cs" />
-    <Compile Include="Assets\Script\Collectable\HealCollectableSO.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyDropManager.cs" />
     <Compile Include="Assets\Script\Collectable\CollectableTriggerHandler.cs" />
+    <Compile Include="Assets\Script\Collectable\Heal Item\HealCollectableSO.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyBehaviour.cs" />
     <Compile Include="Assets\Script\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Script\Building\Spawner\SpawnerSoundManager.cs" />
     <Compile Include="Assets\Script\Perks\Perk.cs" />
     <Compile Include="Assets\Script\Game\Sound\MusicManager.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Script\Collectable\CollectableSoundManager.cs" />
     <Compile Include="Assets\Script\Game\Sound\VolumeSettings.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Script\Player\TankController.cs" />
