@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{FAD2C16D-035E-7248-734E-A9ADA5D54430}</ProjectGuid>
+    <ProjectGuid>{D5434BED-C05B-CEFB-A11A-BDDC6FA343C4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -1300,7 +1300,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="CGUnityCourse.csproj">
-      <Project>{252EC3EF-88BC-1A53-9852-2F94E5816985}</Project>
+      <Project>{1B184636-CB83-20DA-2285-135395022039}</Project>
       <Name>CGUnityCourse</Name>
     </ProjectReference>
   </ItemGroup>
