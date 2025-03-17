@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{0D531F93-A8F5-A7CD-8329-090A933FFDBB}</ProjectGuid>
+    <ProjectGuid>{2D1291BB-2176-F8CA-3324-E371581DD2E0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -1311,11 +1311,11 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{D5434BED-C05B-CEFB-A11A-BDDC6FA343C4}</Project>
+      <Project>{FAD2C16D-035E-7248-734E-A9ADA5D54430}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
     <ProjectReference Include="CGUnityCourse.csproj">
-      <Project>{1B184636-CB83-20DA-2285-135395022039}</Project>
+      <Project>{252EC3EF-88BC-1A53-9852-2F94E5816985}</Project>
       <Name>CGUnityCourse</Name>
     </ProjectReference>
   </ItemGroup>

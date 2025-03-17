@@ -3,9 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{FAD2C16D-035E-7248-734E-A9ADA5D54430}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.PlayerPrefsEditor.Editor", "Unity.PlayerPrefsEditor.Editor.csproj", "{526E8AD3-764F-D0A6-5111-455B74001B2F}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CGUnityCourse", "CGUnityCourse.csproj", "{252EC3EF-88BC-1A53-9852-2F94E5816985}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{2D1291BB-2176-F8CA-3324-E371581DD2E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.PlayerPrefsEditor.EditorResources", "Unity.PlayerPrefsEditor.EditorResources.csproj", "{92E6E374-6637-4272-1539-4E3EA6CCB946}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.PlayerPrefsEditor.Samples.SampleScene", "Unity.PlayerPrefsEditor.Samples.SampleScene.csproj", "{F42A1C1A-DD2F-EC6A-F9B8-4D41724793C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,6 +23,10 @@ Global
 		{FAD2C16D-035E-7248-734E-A9ADA5D54430}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAD2C16D-035E-7248-734E-A9ADA5D54430}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAD2C16D-035E-7248-734E-A9ADA5D54430}.Release|Any CPU.Build.0 = Release|Any CPU
+		{526E8AD3-764F-D0A6-5111-455B74001B2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{526E8AD3-764F-D0A6-5111-455B74001B2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{526E8AD3-764F-D0A6-5111-455B74001B2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{526E8AD3-764F-D0A6-5111-455B74001B2F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{252EC3EF-88BC-1A53-9852-2F94E5816985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{252EC3EF-88BC-1A53-9852-2F94E5816985}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{252EC3EF-88BC-1A53-9852-2F94E5816985}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -25,6 +35,14 @@ Global
 		{2D1291BB-2176-F8CA-3324-E371581DD2E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D1291BB-2176-F8CA-3324-E371581DD2E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D1291BB-2176-F8CA-3324-E371581DD2E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{92E6E374-6637-4272-1539-4E3EA6CCB946}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{92E6E374-6637-4272-1539-4E3EA6CCB946}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{92E6E374-6637-4272-1539-4E3EA6CCB946}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{92E6E374-6637-4272-1539-4E3EA6CCB946}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F42A1C1A-DD2F-EC6A-F9B8-4D41724793C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F42A1C1A-DD2F-EC6A-F9B8-4D41724793C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F42A1C1A-DD2F-EC6A-F9B8-4D41724793C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F42A1C1A-DD2F-EC6A-F9B8-4D41724793C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
