@@ -13,6 +13,9 @@ public class GameOverScreen : MonoBehaviour
         {
             score.text = "You've scored : " + GameManager.instance.GetScore() + " points";
         }
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        Destroy(player);
     }
 
     public void RestartGame()

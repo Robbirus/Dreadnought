@@ -25,6 +25,7 @@ public class Shell : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().linearVelocity = gameObject.transform.forward * shellSpeed;
     }
 
+    #region Getter / Setter
     public float GetCritChance()
     {
         return critChance;
@@ -37,4 +38,5 @@ public class Shell : MonoBehaviour
     {
         return damage;
     }
+    #endregion
 }
