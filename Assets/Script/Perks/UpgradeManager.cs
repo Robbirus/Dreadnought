@@ -19,7 +19,7 @@ public class UpgradeManager : MonoBehaviour
     
     public void Start()
     {
-        RandomizeNewPerks();
+        //RandomizeNewPerks();
     }
 
     

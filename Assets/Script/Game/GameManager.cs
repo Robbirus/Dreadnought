@@ -35,9 +35,10 @@ public class GameManager : MonoBehaviour
 
     private GameState currentState;
 
-    #region Enemy limit
-    public const int ENEMY_LIMIT = 20;
+    #region Enemy numbers
+    public const int ENEMY_LIMIT = 100;
     public int enemyCount = 0;
+    public int enemyKilled = 0;
     #endregion
 
     public static GameManager instance = null;

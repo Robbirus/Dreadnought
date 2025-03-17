@@ -11,7 +11,9 @@ public class GameOverScreen : MonoBehaviour
     {        
         if(score != null)
         {
-            score.text = "You've scored : " + GameManager.instance.GetScore() + " points";
+            score.text = "You've scored : " + GameManager.instance.GetScore() + " points.";
+            score.text += "\n";
+            score.text += "You've killed : " + GameManager.instance.enemyKilled + " enemies.";
         }
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");

@@ -70,6 +70,7 @@
     <Compile Include="Assets\Script\Collectable\GenerateCollectible.cs" />
     <Compile Include="Assets\Script\Collectable\CollectableSO.cs" />
     <Compile Include="Assets\Script\Player\PlayerSoundManager.cs" />
+    <Compile Include="Assets\Script\Game\Main Menu\MenuController.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyCollision.cs" />
     <Compile Include="Assets\Script\Game\GameManager.cs" />
     <Compile Include="Assets\Script\Building\Spawner\Spawner.cs" />
