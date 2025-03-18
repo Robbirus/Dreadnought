@@ -2,11 +2,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine.Audio;
-using UnityEngine.Rendering;
 
-public class MainMenu : MonoBehaviour
+public class MainController : MonoBehaviour
 {
     [Header("Volume Setting")]
     [SerializeField] private AudioMixer audioMixer;
@@ -14,13 +14,20 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Slider masterSlider = null;
     [SerializeField] private float defaultMaster = 0.7f;
 
+    [Space(5)]
+
     [SerializeField] private TMP_Text bgmTextValue = null;
     [SerializeField] private Slider bgmSlider = null;
     [SerializeField] private float defaultBGM = 0.5f;
 
+    [Space(5)]
+
     [SerializeField] private TMP_Text sfxTextValue = null;
     [SerializeField] private Slider sfxSlider = null;
     [SerializeField] private float defaultSFX = 0.5f;
+
+    private float bgmVolume = 0.7f;
+    private float sfxVolume = 0.5f;
 
     [Header("Gameplay Setting")]
     [SerializeField] private TMP_Text controllerSenTextValue = null;
@@ -31,6 +38,19 @@ public class MainMenu : MonoBehaviour
     [Header("Toggle Setting")]
     [SerializeField] private Toggle invertYToggle = null;
 
+    [Header("Graphics Setting")]
+    [SerializeField] private Slider brightnessSlider = null;
+    [SerializeField] private TMP_Text brightnessTextValue = null;
+    [SerializeField] private float defaultBrightness = 1f;
+
+    [Space(10)]
+    [SerializeField] private TMP_Dropdown qualityDropdown;
+    [SerializeField] private Toggle fullScreenToggle;
+
+    private int qualityLevel;
+    private bool isFullScreen;
+    private float brightnessLevel;
+
     [Header("Confirmation Image")]
     [SerializeField] private GameObject confirmationPrompt = null;
 
@@ -40,12 +60,38 @@ public class MainMenu : MonoBehaviour
 
     private string levelToLoad;
 
-    private float bgmVolume = 0.7f;
-    private float sfxVolume = 0.5f;
+    [Header("Resolution Dropdown")]
+    public TMP_Dropdown resolutionDropDown;
+    private Resolution[] resolutions;
 
     private void Start()
     {
-        
+        resolutions = Screen.resolutions;
+        resolutionDropDown.ClearOptions();
+
+        List<string> options = new List<string>();
+        int currentResolutionIndex = 0;
+
+        for (int i = 0; i < resolutions.Length; i++) 
+        {
+            string option = resolutions[i].width + " x " + resolutions[i].height;
+            options.Add(option);
+
+            if (resolutions[i].width == Screen.width && resolutions[i].height == Screen.height)
+            {
+                currentResolutionIndex = i;
+            }
+        }
+
+        resolutionDropDown.AddOptions(options);
+        resolutionDropDown.value = currentResolutionIndex;
+        resolutionDropDown.RefreshShownValue();
+    }
+
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
     #region Dialog Methods
@@ -102,6 +148,26 @@ public class MainMenu : MonoBehaviour
                 mainControllerSen = defaultSen;
                 invertYToggle.isOn = false;
                 ApplyGameplay();
+                break;
+
+            case "Graphics":
+                // Reset brightness value
+                brightnessSlider.value = defaultBrightness;
+                brightnessTextValue.text = defaultBrightness.ToString("0.0");
+
+                // Reset quality value
+                qualityDropdown.value = 1;
+                QualitySettings.SetQualityLevel(1);
+
+                // Reset fullscreen 
+                fullScreenToggle.isOn = false;
+                Screen.fullScreen = false;
+
+                // Reset Resolution
+                Resolution currentResolution = Screen.currentResolution;
+                Screen.SetResolution(currentResolution.width, currentResolution.height, Screen.fullScreen);
+                resolutionDropDown.value = resolutions.Length;
+                ApplyGraphics();
                 break;
 
         }
@@ -164,6 +230,39 @@ public class MainMenu : MonoBehaviour
         }
 
         PlayerPrefs.SetFloat("masterSen", mainControllerSen);
+        StartCoroutine(ConfirmationBox());
+    }
+
+    public void SetBrightness(float brightness)
+    {
+        this.brightnessLevel = brightness;
+        this.brightnessTextValue.text = brightness.ToString("0.0");
+    }
+
+    public void SetFullScreen(bool isFullScreen)
+    {
+        this.isFullScreen = isFullScreen;
+    }
+
+    public void SetQuality(int qualityIndex)
+    {
+        this.qualityLevel = qualityIndex;
+    }
+
+    /// <summary>
+    /// Apply the graphics settings, with brightness, quality and/or fullscreen
+    /// </summary>
+    public void ApplyGraphics()
+    {
+        // Change your brightness with your post processing or whatever it is
+        PlayerPrefs.SetFloat("Brightness", brightnessLevel);
+
+        PlayerPrefs.SetInt("Quality", qualityLevel);
+        QualitySettings.SetQualityLevel(qualityLevel);
+
+        PlayerPrefs.SetInt("Fullscreen", (isFullScreen ? 1 : 0));
+        Screen.fullScreen = isFullScreen;
+
         StartCoroutine(ConfirmationBox());
     }
     #endregion
