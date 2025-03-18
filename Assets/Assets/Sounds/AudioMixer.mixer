@@ -25,7 +25,7 @@ AudioMixerGroupController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SE
+  m_Name: SFX
   m_AudioMixer: {fileID: 24100000}
   m_GroupID: 8f34319c5b24396499ef80de396fae1e
   m_Children: []
@@ -34,25 +34,10 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 4728423909359722906}
-  - {fileID: -1345486355856645845}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
---- !u!244 &-1345486355856645845
-AudioMixerEffectController:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_EffectID: d0ce47e84e683e849b1f41bc242fe5a2
-  m_EffectName: Send
-  m_MixLevel: 84392682f9b5c514caf9c69e3be05d80
-  m_Parameters: []
-  m_SendTarget: {fileID: 0}
-  m_EnableWetMix: 0
-  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -71,6 +56,8 @@ AudioMixerController:
   m_ExposedParameters:
   - guid: 6f6e2c2ba6b2de047a0a80053b7bf421
     name: BGM
+  - guid: 43aec11cf62da494b9e73258cad8e8cc
+    name: MyExposedParam
   - guid: 796daedfe8762ff4d998925a45b5827d
     name: SFX
   m_AudioMixerGroupViews:
