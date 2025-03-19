@@ -2,7 +2,6 @@ using UnityEngine;
 
 public class EnemyCollision : MonoBehaviour
 {
-
     private void OnTriggerEnter(Collider collider)
     {
         ProcessCollision(collider.gameObject);
@@ -33,6 +32,7 @@ public class EnemyCollision : MonoBehaviour
         float damage = gameObject.GetComponent<EnemyController>().GetDamage();
         collider.transform.GetComponent<PlayerHealthManager>().TakeDamage(damage);
 
+        GameManager.instance.enemyKilled++;
         Destroy(gameObject);
     }
 

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject needle;
 
     #region Player Script
-    private TankController tankController;
+    private PlayerController playerController;
     private PlayerHealthManager healthManager;
     private ExperienceManager xpManager;
     private GunManager gunManager;
@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     private GameState currentState;
 
     #region Enemy numbers
+    [Header("Enemy stats")]
     public const int ENEMY_LIMIT = 100;
     public int enemyCount = 0;
     public int enemyKilled = 0;
@@ -84,7 +85,7 @@ public class GameManager : MonoBehaviour
                     xpManager = player.GetComponent<ExperienceManager>();
                     healthManager = player.GetComponent<PlayerHealthManager>();
                     gunManager = player.GetComponent<GunManager>();
-                    tankController = player.GetComponent<TankController>();
+                    playerController = player.GetComponent<PlayerController>();
 
                     ChangeState(GameState.Playing);
 
@@ -95,7 +96,7 @@ public class GameManager : MonoBehaviour
                     Debug.Log("Player Not Found");
                 }
             }
-            tankSpeed = tankController.GetCurrentSpeed();
+            tankSpeed = playerController.GetCurrentSpeed();
             //UpdateNeedle();
             score = xpManager.GetExperience();
             CheckPlayerAlive();
@@ -179,9 +180,9 @@ public class GameManager : MonoBehaviour
         return gunManager;
     }
 
-    public TankController GetTankController()
+    public PlayerController GetPlayerController()
     {
-        return tankController;
+        return playerController;
     }
 
     public ExperienceManager GetExperienceManager()

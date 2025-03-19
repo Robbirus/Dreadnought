@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class TankController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     private const string ANIMATOR_IS_MOVING = "isMoving";
 
@@ -21,10 +21,6 @@ public class TankController : MonoBehaviour
     private float maxSpeed = 53f;
     [SerializeField]
     private float maxReverseSpeed = 20f;
-    [SerializeField]
-    private float accelerationRate = 500f;
-    [SerializeField]
-    private float decelerationRate = 300f;
     [SerializeField]
     private float rotationSpeed = 20f;
     [SerializeField]
@@ -102,19 +98,6 @@ public class TankController : MonoBehaviour
             leftRight = 1f;
         }
 
-        // Utilisation de l'ancien systeme de deplacement
-        /*
-        if (forwardBackward == 0f)
-        {
-            Decelerate();
-
-        }
-        else
-        {
-            Accelerate();
-        }
-        */
-
         PlayMovementSound();
         TankFowardBack();
         TankLeftRight();
@@ -174,68 +157,6 @@ public class TankController : MonoBehaviour
         rbTank.MoveRotation(rbTank.rotation * rotateLR);
     }
 
-    #region Acceleration Methods
-    private float CalculateAccelerate(float currentSpeed)
-    {
-        // Si la vitesse maximale est atteinte, l'acceleration est nulle
-        if (currentSpeed >= maxSpeed)
-        {
-            return 0;
-        }
-
-        // Calcul de l'acceleration 
-        return (maxSpeed - currentSpeed) / accelerationRate;
-    }
-
-    private void Decelerate()
-    {
-        // Obtention de la vitesse actuel
-        this.currentSpeed = rbTank.linearVelocity.magnitude;
-        if (this.currentSpeed >= 0)
-        {
-            // Calcul de la force opposee pour ralentir le tank
-            Vector3 decelerationForce = - rbTank.linearVelocity * decelerationRate * rbTank.mass;
-            rbTank.AddForce(decelerationForce);
-
-            // Empecher que la vitesse devienne negative
-            if(rbTank.linearVelocity.magnitude < 0.1f)
-            {
-                rbTank.linearVelocity = Vector3.zero;
-            }
-
-            animator.SetBool(ANIMATOR_IS_MOVING, decelerationForce.magnitude > 0);
-        }
-    }
-
-    private void Accelerate()
-    {
-        // Obtention de la vitesse actuel
-        this.currentSpeed = rbTank.linearVelocity.magnitude;
-
-        // calcul de l'acceleration
-        float acceleration = CalculateAccelerate(this.currentSpeed);
-
-        if (direction != Vector3.zero) 
-        {
-            // Application de la force dans la direction specifiee
-            Vector3 force = direction * forwardBackward * acceleration * rbTank.mass;
-            rbTank.AddForce(force);
-
-            // Limitation de la vitesse
-            if (rbTank.linearVelocity.magnitude > maxSpeed)
-            {
-                rbTank.linearVelocity = rbTank.linearVelocity * maxSpeed;
-            }
-
-            animator.SetBool(ANIMATOR_IS_MOVING, force.magnitude > 0);
-        } 
-        else
-        {
-            Debug.LogWarning("Vector is null, no force applied");
-        }
-    }
-    #endregion
-
     private void SwitchBoolsOff()
     {
         forward = false;
@@ -263,7 +184,5 @@ public class TankController : MonoBehaviour
     public float GetCurrentSpeed()
     {
         return this.currentSpeed;
-        // A REMETTRE Quand l'acceleration sera regler
-        //return this.currentSpeed;
     }
 }

@@ -222,14 +222,14 @@ public class MainController : MonoBehaviour
     {
         if (invertYToggle.isOn)
         {
-            PlayerPrefs.SetInt("masterInvertY", 1);
+            PlayerPrefs.SetInt("InvertY", 1);
         }
         else
         {
-            PlayerPrefs.SetInt("masterInvertY", 1);
+            PlayerPrefs.SetInt("InvertY", 0);
         }
 
-        PlayerPrefs.SetFloat("masterSen", mainControllerSen);
+        PlayerPrefs.SetFloat("Sensitivity", mainControllerSen);
         StartCoroutine(ConfirmationBox());
     }
 
@@ -267,7 +267,6 @@ public class MainController : MonoBehaviour
     }
     #endregion
 
-  
     /// <summary>
     /// Show an image to confirm action
     /// </summary>

@@ -101,12 +101,12 @@ public class UpgradeManager : MonoBehaviour
         switch (selectedPerk.effectType)
         {
             case PerkEffect.TopSpeedIncrease:
-                float maxSpeed = GameManager.instance.GetTankController().GetMaxSpeed();
-                float reverseSpeed = GameManager.instance.GetTankController().GetReverseSpeed();
+                float maxSpeed = GameManager.instance.GetPlayerController().GetMaxSpeed();
+                float reverseSpeed = GameManager.instance.GetPlayerController().GetReverseSpeed();
                 maxSpeed += selectedPerk.effectValue;
                 reverseSpeed += selectedPerk.effectValue / 2;
-                GameManager.instance.GetTankController().SetMaxSpeed(maxSpeed);
-                GameManager.instance.GetTankController().SetReverseSpeed(reverseSpeed);
+                GameManager.instance.GetPlayerController().SetMaxSpeed(maxSpeed);
+                GameManager.instance.GetPlayerController().SetReverseSpeed(reverseSpeed);
                 break;
 
             case PerkEffect.AccelerationSpeed:

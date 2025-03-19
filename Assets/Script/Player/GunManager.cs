@@ -18,11 +18,11 @@ public class GunManager : MonoBehaviour
     [SerializeField]
     private GameObject shellSpawnPoint;
     [SerializeField]
-    private float damage = 420f;
+    private float damage = 425f;
     [SerializeField]
     private int critChance = 2;
     [SerializeField]
-    private float critCoef = 1.01f;
+    private float critCoef = 1.1f;
 
     [Header("Input Action Reference")]
     [SerializeField]
