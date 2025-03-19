@@ -19,6 +19,12 @@ public class BuildingCollision : MonoBehaviour
         {
             HitByShell(collider);
         }
+
+        // If the player touches a building
+        if (collider.transform.CompareTag("Player") && gameObject != null)
+        {
+            return;
+        }
     }
 
     private void HitByShell(GameObject collider)

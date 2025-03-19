@@ -212,7 +212,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shellSpeed: 200
-  lifeTime: 3
+  lifeTime: 10
+  rb: {fileID: -4991358601149006022}
 --- !u!1 &4168801355783090541
 GameObject:
   m_ObjectHideFlags: 0

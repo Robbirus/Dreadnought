@@ -1,14 +1,15 @@
 using TMPro;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Shell : MonoBehaviour
 {
     [Header("Shell Attribut")]
-    [SerializeField]
-    private float shellSpeed = 200;
-    [SerializeField]
-    private float lifeTime = 10f;
+    [SerializeField] private float shellSpeed = 200;
+    [SerializeField] private float lifeTime = 10f;
+
+    private Vector3 direction;
 
     private float damage;
     private int critChance;
@@ -17,14 +18,14 @@ public class Shell : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        direction = transform.forward;
         damage = GameManager.instance.GetGunManager().GetDamage();
         Destroy(gameObject, lifeTime);
     }
 
-    // Update is called once per frame
-    void FixedUpdate()
+    private void FixedUpdate()
     {
-        gameObject.GetComponent<Rigidbody>().linearVelocity = gameObject.transform.forward * shellSpeed;
+        transform.position += direction * shellSpeed * Time.fixedDeltaTime;
     }
 
     #region Getter / Setter

@@ -8,12 +8,16 @@ using UnityEngine.Audio;
 
 public class MainController : MonoBehaviour
 {
+    [Header("Level Loader Script")]
+    [SerializeField] private LevelLoader levelLoader;
+    [Space(5)]
+    
     [Header("Volume Setting")]
     [SerializeField] private AudioMixer audioMixer;
-    [SerializeField] private TMP_Text masterTextValue = null;
-    [SerializeField] private Slider masterSlider = null;
-    [SerializeField] private float defaultMaster = 0.7f;
-
+    // [SerializeField] private TMP_Text masterTextValue = null;
+    // [SerializeField] private Slider masterSlider = null;
+    // [SerializeField] private float defaultMaster = 0.7f;
+    
     [Space(5)]
 
     [SerializeField] private TMP_Text bgmTextValue = null;
@@ -97,7 +101,7 @@ public class MainController : MonoBehaviour
     #region Dialog Methods
     public void NewGameDialogYes()
     {
-        SceneManager.LoadScene(newGameLevel);
+        levelLoader.LoadLevel((int)SceneIndex.GAME);
         GameManager.instance.SetIsPlayerAlive(true);
     }
 

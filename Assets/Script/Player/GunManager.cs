@@ -58,6 +58,7 @@ public class GunManager : MonoBehaviour
         Debug.Log("Damage : " + damage);
     }
 
+    #region Getter / Setter
     public float GetReloadTime()
     {
         return reloadTime;
@@ -81,12 +82,10 @@ public class GunManager : MonoBehaviour
     {
         return this.critChance;
     }
-
     public void SetCritChance(int critChance)
     {
         this.critChance = critChance;
     }
-
     public float GetCritCoef()
     {
         return this.critCoef;
@@ -96,4 +95,5 @@ public class GunManager : MonoBehaviour
     {
         this.critCoef = critCoef;
     }
+    #endregion
 }

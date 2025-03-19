@@ -4,7 +4,7 @@ using UnityEngine;
 public class HealCollectable : CollectableSO
 {
     [Header("Heal Attributes")]
-    public float healAmount = 50f;
+    public float healAmount = 975f;
 
     public override void Collect(GameObject objectThatCollected)
     {

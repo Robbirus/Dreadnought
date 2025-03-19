@@ -79,27 +79,28 @@ public class GameManager : MonoBehaviour
             {
                 MusicManager.instance.PlayBackgroundMusic();
 
-                try
-                {
-                    player = GameObject.FindWithTag("Player");
-                    xpManager = player.GetComponent<ExperienceManager>();
-                    healthManager = player.GetComponent<PlayerHealthManager>();
-                    gunManager = player.GetComponent<GunManager>();
-                    playerController = player.GetComponent<PlayerController>();
-
-                    ChangeState(GameState.Playing);
-
-                    isPlayerFound = true;
-                }
-                catch
-                {
-                    Debug.Log("Player Not Found");
-                }
+                player = GameObject.FindWithTag("Player");
             }
-            tankSpeed = playerController.GetCurrentSpeed();
-            //UpdateNeedle();
-            score = xpManager.GetExperience();
-            CheckPlayerAlive();
+
+            if (player != null)
+            {
+                // The player has been, so we stop searching it
+                isPlayerFound = true;
+
+                // Get a reference of all player script
+                xpManager = player.GetComponent<ExperienceManager>();
+                healthManager = player.GetComponent<PlayerHealthManager>();
+                gunManager = player.GetComponent<GunManager>();
+                playerController = player.GetComponent<PlayerController>();
+
+                // Change GameState Menu to GameState Playing
+                ChangeState(GameState.Playing);
+
+                tankSpeed = playerController.GetCurrentSpeed();
+                //UpdateNeedle();
+                score = xpManager.GetExperience();
+                CheckPlayerAlive();
+            }
         }
 
         // Le jeu est fini
@@ -107,7 +108,7 @@ public class GameManager : MonoBehaviour
         {
             // Game Over
             gameOverCalled = true;
-            SceneManager.LoadScene("Game Over Screen");
+            SceneManager.LoadScene((int)SceneIndex.GAME_OVER);
             MusicManager.instance.PlayGameOverMusic();
         }
     }

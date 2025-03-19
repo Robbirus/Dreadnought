@@ -4,19 +4,15 @@ using System;
 public class EnemyController : MonoBehaviour
 {
     [Header("Player Instance")]
-    [SerializeField]
-    private GameObject player;
+    [SerializeField] private GameObject player;
 
     private Rigidbody rigibidbody;
     private Vector3 direction;
 
     [Header("Ennemy Stats")]
-    [SerializeField]
-    private float ennemySpeed = 10f;
-    [SerializeField]
-    private float maxSpeed = 40f;
-    [SerializeField]
-    private int damage;
+    [SerializeField] private float ennemySpeed = 10f;
+    // [SerializeField] private float maxSpeed = 40f;
+    [SerializeField] private int damage;
 
     private void Awake()
     {
@@ -28,7 +24,7 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         direction = transform.forward;
-        damage = UnityEngine.Random.Range(5, 20);
+        damage = UnityEngine.Random.Range(105, 120);
     }
 
     // Update is called once per frame

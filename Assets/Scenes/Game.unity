@@ -4777,6 +4777,10 @@ PrefabInstance:
       propertyPath: critCoef
       value: 1.1
       objectReference: {fileID: 0}
+    - target: {fileID: 6373239541653378979, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: shellPrefab
+      value: 
+      objectReference: {fileID: 3633209065182094968, guid: 48d518da0597a9e418d03349ad9bc941, type: 3}
     - target: {fileID: 7020948231001036867, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
       propertyPath: m_Size.x
       value: 3.4

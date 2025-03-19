@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ennemy
   - Shell
+  - Building
   layers:
   - Default
   - TransparentFX
