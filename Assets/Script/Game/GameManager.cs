@@ -60,27 +60,16 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        MusicManager.instance.PlayMenuMusic();
+        ChangeState(GameState.Menu);   
     }
 
     private void FixedUpdate()
     {
-        // Le jeu n'a pas encore commence
-        if (!isPlayerAlive && !wasPlayerAlive)
-        {
-            // Menu
-        }
-
         // Le jeu commence
         if (isPlayerAlive && !wasPlayerAlive)
         {
             // Game
-            if(!isPlayerFound)
-            {
-                MusicManager.instance.PlayBackgroundMusic();
-
-                player = GameObject.FindWithTag("Player");
-            }
+            player = GameObject.FindWithTag("Player");
 
             if (player != null)
             {
@@ -93,32 +82,10 @@ public class GameManager : MonoBehaviour
                 gunManager = player.GetComponent<GunManager>();
                 playerController = player.GetComponent<PlayerController>();
 
-                // Change GameState Menu to GameState Playing
-                ChangeState(GameState.Playing);
-
                 tankSpeed = playerController.GetCurrentSpeed();
                 //UpdateNeedle();
                 score = xpManager.GetExperience();
-                CheckPlayerAlive();
             }
-        }
-
-        // Le jeu est fini
-        if (!isPlayerAlive && wasPlayerAlive && !gameOverCalled)
-        {
-            // Game Over
-            gameOverCalled = true;
-            SceneManager.LoadScene((int)SceneIndex.GAME_OVER);
-            MusicManager.instance.PlayGameOverMusic();
-        }
-    }
-
-    private void CheckPlayerAlive()
-    {
-        if(healthManager.GetHealth() <= 0f)
-        {
-            isPlayerAlive = false;
-            wasPlayerAlive = true;
         }
     }
 
@@ -141,15 +108,26 @@ public class GameManager : MonoBehaviour
         switch (currentState)
         {
             case GameState.Playing:
-                UpgradeManager.instance.HidePerkSelection();
+                MusicManager.instance.PlayBackgroundMusic();
+
+                if(UpgradeManager.instance != null)
+                {
+                    UpgradeManager.instance.HidePerkSelection();
+                }
+
                 break;
-            case GameState.Title:
+            case GameState.Menu:
+                MusicManager.instance.PlayMenuMusic();
                 break;
             case GameState.GameOver:
+                MusicManager.instance.PlayGameOverMusic();
+                SceneManager.LoadScene((int)SceneIndex.GAME_OVER);
                 break;
             case GameState.PerkSelection:
                 UpgradeManager.instance.ShowPerkSelection();
                 break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(currentState), currentState, null);
         }
     }
 
@@ -224,7 +202,6 @@ public class GameManager : MonoBehaviour
 
     public enum GameState
     {
-        Title,
         Menu,
         Playing,
         GameOver,

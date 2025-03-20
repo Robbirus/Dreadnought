@@ -49,13 +49,14 @@ public class PlayerHealthManager : MonoBehaviour
         // Debug Key heal / damage
         if (Input.GetKey(KeyCode.X))
         {
-            TakeDamage(Random.Range(5, 10));
+            TakeDamage(Random.Range(15, 110));
         }
         if (Input.GetKey(KeyCode.V))
         {
-            RestoreHealth(Random.Range(5, 10));
+            RestoreHealth(Random.Range(15, 110));
         }
 
+        // Coroutine Bloodbath
         if (isBloodbath && bloodbathObtained)
         {
             if (bloodbathTime > 0)
@@ -109,6 +110,16 @@ public class PlayerHealthManager : MonoBehaviour
             health -= (damage - armor);
         }
         lerpTimer = 0f;
+
+        CheckDeath();
+    }
+
+    private void CheckDeath()
+    {
+        if(health <= 0)
+        {
+            GameManager.instance.ChangeState(GameManager.GameState.GameOver);
+        }
     }
 
     public void RestoreHealth(float healAmount)

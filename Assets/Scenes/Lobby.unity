@@ -7962,6 +7962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d531447981573ea4eb9692d9e925657a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadLevel: {fileID: 422182460}
   needle: {fileID: 0}
   enemyCount: 0
   enemyKilled: 0
@@ -16487,9 +16488,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   levelLoader: {fileID: 422182461}
   audioMixer: {fileID: 24100000, guid: 6f3d6d505bbb1524fb9f53fc437167aa, type: 2}
-  masterTextValue: {fileID: 1732195369}
-  masterSlider: {fileID: 1932723150}
-  defaultMaster: 1
   bgmTextValue: {fileID: 537585024}
   bgmSlider: {fileID: 759765589}
   defaultBGM: 1

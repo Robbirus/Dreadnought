@@ -22,13 +22,22 @@ public class LevelLoader : MonoBehaviour
 
         loadingScreen.SetActive(true);
 
+        // If loading Game, set Player Alive
+        if (levelToLoad == (int)SceneIndex.GAME)
+        {
+            GameManager.instance.SetIsPlayerAlive(true);
+            GameManager.instance.ChangeState(GameManager.GameState.Playing);
+        }
+
         while (!loadOperation.isDone)
         {
             float progressValue = Mathf.Clamp01(loadOperation.progress / 0.9f);
             
             loadingSlider.value = progressValue;
             progressTextValue.text = progressValue * 100f + "%";
+
             yield return null;
         }
+
     }
 }

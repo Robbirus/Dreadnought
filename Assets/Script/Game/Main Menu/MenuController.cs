@@ -102,7 +102,6 @@ public class MainController : MonoBehaviour
     public void NewGameDialogYes()
     {
         levelLoader.LoadLevel((int)SceneIndex.GAME);
-        GameManager.instance.SetIsPlayerAlive(true);
     }
 
     public void LoadGameDialogYes()

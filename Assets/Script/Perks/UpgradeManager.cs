@@ -189,7 +189,6 @@ public class UpgradeManager : MonoBehaviour
     public void HidePerkSelection()
     {
         perkSelectionUI.SetActive(false);
-        MusicManager.instance.PlayBackgroundMusic();
         Time.timeScale = 1f;
     }
 }
