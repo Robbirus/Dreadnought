@@ -78,14 +78,18 @@ public class GunManager : MonoBehaviour
     {
         this.damage = damage;
     }
+
     public int GetCritChance()
     {
         return this.critChance;
     }
+
     public void SetCritChance(int critChance)
     {
         this.critChance = critChance;
+        shellPrefab.GetComponent<Shell>().SetCritChance(this.critChance);
     }
+
     public float GetCritCoef()
     {
         return this.critCoef;

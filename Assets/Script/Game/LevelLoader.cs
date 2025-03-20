@@ -22,10 +22,10 @@ public class LevelLoader : MonoBehaviour
 
         loadingScreen.SetActive(true);
 
-        // If loading Game, set Player Alive
+        // If loading Game, Initiate the player stats (not working)
         if (levelToLoad == (int)SceneIndex.GAME)
         {
-            GameManager.instance.SetIsPlayerAlive(true);
+            GameManager.instance.InitiatePlayer();
             GameManager.instance.ChangeState(GameManager.GameState.Playing);
         }
 

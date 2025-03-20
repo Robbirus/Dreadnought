@@ -21,8 +21,7 @@ public class UpgradeManager : MonoBehaviour
     {
         //RandomizeNewPerks();
     }
-
-    
+ 
     private void Awake()
     {
         instance = this;
@@ -101,84 +100,142 @@ public class UpgradeManager : MonoBehaviour
         switch (selectedPerk.effectType)
         {
             case PerkEffect.TopSpeedIncrease:
-                float maxSpeed = GameManager.instance.GetPlayerController().GetMaxSpeed();
-                float reverseSpeed = GameManager.instance.GetPlayerController().GetReverseSpeed();
-                maxSpeed += selectedPerk.effectValue;
-                reverseSpeed += selectedPerk.effectValue / 2;
-                GameManager.instance.GetPlayerController().SetMaxSpeed(maxSpeed);
-                GameManager.instance.GetPlayerController().SetReverseSpeed(reverseSpeed);
+                ApplyTopSpeedIncrease(selectedPerk);
                 break;
 
             case PerkEffect.AccelerationSpeed:
+                ApplyAccelerationSpeed(selectedPerk);
                 break;
 
             case PerkEffect.CritsDamageIncrease:
-                float critCoef = GameManager.instance.GetGunManager().GetCritCoef();
-                critCoef *= selectedPerk.effectValue;
-                GameManager.instance.GetGunManager().SetCritCoef(critCoef);
+                ApplyCritsDamageIncrease(selectedPerk);
                 break;
 
             case PerkEffect.CritsChanceIncrease:
-                int critChance = GameManager.instance.GetGunManager().GetCritChance();
-                critChance += (int)selectedPerk.effectValue;
-                GameManager.instance.GetGunManager().SetCritChance(critChance);
+                ApplyCritsChanceIncrease(selectedPerk);
                 break;
 
             case PerkEffect.DefenseIncrease:
-                int armor = GameManager.instance.GetPlayerHealthManager().GetArmor();
-                armor += (int)selectedPerk.effectValue;
-                GameManager.instance.GetPlayerHealthManager().SetArmor(armor);
+                ApplyDefenseIncrease(selectedPerk);
                 break;
 
             case PerkEffect.ExperienceIncrease:
-                int bonus = GameManager.instance.GetExperienceManager().GetBonus();
-                bonus = (int)selectedPerk.effectValue;
-                GameManager.instance.GetExperienceManager().SetBonus(bonus);
+                ApplyExperienceIncrease(selectedPerk);
                 break;
 
             case PerkEffect.HealthIncrease:
-                float maxHealth = GameManager.instance.GetPlayerHealthManager().GetHealth();
-                maxHealth *= selectedPerk.effectValue;
-                GameManager.instance.GetPlayerHealthManager().SetHealth(maxHealth);
+                ApplyHealthIncrease(selectedPerk);
                 break;
 
             case PerkEffect.DamageIncrease:
-                float damage = GameManager.instance.GetGunManager().GetDamage();
-                damage *= selectedPerk.effectValue;
-                GameManager.instance.GetGunManager().SetDamage(damage);
+                ApplyDamageIncrease(selectedPerk);
                 break;
     
             case PerkEffect.ReloadDecrease:
-                float reloadTime = GameManager.instance.GetGunManager().GetReloadTime();
-                reloadTime *= selectedPerk.effectValue;
-                GameManager.instance.GetGunManager().SetReloadTime(reloadTime);
-                Debug.Log(reloadTime);
+                ApplyReloadDecrease(selectedPerk);
                 break;
             
             case PerkEffect.Bloodbath:
-                GameManager.instance.GetPlayerHealthManager().SetBloodbathObtained(true);
-                selectedPerk.isUnique = true;
+                ApplyBloodBath(selectedPerk);
                 break;
 
             case PerkEffect.LifeRip:
-                int passage = 0;
-                if (passage < 3)
-                {
-                    GameManager.instance.GetPlayerHealthManager().SetLifeRipObtained(true);
-                    float lifeRip = GameManager.instance.GetPlayerHealthManager().GetLifeRip();
-                    lifeRip += selectedPerk.effectValue;
-                    GameManager.instance.GetPlayerHealthManager().SetLifeRip(lifeRip);
-                    passage++;
-                }
-                else
-                {
-                    selectedPerk.isUnique = true;
-                }
+                ApplyLifeRip(selectedPerk);
                 break;
 
         }
     }
+
+    #region Apply Upgrades  
+    private void ApplyTopSpeedIncrease(PerkSO selectedPerk)
+    {
+        float maxSpeed = GameManager.instance.GetPlayerController().GetMaxSpeed();
+        float reverseSpeed = GameManager.instance.GetPlayerController().GetReverseSpeed();
+        maxSpeed += selectedPerk.effectValue;
+        reverseSpeed += selectedPerk.effectValue / 2;
+        GameManager.instance.GetPlayerController().SetMaxSpeed(maxSpeed);
+        GameManager.instance.GetPlayerController().SetReverseSpeed(reverseSpeed);
+    }
+   
+    private void ApplyAccelerationSpeed(PerkSO selectedPerk)
+    {
+
+    }
+
+    private void ApplyCritsDamageIncrease(PerkSO selectedPerk)
+    {
+        float critCoef = GameManager.instance.GetGunManager().GetCritCoef();
+        critCoef *= selectedPerk.effectValue;
+        GameManager.instance.GetGunManager().SetCritCoef(critCoef);
+    }
+
+    private void ApplyCritsChanceIncrease(PerkSO selectedPerk)
+    {
+        int critChance = GameManager.instance.GetGunManager().GetCritChance();
+        critChance += (int)selectedPerk.effectValue;
+        GameManager.instance.GetGunManager().SetCritChance(critChance);
+    }
+
+    private void ApplyDefenseIncrease(PerkSO selectedPerk)
+    {
+        int armor = GameManager.instance.GetPlayerHealthManager().GetArmor();
+        armor += (int)selectedPerk.effectValue;
+        GameManager.instance.GetPlayerHealthManager().SetArmor(armor);
+    }
+
+    private void ApplyExperienceIncrease(PerkSO selectedPerk)
+    {
+        int bonus = GameManager.instance.GetExperienceManager().GetBonus();
+        bonus = (int)selectedPerk.effectValue;
+        GameManager.instance.GetExperienceManager().SetBonus(bonus);
+    }
+
+    private void ApplyHealthIncrease(PerkSO selectedPerk)
+    {
+        float maxHealth = GameManager.instance.GetPlayerHealthManager().GetHealth();
+        maxHealth *= selectedPerk.effectValue;
+        GameManager.instance.GetPlayerHealthManager().SetHealth(maxHealth);
+    }
     
+    private void ApplyDamageIncrease(PerkSO selectedPerk)
+    {
+        float damage = GameManager.instance.GetGunManager().GetDamage();
+        damage *= selectedPerk.effectValue;
+        GameManager.instance.GetGunManager().SetDamage(damage);
+    }
+
+    private void ApplyReloadDecrease(PerkSO selectedPerk)
+    {
+        float reloadTime = GameManager.instance.GetGunManager().GetReloadTime();
+        reloadTime *= selectedPerk.effectValue;
+        GameManager.instance.GetGunManager().SetReloadTime(reloadTime);
+    }
+
+    private void ApplyBloodBath(PerkSO selectedPerk)
+    {
+        GameManager.instance.GetPlayerHealthManager().SetBloodbathObtained(true);
+        selectedPerk.isUnique = true;
+
+    }
+
+    private void ApplyLifeRip(PerkSO selectedPerk)
+    {
+        int passage = 0;
+        if (passage < 3)
+        {
+            GameManager.instance.GetPlayerHealthManager().SetLifeRipObtained(true);
+            float lifeRip = GameManager.instance.GetPlayerHealthManager().GetLifeRip();
+            lifeRip += selectedPerk.effectValue;
+            GameManager.instance.GetPlayerHealthManager().SetLifeRip(lifeRip);
+            passage++;
+        }
+        else
+        {
+            selectedPerk.isUnique = true;
+        }
+    }
+    #endregion
+
     public void ShowPerkSelection()
     {
         perkSelectionUI.SetActive(true);

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class EnemyHealthManager : MonoBehaviour
@@ -40,12 +41,30 @@ public class EnemyHealthManager : MonoBehaviour
         if (health <= 0)
         {
             gameObject.GetComponent<EnemySoundManager>().PlayDeathSound();
-
             GameManager.instance.GetExperienceManager().GainExperience(xp);
-            GameManager.instance.GetPlayerHealthManager().SetBloodbath(true);
             GameManager.instance.enemyCount--;
             GameManager.instance.enemyKilled++;
+
+            if (GameManager.instance.GetPlayerHealthManager().GetBloodbathObtained())
+            {
+                StartCoroutine(Bloodbath());
+            }
+
             Destroy(gameObject);
         }
+    }
+
+    IEnumerator Bloodbath()
+    {
+        float timer = 4f;
+
+        do
+        {
+            timer -= Time.deltaTime;
+            GameManager.instance.GetPlayerHealthManager().RestoreHealth(90f);
+
+            yield return null;
+        }
+        while (timer > 0);
     }
 }

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,8 +25,6 @@ public class PlayerHealthManager : MonoBehaviour
 
     #region BloodBath
     private bool bloodbathObtained = false;
-    private bool isBloodbath = false;
-    private float bloodbathTime = 4f;
     #endregion
 
     #region Life Rip
@@ -54,21 +53,6 @@ public class PlayerHealthManager : MonoBehaviour
         if (Input.GetKey(KeyCode.V))
         {
             RestoreHealth(Random.Range(15, 110));
-        }
-
-        // Coroutine Bloodbath
-        if (isBloodbath && bloodbathObtained)
-        {
-            if (bloodbathTime > 0)
-            {
-                RestoreHealth(90f);
-                bloodbathTime--;
-            } 
-            else
-            {
-                bloodbathTime = 4f;
-                isBloodbath = false;
-            }
         }
     }
 
@@ -128,6 +112,7 @@ public class PlayerHealthManager : MonoBehaviour
         lerpTimer = 0f;
     }
 
+    #region Getter / Setter
     public void SetHealth(float maxHealth)
     {
         this.maxHealth = maxHealth;
@@ -148,16 +133,16 @@ public class PlayerHealthManager : MonoBehaviour
         return this.armor;
     }
 
-    public void SetBloodbath(bool isBloodbath)
-    {
-        this.isBloodbath = isBloodbath;
-    }
-
     public void SetBloodbathObtained(bool bloodbathObtained)
     {
         this.bloodbathObtained = bloodbathObtained;
     }
-  
+
+    public bool GetBloodbathObtained()
+    {
+        return this.bloodbathObtained;
+    }
+
     public void SetLifeRip(float lifeRip)
     {
         this.lifeRip = lifeRip;
@@ -177,5 +162,5 @@ public class PlayerHealthManager : MonoBehaviour
     {
         return this.lifeRipObtained;
     }
-
+    #endregion
 }

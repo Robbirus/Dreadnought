@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class EnemyCollision : MonoBehaviour
 {
+    private int pity = 0;
+
     private void OnTriggerEnter(Collider collider)
     {
         ProcessCollision(collider.gameObject);
@@ -40,17 +42,23 @@ public class EnemyCollision : MonoBehaviour
     {
         float lifeSteal = 0;
         float damage;
-        if (Random.Range(1, 100) == collider.gameObject.GetComponent<Shell>().GetCritChance())
+
+        int crit = collider.gameObject.GetComponent<Shell>().GetCritChance();
+        int randomValue = Random.Range(1, 100 - pity);
+        Debug.Log("random " + randomValue + " : crit " + crit + " : pity " + pity);
+        if (Random.Range(1, 100 - pity) <= collider.gameObject.GetComponent<Shell>().GetCritChance())
         {
             damage = collider.gameObject.GetComponent<Shell>().GetDamage() * collider.gameObject.GetComponent<Shell>().GetCritCoef();
             lifeSteal = GameManager.instance.GetPlayerHealthManager().GetLifeRip() * damage;
             gameObject.GetComponent<EnemyHealthManager>().TakeDamage(damage);
+            pity = 0;
         }
         else
         {
             damage = collider.gameObject.GetComponent<Shell>().GetDamage(); 
             lifeSteal = GameManager.instance.GetPlayerHealthManager().GetLifeRip() * damage;
             gameObject.GetComponent<EnemyHealthManager>().TakeDamage(collider.gameObject.GetComponent<Shell>().GetDamage());
+            pity++;
         }
 
         ApplyLifeRip(lifeSteal);

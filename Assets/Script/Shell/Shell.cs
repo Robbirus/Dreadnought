@@ -20,6 +20,8 @@ public class Shell : MonoBehaviour
     {
         direction = transform.forward;
         damage = GameManager.instance.GetGunManager().GetDamage();
+        critChance = GameManager.instance.GetGunManager().GetCritChance();
+        critCoef = GameManager.instance.GetGunManager().GetCritCoef();
         Destroy(gameObject, lifeTime);
     }
 
@@ -29,17 +31,35 @@ public class Shell : MonoBehaviour
     }
 
     #region Getter / Setter
-    public float GetCritChance()
+    public int GetCritChance()
     {
         return critChance;
     }
+
+    public void SetCritChance(int critChance)
+    {
+        this.critChance = critChance;
+    }
+
     public float GetCritCoef()
     {
         return critCoef;
     }
+
+    public void SetCritCoef(int critCoef)
+    {
+        this.critCoef = critCoef;
+    }
+
     public float GetDamage()
     {
         return damage;
     }
+   
+    public void SetDamage(float damage)
+    {
+        this.damage = damage;
+    }
+
     #endregion
 }

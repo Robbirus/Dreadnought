@@ -65,27 +65,29 @@ public class GameManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Le jeu commence
-        if (isPlayerAlive && !wasPlayerAlive)
+        if (!isPlayerFound)
         {
-            // Game
-            player = GameObject.FindWithTag("Player");
+            InitiatePlayer();
+        }
 
-            if (player != null)
-            {
-                // The player has been, so we stop searching it
-                isPlayerFound = true;
+    }
 
-                // Get a reference of all player script
-                xpManager = player.GetComponent<ExperienceManager>();
-                healthManager = player.GetComponent<PlayerHealthManager>();
-                gunManager = player.GetComponent<GunManager>();
-                playerController = player.GetComponent<PlayerController>();
+    public void InitiatePlayer()
+    {
+        player = GameObject.FindWithTag("Player");
 
-                tankSpeed = playerController.GetCurrentSpeed();
-                //UpdateNeedle();
-                score = xpManager.GetExperience();
-            }
+        if (player != null)
+        {
+            // Get a reference of all player script
+            xpManager = player.GetComponent<ExperienceManager>();
+            healthManager = player.GetComponent<PlayerHealthManager>();
+            gunManager = player.GetComponent<GunManager>();
+            playerController = player.GetComponent<PlayerController>();
+
+            tankSpeed = playerController.GetCurrentSpeed();
+            score = xpManager.GetExperience();
+
+            isPlayerFound = true;
         }
     }
 
@@ -120,8 +122,7 @@ public class GameManager : MonoBehaviour
                 MusicManager.instance.PlayMenuMusic();
                 break;
             case GameState.GameOver:
-                MusicManager.instance.PlayGameOverMusic();
-                SceneManager.LoadScene((int)SceneIndex.GAME_OVER);
+                ApplyGameOver();
                 break;
             case GameState.PerkSelection:
                 UpgradeManager.instance.ShowPerkSelection();
@@ -130,6 +131,15 @@ public class GameManager : MonoBehaviour
                 throw new ArgumentOutOfRangeException(nameof(currentState), currentState, null);
         }
     }
+
+    #region Play State Methods
+    private void ApplyGameOver()
+    {
+        isPlayerFound = false;
+        MusicManager.instance.PlayGameOverMusic();
+        SceneManager.LoadScene((int)SceneIndex.GAME_OVER);
+    }
+    #endregion
 
     #region Getter / Setter
     public int GetScore()
