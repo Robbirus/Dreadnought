@@ -7,9 +7,9 @@ public class Spawner : MonoBehaviour
     private GameObject enemy;
 
     [SerializeField]
-    private float minimumSpawnTime;
+    private float minimumSpawnTime = 10f;
     [SerializeField]
-    private float maximumSpawnTime;
+    private float maximumSpawnTime = 30f;
 
     private float timeUntilSpawn;
 

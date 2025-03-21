@@ -7,26 +7,19 @@ public class GunManager : MonoBehaviour
     private const string ANIMATOR_IS_SHOOTING = "isShooting";
 
     [Header("Animation")]
-    [SerializeField]
-    private Animator animator;
-    [SerializeField]
-    private ParticleSystem shootParticle;
+    [SerializeField] private Animator animator;
+    [SerializeField] private ParticleSystem shootParticle;
 
     [Header("Shell Propreties")]
-    [SerializeField]
-    private GameObject shellPrefab;
-    [SerializeField]
-    private GameObject shellSpawnPoint;
-    [SerializeField]
-    private float damage = 425f;
-    [SerializeField]
-    private int critChance = 2;
-    [SerializeField]
-    private float critCoef = 1.1f;
+    [SerializeField] private GameObject shellPrefab;
+    [SerializeField] private GameObject shellSpawnPoint;
+    [SerializeField] private float damage = 425f;
+    [SerializeField] private int critChance = 2;
+    [SerializeField] private float critCoef = 1.1f;
+    [SerializeField] private int pity = 0;
 
     [Header("Input Action Reference")]
-    [SerializeField]
-    private InputActionReference shootActionReference;
+    [SerializeField] private InputActionReference shootActionReference;
 
     private float reloadTime = 4f;
 
@@ -59,6 +52,20 @@ public class GunManager : MonoBehaviour
     }
 
     #region Getter / Setter
+   public int GetPity()
+   {
+        return this.pity;
+   }
+
+    public void ResetPity()
+    {
+        this.pity = 0;
+    }
+    public void IncreasePity()
+    {
+        this.pity++;
+    }
+
     public float GetReloadTime()
     {
         return reloadTime;

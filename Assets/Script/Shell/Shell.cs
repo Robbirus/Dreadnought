@@ -14,6 +14,7 @@ public class Shell : MonoBehaviour
     private float damage;
     private int critChance;
     private float critCoef;
+    private int pity;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,6 +23,8 @@ public class Shell : MonoBehaviour
         damage = GameManager.instance.GetGunManager().GetDamage();
         critChance = GameManager.instance.GetGunManager().GetCritChance();
         critCoef = GameManager.instance.GetGunManager().GetCritCoef();
+        pity = GameManager.instance.GetGunManager().GetPity();
+
         Destroy(gameObject, lifeTime);
     }
 
@@ -39,6 +42,19 @@ public class Shell : MonoBehaviour
     public void SetCritChance(int critChance)
     {
         this.critChance = critChance;
+    }
+    public int GetPity()
+    {
+        return this.pity;
+    }
+
+    public void ResetPity()
+    {
+        GameManager.instance.GetGunManager().ResetPity();
+    }
+    public void IncreasePity()
+    {
+        GameManager.instance.GetGunManager().IncreasePity();
     }
 
     public float GetCritCoef()

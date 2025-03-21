@@ -62,11 +62,11 @@ public class MainController : MonoBehaviour
     [SerializeField] private string newGameLevel;
     [SerializeField] private GameObject noSavedGameDialog = null;
 
-    private string levelToLoad;
-
     [Header("Resolution Dropdown")]
     public TMP_Dropdown resolutionDropDown;
     private Resolution[] resolutions;
+
+    private string levelToLoad;
 
     private void Start()
     {
@@ -109,7 +109,7 @@ public class MainController : MonoBehaviour
         if (PlayerPrefs.HasKey("SavedLevel"))
         {
             levelToLoad = PlayerPrefs.GetString("SavedLevel");
-            SceneManager.LoadScene(levelToLoad);
+            levelLoader.LoadLevel((int)SceneIndex.GAME);
         }
         else
         {

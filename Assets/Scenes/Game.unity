@@ -3353,6 +3353,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3a216716655b1984e8adebb17e97cd50, type: 2}
   - {fileID: 11400000, guid: 4fec8d06388397e45ad2c9d4f919f3a9, type: 2}
   - {fileID: 11400000, guid: a312881faca298e46be41c83b4fd4948, type: 2}
+  - {fileID: 11400000, guid: ecccf6925a0b0d54098d2e90e51308f6, type: 2}
 --- !u!4 &1440023696
 Transform:
   m_ObjectHideFlags: 0
@@ -5042,11 +5043,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9190513568571667389, guid: a903d305fee387c4ba6263f9a9a294d0, type: 3}
       propertyPath: maximumSpawnTime
-      value: 60
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9190513568571667389, guid: a903d305fee387c4ba6263f9a9a294d0, type: 3}
       propertyPath: minimumSpawnTime
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

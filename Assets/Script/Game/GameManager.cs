@@ -72,10 +72,12 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Try to find the player with his tag, when found get all script component.
+    /// Then stop searching for player
+    /// </summary>
     public void InitiatePlayer()
     {
-        player = GameObject.FindWithTag("Player");
-
         if (player != null)
         {
             // Get a reference of all player script
@@ -88,6 +90,10 @@ public class GameManager : MonoBehaviour
             score = xpManager.GetExperience();
 
             isPlayerFound = true;
+        }
+        else
+        {
+            player = GameObject.FindWithTag("Player");
         }
     }
 
@@ -110,34 +116,48 @@ public class GameManager : MonoBehaviour
         switch (currentState)
         {
             case GameState.Playing:
-                MusicManager.instance.PlayBackgroundMusic();
-
-                if(UpgradeManager.instance != null)
-                {
-                    UpgradeManager.instance.HidePerkSelection();
-                }
-
+                ApplyPlaying();
                 break;
             case GameState.Menu:
-                MusicManager.instance.PlayMenuMusic();
+                ApplyMenu();
                 break;
             case GameState.GameOver:
                 ApplyGameOver();
                 break;
             case GameState.PerkSelection:
-                UpgradeManager.instance.ShowPerkSelection();
+                ApplyPerkSelection();  
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(currentState), currentState, null);
         }
     }
 
-    #region Play State Methods
+    #region Play State Methods    
+    private void ApplyPlaying()
+    {
+        MusicManager.instance.PlayBackgroundMusic();
+
+        if (UpgradeManager.instance != null)
+        {
+            UpgradeManager.instance.HidePerkSelection();
+        }
+    }
+   
+    private void ApplyMenu()
+    {
+        MusicManager.instance.PlayMenuMusic();
+    }
+
     private void ApplyGameOver()
     {
         isPlayerFound = false;
         MusicManager.instance.PlayGameOverMusic();
         SceneManager.LoadScene((int)SceneIndex.GAME_OVER);
+    }
+
+    private void ApplyPerkSelection()
+    {
+        UpgradeManager.instance.ShowPerkSelection();
     }
     #endregion
 
