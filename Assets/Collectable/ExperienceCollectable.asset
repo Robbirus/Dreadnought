@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ffb0827e9f8bcf418e32cd2296f97b9, type: 3}
-  m_Name: CritsChanceIncrease
+  m_Script: {fileID: 11500000, guid: 2286341fdf5025442a34c9bd7b57b071, type: 3}
+  m_Name: ExperienceCollectable
   m_EditorClassIdentifier: 
-  perkImage: {fileID: 21300000, guid: 979fbbba82e7e9f4c8194829afaba053, type: 3}
-  perkText: Increase crits chance by 1%
-  effectType: 3
-  effectValue: 1
-  isUnique: 0
-  unlockLevel: 0
+  xpAmount: 0

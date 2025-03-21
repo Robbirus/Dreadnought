@@ -685,7 +685,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 6544371426597996155, guid: 2f540f50b76b00a468db6ea8ffe79859, type: 3}
   ennemySpeed: 10
-  maxSpeed: 40
   damage: 0
 --- !u!114 &227081424578727720
 MonoBehaviour:
@@ -701,7 +700,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 1700
   healthBar: {fileID: 5408143212954185590}
-  xp: 0
+  drops:
+  - {fileID: 1852245274802387325, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
 --- !u!114 &-7665278974299221748
 MonoBehaviour:
   m_ObjectHideFlags: 0

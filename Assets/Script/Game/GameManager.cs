@@ -69,7 +69,6 @@ public class GameManager : MonoBehaviour
         {
             InitiatePlayer();
         }
-
     }
 
     /// <summary>

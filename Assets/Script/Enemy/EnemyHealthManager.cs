@@ -1,16 +1,18 @@
 using System.Collections;
+using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
 public class EnemyHealthManager : MonoBehaviour
 {
 
     [Header("Enemy Health Stat")]
-    [SerializeField]
-    private int maxHealth = 1700;
-    [SerializeField]
-    private HealthBar healthBar;
-    [SerializeField]
-    private int xp;
+    [SerializeField] private int maxHealth = 1700;
+    [SerializeField] private HealthBar healthBar;
+    [Space(10)]
+
+    [Header("Drop List")]
+    [SerializeField] List<GameObject> drops;
 
     private float health;
 
@@ -24,7 +26,7 @@ public class EnemyHealthManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        xp = UnityEngine.Random.Range(5, 20);
+
     }
 
     public void TakeDamage(float damage)
@@ -41,9 +43,10 @@ public class EnemyHealthManager : MonoBehaviour
         if (health <= 0)
         {
             gameObject.GetComponent<EnemySoundManager>().PlayDeathSound();
-            GameManager.instance.GetExperienceManager().GainExperience(xp);
             GameManager.instance.enemyCount--;
             GameManager.instance.enemyKilled++;
+
+            GenerateDrop();
 
             if (GameManager.instance.GetPlayerHealthManager().GetBloodbathObtained())
             {
@@ -51,6 +54,14 @@ public class EnemyHealthManager : MonoBehaviour
             }
 
             Destroy(gameObject);
+        }
+    }
+
+    private void GenerateDrop()
+    {
+        foreach (GameObject drop in drops)
+        {
+            Instantiate(drop, transform.position + new Vector3(0, 2.5f, 0), Quaternion.identity);
         }
     }
 
