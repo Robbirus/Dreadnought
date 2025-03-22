@@ -23,6 +23,11 @@ public class GunManager : MonoBehaviour
 
     private float reloadTime = 4f;
 
+    private void Awake()
+    {
+        shootActionReference.action.Enable();
+    }
+
     private void Start()
     {
         StartCoroutine(Shooting());
@@ -33,7 +38,7 @@ public class GunManager : MonoBehaviour
         while (true)
         {
             // Wait for Input Shoot
-            yield return new WaitUntil(() => Input.GetKey(KeyCode.Space));
+            yield return new WaitUntil(() => shootActionReference.action.IsPressed());
             Shoot();
 
             // Wait For ReloadTime
