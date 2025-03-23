@@ -214,7 +214,7 @@ WheelCollider:
   m_GameObject: {fileID: 257154603912398059}
   serializedVersion: 2
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.41
+  m_Radius: 0.45
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -356,7 +356,7 @@ Transform:
   m_GameObject: {fileID: 782433146255558959}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4, y: 0.73, z: 0.861}
+  m_LocalPosition: {x: 1.4, y: 0.735, z: 0.861}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -371,7 +371,7 @@ WheelCollider:
   m_GameObject: {fileID: 782433146255558959}
   serializedVersion: 2
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.41
+  m_Radius: 0.45
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -786,7 +786,7 @@ WheelCollider:
   m_GameObject: {fileID: 1465886839700382185}
   serializedVersion: 2
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.41
+  m_Radius: 0.45
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -6500,7 +6500,7 @@ WheelCollider:
   m_GameObject: {fileID: 3723951258920827993}
   serializedVersion: 2
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.41
+  m_Radius: 0.45
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -6556,13 +6556,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3783481906491985727}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000015454312, y: 0.70710677, z: -0.00000001545431, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -1.2800899, y: 0.6659168, z: -1.1377395}
   m_LocalScale: {x: 0.25689527, y: 0.25689527, z: 0.25689527}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8076268182216300270}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &552946060186216766
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -6657,7 +6657,7 @@ WheelCollider:
   m_GameObject: {fileID: 3884152227626520004}
   serializedVersion: 2
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.41
+  m_Radius: 0.45
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -6814,7 +6814,7 @@ WheelCollider:
   m_GameObject: {fileID: 4132364049433433013}
   serializedVersion: 2
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.41
+  m_Radius: 0.45
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -6885,7 +6885,7 @@ WheelCollider:
   m_GameObject: {fileID: 4575368496510590409}
   serializedVersion: 2
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.41
+  m_Radius: 0.45
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -7128,7 +7128,7 @@ WheelCollider:
   m_GameObject: {fileID: 5205452024827180398}
   serializedVersion: 2
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.41
+  m_Radius: 0.45
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -7535,7 +7535,7 @@ WheelCollider:
   m_GameObject: {fileID: 7737746106037582511}
   serializedVersion: 2
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.41
+  m_Radius: 0.45
   m_SuspensionSpring:
     spring: 35000
     damper: 4500
@@ -7798,6 +7798,7 @@ GameObject:
   - component: {fileID: 7831459546902106030}
   - component: {fileID: 5907006434065355240}
   - component: {fileID: 381973614354999236}
+  - component: {fileID: 262215776773178212}
   m_Layer: 0
   m_Name: Stb1
   m_TagString: Player
@@ -7843,13 +7844,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  moveActionReference: {fileID: -2455035216646587266, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
   moveTurretActionReference: {fileID: -446524657075902219, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
   maxSpeed: 40
   maxReverseSpeed: 20
-  rotationSpeed: 20
-  rotationTurretSpeed: 25
   turret: {fileID: 6297071800644591404}
+  rotationTurretSpeed: 25
 --- !u!114 &325563445029884473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7862,10 +7861,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5b9e5c465596647beb52c18921de8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 40
-  rotationSpeed: 25
-  gravityValue: -9
-  characterController: {fileID: -6003603723819322242}
+  maxSpeed: 53
+  speedRate: 200
+  rotSpeedRate: 200
+  rotationSpeedDegrees: 25
+  groundFiction: 5
+  gravity: 100
+  ground:
+    serializedVersion: 2
+    m_Bits: 1024
+  playerHeight: 3
 --- !u!114 &2683492071193335968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7977,7 +7982,7 @@ CharacterController:
     m_Bits: 0
   m_LayerOverridePriority: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Height: 2.5
   m_Radius: 1
@@ -8210,6 +8215,33 @@ MonoBehaviour:
   m_DefaultActionMap: Tank
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!54 &262215776773178212
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8485314063673384991}
+  serializedVersion: 4
+  m_Mass: 500
+  m_Drag: 0.5
+  m_AngularDrag: 1
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 2
 --- !u!1 &8540166447503978969
 GameObject:
   m_ObjectHideFlags: 0
@@ -8251,7 +8283,7 @@ WheelCollider:
   m_GameObject: {fileID: 8540166447503978969}
   serializedVersion: 2
   m_Center: {x: 0, y: 0, z: 0}
-  m_Radius: 0.41
+  m_Radius: 0.45
   m_SuspensionSpring:
     spring: 35000
     damper: 4500

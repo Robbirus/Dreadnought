@@ -1,77 +1,136 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.InputSystem.XR;
+using static UnityEngine.UI.Image;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private float moveSpeed = 53f;
-    [SerializeField] private float rotationSpeed = 25f;
-    [SerializeField] private float gravityValue = -9f;
-    [SerializeField] private CharacterController characterController;
+    [SerializeField] private float maxSpeed = 53f;
+    [SerializeField] private float speedRate = 200f;
+    [SerializeField] private float rotSpeedRate = 200f;
+    [SerializeField] private float rotationSpeedDegrees = 25f;
+    [Space(10)]
 
-    private bool playerGrounded;
-    private float groundedTimer = 0f;
+    [Header("Ground")]
+    [SerializeField] private float groundFiction = 5f;
+    [SerializeField] private float gravity = 10f;
+    [SerializeField] private LayerMask ground;
+    [Space(10)]
 
-    // use to store the incremental velocity of gravity to be applied to player when not grounded
-    private Vector3 playerVelocity;
+    [Header("Player")]
+    [SerializeField] private float playerHeight;
+    [Space(10)]
 
-    // use to store player input
-    private Vector2 playerInput;
+    private Rigidbody rb;
+    private Vector3 groundNormal = Vector3.up;
 
-    private void Update()
+    private void Start()
     {
-        MovePlayer();
+        rb = GetComponent<Rigidbody>();
     }
 
-    private void OnMove(InputValue value)
+    private void FixedUpdate()
     {
-        // Store value recieved from input either keyboard or controller
-        playerInput = value.Get<Vector2>();
+        HandleMovement();
+        HandleRotation();
+        AdjustToGround();
+
+        rb.AddForce(-transform.up * gravity, ForceMode.Acceleration);
     }
 
-    private void MovePlayer()
+    private void HandleMovement()
     {
-        // Store character controller isGrounded for ease of access
-        playerGrounded = characterController.isGrounded;
+        // Avant/arriere
+        float moveInput = Input.GetAxis("Vertical"); 
+        Vector3 force = transform.forward * moveInput * speedRate * Time.fixedDeltaTime;
 
-        //if player is grounded, set our grounded timer to X value.
-        //This timer helps prevent the inconsistent nature of isGrounded.
-        //This states the player is "grounded" when timer is greater than 0
-        if (playerGrounded)
+        // Applique la force seulement si le tank touche le sol
+        if (IsGrounded())
         {
-            groundedTimer = 0.2f;
+            rb.AddForce(force * 10f, ForceMode.Acceleration);
         }
 
-        //If our timer is greater than zero, decrease timer by time.deltaTime
-        //This timer will tell us if the player is still "grounded" without the
-        //use of the isGrounded var.
-        if (groundedTimer > 0)
+        if (moveInput == 0)
         {
-            groundedTimer -= Time.deltaTime;
-        }        
-        
-        //reset player's vertical velocity to zero when grounded.
-        if (playerGrounded && playerVelocity.y < 0)
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, Vector3.zero, Time.fixedDeltaTime * 5f);
+        }
+    }
+
+    private void HandleRotation()
+    {
+        // Gauche / Droite
+        float turnInput = Input.GetAxis("Horizontal");
+
+        if (IsGrounded())
         {
-            playerVelocity.y = 0f;
+            // Applique une force de rotation en fonction de la friction du sol
+            rb.AddTorque(Vector3.up * turnInput * rotSpeedRate * Time.fixedDeltaTime, ForceMode.Acceleration);
+
+            // Reduction du glissement
+            rb.linearVelocity = Vector3.Lerp(rb.linearVelocity, transform.forward * rb.linearVelocity.magnitude, Time.fixedDeltaTime * groundFiction);
+        }
+    }
+
+    private void AdjustToGround()
+    {
+        RaycastHit hit;
+        Vector3 tankPosition = transform.position;
+
+        // Raycast vers le sol pour obtenir la normale (la direction perpendiculaire au sol)
+        if (Physics.Raycast(tankPosition, -transform.up, out hit, 3f))
+        {
+            // Calcule la nouvelle rotation alignee avec la pente
+            Quaternion newRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
+
+            // Lisse la transition pour eviter des changements brutaux
+            transform.rotation = Quaternion.Slerp(transform.rotation, newRotation, Time.deltaTime * 5f);
+        }
+    }
+
+    private bool IsGrounded()
+    {
+        float distance = 1f; // Distance correcte
+        float radius = 0.5f; // Rayon du tank
+        float offsetY = 1f;
+        bool grounded = true;
+
+        Vector3 front = transform.position + Vector3.up * offsetY + transform.forward * 4f; // Avant du tank
+        Vector3 back = transform.position + Vector3.up * offsetY - transform.forward * 9f;  // Arriere du tank
+        Vector3 right = transform.position + Vector3.up * offsetY + transform.right * 3f;   // Cote droit du tank
+        Vector3 left = transform.position + Vector3.up * offsetY - transform.right * 3f;    // Cote gauche du tank
+        Vector3 center = transform.position + Vector3.up * offsetY;                         // Centre du tank
+
+        Vector3[] raycastsOrigins = new Vector3[]
+        {
+            front,
+            back,
+            right,
+            left,
+            center
+        };
+
+        foreach (Vector3 origin in raycastsOrigins)
+        {
+            grounded = Physics.SphereCast(origin, radius, -Vector3.up, out RaycastHit hit, distance);
+
+            Debug.DrawRay(front, -Vector3.up * distance, grounded ? Color.green : Color.red);
+            Debug.DrawRay(back, -Vector3.up * distance, grounded ? Color.green : Color.red);
+            Debug.DrawRay(right, -Vector3.up * distance, grounded ? Color.green : Color.red);
+            Debug.DrawRay(left, -Vector3.up * distance, grounded ? Color.green : Color.red);
+            Debug.DrawRay(center, -Vector3.up * distance, grounded ? Color.green : Color.red);
+
+            /*
+            if (grounded)
+                Debug.Log($"[OK] Sol detecte avec SphereCast : {hit.collider.name}");
+            else
+                Debug.Log("[ERREUR] Aucun sol detecte !");
+            */
+            return grounded;
         }
 
-        //Increase gravity value over time
-        playerVelocity.y += gravityValue * Time.deltaTime;
-
-        //calculate players movement and store in a local vec3
-        Vector3 storeMovement = transform.forward * playerInput.y * moveSpeed * moveSpeed * Time.deltaTime;
-
-        //inject player x and z movement back into our player's velocity vec3
-        playerVelocity.x = storeMovement.x;
-        playerVelocity.z = storeMovement.z;
-
-        //Move player using character controller .move API 
-        characterController.Move(playerVelocity * Time.deltaTime);
-
-        //Rotate player using .Rotate API (using rotate around given axis via X amount of degrees)
-        transform.Rotate(transform.up, rotationSpeed * playerInput.x * Time.deltaTime);
-
+        return false;
     }
 }
