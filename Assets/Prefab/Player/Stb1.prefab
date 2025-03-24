@@ -7793,12 +7793,11 @@ GameObject:
   - component: {fileID: 1852586442385084052}
   - component: {fileID: 6373239541653378979}
   - component: {fileID: 1746672064193953181}
+  - component: {fileID: 262215776773178212}
   - component: {fileID: 7020948231001036867}
-  - component: {fileID: -6003603723819322242}
   - component: {fileID: 7831459546902106030}
   - component: {fileID: 5907006434065355240}
   - component: {fileID: 381973614354999236}
-  - component: {fileID: 262215776773178212}
   m_Layer: 0
   m_Name: Stb1
   m_TagString: Player
@@ -7861,16 +7860,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5b9e5c465596647beb52c18921de8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 53
-  speedRate: 200
-  rotSpeedRate: 200
-  rotationSpeedDegrees: 25
-  groundFiction: 5
-  gravity: 100
-  ground:
+  velocity: 50
+  rotationSpeed: 50
+  power: 950
+  accelerationTime: 5
+  playerHeight: 3
+  groundLayer:
     serializedVersion: 2
     m_Bits: 1024
-  playerHeight: 3
+  groundDrag: 5
+  offsetY: 1
 --- !u!114 &2683492071193335968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7945,6 +7944,33 @@ MonoBehaviour:
   movementSound: {fileID: 8300000, guid: 385a4a5ee91421b4e9053b12ebe0105e, type: 3}
   gunShotSound: {fileID: 8300000, guid: d80230c64a105d84099ec7531a675c61, type: 3}
   reloadSound: {fileID: 8300000, guid: c87963d378b2972498f65e2029e64337, type: 3}
+--- !u!54 &262215776773178212
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8485314063673384991}
+  serializedVersion: 4
+  m_Mass: 37
+  m_Drag: 0.5
+  m_AngularDrag: 1
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 0
+  m_CollisionDetection: 1
 --- !u!65 &7020948231001036867
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7965,31 +7991,6 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 3.45, y: 2.8, z: 7.1}
-  m_Center: {x: 0.06, y: 1.5, z: -1.2}
---- !u!143 &-6003603723819322242
-CharacterController:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8485314063673384991}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Height: 2.5
-  m_Radius: 1
-  m_SlopeLimit: 45
-  m_StepOffset: 0.03
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
   m_Center: {x: 0.06, y: 1.5, z: -1.2}
 --- !u!82 &7831459546902106030
 AudioSource:
@@ -8215,33 +8216,6 @@ MonoBehaviour:
   m_DefaultActionMap: Tank
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!54 &262215776773178212
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8485314063673384991}
-  serializedVersion: 4
-  m_Mass: 500
-  m_Drag: 0.5
-  m_AngularDrag: 1
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 0
-  m_CollisionDetection: 2
 --- !u!1 &8540166447503978969
 GameObject:
   m_ObjectHideFlags: 0
