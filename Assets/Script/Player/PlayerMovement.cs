@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundDrag;
     [Space(10)]
 
+    [Header("Offset Raycast")]
     [SerializeField] private float offsetY = 1f;
 
     private bool isGrounded;
@@ -88,12 +89,18 @@ public class PlayerMovement : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
     }
 
+    /// <summary>
+    /// Move forward or backward the player
+    /// </summary>
     private void MovePlayer()
     {
         moveDirection = transform.forward * verticalInput;
         rb.AddForce(moveDirection.normalized * force * 50f, ForceMode.Force);
     }
 
+    /// <summary>
+    /// Rotate the player on himself
+    /// </summary>
     private void TurnPlayer()
     {
         float turnInput = horizontalInput * rotationSpeed * Time.deltaTime;
@@ -101,6 +108,9 @@ public class PlayerMovement : MonoBehaviour
         rb.MoveRotation(rb.rotation * rotate);
     }
 
+    /// <summary>
+    /// Limit the gain of acceleration
+    /// </summary>
     private void ControlSpeed()
     {
         Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
@@ -111,6 +121,9 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Detect the ground with a raycast
+    /// </summary>
     private void DetectGround()
     {
         isGrounded = Physics.Raycast(center, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
