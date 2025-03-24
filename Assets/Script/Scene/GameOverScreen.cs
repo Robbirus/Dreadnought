@@ -24,11 +24,13 @@ public class GameOverScreen : MonoBehaviour
     {
         SceneManager.LoadScene("Game");
         GameManager.instance.SetPlayerFound(false);
+        MusicManager.instance.PlayBackgroundMusic();
     }
 
     public void ExitGame()
     {
         SceneManager.LoadScene("Lobby");
         GameManager.instance.SetPlayerFound(false);
+        MusicManager.instance.PlayMenuMusic();
     }
 }

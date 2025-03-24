@@ -16,7 +16,6 @@ public class UpgradeManager : MonoBehaviour
 
     public static UpgradeManager instance = null;
 
-    
     public void Start()
     {
         //RandomizeNewPerks();
