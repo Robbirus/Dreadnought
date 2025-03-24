@@ -79,6 +79,7 @@
     <Compile Include="Assets\Script\Collectable\CollectableTriggerHandler.cs" />
     <Compile Include="Assets\Script\Collectable\Heal Item\HealCollectableSO.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyBehaviour.cs" />
+    <Compile Include="Assets\Script\Player\PlayerState\PlayerBaseState.cs" />
     <Compile Include="Assets\Script\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Script\Building\Spawner\SpawnerSoundManager.cs" />
     <Compile Include="Assets\Script\Collectable\Experience Item\ExperienceCollectableSO.cs" />
@@ -92,7 +93,6 @@
     <Compile Include="Assets\Script\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Script\Player\GunManager.cs" />
     <Compile Include="Assets\Script\Enemy\HealthBar.cs" />
-    <Compile Include="Assets\Script\Player\PlayerBaseState.cs" />
     <Compile Include="Assets\Script\Enemy\EnemySoundManager.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyMovementManager.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyContoller.cs" />
