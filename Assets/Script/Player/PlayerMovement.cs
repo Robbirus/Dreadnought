@@ -26,11 +26,18 @@ public class PlayerMovement : MonoBehaviour
     private float acceleration;
     private float powerToWeightRatio;
     private Vector3 moveDirection;
-    private Vector3 center;
     private float force = 0f;
 
     private float horizontalInput;
     private float verticalInput;
+
+
+    private Vector3 center;
+    private Vector3 front;
+    private Vector3 back;
+    private Vector3 left;
+    private Vector3 right;
+
 
     private void Awake()
     {
@@ -45,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         force = acceleration * mass;
     }
 
+    
     private void Update()
     {
         Debug.Log(isGrounded);
@@ -63,7 +71,11 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         DetectGround();
-        center = transform.position + Vector3.up * offsetY;
+        center = transform.position - Vector3.forward * 1.2f + Vector3.up * offsetY;
+        front = center + Vector3.forward * 3f;
+        back = center - Vector3.forward * 4f;
+        left = center - Vector3.right * 1.5f;
+        right = center + Vector3.right * 1.5f;
 
         if (isGrounded)
         {
@@ -71,8 +83,9 @@ public class PlayerMovement : MonoBehaviour
             TurnPlayer();
         }
 
-        AdjustToGround();
+            AdjustToGround();
     }
+
 
     /// <summary>
     /// Adjust the player to the slop on the ground
@@ -80,8 +93,9 @@ public class PlayerMovement : MonoBehaviour
     /// <exception cref="NotImplementedException"></exception>
     private void AdjustToGround()
     {
-        throw new NotImplementedException();
+        // throw new NotImplementedException();
     }
+
 
     private void DetectInput()
     {
@@ -127,6 +141,12 @@ public class PlayerMovement : MonoBehaviour
     private void DetectGround()
     {
         isGrounded = Physics.Raycast(center, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
-        Debug.DrawLine(center, transform.position + Vector3.down, isGrounded ? Color.red : Color.green);
+
+        Debug.DrawLine(center, transform.position + Vector3.down, isGrounded ? Color.green : Color.red);
+        Debug.DrawLine(front, front + Vector3.down, isGrounded ? Color.green : Color.red);
+        Debug.DrawLine(back, back + Vector3.down, isGrounded ? Color.green : Color.red);
+        Debug.DrawLine(left, left + Vector3.down, isGrounded ? Color.green : Color.red);
+        Debug.DrawLine(right, right + Vector3.down, isGrounded ? Color.green : Color.red);
     }
+
 }
