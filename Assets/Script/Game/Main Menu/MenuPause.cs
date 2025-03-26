@@ -1,31 +1,62 @@
+using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuPause : MonoBehaviour
 {
+    [Header("Static Pause Value")]
+    public static bool isGamePaused = false;
+    [Space(10)]
 
-    [SerializeField] private GameObject pausePanel;
+    [Header("Pause menu panel")]
+    [SerializeField] private GameObject pauseMenuUI;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-    
+
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            if (isGamePaused) 
+            {
+                ResumeGame();
+            }
+            else
+            {
+                PauseGame();
+            }
+        }
+
     }
 
-    public void PauseGame()
+    public void ResumeGame()
     {
-        pausePanel.SetActive(true);
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1f;
+        isGamePaused = false;
+    }
+
+    private void PauseGame()
+    {
+        pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
+        isGamePaused = true;
     }
 
-    public void ContinueGame()
+    public void LoadMenu()
     {
-        pausePanel.SetActive(false);
+        Time.timeScale = 1f;
+        GameManager.instance.ChangeState(GameManager.GameState.Menu);
+        Destroy(GameObject.FindWithTag("Player"));
+        SceneManager.LoadScene((int)SceneIndex.MENU);
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void ShowOptions()
+    {
         Time.timeScale = 1f;
     }
-
-    public void ReturnMenu()
-    {
-        GetComponent<LoadingController>().ApplyMenu();
-    }
-
 }
