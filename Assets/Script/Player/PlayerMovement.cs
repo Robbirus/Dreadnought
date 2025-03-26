@@ -13,12 +13,8 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Ground Check")]
     [SerializeField] private float playerHeight;
-    [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float groundDrag;
     [Space(10)]
-
-    [Header("Offset Raycast")]
-    [SerializeField] private float offsetY = 1f;
 
     private bool isGrounded;
     private Rigidbody rb;
@@ -30,14 +26,6 @@ public class PlayerMovement : MonoBehaviour
 
     private float horizontalInput;
     private float verticalInput;
-
-    private Vector3 center;
-    private Vector3 front;
-    private Vector3 back;
-    private Vector3 left;
-    private Vector3 right;
-
-    public float gravityForce = 9f;
 
     private void Awake()
     {
@@ -55,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
     
     private void Update()
     {
-        Debug.Log(isGrounded);
         if (isGrounded)
         {
             DetectInput();
@@ -70,19 +57,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        center = transform.position - Vector3.forward * 1.2f + Vector3.up * offsetY;
-        front = center + Vector3.forward * 3f;
-        back = center - Vector3.forward * 4f;
-        left = center - Vector3.right * 1.5f;
-        right = center + Vector3.right * 1.5f;
-
         if (isGrounded)
         {
             MovePlayer();
             TurnPlayer();
         }
+        else
+        {
+            KeepMomentum();
+        }
     }
 
+    private void KeepMomentum()
+    {
+        
+    }
 
     private void DetectInput()
     {
