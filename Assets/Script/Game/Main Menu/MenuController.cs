@@ -92,12 +92,6 @@ public class MainController : MonoBehaviour
         resolutionDropDown.RefreshShownValue();
     }
 
-    public void SetResolution(int resolutionIndex)
-    {
-        Resolution resolution = resolutions[resolutionIndex];
-        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
-    }
-
     #region Dialog Methods
     public void NewGameDialogYes()
     {
@@ -250,6 +244,12 @@ public class MainController : MonoBehaviour
     public void SetQuality(int qualityIndex)
     {
         this.qualityLevel = qualityIndex;
+    }
+
+    public void SetResolution(int resolutionIndex)
+    {
+        Resolution resolution = resolutions[resolutionIndex];
+        Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
     /// <summary>
