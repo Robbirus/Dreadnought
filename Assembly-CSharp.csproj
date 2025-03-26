@@ -66,6 +66,7 @@
     <Compile Include="Assets\Script\Player\PlayerCollision.cs" />
     <Compile Include="Assets\Script\Scene\SceneLoader.cs" />
     <Compile Include="Assets\Script\Game\Sound\AudioManager.cs" />
+    <Compile Include="Assets\Script\Game\Main Menu\LoadingController.cs" />
     <Compile Include="Assets\Script\Perks\PerkSO.cs" />
     <Compile Include="Assets\Script\Collectable\Collectable.cs" />
     <Compile Include="Assets\Script\Collectable\GenerateCollectible.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Assets\Script\Player\PlayerSoundManager.cs" />
     <Compile Include="Assets\Script\Game\Main Menu\MenuController.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyCollision.cs" />
+    <Compile Include="Assets\Script\Game\Main Menu\MenuPause.cs" />
     <Compile Include="Assets\Script\Game\GameManager.cs" />
     <Compile Include="Assets\Script\VehiculeMovement.cs" />
     <Compile Include="Assets\Script\Game\SceneIndex.cs" />

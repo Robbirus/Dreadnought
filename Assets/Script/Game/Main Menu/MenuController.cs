@@ -9,7 +9,7 @@ using UnityEngine.Audio;
 public class MainController : MonoBehaviour
 {
     [Header("Level Loader Script")]
-    [SerializeField] private LevelLoader levelLoader;
+    [SerializeField] private LoadingController loadingController;
     [Space(5)]
     
     [Header("Volume Setting")]
@@ -101,7 +101,7 @@ public class MainController : MonoBehaviour
     #region Dialog Methods
     public void NewGameDialogYes()
     {
-        levelLoader.LoadLevel((int)SceneIndex.GAME);
+        loadingController.ApplyGame();
     }
 
     public void LoadGameDialogYes()
@@ -109,7 +109,7 @@ public class MainController : MonoBehaviour
         if (PlayerPrefs.HasKey("SavedLevel"))
         {
             levelToLoad = PlayerPrefs.GetString("SavedLevel");
-            levelLoader.LoadLevel((int)SceneIndex.GAME);
+            loadingController.ApplyGame();
         }
         else
         {
