@@ -31,13 +31,13 @@ public class PlayerMovement : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
 
-
     private Vector3 center;
     private Vector3 front;
     private Vector3 back;
     private Vector3 left;
     private Vector3 right;
 
+    public float gravityForce = 9f;
 
     private void Awake()
     {
@@ -70,7 +70,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        DetectGround();
         center = transform.position - Vector3.forward * 1.2f + Vector3.up * offsetY;
         front = center + Vector3.forward * 3f;
         back = center - Vector3.forward * 4f;
@@ -82,18 +81,6 @@ public class PlayerMovement : MonoBehaviour
             MovePlayer();
             TurnPlayer();
         }
-
-            AdjustToGround();
-    }
-
-
-    /// <summary>
-    /// Adjust the player to the slop on the ground
-    /// </summary>
-    /// <exception cref="NotImplementedException"></exception>
-    private void AdjustToGround()
-    {
-        // throw new NotImplementedException();
     }
 
 
@@ -135,18 +122,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Detect the ground with a raycast
-    /// </summary>
-    private void DetectGround()
+    #region Getter / Setter
+    public void SetGrounded(bool isGrounded)
     {
-        isGrounded = Physics.Raycast(center, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
-
-        Debug.DrawLine(center, transform.position + Vector3.down, isGrounded ? Color.green : Color.red);
-        Debug.DrawLine(front, front + Vector3.down, isGrounded ? Color.green : Color.red);
-        Debug.DrawLine(back, back + Vector3.down, isGrounded ? Color.green : Color.red);
-        Debug.DrawLine(left, left + Vector3.down, isGrounded ? Color.green : Color.red);
-        Debug.DrawLine(right, right + Vector3.down, isGrounded ? Color.green : Color.red);
+        this.isGrounded = isGrounded;
     }
+
+    public bool IsGrounded()
+    {
+        return this.isGrounded;
+    }
+    #endregion
 
 }

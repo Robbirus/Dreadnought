@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Enemy\EnemyHealthManager.cs" />
     <Compile Include="Assets\Script\Game\LevelLoader.cs" />
+    <Compile Include="Assets\Script\Player\PlayerCollision.cs" />
     <Compile Include="Assets\Script\Scene\SceneLoader.cs" />
     <Compile Include="Assets\Script\Game\Sound\AudioManager.cs" />
     <Compile Include="Assets\Script\Perks\PerkSO.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="Assets\Script\Perks\Perk.cs" />
     <Compile Include="Assets\Script\Game\Sound\MusicManager.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Script\CenterOfMass.cs" />
     <Compile Include="Assets\Script\Building\BuildingCollision.cs" />
     <Compile Include="Assets\Script\Collectable\CollectableSoundManager.cs" />
     <Compile Include="Assets\Script\Game\Sound\VolumeSettings.cs" />
