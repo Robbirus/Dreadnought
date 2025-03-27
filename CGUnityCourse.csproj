@@ -10,7 +10,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{252EC3EF-88BC-1A53-9852-2F94E5816985}</ProjectGuid>
+    <ProjectGuid>{1B184636-CB83-20DA-2285-135395022039}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>CGUnityCourse</AssemblyName>

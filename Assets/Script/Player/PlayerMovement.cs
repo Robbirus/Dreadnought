@@ -43,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Update()
     {
+        Debug.Log(isGrounded);
         if (isGrounded)
         {
             DetectInput();
@@ -62,15 +63,6 @@ public class PlayerMovement : MonoBehaviour
             MovePlayer();
             TurnPlayer();
         }
-        else
-        {
-            KeepMomentum();
-        }
-    }
-
-    private void KeepMomentum()
-    {
-        
     }
 
     private void DetectInput()
