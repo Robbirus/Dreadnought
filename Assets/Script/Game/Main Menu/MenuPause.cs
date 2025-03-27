@@ -10,6 +10,10 @@ public class MenuPause : MonoBehaviour
 
     [Header("Pause menu panel")]
     [SerializeField] private GameObject pauseMenuUI;
+    [Space(10)]
+
+    [Header("Level Loader")]
+    [SerializeField] private LevelLoader levelLoader;
 
     private void Update()
     {
@@ -47,7 +51,7 @@ public class MenuPause : MonoBehaviour
         Time.timeScale = 1f;
         GameManager.instance.ChangeState(GameManager.GameState.Menu);
         Destroy(GameObject.FindWithTag("Player"));
-        SceneManager.LoadScene((int)SceneIndex.MENU);
+        levelLoader.LoadLevel((int)SceneIndex.MENU);
     }
 
     public void QuitGame()

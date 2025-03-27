@@ -2,7 +2,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 
 public class LevelLoader : MonoBehaviour
@@ -32,7 +31,7 @@ public class LevelLoader : MonoBehaviour
             case (int)SceneIndex.GAME_OVER:
                 GameManager.instance.ChangeState(GameManager.GameState.GameOver);
                 break;
-                case (int)SceneIndex.MENU:
+            case (int)SceneIndex.MENU:
                 GameManager.instance.ChangeState(GameManager.GameState.Menu);
                 break;
         }

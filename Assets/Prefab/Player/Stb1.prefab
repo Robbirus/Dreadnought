@@ -7314,12 +7314,7 @@ MonoBehaviour:
   power: 950
   accelerationTime: 5
   playerHeight: 3
-  groundLayer:
-    serializedVersion: 2
-    m_Bits: 1024
   groundDrag: 5
-  offsetY: 1
-  gravityForce: 9
 --- !u!114 &2683492071193335968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7468,7 +7463,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 3.3, y: 3, z: 7}
-  m_Center: {x: 0.06, y: 1.6, z: -1.2}
+  m_Center: {x: 0.06, y: 1.84, z: -1.2}
 --- !u!82 &7831459546902106030
 AudioSource:
   m_ObjectHideFlags: 0
