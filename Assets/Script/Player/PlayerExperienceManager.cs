@@ -64,6 +64,7 @@ public class ExperienceManager : MonoBehaviour
         frontExperienceBar.fillAmount = 0;
     }
 
+    #region Getter / Setter
     public int GetCurrentLevel()
     {
         return currentlevel;
@@ -80,4 +81,5 @@ public class ExperienceManager : MonoBehaviour
     {
         this.bonus = bonus;
     }
+    #endregion
 }

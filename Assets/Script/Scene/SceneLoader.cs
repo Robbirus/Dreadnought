@@ -7,7 +7,6 @@ public class SceneLoader : MonoBehaviour
     public void StartGame()
     {
         SceneManager.LoadScene("Game");
-        GameManager.instance.SetIsPlayerAlive(true);
     }
 
     public void ExitGame()

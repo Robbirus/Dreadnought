@@ -1,19 +1,22 @@
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameOverScreen : MonoBehaviour
 {
-    [SerializeField]
-    private TMP_Text score;
+    [Header("Score Stat Text")]
+    [SerializeField] private TMP_Text scoreTotal;
+    [SerializeField] private TMP_Text enemyKilled;
+    [Space(10)]
+
+    [Header("Loading Controller")]
+    [SerializeField] private LoadingController loadingController;
 
     private void Start()
     {        
-        if(score != null)
+        if(scoreTotal != null)
         {
-            score.text = "You've scored : " + GameManager.instance.GetScore() + " points.";
-            score.text += "\n";
-            score.text += "You've killed : " + GameManager.instance.enemyKilled + " enemies.";
+            scoreTotal.text = "Score : " + GameManager.instance.score + " points.";
+            enemyKilled.text = "Enemy Killed : " + GameManager.instance.enemyKilled;
         }
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -22,15 +25,18 @@ public class GameOverScreen : MonoBehaviour
 
     public void RestartGame()
     {
-        SceneManager.LoadScene("Game");
+        loadingController.ApplyGame();
         GameManager.instance.SetPlayerFound(false);
-        MusicManager.instance.PlayBackgroundMusic();
     }
 
-    public void ExitGame()
+    public void ReturnToMenu()
     {
-        SceneManager.LoadScene("Lobby");
+        loadingController.ApplyMenu();
         GameManager.instance.SetPlayerFound(false);
-        MusicManager.instance.PlayMenuMusic();
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

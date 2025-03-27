@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     
     private void Update()
     {
-        Debug.Log(isGrounded);
+        // Debug.Log(isGrounded);
         if (isGrounded)
         {
             DetectInput();
