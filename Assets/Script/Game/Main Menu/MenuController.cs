@@ -204,8 +204,6 @@ public class MainController : MonoBehaviour
         // Show Prompt
         StartCoroutine(ConfirmationBox());
     }
-
-
     #endregion
 
     #region Gameplay Methods

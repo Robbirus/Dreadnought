@@ -10,7 +10,7 @@ public class LevelLoader : MonoBehaviour
     [Header("Slider")] public Slider loadingSlider;
     [Header("Progress")] public TMP_Text progressTextValue;
 
-    public  void LoadLevel(int sceneIndex)
+    public void LoadLevel(int sceneIndex)
     {
         StartCoroutine(LoadLevelASync(sceneIndex));
     }

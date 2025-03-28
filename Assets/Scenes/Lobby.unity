@@ -8008,6 +8008,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   needle: {fileID: 0}
+  score: 0
   enemyCount: 0
   enemyKilled: 0
 --- !u!4 &961895625
