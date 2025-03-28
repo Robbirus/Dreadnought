@@ -8,7 +8,7 @@ public class ExperienceCollectable : CollectableSO
 
     public override void Collect(GameObject objectThatCollected)
     {
-        xpAmount = UnityEngine.Random.Range(5, 20);
+        xpAmount = Random.Range(5, 20);
         GameObject.FindGameObjectWithTag("Player").GetComponent<ExperienceManager>().GainExperience(xpAmount);
     }
 }

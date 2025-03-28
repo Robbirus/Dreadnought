@@ -22,15 +22,10 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region player Attributes
-    private int score = 0;
-    private bool isPlayerAlive = false;
-    private bool wasPlayerAlive = false;
+    public int score = 0;
     private bool isPlayerFound = false;
-    private bool gameOverCalled = false;
 
     private float tankSpeed;
-    private bool invicibleActive = false;
-    private float invicibleActiveTime = 0f;
     #endregion
 
     private GameState currentState;
@@ -68,6 +63,11 @@ public class GameManager : MonoBehaviour
         if (!isPlayerFound)
         {
             InitiatePlayer();
+        }
+        else
+        {
+            tankSpeed = playerController.GetCurrentSpeed();
+            score = xpManager.GetExperience();
         }
     }
 
@@ -198,34 +198,9 @@ public class GameManager : MonoBehaviour
         return xpManager;
     }
 
-    public void SetIsPlayerAlive(bool alive)
-    {
-        isPlayerAlive = alive;
-    }
-
-    public void SetWasPlayerAlive(bool wasAlive)
-    {
-        wasPlayerAlive = wasAlive;
-    }
-
-    public void SetGameOverCalled(bool methodCalled)
-    {
-        gameOverCalled = methodCalled;
-    }
-
     public void SetPlayerFound(bool isPlayerFound)
     {
         this.isPlayerFound = isPlayerFound;
-    }
-
-    public void SetInvicibleActive(bool invicibleActive)
-    {
-        this.invicibleActive = invicibleActive;
-    }
-
-    public void SetInvicibleActiveTime(float invicibleActiveTime)
-    {
-        this.invicibleActiveTime = invicibleActiveTime;
     }
     #endregion
 

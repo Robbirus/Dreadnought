@@ -31,7 +31,6 @@ public class PlayerCollision : MonoBehaviour
 
     private void ProcessCollision(GameObject collider)
     {
-        // If the player is in contacts with the ground
-        
+
     }
 }
