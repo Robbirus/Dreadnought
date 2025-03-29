@@ -4,28 +4,18 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    [Header("GameObject UI Instance")]
-    [SerializeField] private GameObject needle;
-
     #region Player Script
     private PlayerController playerController;
+    private PlayerMovement playerMovement;
     private PlayerHealthManager healthManager;
     private ExperienceManager xpManager;
     private GunManager gunManager;
     private GameObject player;
     #endregion
 
-    #region Needle attributes
-    private float startPosition = 220f;
-    private float endPosition = -41f ;
-    private float desiredPosition;
-    #endregion
-
     #region player Attributes
     public int score = 0;
     private bool isPlayerFound = false;
-
-    private float tankSpeed;
     #endregion
 
     private GameState currentState;
@@ -33,8 +23,8 @@ public class GameManager : MonoBehaviour
     #region Enemy numbers
     [Header("Enemy stats")]
     public const int ENEMY_LIMIT = 100;
-    public int enemyCount = 0;
-    public int enemyKilled = 0;
+    private int enemyCount = 0;
+    private int enemyKilled = 0;
     #endregion
 
     public static GameManager instance = null;
@@ -66,7 +56,6 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            tankSpeed = playerController.GetCurrentSpeed();
             score = xpManager.GetExperience();
         }
     }
@@ -85,7 +74,6 @@ public class GameManager : MonoBehaviour
             gunManager = player.GetComponent<GunManager>();
             playerController = player.GetComponent<PlayerController>();
 
-            tankSpeed = playerController.GetCurrentSpeed();
             score = xpManager.GetExperience();
 
             isPlayerFound = true;
@@ -96,12 +84,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void UpdateNeedle()
-    {
-        desiredPosition = startPosition - endPosition;
-        float temp = tankSpeed / 180;
-        needle.transform.eulerAngles = new Vector3(0, 0, (startPosition - temp * desiredPosition));   
-    }
+
 
     public void ChangeState(GameState newState)
     {
@@ -176,6 +159,27 @@ public class GameManager : MonoBehaviour
         {
             return xpManager.GetCurrentLevel();
         }
+    }
+
+    public int GetEnemyKilled()
+    {
+        return this.enemyKilled;
+    }
+    public int GetEnemyCount()
+    {
+        return this.enemyCount;
+    }
+    public void IncreaseEnemyKilled()
+    {
+        this.enemyKilled++;
+    }
+    public void IncreaseEnemyCount()
+    {
+        this.enemyCount++;
+    }
+    public void DecreaseEnemyCount()
+    {
+        this.enemyCount--;
     }
 
     public PlayerHealthManager GetPlayerHealthManager()

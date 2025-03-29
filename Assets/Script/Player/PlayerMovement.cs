@@ -16,16 +16,34 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundDrag;
     [Space(10)]
 
+    [Header("GameObject UI Instance")]
+    [SerializeField] private GameObject needle;
+
+    #region Needle attributes
+    private float startPosition = 220f;
+    private float endPosition = -41f;
+    private float desiredPosition;
+    #endregion
+
+    #region Physics Attributs
     private bool isGrounded;
     private Rigidbody rb;
     private float mass;
-    private float acceleration;
-    private float powerToWeightRatio;
+    public float acceleration;
     private Vector3 moveDirection;
     private float force = 0f;
+    #endregion
 
+    #region Old Input System variables
     private float horizontalInput;
     private float verticalInput;
+    #endregion
+
+    #region Speed value
+    public float maxSpeed = 50f;
+    public float currentSpeed = 0f;
+    public float deceleration = 1f;
+    #endregion
 
     private void Awake()
     {
@@ -35,7 +53,6 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         mass = rb.mass;
-        powerToWeightRatio = power / mass;
         acceleration = (2 * power) / (mass * accelerationTime);
         force = acceleration * mass;
     }
@@ -43,7 +60,8 @@ public class PlayerMovement : MonoBehaviour
     
     private void Update()
     {
-        // Debug.Log(isGrounded);
+        /*
+        Debug.Log(isGrounded);
         if (isGrounded)
         {
             DetectInput();
@@ -54,14 +72,70 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.angularDamping = 0;
         }
+        */
+        acceleration = (2 * power) / (mass * accelerationTime);
+
+        if (isGrounded)
+        {
+            DetectInput();
+
+            if (verticalInput != 0)
+            {
+                moveDirection = transform.forward * verticalInput;
+                if (moveDirection.magnitude > 0)
+                {
+                    currentSpeed += acceleration;
+                }
+            }   
+            else
+            {
+                if(currentSpeed != 0)
+                {
+                    currentSpeed -= deceleration;
+                }
+            }
+
+            LimitSpeed();
+        }
+
+        UpdateNeedle();
     }
 
     private void FixedUpdate()
     {
+        /*
         if (isGrounded)
         {
             MovePlayer();
             TurnPlayer();
+        }
+        */
+        if (isGrounded) 
+        {
+            MovingPlayer();
+            TurnPlayer();
+        }
+    }
+
+    private void MovingPlayer()
+    {
+        Vector3 move = moveDirection * currentSpeed * Time.fixedDeltaTime;
+        rb.MovePosition(rb.position + move);
+    }
+
+    private void LimitSpeed()
+    {
+        if (currentSpeed > maxSpeed)
+        {
+            currentSpeed = maxSpeed;
+        }
+        else if(currentSpeed < -maxSpeed)
+        {
+            currentSpeed = -maxSpeed;
+        }
+        else if(verticalInput == 0 && currentSpeed < 0)
+        {
+            currentSpeed = 0;
         }
     }
 
@@ -102,6 +176,12 @@ public class PlayerMovement : MonoBehaviour
             rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
         }
     }
+    private void UpdateNeedle()
+    {
+        desiredPosition = startPosition - endPosition;
+        float temp = currentSpeed / 180;
+        needle.transform.eulerAngles = new Vector3(0, 0, (startPosition - temp * desiredPosition));
+    }
 
     #region Getter / Setter
     public void SetGrounded(bool isGrounded)
@@ -112,6 +192,11 @@ public class PlayerMovement : MonoBehaviour
     public bool IsGrounded()
     {
         return this.isGrounded;
+    }
+
+    public float GetCurrentSpeed()
+    {
+        return this.currentSpeed;
     }
     #endregion
 

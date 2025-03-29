@@ -250,6 +250,11 @@ public class MainController : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
     }
 
+    public void ChangeResolution()
+    {
+        SetResolution(resolutionDropDown.value);
+    }
+
     /// <summary>
     /// Apply the graphics settings, with brightness, quality and/or fullscreen
     /// </summary>

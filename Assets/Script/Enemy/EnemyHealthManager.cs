@@ -43,8 +43,8 @@ public class EnemyHealthManager : MonoBehaviour
         if (health <= 0)
         {
             gameObject.GetComponent<EnemySoundManager>().PlayDeathSound();
-            GameManager.instance.enemyCount--;
-            GameManager.instance.enemyKilled++;
+            GameManager.instance.DecreaseEnemyCount();
+            GameManager.instance.IncreaseEnemyKilled();
 
             GenerateDrop();
 

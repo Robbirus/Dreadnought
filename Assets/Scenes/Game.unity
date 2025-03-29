@@ -1461,8 +1461,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 871588492}
+        m_TargetAssemblyTypeName: MenuPause, Assembly-CSharp
         m_MethodName: SetBGM
         m_Mode: 1
         m_Arguments:
@@ -3607,8 +3607,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+      - m_Target: {fileID: 871588492}
+        m_TargetAssemblyTypeName: MenuPause, Assembly-CSharp
         m_MethodName: SetSFX
         m_Mode: 1
         m_Arguments:
@@ -8380,6 +8380,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 325563445029884473, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: needle
+      value: 
+      objectReference: {fileID: 400418198}
+    - target: {fileID: 325563445029884473, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: deceleration
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 325563445029884473, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: accelerationTime
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 467277297220754697, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -8870,11 +8882,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9190513568571667389, guid: a903d305fee387c4ba6263f9a9a294d0, type: 3}
       propertyPath: maximumSpawnTime
-      value: 30
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 9190513568571667389, guid: a903d305fee387c4ba6263f9a9a294d0, type: 3}
       propertyPath: minimumSpawnTime
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

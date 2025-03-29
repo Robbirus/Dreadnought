@@ -25,7 +25,7 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if(GameManager.instance.enemyCount < GameManager.ENEMY_LIMIT)
+        if(GameManager.instance.GetEnemyCount() < GameManager.ENEMY_LIMIT)
         {
             SpawnAnEnemy();
         }
@@ -38,7 +38,7 @@ public class Spawner : MonoBehaviour
         {
             gameObject.GetComponent<SpawnerSoundManager>().PlaySpawnSound();
             Instantiate(enemy, transform.position, Quaternion.identity);
-            GameManager.instance.enemyCount++;
+            GameManager.instance.IncreaseEnemyCount();
             SetTimeUntilSpawn();
         }
     }
