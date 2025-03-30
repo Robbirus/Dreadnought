@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent (typeof(Rigidbody))]
 public class CenterOfMass : MonoBehaviour
 {
     [Header("Center of Mass")]

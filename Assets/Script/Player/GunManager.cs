@@ -11,11 +11,17 @@ public class GunManager : MonoBehaviour
     [SerializeField] private ParticleSystem shootParticle;
 
     [Header("Shell Propreties")]
+    [Tooltip("The projectile prefab")]
     [SerializeField] private GameObject shellPrefab;
+    [Tooltip("The point where the projectile will be launched")]
     [SerializeField] private GameObject shellSpawnPoint;
+    [Tooltip("The base damage the projectile will do")]
     [SerializeField] private float damage = 425f;
+    [Tooltip("The base chance of doing a critical damage")]
     [SerializeField] private int critChance = 2;
+    [Tooltip("The base critical damage coefficient")]
     [SerializeField] private float critCoef = 1.1f;
+    [Tooltip("The pity allows to temporarily up the crit chance")]
     [SerializeField] private int pity = 0;
 
     [Header("Input Action Reference")]

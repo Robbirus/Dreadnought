@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class Shell : MonoBehaviour
 {
     [Header("Shell Attribut")]
+    [Tooltip("Base Shell velocity")]
     [SerializeField] private float shellSpeed = 200;
+    [Tooltip("Base Shell's lifetime in seconds")]
     [SerializeField] private float lifeTime = 10f;
 
     private Vector3 direction;

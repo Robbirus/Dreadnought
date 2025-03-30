@@ -73,6 +73,7 @@ public class GameManager : MonoBehaviour
             healthManager = player.GetComponent<PlayerHealthManager>();
             gunManager = player.GetComponent<GunManager>();
             playerController = player.GetComponent<PlayerController>();
+            playerMovement = player.GetComponent<PlayerMovement>();
 
             score = xpManager.GetExperience();
 
@@ -83,7 +84,6 @@ public class GameManager : MonoBehaviour
             player = GameObject.FindWithTag("Player");
         }
     }
-
 
 
     public void ChangeState(GameState newState)
@@ -195,6 +195,10 @@ public class GameManager : MonoBehaviour
     public PlayerController GetPlayerController()
     {
         return playerController;
+    }
+    public PlayerMovement GetPlayerMovement()
+    {
+        return this.playerMovement;
     }
 
     public ExperienceManager GetExperienceManager()

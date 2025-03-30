@@ -8007,10 +8007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d531447981573ea4eb9692d9e925657a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  needle: {fileID: 0}
   score: 0
-  enemyCount: 0
-  enemyKilled: 0
 --- !u!4 &961895625
 Transform:
   m_ObjectHideFlags: 0

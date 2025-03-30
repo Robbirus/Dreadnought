@@ -148,12 +148,12 @@ public class UpgradeManager : MonoBehaviour
     #region Apply Upgrades  
     private void ApplyTopSpeedIncrease(PerkSO selectedPerk)
     {
-        float maxSpeed = GameManager.instance.GetPlayerController().GetMaxSpeed();
-        float reverseSpeed = GameManager.instance.GetPlayerController().GetReverseSpeed();
+        float maxSpeed = GameManager.instance.GetPlayerMovement().GetMaxSpeed();
+        float reverseSpeed = GameManager.instance.GetPlayerMovement().GetReverseSpeed();
         maxSpeed += selectedPerk.effectValue;
         reverseSpeed += selectedPerk.effectValue / 2;
-        GameManager.instance.GetPlayerController().SetMaxSpeed(maxSpeed);
-        GameManager.instance.GetPlayerController().SetReverseSpeed(reverseSpeed);
+        GameManager.instance.GetPlayerMovement().SetMaxSpeed(maxSpeed);
+        GameManager.instance.GetPlayerMovement().SetReverseSpeed(reverseSpeed);
     }
    
     private void ApplyAccelerationSpeed(PerkSO selectedPerk)

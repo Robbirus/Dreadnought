@@ -9,13 +9,16 @@ public class EnemySoundManager : MonoBehaviour
     [SerializeField] private AudioSource actionAudio;
 
     [Header("Audio Clip")]
+    [Tooltip("The sound made by the enemy when it moves")]
     public AudioClip movementSound;
+    [Tooltip("The sound made by the enemy when it receives a shell")]
     public AudioClip hitSound;
+    [Tooltip("The sound made by the enemy when it dies")]
     public AudioClip deathSound;
 
     private void Start()
     {
-        PlayMovement();
+        // PlayMovement();
     }
 
     #region Movement Sound

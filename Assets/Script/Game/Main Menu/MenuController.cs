@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.Audio;
 
-public class MainController : MonoBehaviour
+public class MenuController : MonoBehaviour
 {
     [Header("Level Loader Script")]
     [SerializeField] private LoadingController loadingController;

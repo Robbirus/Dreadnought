@@ -27,12 +27,12 @@ Transform:
   m_GameObject: {fileID: 42115610902244736}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -1.7775345e-17, w: 1}
-  m_LocalPosition: {x: 6.1042933, y: 0.6067606, z: -47.939423}
+  m_LocalPosition: {x: 0.0042943954, y: 0.006760657, z: -27.709423}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6678942257981338004}
-  m_Father: {fileID: 8432518326375943513}
+  m_Father: {fileID: 1023825950913655464}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &4127759419257727574
 MeshFilter:
@@ -6094,12 +6094,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2551777122646263899}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.2, y: 0.5, z: -58.6}
+  m_LocalRotation: {x: -0, y: -0, z: -1.7775345e-17, w: 1}
+  m_LocalPosition: {x: 0.09999752, y: -0.10000005, z: -38.370007}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8432518326375943513}
+  m_Father: {fileID: 1023825950913655464}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2826386448841559506
 GameObject:
@@ -6218,11 +6218,10 @@ Transform:
   m_LocalScale: {x: -0.06679238, y: -0.06679238, z: -0.09198178}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 633901413345143008}
+  - {fileID: 1023825950913655464}
   - {fileID: 3785349538480120535}
   - {fileID: 6159372050443893809}
   - {fileID: 3101005231242586198}
-  - {fileID: 1208491868312160922}
   m_Father: {fileID: 2871713086318979737}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7849963068796249236
@@ -6749,6 +6748,39 @@ Transform:
   m_Children:
   - {fileID: 8432518326375943513}
   m_Father: {fileID: 8718966680680742688}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6385918521233931245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1023825950913655464}
+  m_Layer: 0
+  m_Name: PivotCanon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1023825950913655464
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6385918521233931245}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.1, y: 0.6, z: -20.23}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 633901413345143008}
+  - {fileID: 1208491868312160922}
+  m_Father: {fileID: 8432518326375943513}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7038468144316062277
 GameObject:
@@ -7293,8 +7325,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   moveTurretActionReference: {fileID: -446524657075902219, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
-  maxSpeed: 40
-  maxReverseSpeed: 20
   turret: {fileID: 6297071800644591404}
   rotationTurretSpeed: 25
 --- !u!114 &325563445029884473
@@ -7315,6 +7345,12 @@ MonoBehaviour:
   accelerationTime: 5
   playerHeight: 3
   groundDrag: 5
+  needle: {fileID: 0}
+  acceleration: 0
+  maxSpeed: 50
+  reverseSpeed: 23
+  currentSpeed: 0
+  deceleration: 1
 --- !u!114 &2683492071193335968
 MonoBehaviour:
   m_ObjectHideFlags: 0

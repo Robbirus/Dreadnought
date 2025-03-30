@@ -64,6 +64,9 @@ public class MenuPause : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         isGamePaused = false;
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void PauseGame()
@@ -71,6 +74,9 @@ public class MenuPause : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         isGamePaused = true;
+
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 
     public void LoadMenu()
@@ -79,6 +85,7 @@ public class MenuPause : MonoBehaviour
         GameManager.instance.ChangeState(GameManager.GameState.Menu);
         Destroy(GameObject.FindWithTag("Player"));
         levelLoader.LoadLevel((int)SceneIndex.MENU);
+
     }
 
     public void QuitGame()

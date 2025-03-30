@@ -6,13 +6,18 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
     [SerializeField] private int velocity = 50;
+    [Tooltip("Base player's rotation speed in degrees")]
     [SerializeField] private float rotationSpeed = 25f;
+    [Tooltip("Base player's engine power in hp")]
     [SerializeField] private int power = 950;
-    [SerializeField] private float accelerationTime = 10f;
+    [Tooltip("Base player's acceleration time")]
+    [SerializeField] private float accelerationTime = 100f;
     [Space(10)]
 
     [Header("Ground Check")]
+    [Tooltip("Height of the player")]
     [SerializeField] private float playerHeight;
+    [Tooltip("The ground resistance, the higher this value is, the higher is the grip")]
     [SerializeField] private float groundDrag;
     [Space(10)]
 
@@ -41,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
 
     #region Speed value
     public float maxSpeed = 50f;
+    public float reverseSpeed = 23f;
     public float currentSpeed = 0f;
     public float deceleration = 1f;
     #endregion
@@ -197,6 +203,22 @@ public class PlayerMovement : MonoBehaviour
     public float GetCurrentSpeed()
     {
         return this.currentSpeed;
+    }
+    public float GetMaxSpeed()
+    {
+        return this.maxSpeed;
+    }
+    public void SetMaxSpeed(float maxSpeed)
+    {
+        this.maxSpeed = maxSpeed;
+    }
+    public float GetReverseSpeed()
+    {
+        return this.maxSpeed;
+    }
+    public void SetReverseSpeed(float reverseSpeed)
+    {
+        this.reverseSpeed = reverseSpeed;
     }
     #endregion
 

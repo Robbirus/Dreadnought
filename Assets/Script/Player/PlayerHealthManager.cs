@@ -5,20 +5,17 @@ using UnityEngine.UI;
 public class PlayerHealthManager : MonoBehaviour
 {
     [Header("Health Properties")]
-    [SerializeField]
-    private float maxHealth = 1950f;
-    [SerializeField]
-    private int armor = 10;
+    [Tooltip("Base player's life")]
+    [SerializeField] private float maxHealth = 1950f;
+    [Tooltip("Base player's armor")]
+    [SerializeField] private int armor = 10;
 
     [Header("GameObject Player")]
-    [SerializeField]
-    private float chipSpeed = 2f;
+    [SerializeField] private float chipSpeed = 2f;
 
     [Header("Health Bar UI")]
-    [SerializeField]
-    private Image frontHealthBar;
-    [SerializeField]
-    private Image backHealthBar;
+    [SerializeField] private Image frontHealthBar;
+    [SerializeField] private Image backHealthBar;
 
     private float health;
     private float lerpTimer;
