@@ -8,27 +8,34 @@ public class PlayerTurretControl : MonoBehaviour
     [SerializeField] private Transform turret;
     [Tooltip("Gun transform")]
     [SerializeField] private Transform canon;
+    [Tooltip("Crosshair transform")]
+    [SerializeField] private Transform crosshair;
+    [Space(10)]
 
     [Tooltip("Player Camera")]
     [SerializeField] private Camera playerCam;
+    [Space(10)]
 
     [Header("Speed Rotation")]
     [Tooltip("Speed traverse of the turret in degrees")]
     [SerializeField] private float speedRotation = 25f;
     [Tooltip("Speed traverse of the gun in degrees")]
     [SerializeField] private float speedInclinaison = 50f;
+    [Space(10)]
 
     [Header("Mouse sensitivity")]
     [Tooltip("X Sensitivity")]
     [SerializeField] private float sensX = 5f;
     [Tooltip("Y Sensitivity")]
     [SerializeField] private float sensY = 3f;
+    [Space(10)]
 
     [Header("Angles")]
     [Tooltip("The minimum angle the gun can get")]
     [SerializeField] private float depressionAngle = -8f;
     [Tooltip("The maximum angle the gun can get")]
     [SerializeField] private float elevationAngle = 15f;
+    [Space(10)]
 
     private float rotationTurret;
     private float inclinaisonGun;
@@ -44,15 +51,6 @@ public class PlayerTurretControl : MonoBehaviour
 
     private void Update()
     {
-        /*
-        DetectMouseInput();
-
-        rotationTurret *= speedRotation * Time.deltaTime;
-        inclinaisonGun *= speedInclinaison * Time.deltaTime;
-
-        RotateTurret();
-        RotateGun();
-        */
         if (!MenuPause.isGamePaused)
         {
             float mouseX = Input.GetAxis("Mouse X") * sensX;
@@ -65,6 +63,10 @@ public class PlayerTurretControl : MonoBehaviour
             this.currentXAngle += mouseY;
             this.currentXAngle = Mathf.Clamp(this.currentXAngle, depressionAngle, elevationAngle);
             canon.localRotation = Quaternion.Euler(0f, currentXAngle, 0f);
+
+
+            //    Vector3 moveCrosshair = new Vector3(0f, mouseY, 0f);
+            //    crosshair.position += moveCrosshair;
         }
     }
 
