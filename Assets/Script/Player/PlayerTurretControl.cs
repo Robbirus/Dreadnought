@@ -3,6 +3,12 @@ using UnityEngine;
 
 public class PlayerTurretControl : MonoBehaviour
 {
+    private const float MAX_POSITIVE_Y = 486;
+    private const float MAX_NEGATIVE_Y = 343;
+    private const float RANGE = MAX_POSITIVE_Y - MAX_NEGATIVE_Y;
+    [Tooltip("Crosshair speed in pixel by degrees")]
+    private const float CROSSHAIR_SPEED = RANGE / 23f;
+
     [Header("Transform object")]
     [Tooltip("Turret transform")]
     [SerializeField] private Transform turret;
@@ -40,8 +46,8 @@ public class PlayerTurretControl : MonoBehaviour
     private float rotationTurret;
     private float inclinaisonGun;
 
-    private float currentYRotation = 0;
-    private float currentXAngle = 0;
+    private float currentXRotation = 0;
+    private float currentYAngle = 0;
 
     private void Start()
     {
@@ -56,17 +62,32 @@ public class PlayerTurretControl : MonoBehaviour
             float mouseX = Input.GetAxis("Mouse X") * sensX;
             float mouseY = Input.GetAxis("Mouse Y") * sensY;
 
-            this.currentYRotation += mouseX;
+            this.currentXRotation += mouseX;
 
-            turret.rotation = Quaternion.Euler(0f, currentYRotation, 0f);
+            turret.rotation = Quaternion.Euler(0f, currentXRotation, 0f);
 
-            this.currentXAngle += mouseY;
-            this.currentXAngle = Mathf.Clamp(this.currentXAngle, depressionAngle, elevationAngle);
-            canon.localRotation = Quaternion.Euler(0f, currentXAngle, 0f);
+            this.currentYAngle += mouseY;
+            this.currentYAngle = Mathf.Clamp(this.currentYAngle, depressionAngle, elevationAngle);
+            canon.localRotation = Quaternion.Euler(0f, currentYAngle, 0f);
 
+            Debug.Log(crosshair.position);
 
-            //    Vector3 moveCrosshair = new Vector3(0f, mouseY, 0f);
-            //    crosshair.position += moveCrosshair;
+            if(crosshair.position.y >= MAX_NEGATIVE_Y && crosshair.position.y <= MAX_POSITIVE_Y)
+            {
+                Vector3 moveCrosshair = new Vector3(0f, mouseY, 0f);
+                crosshair.position += moveCrosshair * CROSSHAIR_SPEED;
+            }
+
+            if(crosshair.position.y > MAX_POSITIVE_Y)
+            {
+                crosshair.position = new Vector3(crosshair.position.x, MAX_POSITIVE_Y, 0f);
+            }
+
+            if(crosshair.position.y < MAX_NEGATIVE_Y)
+            { 
+                crosshair.position = new Vector3(crosshair.position.x, MAX_NEGATIVE_Y, 0f);
+
+            }
         }
     }
 
