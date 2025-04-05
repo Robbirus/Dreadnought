@@ -46,8 +46,8 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Slider brightnessSlider = null;
     [SerializeField] private TMP_Text brightnessTextValue = null;
     [SerializeField] private float defaultBrightness = 1f;
-
     [Space(10)]
+
     [SerializeField] private TMP_Dropdown qualityDropdown;
     [SerializeField] private Toggle fullScreenToggle;
 

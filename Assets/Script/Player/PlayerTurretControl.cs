@@ -3,12 +3,6 @@ using UnityEngine;
 
 public class PlayerTurretControl : MonoBehaviour
 {
-    private const float MAX_POSITIVE_Y = 486;
-    private const float MAX_NEGATIVE_Y = 343;
-    private const float RANGE = MAX_POSITIVE_Y - MAX_NEGATIVE_Y;
-    [Tooltip("Crosshair speed in pixel by degrees")]
-    private const float CROSSHAIR_SPEED = RANGE / 23f;
-
     [Header("Transform object")]
     [Tooltip("Turret transform")]
     [SerializeField] private Transform turret;
@@ -22,13 +16,6 @@ public class PlayerTurretControl : MonoBehaviour
 
     [Tooltip("Player Camera")]
     [SerializeField] private Camera playerCam;
-    [Space(10)]
-
-    [Header("Speed Rotation")]
-    [Tooltip("Speed traverse of the turret in degrees")]
-    [SerializeField] private float speedRotation = 25f;
-    [Tooltip("Speed traverse of the gun in degrees")]
-    [SerializeField] private float speedInclinaison = 50f;
     [Space(10)]
 
     [Header("Mouse sensitivity")]
@@ -45,11 +32,8 @@ public class PlayerTurretControl : MonoBehaviour
     [SerializeField] private float elevationAngle = 15f;
     [Space(10)]
 
-    private float rotationTurret;
-    private float inclinaisonGun;
-
     private float currentXRotation = 0;
-    public float currentYAngle = 0;
+    private float currentYAngle = 0;
 
 
     private void Start()

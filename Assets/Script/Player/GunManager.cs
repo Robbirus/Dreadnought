@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class GunManager : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GunManager : MonoBehaviour
     [Header("Animation")]
     [SerializeField] private Animator animator;
     [SerializeField] private ParticleSystem shootParticle;
+    [Space(10)]
 
     [Header("Shell Propreties")]
     [Tooltip("The projectile prefab")]
@@ -23,11 +25,17 @@ public class GunManager : MonoBehaviour
     [SerializeField] private float critCoef = 1.1f;
     [Tooltip("The pity allows to temporarily up the crit chance")]
     [SerializeField] private int pity = 0;
+    [Space(10)]
 
     [Header("Input Action Reference")]
     [SerializeField] private InputActionReference shootActionReference;
+    [Space(10)]
 
-    private float reloadTime = 4f;
+    [Header("Reload Properties")]
+    [Tooltip("Reload Time in seconds")]
+    [SerializeField] private float reloadTime = 4f;
+    [Tooltip("The reload circle image")]
+    [SerializeField] private Image reloadCircle;
 
     private void Awake()
     {
@@ -36,6 +44,7 @@ public class GunManager : MonoBehaviour
 
     private void Start()
     {
+        reloadCircle.enabled = true;
         StartCoroutine(Shooting());
     }
     
@@ -49,7 +58,16 @@ public class GunManager : MonoBehaviour
 
             // Wait For ReloadTime
             PlayerSoundManager.instance.PlayReload();
-            yield return new WaitForSeconds(reloadTime);
+
+            float elapsed = 0f;
+            reloadCircle.fillAmount = 0;
+
+            while (elapsed < reloadTime) 
+            {
+                elapsed += Time.deltaTime;
+                reloadCircle.fillAmount = Mathf.Clamp01(elapsed / reloadTime);
+                yield return null;
+            }
             Debug.Log("Ready to shoot");
         }
     }
