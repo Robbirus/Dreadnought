@@ -87,7 +87,7 @@ public class PlayerTurretControl : MonoBehaviour
         Vector3 targetPoint;
         if (Physics.Raycast(ray, out hit, 1000f))
         {
-            Debug.Log("Something : " + hit.collider.name);
+            //Debug.Log("Something : " + hit.collider.gameObject.name);
             targetPoint = hit.point;
             Debug.DrawRay(firePoint.position, firePoint.forward * 1000f, Color.green);
         }
@@ -97,7 +97,31 @@ public class PlayerTurretControl : MonoBehaviour
             Debug.DrawRay(firePoint.position, firePoint.forward * 1000f, Color.red);
         }
 
-        Vector3 screenPos = playerCam.WorldToScreenPoint(targetPoint);
-        crosshairUI.position = screenPos;
+        if (CheckVisible(hit.collider))
+        {
+            Vector3 screenPos = playerCam.WorldToScreenPoint(targetPoint);
+            crosshairUI.position = screenPos;
+        }
+    }
+
+    private bool CheckVisible(Collider collider)
+    {
+        bool visible = true;
+
+        if (collider == null)
+        {
+            visible = false;
+        }
+        else
+        {
+            switch (collider.gameObject.name)
+            {
+                case "Shell(Clone)":
+                    visible = false;
+                    break;
+            }
+        }
+
+        return visible;
     }
 }
