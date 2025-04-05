@@ -14,8 +14,10 @@ public class PlayerTurretControl : MonoBehaviour
     [SerializeField] private Transform turret;
     [Tooltip("Gun transform")]
     [SerializeField] private Transform canon;
-    [Tooltip("Crosshair transform")]
-    [SerializeField] private Transform crosshair;
+    [Tooltip("Crosshair UI transform")]
+    [SerializeField] private Transform crosshairUI;
+    [Tooltip("Shell Spawn Point Transform")]
+    [SerializeField] private Transform firePoint;
     [Space(10)]
 
     [Tooltip("Player Camera")]
@@ -47,7 +49,8 @@ public class PlayerTurretControl : MonoBehaviour
     private float inclinaisonGun;
 
     private float currentXRotation = 0;
-    private float currentYAngle = 0;
+    public float currentYAngle = 0;
+
 
     private void Start()
     {
@@ -57,6 +60,7 @@ public class PlayerTurretControl : MonoBehaviour
 
     private void Update()
     {
+
         if (!MenuPause.isGamePaused)
         {
             float mouseX = Input.GetAxis("Mouse X") * sensX;
@@ -70,40 +74,30 @@ public class PlayerTurretControl : MonoBehaviour
             this.currentYAngle = Mathf.Clamp(this.currentYAngle, depressionAngle, elevationAngle);
             canon.localRotation = Quaternion.Euler(0f, currentYAngle, 0f);
 
-            Debug.Log(crosshair.position);
+            UpdateCrosshairUI();
 
-            if(crosshair.position.y >= MAX_NEGATIVE_Y && crosshair.position.y <= MAX_POSITIVE_Y)
-            {
-                Vector3 moveCrosshair = new Vector3(0f, mouseY, 0f);
-                crosshair.position += moveCrosshair * CROSSHAIR_SPEED;
-            }
-
-            if(crosshair.position.y > MAX_POSITIVE_Y)
-            {
-                crosshair.position = new Vector3(crosshair.position.x, MAX_POSITIVE_Y, 0f);
-            }
-
-            if(crosshair.position.y < MAX_NEGATIVE_Y)
-            { 
-                crosshair.position = new Vector3(crosshair.position.x, MAX_NEGATIVE_Y, 0f);
-
-            }
         }
     }
 
-    private void RotateGun()
+    private void UpdateCrosshairUI()
     {
-        canon.Rotate(inclinaisonGun, 0f, 0f, Space.World);
-    }
+        Ray ray = new Ray(firePoint.position, firePoint.forward);
+        RaycastHit hit;
 
-    private void RotateTurret()
-    {
-        turret.Rotate(0f, rotationTurret, 0f, Space.World);
-    }
+        Vector3 targetPoint;
+        if (Physics.Raycast(ray, out hit, 1000f))
+        {
+            Debug.Log("Something : " + hit.collider.name);
+            targetPoint = hit.point;
+            Debug.DrawRay(firePoint.position, firePoint.forward * 1000f, Color.green);
+        }
+        else
+        {
+            targetPoint = firePoint.position + firePoint.forward * 1000f;
+            Debug.DrawRay(firePoint.position, firePoint.forward * 1000f, Color.red);
+        }
 
-    private void DetectMouseInput()
-    {
-        rotationTurret = Input.GetAxis("Mouse X");
-        inclinaisonGun = -Input.GetAxis("Mouse Y");
+        Vector3 screenPos = playerCam.WorldToScreenPoint(targetPoint);
+        crosshairUI.position = screenPos;
     }
 }
