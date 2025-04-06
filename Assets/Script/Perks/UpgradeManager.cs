@@ -240,11 +240,15 @@ public class UpgradeManager : MonoBehaviour
         perkSelectionUI.SetActive(true);
         MusicManager.instance.PlayLevelUp();
         Time.timeScale = 0f;
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
 
     public void HidePerkSelection()
     {
         perkSelectionUI.SetActive(false);
         Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

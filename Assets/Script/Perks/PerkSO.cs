@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "new Perk", menuName = "Perk")]
+[CreateAssetMenu(fileName = "new Perk", menuName = "Perks System/Perk")]
 public class PerkSO : ScriptableObject
 {
     public Sprite perkImage;

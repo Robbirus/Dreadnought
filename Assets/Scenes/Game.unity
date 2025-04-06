@@ -9520,6 +9520,26 @@ PrefabInstance:
       propertyPath: reloadCircle
       value: 
       objectReference: {fileID: 878036996}
+    - target: {fileID: 6373239541653378979, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: ammo.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6373239541653378979, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: 'ammo.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: bb443511de31107489a46789b7b16357, type: 2}
+    - target: {fileID: 6373239541653378979, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: 'ammo.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: db4546f101bc3b24cacceace8798eafa, type: 2}
+    - target: {fileID: 6373239541653378979, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: 'ammo.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e224ad6dcadd6342b78ee30491a939b, type: 2}
+    - target: {fileID: 6373239541653378979, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: 'ammo.Array.data[3]'
+      value: 
+      objectReference: {fileID: 11400000, guid: af589dd85294ff246a2d7f3f5df54857, type: 2}
     - target: {fileID: 6716516855504018407, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
       propertyPath: m_Enabled
       value: 1

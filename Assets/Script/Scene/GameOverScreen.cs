@@ -12,8 +12,11 @@ public class GameOverScreen : MonoBehaviour
     [SerializeField] private LoadingController loadingController;
 
     private void Start()
-    {        
-        if(scoreTotal != null)
+    {
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
+
+        if (scoreTotal != null)
         {
             scoreTotal.text = "Score : " + GameManager.instance.score + " points.";
             enemyKilled.text = "Enemy Killed : " + GameManager.instance.GetEnemyKilled();

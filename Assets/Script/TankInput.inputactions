@@ -24,7 +24,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Shoot",
+                    "name": "GunKeybind",
                     "type": "Button",
                     "id": "03f10f91-d3eb-458d-8aea-483f069ef274",
                     "expectedControlType": "",
@@ -129,7 +129,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "GunKeybind",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

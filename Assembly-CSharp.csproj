@@ -82,6 +82,7 @@
     <Compile Include="Assets\Script\VehiculeMovement.cs" />
     <Compile Include="Assets\Script\Game\SceneIndex.cs" />
     <Compile Include="Assets\Script\Building\Spawner\Spawner.cs" />
+    <Compile Include="Assets\Script\Shell\ShellType.cs" />
     <Compile Include="Assets\Script\Collectable\CollectableTriggerHandler.cs" />
     <Compile Include="Assets\Script\Collectable\Heal Item\HealCollectableSO.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyBehaviour.cs" />
@@ -91,6 +92,7 @@
     <Compile Include="Assets\Script\Collectable\Experience Item\ExperienceCollectableSO.cs" />
     <Compile Include="Assets\Script\Perks\Perk.cs" />
     <Compile Include="Assets\Script\Game\Sound\MusicManager.cs" />
+    <Compile Include="Assets\Script\Shell\ShellSO.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Script\CenterOfMass.cs" />
     <Compile Include="Assets\Script\Building\BuildingCollision.cs" />

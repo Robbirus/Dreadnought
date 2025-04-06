@@ -66,19 +66,6 @@ public class PlayerMovement : MonoBehaviour
     
     private void Update()
     {
-        /*
-        Debug.Log(isGrounded);
-        if (isGrounded)
-        {
-            DetectInput();
-            ControlSpeed();
-            rb.linearDamping = groundDrag; 
-        }
-        else
-        {
-            rb.angularDamping = 0;
-        }
-        */
         acceleration = (2 * power) / (mass * accelerationTime);
 
         if (isGrounded)
@@ -109,13 +96,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        /*
-        if (isGrounded)
-        {
-            MovePlayer();
-            TurnPlayer();
-        }
-        */
         if (isGrounded) 
         {
             MovingPlayer();

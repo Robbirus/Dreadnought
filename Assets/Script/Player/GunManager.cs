@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -17,14 +19,14 @@ public class GunManager : MonoBehaviour
     [SerializeField] private GameObject shellPrefab;
     [Tooltip("The point where the projectile will be launched")]
     [SerializeField] private GameObject shellSpawnPoint;
-    [Tooltip("The base damage the projectile will do")]
-    [SerializeField] private float damage = 425f;
     [Tooltip("The base chance of doing a critical damage")]
     [SerializeField] private int critChance = 2;
     [Tooltip("The base critical damage coefficient")]
     [SerializeField] private float critCoef = 1.1f;
     [Tooltip("The pity allows to temporarily up the crit chance")]
     [SerializeField] private int pity = 0;
+    [Tooltip("All the shell type in the turret")]
+    [SerializeField] private List<ShellSO> ammo;
     [Space(10)]
 
     [Header("Input Action Reference")]
@@ -37,6 +39,8 @@ public class GunManager : MonoBehaviour
     [Tooltip("The reload circle image")]
     [SerializeField] private Image reloadCircle;
 
+    private ShellSO currentShell;
+
     private void Awake()
     {
         shootActionReference.action.Enable();
@@ -44,6 +48,7 @@ public class GunManager : MonoBehaviour
 
     private void Start()
     {
+        currentShell = ammo[0];
         reloadCircle.enabled = true;
         StartCoroutine(Shooting());
     }
@@ -53,14 +58,15 @@ public class GunManager : MonoBehaviour
         while (true)
         {
             // Wait for Input Shoot
+            Debug.Log("Current Shell type : " + currentShell.ShellType);
             yield return new WaitUntil(() => shootActionReference.action.IsPressed());
             Shoot();
 
             // Wait For ReloadTime
             PlayerSoundManager.instance.PlayReload();
 
-            float elapsed = 0f;
             reloadCircle.fillAmount = 0;
+            float elapsed = 0f;
 
             while (elapsed < reloadTime) 
             {
@@ -72,16 +78,37 @@ public class GunManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        SwitchShell();
+    }
+
+    private void SwitchShell()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1)) currentShell = ammo[0];
+        if (Input.GetKeyDown(KeyCode.Alpha2)) currentShell = ammo[1];        
+        if (Input.GetKeyDown(KeyCode.Alpha3)) currentShell = ammo[2];        
+        if (Input.GetKeyDown(KeyCode.Alpha4)) currentShell = ammo[3];        
+    }
+
     private void Shoot()
     {
+        if (currentShell == null) return;
+
+        InstantiateShell();
+
         PlayerSoundManager.instance.PlayGunShot();
-        Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
         shootParticle.Play();
-        Debug.Log("Damage : " + damage);
+    }
+
+    private void InstantiateShell()
+    {
+        GameObject shell = Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
+        shell.GetComponent<Shell>().Setup(currentShell);
     }
 
     #region Getter / Setter
-   public int GetPity()
+    public int GetPity()
    {
         return this.pity;
    }
@@ -90,6 +117,7 @@ public class GunManager : MonoBehaviour
     {
         this.pity = 0;
     }
+
     public void IncreasePity()
     {
         this.pity++;
@@ -107,12 +135,12 @@ public class GunManager : MonoBehaviour
 
     public float GetDamage()
     {
-        return this.damage;
+        return this.currentShell.damage;
     }
 
     public void SetDamage(float damage)
     {
-        this.damage = damage;
+        this.currentShell.damage = damage;
     }
 
     public int GetCritChance()

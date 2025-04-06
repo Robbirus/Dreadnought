@@ -39,9 +39,16 @@ public class EnemyCollision : MonoBehaviour
     private void HitByShell(GameObject collider)
     {
         float lifeSteal = 0;
-        float damage;
-
+        float damage = 0;
+        int penetration = collider.gameObject.GetComponent<Shell>().GetPenetration();
         int pity = collider.gameObject.GetComponent<Shell>().GetPity();
+        int armor = gameObject.GetComponent<EnemyHealthManager>().GetArmor();
+
+        if (!CanPenetrate(armor, penetration))
+        {
+            Destroy(collider.gameObject);
+            return;
+        }
 
         if (Random.Range(1, 100 - pity) <= collider.gameObject.GetComponent<Shell>().GetCritChance())
         {
@@ -79,8 +86,13 @@ public class EnemyCollision : MonoBehaviour
         Destroy(collider.gameObject);
     }
 
+    private bool CanPenetrate(int armor, int penetration)
+    {
+        return penetration > armor;
+    }
+
     /// <summary>
-    /// Check if LifeSteal Perk is obtained,, if true, restore Health to the player equal of the life stolen
+    /// Check if LifeSteal Perk is obtained, if true, restore Health to the player equal of the life stolen
     /// if false, do nothing
     /// </summary>
     /// <param name="lifeSteal">The value of the life stole from the enemy</param>

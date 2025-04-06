@@ -1,41 +1,53 @@
-using TMPro;
-using UnityEditor.Experimental.GraphView;
+using System;
+using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Shell : MonoBehaviour
-{
-    [Header("Shell Attribut")]
-    [Tooltip("Base Shell velocity")]
-    [SerializeField] private float shellSpeed = 200;
-    [Tooltip("Base Shell's lifetime in seconds")]
-    [SerializeField] private float lifeTime = 10f;
-
-    private Vector3 direction;
-
+{    
     private float damage;
     private int critChance;
     private float critCoef;
     private int pity;
+    private int penetration;
+    private int velocity;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private Vector3 direction;
+
+    private void Start()
     {
         direction = transform.forward;
-        damage = GameManager.instance.GetGunManager().GetDamage();
+
         critChance = GameManager.instance.GetGunManager().GetCritChance();
         critCoef = GameManager.instance.GetGunManager().GetCritCoef();
         pity = GameManager.instance.GetGunManager().GetPity();
+    }
 
-        Destroy(gameObject, lifeTime);
+    public void Setup(ShellSO currentShell)
+    {
+        int damageVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
+        int penetrationVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
+
+        penetration = currentShell.penetration * penetrationVariation;
+        damage = currentShell.damage * damageVariation;
+        velocity = currentShell.velocity;
     }
 
     private void FixedUpdate()
     {
-        transform.position += direction * shellSpeed * Time.fixedDeltaTime;
+        transform.position += direction * velocity * Time.fixedDeltaTime;
     }
 
     #region Getter / Setter
+    public void SetPenetration(int penetration)
+    {
+        this.penetration = penetration;
+    }
+
+    public int GetPenetration()
+    {
+        return this.penetration;
+    }
+
     public int GetCritChance()
     {
         return critChance;
@@ -45,15 +57,16 @@ public class Shell : MonoBehaviour
     {
         this.critChance = critChance;
     }
+
     public int GetPity()
     {
         return this.pity;
     }
-
     public void ResetPity()
     {
         GameManager.instance.GetGunManager().ResetPity();
     }
+
     public void IncreasePity()
     {
         GameManager.instance.GetGunManager().IncreasePity();
@@ -73,11 +86,10 @@ public class Shell : MonoBehaviour
     {
         return damage;
     }
-   
+
     public void SetDamage(float damage)
     {
         this.damage = damage;
     }
-
     #endregion
 }

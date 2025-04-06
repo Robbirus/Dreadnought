@@ -103,6 +103,10 @@ public class PlayerTurretControl : MonoBehaviour
                 case "Shell(Clone)":
                     visible = false;
                     break;
+
+                case "Experience Drop(Clone)":
+                    visible = false;
+                    break;
             }
         }
 
