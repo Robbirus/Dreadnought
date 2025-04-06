@@ -30,6 +30,14 @@ public class Shell : MonoBehaviour
         penetration = currentShell.penetration * penetrationVariation;
         damage = currentShell.damage * damageVariation;
         velocity = currentShell.velocity;
+
+        Gradient gradient = new Gradient();
+        gradient.SetKeys(
+            new GradientColorKey[] {new GradientColorKey(currentShell.color, 0f), new GradientColorKey(Color.white, 1f)},
+            new GradientAlphaKey[] { new GradientAlphaKey(1f, 0f), new GradientAlphaKey(0f, 1f) }
+        );
+
+        gameObject.GetComponent<TrailRenderer>().colorGradient = gradient;
     }
 
     private void FixedUpdate()
