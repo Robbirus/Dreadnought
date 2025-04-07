@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -13,6 +14,12 @@ public class GunManager : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private ParticleSystem shootParticle;
     [Space(10)]
+
+    [Header("HUD")]
+    [Tooltip("The frame where the shell image will be")]
+    [SerializeField] private Image currentShellImage;
+    [Tooltip("The reload Time display text")]
+    [SerializeField] private TMP_Text reloadTimeText;
 
     [Header("Shell Propreties")]
     [Tooltip("The projectile prefab")]
@@ -49,6 +56,9 @@ public class GunManager : MonoBehaviour
     private void Start()
     {
         currentShell = ammo[0];
+        currentShellImage.sprite = ammo[0].shellImage;
+        reloadTimeText.text = reloadTime.ToString("0.00");
+        ChangeReloadTimeColor(true);
         reloadCircle.enabled = true;
         StartCoroutine(Shooting());
     }
@@ -59,8 +69,12 @@ public class GunManager : MonoBehaviour
         {
             // Wait for Input Shoot
             Debug.Log("Current Shell type : " + currentShell.ShellType);
+            ChangeReloadTimeColor(true);
             yield return new WaitUntil(() => shootActionReference.action.IsPressed());
+
             Shoot();
+
+            ChangeReloadTimeColor(false);
 
             // Wait For ReloadTime
             PlayerSoundManager.instance.PlayReload();
@@ -72,9 +86,22 @@ public class GunManager : MonoBehaviour
             {
                 elapsed += Time.deltaTime;
                 reloadCircle.fillAmount = Mathf.Clamp01(elapsed / reloadTime);
+                reloadTimeText.text = elapsed.ToString("0.00");
                 yield return null;
             }
             Debug.Log("Ready to shoot");
+        }
+    }
+
+    private void ChangeReloadTimeColor(bool done)
+    {
+        if (!done)
+        {
+            reloadTimeText.color = Color.red;
+        }
+        else
+        {
+            reloadTimeText.color = Color.green;
         }
     }
 
@@ -85,10 +112,26 @@ public class GunManager : MonoBehaviour
 
     private void SwitchShell()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1)) currentShell = ammo[0];
-        if (Input.GetKeyDown(KeyCode.Alpha2)) currentShell = ammo[1];        
-        if (Input.GetKeyDown(KeyCode.Alpha3)) currentShell = ammo[2];        
-        if (Input.GetKeyDown(KeyCode.Alpha4)) currentShell = ammo[3];        
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            currentShell = ammo[0];
+            currentShellImage.sprite = ammo[0].shellImage;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2)) 
+        { 
+            currentShell = ammo[1];
+            currentShellImage.sprite = ammo[1].shellImage;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            currentShell = ammo[2];
+            currentShellImage.sprite = ammo[2].shellImage;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            currentShell = ammo[3];
+            currentShellImage.sprite = ammo[3].shellImage;
+        }
     }
 
     private void Shoot()
