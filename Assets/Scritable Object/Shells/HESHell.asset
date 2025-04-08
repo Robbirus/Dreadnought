@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a4da651b782d5489a9cf3c683c8b3e, type: 3}
   m_Name: HESHell
   m_EditorClassIdentifier: 
+  color: {r: 1, g: 0, b: 0, a: 0}
   ShellType: 2
   velocity: 200
   damage: 440

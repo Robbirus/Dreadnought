@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a4da651b782d5489a9cf3c683c8b3e, type: 3}
   m_Name: APShell
   m_EditorClassIdentifier: 
+  color: {r: 0.9873221, g: 1, b: 0, a: 0}
   ShellType: 0
   velocity: 300
   damage: 360
