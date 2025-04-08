@@ -24,10 +24,12 @@ public class Shell : MonoBehaviour
         critChance = GameManager.instance.GetGunManager().GetCritChance();
         critCoef = GameManager.instance.GetGunManager().GetCritCoef();
         pity = GameManager.instance.GetGunManager().GetPity();
-
-        Destroy(gameObject, lifeTime);
     }
 
+    /// <summary>
+    /// Instantiate a shell depending of the type in the SO
+    /// </summary>
+    /// <param name="currentShell">The SO shell used this time</param>
     public void Setup(ShellSO currentShell)
     {
         int damageVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
@@ -49,34 +51,8 @@ public class Shell : MonoBehaviour
         Destroy(gameObject, lifeTime);
     }
 
-    /*
-    void OnCollisionEnter(Collision collision)
-    {
-        ContactPoint contact = collision.contacts[0];
-        Vector3 normal = contact.normal;
-        Vector3 incoming = direction;
-
-        float angle = Vector3.Angle(-incoming, normal);
-
-        Debug.Log(angle);
-
-        if (angle < ricochetAngle)
-        {
-            direction = Vector3.Reflect(incoming, normal);
-            transform.forward = direction; // Pour l'orientation visuelle
-        }
-        else
-        {
-            // Impact direct : détruire ou exploser
-            Destroy(gameObject);
-        }
-    }
-    */
-
     private void Update()
-    {
-        //transform.position += direction * velocity * Time.fixedDeltaTime; 
-        
+    {        
         Vector3 nextPos = transform.position + direction * velocity * Time.deltaTime;
         Vector3 move = nextPos - transform.position;
 
@@ -84,34 +60,52 @@ public class Shell : MonoBehaviour
         {
             if(CheckColliderTag(hit.collider.gameObject))
             {
-                if(GetAngle(hit) < ricochetAngle)
-                {
-                    GameObject enemy = hit.collider.gameObject;
-                    Debug.Log(enemy);
-                    int enemyArmor = enemy.GetComponent<EnemyHealthManager>().GetArmor();
-
-                    if (CanPenetrate(enemyArmor, this.penetration, hit))
-                    {
-                        PenetrateEnemy(enemy);
-                    }
-                    else
-                    {
-                        Debug.Log("Non penetrant");
-                    }
-                }
-                else
-                {
-                    Ricochet(hit);
-                }
+                OnHittingEnemy(hit);
             }
             else
             {
-                transform.position = nextPos;
+                KeepShellMoving(nextPos);
             }
         }
         else
         {
-            transform.position = nextPos;
+            KeepShellMoving(nextPos);
+        }
+    }
+
+    /// <summary>
+    /// Method used to move the shell over time 
+    /// </summary>
+    /// <param name="nextPos">The next position of the shell</param>
+    private void KeepShellMoving(Vector3 nextPos)
+    {
+        transform.position = nextPos;
+    }
+
+    /// <summary>
+    /// When an enemy is hit, compute if its penetrated, or if the shell do a ricochet
+    /// </summary>
+    /// <param name="hit"></param>
+    private void OnHittingEnemy(RaycastHit hit)
+    {
+        if (GetAngle(hit) < ricochetAngle)
+        {
+            GameObject enemy = hit.collider.gameObject;
+            Debug.Log(enemy);
+            int enemyArmor = enemy.GetComponent<EnemyHealthManager>().GetArmor();
+
+            if (CanPenetrate(enemyArmor, this.penetration, hit))
+            {
+                PenetrateEnemy(enemy);
+            }
+            else
+            {
+                Debug.Log("Non penetrant");
+            }
+        }
+        else
+        {
+            Ricochet(hit);
         }
     }
 
@@ -150,6 +144,11 @@ public class Shell : MonoBehaviour
         return goThrough;
     }
 
+    /// <summary>
+    /// The shell penetrates the enemy, compute the critical damage and the liferip
+    /// Destroy the shell after
+    /// </summary>
+    /// <param name="enemy">The enemy hit</param>
     private void PenetrateEnemy(GameObject enemy)
     {
         if (UnityEngine.Random.Range(1, 100 - this.pity) <= this.critChance)
@@ -168,6 +167,10 @@ public class Shell : MonoBehaviour
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// Apply Damage to the enemy, compute liferip and increase pity value
+    /// </summary>
+    /// <param name="enemy">The enemy hit</param>
     private void ApplyDamage(GameObject enemy)
     {
         // Get the life steal proportion
@@ -180,6 +183,10 @@ public class Shell : MonoBehaviour
         IncreasePity();
     }
 
+    /// <summary>
+    /// Apply critical damage to the enemy, compute liferip and reset pity value to 0
+    /// </summary>
+    /// <param name="enemy">The enemy hit</param>
     private void ApplyCriticalDamage(GameObject enemy)
     {
         // Get the life steal proportion
@@ -216,12 +223,13 @@ public class Shell : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// Contains of the rules of penetration,
+    /// First, compute the relative armor
     /// </summary>
-    /// <param name="armor"></param>
-    /// <param name="penetration"></param>
+    /// <param name="armor">The enemy nominal armor</param>
+    /// <param name="penetration">The penetration value of this shell</param>
     /// <param name="hit"></param>
-    /// <returns></returns>
+    /// <returns>True if the enemy can be penetrated</returns>
     private bool CanPenetrate(int armor, int penetration, RaycastHit hit)
     {
         float relativeArmor = ObtainRelativeArmor(armor, hit);
@@ -229,6 +237,12 @@ public class Shell : MonoBehaviour
         return penetration > relativeArmor;
     }
 
+    /// <summary>
+    /// Compute the relative armor using the angle and nominal armor
+    /// </summary>
+    /// <param name="armor">The enemy nominal armor</param>
+    /// <param name="hit"></param>
+    /// <returns>The relative armor of the enemy</returns>
     private float ObtainRelativeArmor(int armor, RaycastHit hit)
     {
         float angle = GetAngle(hit);
