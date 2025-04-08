@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   color: {r: 1, g: 0.6431373, b: 0, a: 1}
   ShellType: 3
+  shellImage: {fileID: 21300000, guid: a788614f2ece2ef4e97b51b419ef33ca, type: 3}
   velocity: 150
   damage: 360
   penetration: 330

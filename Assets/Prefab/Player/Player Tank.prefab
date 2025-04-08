@@ -513,7 +513,6 @@ GameObject:
   - component: {fileID: 3874679402468266262}
   - component: {fileID: 8252672864265373387}
   - component: {fileID: 4779835780650837612}
-  - component: {fileID: 1673695343398967422}
   - component: {fileID: 8945273061389824474}
   - component: {fileID: 5563876281991244943}
   - component: {fileID: 1260089719927870264}
@@ -557,14 +556,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1260089719927870264}
-  moveActionReference: {fileID: 5092169049682938973, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  moveTurretActionReference: {fileID: -8579416021164688464, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-  maxSpeed: 50
-  rotationSpeed: 20
-  rotationTurretSpeed: 25
-  accelerationRate: 5
-  decelerationRate: 5
-  turret: {fileID: 8352722779152061063}
 --- !u!114 &4779835780650837612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -578,30 +569,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  armor: 10
   chipSpeed: 2
   frontHealthBar: {fileID: 0}
   backHealthBar: {fileID: 0}
---- !u!65 &1673695343398967422
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6544371426597996155}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 6, y: 5, z: 7}
-  m_Center: {x: 0, y: 2.4, z: 0}
 --- !u!54 &8945273061389824474
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1234,9 +1205,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+  shootParticle: {fileID: 0}
+  currentShellImage: {fileID: 0}
+  reloadTimeText: {fileID: 0}
   shellPrefab: {fileID: 3633209065182094968, guid: 48d518da0597a9e418d03349ad9bc941, type: 3}
   shellSpawnPoint: {fileID: 0}
+  critChance: 2
+  critCoef: 1.1
+  pity: 0
+  ammo: []
   shootActionReference: {fileID: 0}
+  reloadTime: 4
+  reloadCircle: {fileID: 0}
 --- !u!1001 &2614276410398371340
 PrefabInstance:
   m_ObjectHideFlags: 0

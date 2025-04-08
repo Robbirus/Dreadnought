@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3a4da651b782d5489a9cf3c683c8b3e, type: 3}
   m_Name: APCRShell
   m_EditorClassIdentifier: 
+  color: {r: 0.367, g: 0.34830377, b: 0.34830377, a: 0}
   ShellType: 1
+  shellImage: {fileID: 21300000, guid: fec963349d048864198fd87ab6bac804, type: 3}
   velocity: 500
   damage: 390
   penetration: 259

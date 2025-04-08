@@ -14,6 +14,7 @@ public class EnemyCollision : MonoBehaviour
 
     private void ProcessCollision(GameObject collider)
     {
+
         // If the enemy touches the player
         if (collider.transform.CompareTag("Player") && gameObject != null)
         {
@@ -22,8 +23,8 @@ public class EnemyCollision : MonoBehaviour
 
         // if a shell touches the enemy
         if (collider.transform.CompareTag("Shell") && gameObject != null)
-        {            
-            HitByShell(collider);
+        {
+            // HitByShell(collider);
         }
     }
 
@@ -36,6 +37,7 @@ public class EnemyCollision : MonoBehaviour
         Destroy(gameObject);
     }
 
+    /*
     private void HitByShell(GameObject collider)
     {
         float lifeSteal = 0;
@@ -85,11 +87,8 @@ public class EnemyCollision : MonoBehaviour
         // Destroy the shell
         Destroy(collider.gameObject);
     }
+    */
 
-    private bool CanPenetrate(int armor, int penetration)
-    {
-        return penetration > armor;
-    }
 
     /// <summary>
     /// Check if LifeSteal Perk is obtained, if true, restore Health to the player equal of the life stolen

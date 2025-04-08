@@ -9,6 +9,7 @@ TagManager:
   - Building
   - Ground
   - XP
+  - Heal
   layers:
   - Default
   - TransparentFX
