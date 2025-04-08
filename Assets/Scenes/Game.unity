@@ -414,6 +414,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rus_build_5et_06
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: fd6d00b876e28334aa3da121ee9394e7, type: 3}
+      propertyPath: m_TagString
+      value: Building
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: fd6d00b876e28334aa3da121ee9394e7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 309.08716
@@ -464,6 +468,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 100002, guid: fd6d00b876e28334aa3da121ee9394e7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 114577611}
+    - targetCorrespondingSourceObject: {fileID: 100002, guid: fd6d00b876e28334aa3da121ee9394e7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 114577612}
   m_SourcePrefab: {fileID: 100100000, guid: fd6d00b876e28334aa3da121ee9394e7, type: 3}
 --- !u!1 &114577609 stripped
 GameObject:
@@ -501,8 +508,29 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 120, y: 50, z: 120}
-  m_Center: {x: -27.6, y: 25, z: 40}
+  m_Size: {x: 34, y: 50, z: 120}
+  m_Center: {x: 10, y: 25, z: 40}
+--- !u!65 &114577612
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 114577609}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 85, y: 50, z: 40}
+  m_Center: {x: -44, y: 25, z: 0}
 --- !u!1 &131643674
 GameObject:
   m_ObjectHideFlags: 0
@@ -589,6 +617,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: de42dcc651bfdae4eace349a13112cb8, type: 3}
       propertyPath: m_Name
       value: rus_build_5et_03 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: de42dcc651bfdae4eace349a13112cb8, type: 3}
+      propertyPath: m_TagString
+      value: Building
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: de42dcc651bfdae4eace349a13112cb8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1140,6 +1172,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 250affde3a4593740a396c1a11352a84, type: 3}
       propertyPath: m_Name
       value: rus_build_9et_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 250affde3a4593740a396c1a11352a84, type: 3}
+      propertyPath: m_TagString
+      value: Building
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 250affde3a4593740a396c1a11352a84, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2187,7 +2223,6 @@ GameObject:
   - component: {fileID: 498385887}
   - component: {fileID: 498385886}
   - component: {fileID: 498385885}
-  - component: {fileID: 498385889}
   m_Layer: 10
   m_Name: Slope
   m_TagString: Ground
@@ -2284,18 +2319,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &498385889
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 498385884}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d6a5fe26ef71cb4bba22dac8f33de7e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &510266507
 GameObject:
   m_ObjectHideFlags: 0
@@ -2630,7 +2653,7 @@ GameObject:
   - component: {fileID: 564210806}
   m_Layer: 9
   m_Name: Heal Item
-  m_TagString: Untagged
+  m_TagString: Heal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2872,6 +2895,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: de42dcc651bfdae4eace349a13112cb8, type: 3}
       propertyPath: m_Name
       value: rus_build_5et_03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: de42dcc651bfdae4eace349a13112cb8, type: 3}
+      propertyPath: m_TagString
+      value: Building
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: de42dcc651bfdae4eace349a13112cb8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3383,6 +3410,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: efa5fbb1cf6675442a2c89e7128df363, type: 3}
       propertyPath: m_Name
       value: rus_build_4et_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: efa5fbb1cf6675442a2c89e7128df363, type: 3}
+      propertyPath: m_TagString
+      value: Building
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: efa5fbb1cf6675442a2c89e7128df363, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4255,6 +4286,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 250affde3a4593740a396c1a11352a84, type: 3}
       propertyPath: m_Name
       value: rus_build_9et_01 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 250affde3a4593740a396c1a11352a84, type: 3}
+      propertyPath: m_TagString
+      value: Building
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 250affde3a4593740a396c1a11352a84, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5374,6 +5409,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rus_build_2et_01c (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 11a0f8575da77c54a8c6fd4d31acbdfb, type: 3}
+      propertyPath: m_TagString
+      value: Building
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 11a0f8575da77c54a8c6fd4d31acbdfb, type: 3}
       propertyPath: m_LocalPosition.x
       value: -124.82112
@@ -5730,6 +5769,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 250affde3a4593740a396c1a11352a84, type: 3}
       propertyPath: m_Name
       value: rus_build_9et_01 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 250affde3a4593740a396c1a11352a84, type: 3}
+      propertyPath: m_TagString
+      value: Building
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 250affde3a4593740a396c1a11352a84, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6187,6 +6230,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rus_build_9et_03 (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: d0a6918bd0bfaa94c9b006f0fbf838ce, type: 3}
+      propertyPath: m_TagString
+      value: Building
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d0a6918bd0bfaa94c9b006f0fbf838ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: -45
@@ -6287,6 +6334,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: d0a6918bd0bfaa94c9b006f0fbf838ce, type: 3}
       propertyPath: m_Name
       value: rus_build_9et_03 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: d0a6918bd0bfaa94c9b006f0fbf838ce, type: 3}
+      propertyPath: m_TagString
+      value: Building
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d0a6918bd0bfaa94c9b006f0fbf838ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6447,6 +6498,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 11a0f8575da77c54a8c6fd4d31acbdfb, type: 3}
       propertyPath: m_Name
       value: rus_build_2et_01c
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 11a0f8575da77c54a8c6fd4d31acbdfb, type: 3}
+      propertyPath: m_TagString
+      value: Building
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 11a0f8575da77c54a8c6fd4d31acbdfb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7113,6 +7168,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rus_build_9et_03
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: d0a6918bd0bfaa94c9b006f0fbf838ce, type: 3}
+      propertyPath: m_TagString
+      value: Building
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d0a6918bd0bfaa94c9b006f0fbf838ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: -43.677174
@@ -7624,6 +7683,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rus_build_5et_03
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: de42dcc651bfdae4eace349a13112cb8, type: 3}
+      propertyPath: m_TagString
+      value: Building
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: de42dcc651bfdae4eace349a13112cb8, type: 3}
       propertyPath: m_LocalPosition.x
       value: -3.1037598
@@ -7970,6 +8033,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 51aa1db77e4bd374c93d85096947cbf2, type: 3}
       propertyPath: m_Name
       value: rus_build_2et_01b
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 51aa1db77e4bd374c93d85096947cbf2, type: 3}
+      propertyPath: m_TagString
+      value: Building
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 51aa1db77e4bd374c93d85096947cbf2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -8485,6 +8552,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: rus_build_5et_05
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: a5b66509842cc304a96cdd0ad77debcc, type: 3}
+      propertyPath: m_TagString
+      value: Building
+      objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: a5b66509842cc304a96cdd0ad77debcc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 171.2406
@@ -8585,6 +8656,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: d0a6918bd0bfaa94c9b006f0fbf838ce, type: 3}
       propertyPath: m_Name
       value: rus_build_9et_03 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: d0a6918bd0bfaa94c9b006f0fbf838ce, type: 3}
+      propertyPath: m_TagString
+      value: Building
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: d0a6918bd0bfaa94c9b006f0fbf838ce, type: 3}
       propertyPath: m_LocalPosition.x

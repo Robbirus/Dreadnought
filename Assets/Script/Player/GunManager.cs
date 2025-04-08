@@ -68,7 +68,6 @@ public class GunManager : MonoBehaviour
         while (true)
         {
             // Wait for Input Shoot
-            Debug.Log("Current Shell type : " + currentShell.ShellType);
             ChangeReloadTimeColor(true);
             yield return new WaitUntil(() => shootActionReference.action.IsPressed());
 
@@ -89,7 +88,6 @@ public class GunManager : MonoBehaviour
                 reloadTimeText.text = elapsed.ToString("0.00");
                 yield return null;
             }
-            Debug.Log("Ready to shoot");
         }
     }
 

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class PlayerHealthManager : MonoBehaviour
 {
     [Header("Health Properties")]
-    [Tooltip("Base player's life")]
+    [Tooltip("Max player's life")]
     [SerializeField] private float maxHealth = 1950f;
     [Tooltip("Base player's armor")]
     [SerializeField] private int armor = 10;
@@ -77,6 +77,7 @@ public class PlayerHealthManager : MonoBehaviour
             float percentComplete = lerpTimer / chipSpeed;
             percentComplete = percentComplete * percentComplete;
             frontHealthBar.fillAmount = Mathf.Lerp(fillFront, backHealthBar.fillAmount, percentComplete);
+
         }
     }
 
