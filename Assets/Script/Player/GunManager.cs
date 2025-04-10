@@ -138,6 +138,7 @@ public class GunManager : MonoBehaviour
 
         InstantiateShell();
 
+        GameManager.instance.IncreaseShot();
         PlayerSoundManager.instance.PlayGunShot();
         shootParticle.Play();
     }

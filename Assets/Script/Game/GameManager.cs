@@ -1,9 +1,13 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public const int ENEMY_LIMIT = 100;
+    private int enemyCount = 0;
+
     #region Player Script
     private PlayerController playerController;
     private PlayerMovement playerMovement;
@@ -20,11 +24,12 @@ public class GameManager : MonoBehaviour
 
     private GameState currentState;
 
-    #region Enemy numbers
-    [Header("Enemy stats")]
-    public const int ENEMY_LIMIT = 100;
-    private int enemyCount = 0;
+    #region Player Stats
     private int enemyKilled = 0;
+    private int shot = 0;
+    private int penetrativeShot = 0;
+    private int nonePenetrativeShot = 0;
+    private int damageBlocked = 0;
     #endregion
 
     public static GameManager instance = null;
@@ -84,7 +89,6 @@ public class GameManager : MonoBehaviour
             player = GameObject.FindWithTag("Player");
         }
     }
-
 
     public void ChangeState(GameState newState)
     {
@@ -209,6 +213,45 @@ public class GameManager : MonoBehaviour
     public void SetPlayerFound(bool isPlayerFound)
     {
         this.isPlayerFound = isPlayerFound;
+    }
+
+    public void IncreaseShot()
+    {
+        this.shot++;
+    }
+
+    public void IncreasePenetrativeShot()
+    {
+        this.penetrativeShot++;
+    }
+
+    public void IncreaseNonPenetrativeShot()
+    {
+        this.nonePenetrativeShot++;
+    }
+
+    public void AddDamageBlocked(int damageBlocked)
+    {
+        this.damageBlocked += damageBlocked;
+    }
+
+    public int GetAllShotFired()
+    {
+        return this.penetrativeShot + nonePenetrativeShot;
+    }
+
+    public int GetShotFired()
+    {
+        return this.shot;
+    }
+    public int GetNonePenetratingShot()
+    {
+        return this.nonePenetrativeShot;
+    }
+
+    public int GetPenetratingShot()
+    {
+        return this.penetrativeShot;
     }
     #endregion
 

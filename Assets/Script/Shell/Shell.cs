@@ -103,6 +103,7 @@ public class Shell : MonoBehaviour
             }
             else
             {
+                GameManager.instance.IncreaseNonPenetrativeShot();
                 Debug.Log("Non penetrant");
             }
         }
@@ -162,6 +163,8 @@ public class Shell : MonoBehaviour
         {
             ApplyDamage(enemy);
         }
+
+        GameManager.instance.IncreasePenetrativeShot();
 
         // Apply the lifeSteal
         ApplyLifeRip(lifeSteal);
