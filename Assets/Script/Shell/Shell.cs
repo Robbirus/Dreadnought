@@ -90,8 +90,11 @@ public class Shell : MonoBehaviour
     {
         if (GetAngle(hit) < ricochetAngle)
         {
-            GameObject enemy = hit.collider.gameObject;
-            Debug.Log(enemy);
+            GameObject contact = hit.collider.gameObject;
+            Debug.Log(contact);
+            Debug.Log(contact.transform.parent.gameObject);
+
+            GameObject enemy = contact.transform.parent.gameObject;
             int enemyArmor = enemy.GetComponent<EnemyHealthManager>().GetArmor();
 
             if (CanPenetrate(enemyArmor, this.penetration, hit))

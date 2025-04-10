@@ -2225,7 +2225,7 @@ GameObject:
   - component: {fileID: 498385885}
   m_Layer: 10
   m_Name: Slope
-  m_TagString: Ground
+  m_TagString: Ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
