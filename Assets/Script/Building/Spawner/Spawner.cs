@@ -37,7 +37,7 @@ public class Spawner : MonoBehaviour
         if (timeUntilSpawn < minimumSpawnTime)
         {
             gameObject.GetComponent<SpawnerSoundManager>().PlaySpawnSound();
-            Instantiate(enemy, transform.position, Quaternion.identity);
+            Instantiate(enemy, transform.position + new Vector3(0, 3, 0), Quaternion.identity);
             GameManager.instance.IncreaseEnemyCount();
             SetTimeUntilSpawn();
         }

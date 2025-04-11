@@ -105,6 +105,7 @@ public class Shell : MonoBehaviour
             {
                 GameManager.instance.IncreaseNonPenetrativeShot();
                 Debug.Log("Non penetrant");
+                Destroy(gameObject);
             }
         }
         else
@@ -155,8 +156,10 @@ public class Shell : MonoBehaviour
     /// <param name="enemy">The enemy hit</param>
     private void PenetrateEnemy(GameObject enemy)
     {
+        Debug.Log("Penetrating shot");
         if (UnityEngine.Random.Range(1, 100 - this.pity) <= this.critChance)
         {
+            Debug.Log("critical hit");
             ApplyCriticalDamage(enemy);
         }
         else
@@ -222,9 +225,10 @@ public class Shell : MonoBehaviour
     /// <param name="hit"></param>
     private void Ricochet(RaycastHit hit)
     {
-            direction = Vector3.Reflect(direction, hit.normal);
-            transform.position = hit.point;
-            this.penetration *= (75/100);
+        GameManager.instance.IncreaseNonPenetrativeShot();
+        direction = Vector3.Reflect(direction, hit.normal);
+        transform.position = hit.point;
+        this.penetration *= (75/100);
         
     }
 

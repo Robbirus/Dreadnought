@@ -22,14 +22,23 @@ public class GameOverScreen : MonoBehaviour
 
         if (scoreTotal != null)
         {
-            int allShotFired = GameManager.instance.GetAllShotFired();
-            int shotsFired = GameManager.instance.GetShotFired();
+            float allShotFired = GameManager.instance.GetAllShotFired();
+            float shotsFired = GameManager.instance.GetShotFired();
 
             float precision = allShotFired / shotsFired;
+            if (shotsFired == 0) 
+            {
+                precision = 0f;
+            }
+            else
+            {
+                precision = allShotFired / shotsFired;
+            }
 
-            scoreTotal.text = "Score : " + GameManager.instance.score + " points.";
+
+                scoreTotal.text = "Score : " + GameManager.instance.score + " points.";
             enemyKilled.text = "Enemy Killed : " + GameManager.instance.GetEnemyKilled();
-            accuracy.text = "Accuracy : " + precision * 100f + " %";
+            accuracy.text = "Accuracy : " + (precision * 100f).ToString("0.0") + " %";
             shot.text = "Shots fired : " + GameManager.instance.GetShotFired();
             penetratingShot.text = "Penetrating shots : " + GameManager.instance.GetPenetratingShot();
             nonPenetratingShot.text = "Non penetrating shots : " + GameManager.instance.GetNonePenetratingShot();

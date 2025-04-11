@@ -237,7 +237,7 @@ public class GameManager : MonoBehaviour
 
     public int GetAllShotFired()
     {
-        return this.penetrativeShot + nonePenetrativeShot;
+        return this.penetrativeShot + this.nonePenetrativeShot;
     }
 
     public int GetShotFired()

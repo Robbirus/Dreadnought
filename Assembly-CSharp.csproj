@@ -1362,10 +1362,6 @@
       <Project>{92E6E374-6637-4272-1539-4E3EA6CCB946}</Project>
       <Name>Unity.PlayerPrefsEditor.EditorResources</Name>
     </ProjectReference>
-    <ProjectReference Include="CGUnityCourse.csproj">
-      <Project>{252EC3EF-88BC-1A53-9852-2F94E5816985}</Project>
-      <Name>CGUnityCourse</Name>
-    </ProjectReference>
     <ProjectReference Include="Unity.PlayerPrefsEditor.Samples.SampleScene.csproj">
       <Project>{F42A1C1A-DD2F-EC6A-F9B8-4D41724793C7}</Project>
       <Name>Unity.PlayerPrefsEditor.Samples.SampleScene</Name>
