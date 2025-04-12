@@ -20,8 +20,11 @@ public class GunManager : MonoBehaviour
     [SerializeField] private Image currentShellImage;
     [Tooltip("The reload Time display text")]
     [SerializeField] private TMP_Text reloadTimeText;
+    [Space(10)]
 
-    [Header("Shell Propreties")]
+    [Header("Gun Propreties")]
+    [Tooltip("Gun caliber in mm")]
+    [SerializeField] private int caliber = 105;
     [Tooltip("The projectile prefab")]
     [SerializeField] private GameObject shellPrefab;
     [Tooltip("The point where the projectile will be launched")]
@@ -204,6 +207,11 @@ public class GunManager : MonoBehaviour
     public void SetCritCoef(float critCoef)
     {
         this.critCoef = critCoef;
+    }
+
+    public int GetCaliber()
+    {
+        return this.caliber;
     }
     #endregion
 }

@@ -14,6 +14,11 @@ public class Shell : MonoBehaviour
     private Vector3 direction;
     private float ricochetAngle = 70f;
     private float lifeSteal;
+    private int caliber;
+    private ShellType type;
+
+    private bool explosion;
+    private float explosionRadius;
 
     private void Start()
     {
@@ -21,6 +26,7 @@ public class Shell : MonoBehaviour
 
         direction.Normalize();
 
+        caliber = GameManager.instance.GetGunManager().GetCaliber();
         critChance = GameManager.instance.GetGunManager().GetCritChance();
         critCoef = GameManager.instance.GetGunManager().GetCritCoef();
         pity = GameManager.instance.GetGunManager().GetPity();
@@ -32,13 +38,16 @@ public class Shell : MonoBehaviour
     /// <param name="currentShell">The SO shell used this time</param>
     public void Setup(ShellSO currentShell)
     {
-        int damageVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
-        int penetrationVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
+        float damageVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
+        float penetrationVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
 
-        penetration = currentShell.penetration * penetrationVariation;
+        penetration = (int)(currentShell.penetration * penetrationVariation);
         damage = currentShell.damage * damageVariation;
         velocity = currentShell.velocity;
         lifeTime = currentShell.lifeTime;
+        type = currentShell.ShellType;
+        explosion = currentShell.explodesOnImpact;
+        explosionRadius = currentShell.explosionRadius;
 
         Gradient gradient = new Gradient();
         gradient.SetKeys(
@@ -58,9 +67,16 @@ public class Shell : MonoBehaviour
 
         if (Physics.Raycast(transform.position, direction, out RaycastHit hit, move.magnitude))
         {
-            if(CheckColliderTag(hit.collider.gameObject))
+
+            HitZone zone = hit.collider.GetComponent<HitZone>();
+
+            if (zone != null)
             {
-                OnHittingEnemy(hit);
+                OnHittingEnemy(hit, zone);
+            }
+
+            if (CheckColliderTag(hit.collider.gameObject))
+            {
             }
             else
             {
@@ -86,32 +102,115 @@ public class Shell : MonoBehaviour
     /// When an enemy is hit, compute if its penetrated, or if the shell do a ricochet
     /// </summary>
     /// <param name="hit"></param>
-    private void OnHittingEnemy(RaycastHit hit)
+    /// <param name="zone"></param>
+    private void OnHittingEnemy(RaycastHit hit, HitZone zone)
     {
-        if (GetAngle(hit) < ricochetAngle)
+        EnemyController enemy = hit.collider.GetComponentInParent<EnemyController>();
+        if (enemy == null) return;
+
+        float angle = GetAngle(hit, zone);
+
+        ricochetAngle = ObtainRicochetAngle(zone);
+
+        if (angle < ricochetAngle)
         {
-            GameObject contact = hit.collider.gameObject;
-            Debug.Log(contact);
-            Debug.Log(contact.transform.parent.gameObject);
+            Debug.Log($"Hit : {zone.zoneName}, Angle : {angle}");
 
-            GameObject enemy = contact.transform.parent.gameObject;
-            int enemyArmor = enemy.GetComponent<EnemyHealthManager>().GetArmor();
-
-            if (CanPenetrate(enemyArmor, this.penetration, hit))
+            if (CanPenetrate(zone.armorThickness, this.penetration, angle))
             {
+                Debug.Log("Tir penetrant");
                 PenetrateEnemy(enemy);
             }
             else
             {
-                GameManager.instance.IncreaseNonPenetrativeShot();
-                Debug.Log("Non penetrant");
-                Destroy(gameObject);
+                    GameManager.instance.IncreaseNonPenetrativeShot();
+                    Debug.Log("Non penetrant");
+                    Destroy(gameObject);
+             
             }
         }
         else
         {
+            Debug.Log("Ricochet");
             Ricochet(hit);
         }
+    }
+
+
+    private float ObtainRicochetAngle(HitZone zone)
+    {
+        float ricochet = 0;
+        switch (this.type)
+        {
+            case ShellType.AP:
+                ricochet = 70;
+                break;
+            case ShellType.APCR:
+                ricochet = 70;
+                break;
+            case ShellType.HE:
+                ricochet = 90;
+                break;
+            case ShellType.HEAT:
+                ricochet = 85;
+                break;
+            default:
+                ricochet = 70;
+                break;
+        }
+
+        if(this.type == ShellType.AP || this.type == ShellType.APCR)
+        {
+            ricochet = Check3CalibersRule(zone, ricochet);
+        }
+
+        return ricochet;
+    }
+
+    private float Check3CalibersRule(HitZone zone, float ricochet)
+    {
+        if (this.caliber >= 3 * zone.armorThickness)
+        {
+            ricochet = 0;
+        }
+
+        return ricochet;
+    }
+
+    /// <summary>
+    /// Adjust the angle of impact depending of the shell type
+    /// </summary>
+    /// <param name="angle">The angle of impact</param>
+    /// <returns>The angle normalized</returns>
+    private float NormalizeShell(float angle, HitZone zone)
+    {
+        float normalizationAngle = 0;
+        switch (this.type)
+        {
+            case ShellType.AP:
+                normalizationAngle = 5;
+                break;
+            case ShellType.APCR:
+                normalizationAngle = 2;
+                break;
+            default:
+                normalizationAngle = 0;
+                break;
+        }
+
+        normalizationAngle = Check2CalibersRule(zone, normalizationAngle);
+
+        return angle - normalizationAngle;
+    }
+
+    private float Check2CalibersRule(HitZone zone, float normalizationAngle)
+    {
+        if (this.caliber >= 2 * zone.armorThickness)
+        {
+            normalizationAngle = (float)(normalizationAngle * 1.4 * this.caliber / zone.armorThickness);
+        }
+
+        return normalizationAngle;
     }
 
     /// <summary>
@@ -154,9 +253,8 @@ public class Shell : MonoBehaviour
     /// Destroy the shell after
     /// </summary>
     /// <param name="enemy">The enemy hit</param>
-    private void PenetrateEnemy(GameObject enemy)
+    private void PenetrateEnemy(EnemyController enemy)
     {
-        Debug.Log("Penetrating shot");
         if (UnityEngine.Random.Range(1, 100 - this.pity) <= this.critChance)
         {
             Debug.Log("critical hit");
@@ -180,13 +278,15 @@ public class Shell : MonoBehaviour
     /// Apply Damage to the enemy, compute liferip and increase pity value
     /// </summary>
     /// <param name="enemy">The enemy hit</param>
-    private void ApplyDamage(GameObject enemy)
+    private void ApplyDamage(EnemyController enemy)
     {
         // Get the life steal proportion
         lifeSteal = GameManager.instance.GetPlayerHealthManager().GetLifeRip() * this.damage;
 
         // Apply the damage to the enemy
-        enemy.GetComponent<EnemyHealthManager>().TakeDamage(this.damage);
+        enemy.GetHealthManager().TakeDamage(this.damage * this.critCoef);
+       
+        //enemy.GetComponent<EnemyHealthManager>().TakeDamage(this.damage);
 
         // Reset the pity when a crit happened
         IncreasePity();
@@ -196,13 +296,15 @@ public class Shell : MonoBehaviour
     /// Apply critical damage to the enemy, compute liferip and reset pity value to 0
     /// </summary>
     /// <param name="enemy">The enemy hit</param>
-    private void ApplyCriticalDamage(GameObject enemy)
+    private void ApplyCriticalDamage(EnemyController enemy)
     {
         // Get the life steal proportion
         lifeSteal = GameManager.instance.GetPlayerHealthManager().GetLifeRip() * this.damage * this.critCoef;
 
         // Apply the damage to the enemy
-        enemy.GetComponent<EnemyHealthManager>().TakeDamage(this.damage * this.critCoef);
+        enemy.GetHealthManager().TakeDamage(this.damage * this.critCoef);
+
+        // enemy.GetComponent<EnemyHealthManager>().TakeDamage(this.damage * this.critCoef);
 
         // Reset the pity when a crit happened
         ResetPity();
@@ -213,10 +315,11 @@ public class Shell : MonoBehaviour
     /// </summary>
     /// <param name="hit"></param>
     /// <returns>The angle relative to normal of the collider</returns>
-    private float GetAngle(RaycastHit hit)
+    private float GetAngle(RaycastHit hit, HitZone zone)
     {
         Debug.Log(Vector3.Angle(-direction, hit.normal));
-        return Vector3.Angle(-direction, hit.normal);
+        float angle =  Vector3.Angle(-direction, hit.normal);
+        return NormalizeShell(angle, zone);
     }
 
     /// <summary>
@@ -240,9 +343,9 @@ public class Shell : MonoBehaviour
     /// <param name="penetration">The penetration value of this shell</param>
     /// <param name="hit"></param>
     /// <returns>True if the enemy can be penetrated</returns>
-    private bool CanPenetrate(int armor, int penetration, RaycastHit hit)
+    private bool CanPenetrate(int armor, int penetration, float angle)
     {
-        float relativeArmor = ObtainRelativeArmor(armor, hit);
+        float relativeArmor = ObtainRelativeArmor(armor, angle);
 
         return penetration > relativeArmor;
     }
@@ -253,10 +356,8 @@ public class Shell : MonoBehaviour
     /// <param name="armor">The enemy nominal armor</param>
     /// <param name="hit"></param>
     /// <returns>The relative armor of the enemy</returns>
-    private float ObtainRelativeArmor(int armor, RaycastHit hit)
-    {
-        float angle = GetAngle(hit);
-        
+    private float ObtainRelativeArmor(int armor, float angle)
+    {        
         return (armor)/Mathf.Cos(angle);
     }
 
@@ -271,7 +372,6 @@ public class Shell : MonoBehaviour
         {
             GameManager.instance.GetPlayerHealthManager().RestoreHealth(lifeSteal);
         }
-
     }
 
     #region Getter / Setter

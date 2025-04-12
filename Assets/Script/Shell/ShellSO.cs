@@ -11,4 +11,7 @@ public class ShellSO : ScriptableObject
     public float damage;
     public int penetration;
     public float lifeTime;
+
+    public bool explodesOnImpact;
+    public float explosionRadius;
 }

@@ -14,6 +14,10 @@ public class EnemyController : MonoBehaviour
     // [SerializeField] private float maxSpeed = 40f;
     [SerializeField] private int damage;
 
+    [Header("Script instance")]
+    [Tooltip("Health Manager")]
+    [SerializeField] private EnemyHealthManager healthManager;
+
     private void Awake()
     {
         rigibidbody = GetComponent<Rigidbody>();
@@ -48,6 +52,11 @@ public class EnemyController : MonoBehaviour
     public float GetDamage()
     {
         return damage;
+    }
+
+    public EnemyHealthManager GetHealthManager()
+    {
+        return healthManager;
     }
     #endregion
 }
