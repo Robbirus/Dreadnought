@@ -7,7 +7,7 @@ public class EnemyHealthManager : MonoBehaviour
 {
 
     [Header("Enemy Health Stat")]
-    [SerializeField] private int maxHealth = 1700;
+    [SerializeField] private int maxHealth;
     [SerializeField] private HealthBar healthBar;
     [Space(10)]
 
@@ -31,7 +31,7 @@ public class EnemyHealthManager : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        health -= (damage - armor);
+        health -= damage;
         healthBar.UpdateHealthBar(health, maxHealth);
         gameObject.GetComponent<EnemySoundManager>().PlayHitSound();
 
@@ -80,11 +80,6 @@ public class EnemyHealthManager : MonoBehaviour
     }
 
     #region Getter / Setter
-    public int GetArmor()
-    {
-        return this.armor;
-    }
-
     public void SetMaxHealth(int health)
     {
         this.maxHealth = health;
