@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1fd6ef458a05ee4d8128f86713fe001, type: 3}
+  m_Name: Heavy
+  m_EditorClassIdentifier: 
+  enemyName: IS-7
+  moveSpeed: 0.5
+  rotationSpeed: 0.5
+  maxHealth: 2400
+  damage: 490
+  enemyPrefab: {fileID: 1486456276200469354, guid: 4775f2ed42e0b8c4aadfd766d52d010a, type: 3}

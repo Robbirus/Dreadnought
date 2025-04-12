@@ -88,6 +88,7 @@
     <Compile Include="Assets\Script\Enemy\EnemyBehaviour.cs" />
     <Compile Include="Assets\Script\Player\PlayerState\PlayerBaseState.cs" />
     <Compile Include="Assets\Script\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemySO.cs" />
     <Compile Include="Assets\Script\Building\Spawner\SpawnerSoundManager.cs" />
     <Compile Include="Assets\Script\Collectable\Experience Item\ExperienceCollectableSO.cs" />
     <Compile Include="Assets\Script\Perks\Perk.cs" />

@@ -123,9 +123,9 @@ public class Shell : MonoBehaviour
             }
             else
             {
-                    GameManager.instance.IncreaseNonPenetrativeShot();
-                    Debug.Log("Non penetrant");
-                    Destroy(gameObject);
+                Debug.Log("Non penetrant");
+                GameManager.instance.IncreaseNonPenetrativeShot();
+                Destroy(gameObject);
              
             }
         }
@@ -136,7 +136,11 @@ public class Shell : MonoBehaviour
         }
     }
 
-
+    /// <summary>
+    /// Return the ricochet angle depending of the shell type
+    /// </summary>
+    /// <param name="zone">The HitZone this shell touched (used for the 3 Calibers rules)</param>
+    /// <returns>The ricochet angle</returns>
     private float ObtainRicochetAngle(HitZone zone)
     {
         float ricochet = 0;
@@ -167,6 +171,12 @@ public class Shell : MonoBehaviour
         return ricochet;
     }
 
+    /// <summary>
+    /// If the shell calibers is more than thrice the nominal armor thickness, there will be no ricochet
+    /// </summary>
+    /// <param name="zone">The HitZone this shell touched</param>
+    /// <param name="ricochet">The ricochet angle to change</param>
+    /// <returns>The ricochet angle</returns>
     private float Check3CalibersRule(HitZone zone, float ricochet)
     {
         if (this.caliber >= 3 * zone.armorThickness)
@@ -203,6 +213,12 @@ public class Shell : MonoBehaviour
         return angle - normalizationAngle;
     }
 
+    /// <summary>
+    /// If the shell calibers is more than twice the nominal armor thickness, this shell gain a little more in normalization
+    /// </summary>
+    /// <param name="zone">The HitZone this shell touched</param>
+    /// <param name="normalizationAngle">The normalization angle by default</param>
+    /// <returns>The adjusted normalization angle</returns>
     private float Check2CalibersRule(HitZone zone, float normalizationAngle)
     {
         if (this.caliber >= 2 * zone.armorThickness)

@@ -9,7 +9,6 @@ public class EnemyHealthManager : MonoBehaviour
     [Header("Enemy Health Stat")]
     [SerializeField] private int maxHealth = 1700;
     [SerializeField] private HealthBar healthBar;
-    [SerializeField] private int armor = 50;
     [Space(10)]
 
     [Header("Drop List")]
@@ -84,6 +83,11 @@ public class EnemyHealthManager : MonoBehaviour
     public int GetArmor()
     {
         return this.armor;
+    }
+
+    public void SetMaxHealth(int health)
+    {
+        this.maxHealth = health;
     }
     #endregion
 }

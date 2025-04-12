@@ -115,8 +115,8 @@ Transform:
   m_GameObject: {fileID: 401056930025162306}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4, y: -3, z: -0.5}
-  m_LocalScale: {x: 2, y: 1, z: 11}
+  m_LocalPosition: {x: -4, y: -3, z: -2}
+  m_LocalScale: {x: 2, y: 1, z: 14}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3056391004325685843}
@@ -208,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoneName: Tracks
-  armorThickness: 30
+  armorThickness: 50
 --- !u!1 &644686850584797152
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,8 +238,8 @@ Transform:
   m_GameObject: {fileID: 644686850584797152}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: -3, z: -0.5}
-  m_LocalScale: {x: 2, y: 1, z: 11}
+  m_LocalPosition: {x: 4, y: -3, z: -2}
+  m_LocalScale: {x: 2, y: 1, z: 14}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3056391004325685843}
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoneName: Tracks
-  armorThickness: 30
+  armorThickness: 50
 --- !u!1 &670282998099621943
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,8 +361,8 @@ Transform:
   m_GameObject: {fileID: 670282998099621943}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1, z: -0.2}
-  m_LocalScale: {x: 10, y: 3, z: 12.5}
+  m_LocalPosition: {x: 0, y: -0.92999995, z: -2.15}
+  m_LocalScale: {x: 10, y: 3, z: 16}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5048155789877411156}
@@ -455,7 +455,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoneName: Hull
-  armorThickness: 200
+  armorThickness: 150
 --- !u!1 &704609720262883061
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +551,7 @@ GameObject:
   - component: {fileID: 3036279537306303742}
   - component: {fileID: 3721318474763345401}
   m_Layer: 10
-  m_Name: Enemy
+  m_Name: IS-7
   m_TagString: Ennemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -784,8 +784,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  ennemySpeed: 10
-  damage: 0
   healthManager: {fileID: -58375516227824668}
 --- !u!54 &3721318474763345401
 Rigidbody:
@@ -1039,13 +1037,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5107943697383815770}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.42261827, y: 0, z: 0, w: 0.9063079}
-  m_LocalPosition: {x: 0, y: -0.6, z: 6.81}
+  m_LocalRotation: {x: -0.5, y: 0, z: 0, w: 0.8660254}
+  m_LocalPosition: {x: 0, y: -0.53, z: 6.81}
   m_LocalScale: {x: 8, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3056391004325685843}
-  m_LocalEulerAnglesHint: {x: -50, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -60, y: 0, z: 0}
 --- !u!33 &6411901746127836357
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -1133,7 +1131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoneName: UpperGlacis
-  armorThickness: 200
+  armorThickness: 150
 --- !u!1 &6284582478807907029
 GameObject:
   m_ObjectHideFlags: 0
@@ -1302,7 +1300,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.5, z: 1.8}
-  m_LocalScale: {x: 6, y: 2, z: 6}
+  m_LocalScale: {x: 6, y: 2, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2747511795751640006}
@@ -1395,7 +1393,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoneName: Turret
-  armorThickness: 100
+  armorThickness: 240
 --- !u!1 &8250893916189075290
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,7 +1498,7 @@ Transform:
   m_GameObject: {fileID: 8480738010513953271}
   serializedVersion: 2
   m_LocalRotation: {x: 0.60876137, y: 0, z: 0, w: 0.7933534}
-  m_LocalPosition: {x: 0, y: -1.6, z: 6.18}
+  m_LocalPosition: {x: 0, y: -1.53, z: 6.18}
   m_LocalScale: {x: 8, y: 2.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1593,4 +1591,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   zoneName: LowerGlacis
-  armorThickness: 80
+  armorThickness: 150

@@ -17,5 +17,7 @@ MonoBehaviour:
   shellImage: {fileID: 21300000, guid: fec963349d048864198fd87ab6bac804, type: 3}
   velocity: 500
   damage: 390
-  penetration: 259
+  penetration: 260
   lifeTime: 4
+  explodesOnImpact: 0
+  explosionRadius: 0

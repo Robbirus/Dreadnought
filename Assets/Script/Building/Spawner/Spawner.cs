@@ -3,13 +3,15 @@ using UnityEngine.Rendering;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject enemy;
+    [Header("Enemy Properties")]
+    [Tooltip("The differents types of enemies")]
+    [SerializeField] private EnemySO[] enemyTypes;
 
-    [SerializeField]
-    private float minimumSpawnTime = 10f;
-    [SerializeField]
-    private float maximumSpawnTime = 30f;
+    [Header("Spawner Properties")]
+    [Tooltip("The minimum time an enemy can spawn")]
+    [SerializeField] private float minimumSpawnTime = 10f;
+    [Tooltip("The maximum time an enemy can spawn")]
+    [SerializeField] private float maximumSpawnTime = 30f;
 
     private float timeUntilSpawn;
 
@@ -37,10 +39,17 @@ public class Spawner : MonoBehaviour
         if (timeUntilSpawn < minimumSpawnTime)
         {
             gameObject.GetComponent<SpawnerSoundManager>().PlaySpawnSound();
-            Instantiate(enemy, transform.position + new Vector3(0, 3, 0), Quaternion.identity);
+
+            EnemySO type = enemyTypes[Random.Range(0, enemyTypes.Length)];
+            InstantiateEnemy(type);
             GameManager.instance.IncreaseEnemyCount();
             SetTimeUntilSpawn();
         }
+    }
+    private void InstantiateEnemy(EnemySO type)
+    {
+        GameObject enemy = Instantiate(type.enemyPrefab, transform.position + new Vector3(0, 3, 0), Quaternion.identity);
+        enemy.GetComponent<EnemyController>().Setup(type);
     }
 
     private void SetTimeUntilSpawn()

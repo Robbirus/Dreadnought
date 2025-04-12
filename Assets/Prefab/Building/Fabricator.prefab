@@ -1098,7 +1098,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ef2864d5982b4444aef58e77285a7de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 1486456276200469354, guid: 4775f2ed42e0b8c4aadfd766d52d010a, type: 3}
+  enemyTypes:
+  - {fileID: 11400000, guid: b41ce439e2ed5494d8c495551409af8b, type: 2}
+  - {fileID: 11400000, guid: c18c0fa0235d8d948a59c44abc342ffb, type: 2}
+  - {fileID: 11400000, guid: 03cc6d836dae3aa43955ed8dc05ffd3b, type: 2}
   minimumSpawnTime: 2
   maximumSpawnTime: 5
 --- !u!82 &6422740305884154916

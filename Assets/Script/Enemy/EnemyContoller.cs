@@ -6,17 +6,18 @@ public class EnemyController : MonoBehaviour
     [Header("Player Instance")]
     [SerializeField] private GameObject player;
 
-    private Rigidbody rigibidbody;
-    private Vector3 direction;
-
-    [Header("Ennemy Stats")]
-    [SerializeField] private float ennemySpeed = 10f;
-    // [SerializeField] private float maxSpeed = 40f;
-    [SerializeField] private int damage;
-
     [Header("Script instance")]
     [Tooltip("Health Manager")]
     [SerializeField] private EnemyHealthManager healthManager;
+
+    private Rigidbody rigibidbody;
+    private Vector3 direction;
+
+    private string enemyName;
+    private float moveSpeed;
+    private float rotationSpeed;
+    private int maxHealth;
+    private int damage;
 
     private void Awake()
     {
@@ -28,7 +29,17 @@ public class EnemyController : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         direction = transform.forward;
-        damage = UnityEngine.Random.Range(105, 120);
+    }
+
+    public void Setup(EnemySO enemySO)
+    {
+        enemyName = enemySO.enemyName;
+        moveSpeed = enemySO.moveSpeed;
+        rotationSpeed = enemySO.rotationSpeed;
+        maxHealth = enemySO.maxHealth;
+        damage = enemySO.damage;
+
+        healthManager.SetMaxHealth(maxHealth);
     }
 
     // Update is called once per frame
@@ -42,7 +53,7 @@ public class EnemyController : MonoBehaviour
         Vector3 direction = player.transform.position - transform.position;
         direction.y = 0;
         transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.1f);
-        transform.Translate(0, 0, ennemySpeed * Time.fixedDeltaTime);
+        transform.Translate(0, 0, 10 * moveSpeed * Time.fixedDeltaTime);
         Quaternion orientation = Quaternion.LookRotation(direction, Vector3.up);
 
         transform.rotation = orientation;
