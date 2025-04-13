@@ -19,6 +19,10 @@ public class EnemyController : MonoBehaviour
     private int maxHealth;
     private int damage;
 
+    private float radius;
+    private float height;
+    private float baseOffset;
+
     private void Awake()
     {
         rigibidbody = GetComponent<Rigidbody>();
@@ -38,6 +42,9 @@ public class EnemyController : MonoBehaviour
         rotationSpeed = enemySO.rotationSpeed;
         maxHealth = enemySO.maxHealth;
         damage = enemySO.damage;
+        radius = enemySO.radius;
+        height = enemySO.height;
+        baseOffset = enemySO.baseOffset;
 
         healthManager.SetMaxHealth(maxHealth);
     }
@@ -45,7 +52,7 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        CheckMovement();
+        // CheckMovement();
     }
 
     private void CheckMovement()
@@ -65,9 +72,39 @@ public class EnemyController : MonoBehaviour
         return damage;
     }
 
+    public float GetSpeed()
+    {
+        return this.moveSpeed;
+    }
+
+    public float GetAngularSpeed()
+    {
+        return this.rotationSpeed;
+    }
+
+    public GameObject GetPlayer()
+    {
+        return this.player;
+    }
+
     public EnemyHealthManager GetHealthManager()
     {
         return healthManager;
+    }
+
+    public float GetHeight()
+    {
+        return this.height;
+    }
+
+    public float GetRadius()
+    {
+        return this.radius;
+    }
+
+    public float GetBaseOffset()
+    {
+        return this.baseOffset;
     }
     #endregion
 }

@@ -17,8 +17,7 @@ public class Shell : MonoBehaviour
     private int caliber;
     private ShellType type;
 
-    private bool explosion;
-    private float explosionRadius;
+    private Team owner;
 
     private void Start()
     {
@@ -36,7 +35,7 @@ public class Shell : MonoBehaviour
     /// Instantiate a shell depending of the type in the SO
     /// </summary>
     /// <param name="currentShell">The SO shell used this time</param>
-    public void Setup(ShellSO currentShell)
+    public void Setup(ShellSO currentShell, Team team)
     {
         float damageVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
         float penetrationVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
@@ -46,8 +45,7 @@ public class Shell : MonoBehaviour
         velocity = currentShell.velocity;
         lifeTime = currentShell.lifeTime;
         type = currentShell.ShellType;
-        explosion = currentShell.explodesOnImpact;
-        explosionRadius = currentShell.explosionRadius;
+        owner = team;
 
         Gradient gradient = new Gradient();
         gradient.SetKeys(
@@ -72,11 +70,7 @@ public class Shell : MonoBehaviour
 
             if (zone != null)
             {
-                OnHittingEnemy(hit, zone);
-            }
-
-            if (CheckColliderTag(hit.collider.gameObject))
-            {
+                OnHitTarget(hit, zone);
             }
             else
             {
@@ -96,6 +90,93 @@ public class Shell : MonoBehaviour
     private void KeepShellMoving(Vector3 nextPos)
     {
         transform.position = nextPos;
+    }
+
+    private void OnHitTarget(RaycastHit hit, HitZone zone)
+    {
+        GameObject impact = hit.collider.transform.parent.gameObject;
+        Debug.Log(impact);
+
+        MonoBehaviour target = impact.GetComponent<MonoBehaviour>();
+        if (target == null) return;
+
+        Debug.Log(target);
+        Debug.Log(owner);
+
+        if (owner == Team.Player && target is EnemyController enemy)
+        {
+            HandleHit(enemy, hit, zone, owner);
+        }
+        else if(owner == Team.Enemy && target is PlayerController player)
+        {
+            HandleHit(player, hit, zone, owner);
+        }
+    }
+
+    private void HandleHit(MonoBehaviour target, RaycastHit hit, HitZone zone, Team team)
+    {
+        float angle = GetAngle(hit, zone);
+        ricochetAngle = ObtainRicochetAngle(zone);
+
+        if(angle < ricochetAngle)
+        {
+            if(CanPenetrate(zone.armorThickness, this.penetration, angle))
+            {
+                Debug.Log("Tir pénétrant");
+                PenetrateTarget(target, team);
+            }
+            else
+            {
+                if(team == Team.Player)
+                {
+                    Debug.Log("Non pénétrant");
+                    GameManager.instance.IncreaseNonPenetrativeShot();
+                }
+                Destroy(gameObject);
+            }
+        }
+        else
+        {
+            Debug.Log("Ricochet !");
+            Ricochet(hit);
+        }
+    }
+
+    private void PenetrateTarget(MonoBehaviour target, Team team)
+    {
+        bool isCrit = false;
+        float finalDamage = damage;
+        if (team == Team.Player) 
+        {
+            isCrit = UnityEngine.Random.Range(1, 100 - this.pity) <= this.critChance;
+            finalDamage = isCrit ? damage * critCoef : damage;
+
+            if (isCrit)
+            {
+                ResetPity();
+            }
+            else
+            {
+                IncreasePity();
+            }
+        }
+
+        if(target is EnemyController enemy)
+        {
+            enemy.GetHealthManager().TakeDamage(finalDamage);
+        }
+        else if(target is PlayerController player)
+        {
+            player.GetHealthManager().TakeDamage(finalDamage);
+        }
+
+        ApplyLifeRip(lifeSteal);
+
+        if(team == Team.Player)
+        {
+            GameManager.instance.IncreasePenetrativeShot();
+        }
+        Destroy(gameObject);
     }
 
     /// <summary>
@@ -301,8 +382,6 @@ public class Shell : MonoBehaviour
 
         // Apply the damage to the enemy
         enemy.GetHealthManager().TakeDamage(this.damage * this.critCoef);
-       
-        //enemy.GetComponent<EnemyHealthManager>().TakeDamage(this.damage);
 
         // Reset the pity when a crit happened
         IncreasePity();

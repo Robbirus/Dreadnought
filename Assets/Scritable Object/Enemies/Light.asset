@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Light
   m_EditorClassIdentifier: 
   enemyName: Rhm. Pzw.
-  moveSpeed: 1.5
-  rotationSpeed: 1.5
   maxHealth: 1600
   damage: 320
+  baseOffset: 2.5
+  radius: 5
+  height: 4
+  moveSpeed: 1.5
+  rotationSpeed: 1.5
   enemyPrefab: {fileID: 1486456276200469354, guid: 331e88dadd9928942a25920b1dc285c2, type: 3}

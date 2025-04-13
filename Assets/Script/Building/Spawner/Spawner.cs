@@ -1,60 +1,39 @@
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Rendering;
 
 public class Spawner : MonoBehaviour
 {
-    [Header("Enemy Properties")]
-    [Tooltip("The differents types of enemies")]
-    [SerializeField] private EnemySO[] enemyTypes;
+        [Header("Enemy Properties")]
+        [Tooltip("The differents types of enemies")]
+        [SerializeField] private EnemySO[] enemyTypes;
 
-    [Header("Spawner Properties")]
-    [Tooltip("The minimum time an enemy can spawn")]
-    [SerializeField] private float minimumSpawnTime = 10f;
-    [Tooltip("The maximum time an enemy can spawn")]
-    [SerializeField] private float maximumSpawnTime = 30f;
-
-    private float timeUntilSpawn;
-
-    private void Awake()
-    {
-        SetTimeUntilSpawn();
-    }
+        [Header("Spawn Settings")]
+        [SerializeField] private float spawnDelay = 2f;
 
     private void Start()
     {
-        gameObject.GetComponent<SpawnerSoundManager>().PlayFactory();
+        InvokeRepeating(nameof(SpawnEnemy), 10f, spawnDelay);
     }
 
-    private void Update()
+    private void SpawnEnemy()
     {
-        if(GameManager.instance.GetEnemyCount() < GameManager.ENEMY_LIMIT)
-        {
-            SpawnAnEnemy();
-        }
+        if (GameManager.instance.GetEnemyCount() >= GameManager.ENEMY_LIMIT) return;
+
+        gameObject.GetComponent<SpawnerSoundManager>().PlaySpawnSound();
+
+        EnemySO type = enemyTypes[Random.Range(0, enemyTypes.Length)];
+        InstantiateEnemy(type);
+        GameManager.instance.IncreaseEnemyCount();
     }
 
-    private void SpawnAnEnemy()
-    {
-        timeUntilSpawn -= Time.deltaTime;
-        if (timeUntilSpawn < minimumSpawnTime)
-        {
-            gameObject.GetComponent<SpawnerSoundManager>().PlaySpawnSound();
-
-            EnemySO type = enemyTypes[Random.Range(0, enemyTypes.Length)];
-            InstantiateEnemy(type);
-            GameManager.instance.IncreaseEnemyCount();
-            SetTimeUntilSpawn();
-        }
-    }
     private void InstantiateEnemy(EnemySO type)
     {
-        GameObject enemy = Instantiate(type.enemyPrefab, transform.position + new Vector3(0, 3, 0), Quaternion.identity);
-        enemy.GetComponent<EnemyController>().Setup(type);
+        float x, y, z;
+        x = transform.position.x;
+        y = transform.position.y;
+        z = transform.position.z;
+        GameObject enemy = Instantiate(type.enemyPrefab, new Vector3(x, y, z), Quaternion.identity);
+        enemy.GetComponentInChildren<EnemyController>().Setup(type);
     }
-
-    private void SetTimeUntilSpawn()
-    {
-        timeUntilSpawn = Random.Range(minimumSpawnTime, maximumSpawnTime);
-    }
-
 }

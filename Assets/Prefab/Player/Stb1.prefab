@@ -7324,9 +7324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
-  moveTurretActionReference: {fileID: -446524657075902219, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
-  turret: {fileID: 6297071800644591404}
-  rotationTurretSpeed: 25
+  healthManager: {fileID: 2683492071193335968}
 --- !u!114 &325563445029884473
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7401,13 +7399,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   shootParticle: {fileID: 5128616442433289193}
+  currentShellImage: {fileID: 0}
+  reloadTimeText: {fileID: 0}
+  caliber: 105
   shellPrefab: {fileID: 3633209065182094968, guid: 48d518da0597a9e418d03349ad9bc941, type: 3}
   shellSpawnPoint: {fileID: 2551777122646263899}
-  damage: 420
   critChance: 2
   critCoef: 1.01
   pity: 0
+  ammo: []
   shootActionReference: {fileID: -3527412392891031929, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+  reloadTime: 4
+  reloadCircle: {fileID: 0}
 --- !u!114 &1746672064193953181
 MonoBehaviour:
   m_ObjectHideFlags: 0

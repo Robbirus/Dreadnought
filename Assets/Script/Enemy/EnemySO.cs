@@ -3,11 +3,20 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Enemy", menuName = "Enemy System/new Enemy")]
 public class EnemySO : ScriptableObject
 {
+    [Header("Enemy ÅNProperties")]
     public string enemyName;
-    public float moveSpeed;
-    public float rotationSpeed;
     public int maxHealth;
     public int damage;
+    [Space(10)]
 
+    [Header("NavMeshAgent Properties")]
+    public float baseOffset;
+    public float radius;
+    public float height;
+    public float moveSpeed;
+    public float rotationSpeed;
+    [Space(10)]
+
+    [Header("Enemy Model")]
     public GameObject enemyPrefab;
 }

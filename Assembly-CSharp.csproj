@@ -90,6 +90,7 @@
     <Compile Include="Assets\Script\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Script\Enemy\EnemySO.cs" />
     <Compile Include="Assets\Script\Building\Spawner\SpawnerSoundManager.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemyAI.cs" />
     <Compile Include="Assets\Script\Collectable\Experience Item\ExperienceCollectableSO.cs" />
     <Compile Include="Assets\Script\Perks\Perk.cs" />
     <Compile Include="Assets\Script\Game\Sound\MusicManager.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Assets\Script\Game\Main Menu\LoadPrefs.cs" />
     <Compile Include="Assets\Script\Player\GunManager.cs" />
     <Compile Include="Assets\Script\Enemy\HealthBar.cs" />
+    <Compile Include="Assets\Script\Shell\Team.cs" />
     <Compile Include="Assets\Script\Enemy\EnemySoundManager.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyMovementManager.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyContoller.cs" />

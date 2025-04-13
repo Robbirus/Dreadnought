@@ -7,13 +7,16 @@ public class PlayerController : MonoBehaviour
     [Header("Animator")]
     [SerializeField] private Animator animator;
 
-    private void Start()
+    [Header("Script instance")]
+    [SerializeField] private PlayerHealthManager healthManager;
+
+
+    #region Getter / Setter
+    public PlayerHealthManager GetHealthManager()
     {
-        
+        return this.healthManager;
     }
 
-    private void Update()
-    {
-        
-    }
+    #endregion
+
 }

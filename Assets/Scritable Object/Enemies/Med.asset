@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Med
   m_EditorClassIdentifier: 
   enemyName: Centurion AX
-  moveSpeed: 1
-  rotationSpeed: 1
   maxHealth: 1950
   damage: 390
+  baseOffset: 3.5
+  radius: 7
+  height: 7
+  moveSpeed: 1
+  rotationSpeed: 1
   enemyPrefab: {fileID: 1486456276200469354, guid: 2b9b90ae6aba5404392f2e98417e5259, type: 3}

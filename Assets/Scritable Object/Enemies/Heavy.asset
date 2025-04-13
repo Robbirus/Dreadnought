@@ -13,8 +13,11 @@ MonoBehaviour:
   m_Name: Heavy
   m_EditorClassIdentifier: 
   enemyName: IS-7
-  moveSpeed: 0.5
-  rotationSpeed: 0.5
   maxHealth: 2400
   damage: 490
+  baseOffset: 4.5
+  radius: 10
+  height: 7
+  moveSpeed: 0.5
+  rotationSpeed: 0.5
   enemyPrefab: {fileID: 1486456276200469354, guid: 4775f2ed42e0b8c4aadfd766d52d010a, type: 3}
