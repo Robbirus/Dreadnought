@@ -3,16 +3,6 @@ using UnityEngine;
 
 public class PlayerCollision : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider collider)
-    {
-        ProcessCollision(collider.gameObject);
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        ProcessCollision(collision.gameObject);
-    }
-
     private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -27,10 +17,5 @@ public class PlayerCollision : MonoBehaviour
         {
             gameObject.GetComponent<PlayerMovement>().SetGrounded(false);
         }
-    }
-
-    private void ProcessCollision(GameObject collider)
-    {
-
     }
 }

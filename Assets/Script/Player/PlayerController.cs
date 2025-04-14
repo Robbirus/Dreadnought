@@ -9,6 +9,9 @@ public class PlayerController : MonoBehaviour
 
     [Header("Script instance")]
     [SerializeField] private PlayerHealthManager healthManager;
+    [SerializeField] private GunManager gunManager;
+    [SerializeField] private ExperienceManager xpManager;
+    [SerializeField] private PlayerMovement movement;
 
 
     #region Getter / Setter
@@ -17,6 +20,19 @@ public class PlayerController : MonoBehaviour
         return this.healthManager;
     }
 
+    public ExperienceManager GetXpManager()
+    {
+        return this.xpManager;
+    }
+
+    public GunManager GetGunManager()
+    {
+        return this.gunManager;
+    }
+    public PlayerMovement GetMovement()
+    {
+        return this.movement;
+    }
     #endregion
 
 }

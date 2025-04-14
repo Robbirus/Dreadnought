@@ -6,6 +6,7 @@ public class EnemySO : ScriptableObject
     [Header("Enemy ÅNProperties")]
     public string enemyName;
     public int maxHealth;
+    public int caliber;
     public int damage;
     [Space(10)]
 

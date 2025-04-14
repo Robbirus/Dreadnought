@@ -149,7 +149,7 @@ public class GunManager : MonoBehaviour
     private void InstantiateShell()
     {
         GameObject shell = Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
-        shell.GetComponent<Shell>().Setup(currentShell, Team.Player);
+        shell.GetComponent<Shell>().Setup(currentShell, Team.Player, this.caliber);
     }
 
     #region Getter / Setter

@@ -18,6 +18,7 @@ public class EnemyController : MonoBehaviour
     private float rotationSpeed;
     private int maxHealth;
     private int damage;
+    private int caliber;
 
     private float radius;
     private float height;
@@ -45,6 +46,7 @@ public class EnemyController : MonoBehaviour
         radius = enemySO.radius;
         height = enemySO.height;
         baseOffset = enemySO.baseOffset;
+        caliber = enemySO.caliber;
 
         healthManager.SetMaxHealth(maxHealth);
     }
@@ -67,6 +69,11 @@ public class EnemyController : MonoBehaviour
     }
 
     #region Getter Setter
+    public int GetCaliber()
+    {
+        return caliber;
+    }
+
     public float GetDamage()
     {
         return damage;

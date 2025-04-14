@@ -48,7 +48,7 @@ public class EnemyHealthManager : MonoBehaviour
 
             GenerateDrop();
 
-            if (GameManager.instance.GetPlayerHealthManager().GetBloodbathObtained())
+            if (GameManager.instance.GetPlayerController().GetHealthManager().GetBloodbathObtained())
             {
                 StartCoroutine(Bloodbath());
             }
@@ -72,7 +72,7 @@ public class EnemyHealthManager : MonoBehaviour
         do
         {
             timer -= Time.deltaTime;
-            GameManager.instance.GetPlayerHealthManager().RestoreHealth(90f);
+            GameManager.instance.GetPlayerController().GetHealthManager().RestoreHealth(90f);
 
             yield return null;
         }

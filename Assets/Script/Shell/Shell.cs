@@ -25,17 +25,16 @@ public class Shell : MonoBehaviour
 
         direction.Normalize();
 
-        caliber = GameManager.instance.GetGunManager().GetCaliber();
-        critChance = GameManager.instance.GetGunManager().GetCritChance();
-        critCoef = GameManager.instance.GetGunManager().GetCritCoef();
-        pity = GameManager.instance.GetGunManager().GetPity();
+        critChance = GameManager.instance.GetPlayerController().GetGunManager().GetCritChance();
+        critCoef = GameManager.instance.GetPlayerController().GetGunManager().GetCritCoef();
+        pity = GameManager.instance.GetPlayerController().GetGunManager().GetPity();
     }
 
     /// <summary>
     /// Instantiate a shell depending of the type in the SO
     /// </summary>
     /// <param name="currentShell">The SO shell used this time</param>
-    public void Setup(ShellSO currentShell, Team team)
+    public void Setup(ShellSO currentShell, Team team, int caliber)
     {
         float damageVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
         float penetrationVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
@@ -45,6 +44,7 @@ public class Shell : MonoBehaviour
         velocity = currentShell.velocity;
         lifeTime = currentShell.lifeTime;
         type = currentShell.ShellType;
+        this.caliber = caliber; 
         owner = team;
 
         Gradient gradient = new Gradient();
@@ -95,13 +95,10 @@ public class Shell : MonoBehaviour
     private void OnHitTarget(RaycastHit hit, HitZone zone)
     {
         GameObject impact = hit.collider.transform.parent.gameObject;
-        Debug.Log(impact);
 
         MonoBehaviour target = impact.GetComponent<MonoBehaviour>();
         if (target == null) return;
 
-        Debug.Log(target);
-        Debug.Log(owner);
 
         if (owner == Team.Player && target is EnemyController enemy)
         {
@@ -378,7 +375,7 @@ public class Shell : MonoBehaviour
     private void ApplyDamage(EnemyController enemy)
     {
         // Get the life steal proportion
-        lifeSteal = GameManager.instance.GetPlayerHealthManager().GetLifeRip() * this.damage;
+        lifeSteal = GameManager.instance.GetPlayerController().GetHealthManager().GetLifeRip() * this.damage;
 
         // Apply the damage to the enemy
         enemy.GetHealthManager().TakeDamage(this.damage * this.critCoef);
@@ -394,7 +391,7 @@ public class Shell : MonoBehaviour
     private void ApplyCriticalDamage(EnemyController enemy)
     {
         // Get the life steal proportion
-        lifeSteal = GameManager.instance.GetPlayerHealthManager().GetLifeRip() * this.damage * this.critCoef;
+        lifeSteal = GameManager.instance.GetPlayerController().GetHealthManager().GetLifeRip() * this.damage * this.critCoef;
 
         // Apply the damage to the enemy
         enemy.GetHealthManager().TakeDamage(this.damage * this.critCoef);
@@ -463,9 +460,9 @@ public class Shell : MonoBehaviour
     /// <param name="lifeSteal">The value of the life stole from the enemy</param>
     private void ApplyLifeRip(float lifeSteal)
     {
-        if (GameManager.instance.GetPlayerHealthManager().IsLifeRipObtained())
+        if (GameManager.instance.GetPlayerController().GetHealthManager().IsLifeRipObtained())
         {
-            GameManager.instance.GetPlayerHealthManager().RestoreHealth(lifeSteal);
+            GameManager.instance.GetPlayerController().GetHealthManager().RestoreHealth(lifeSteal);
         }
     }
 
@@ -496,12 +493,12 @@ public class Shell : MonoBehaviour
     }
     public void ResetPity()
     {
-        GameManager.instance.GetGunManager().ResetPity();
+        GameManager.instance.GetPlayerController().GetGunManager().ResetPity();
     }
 
     public void IncreasePity()
     {
-        GameManager.instance.GetGunManager().IncreasePity();
+        GameManager.instance.GetPlayerController().GetGunManager().IncreasePity();
     }
 
     public float GetCritCoef()

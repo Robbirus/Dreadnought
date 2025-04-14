@@ -95,7 +95,7 @@ public class EnemyAI : MonoBehaviour
     private void InstantiateShell()
     {
         GameObject shell = Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
-        shell.GetComponent<Shell>().Setup(currentShell, Team.Enemy);
+        shell.GetComponent<Shell>().Setup(currentShell, Team.Enemy, enemyController.GetCaliber());
     }
 
     #region Getter / Setter

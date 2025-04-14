@@ -111,10 +111,16 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    public void CreditButton()
+    {
+
+    }
+
     public void ExitButton()
     {
         Application.Quit();
     }
+
     public void ResetButton(string MenuType)
     {
         switch (MenuType)

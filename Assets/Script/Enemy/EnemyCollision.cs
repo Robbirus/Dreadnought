@@ -97,9 +97,9 @@ public class EnemyCollision : MonoBehaviour
     /// <param name="lifeSteal">The value of the life stole from the enemy</param>
     private void ApplyLifeRip(float lifeSteal)
     {
-        if (GameManager.instance.GetPlayerHealthManager().IsLifeRipObtained()) 
+        if (GameManager.instance.GetPlayerController().GetHealthManager().IsLifeRipObtained()) 
         {
-            GameManager.instance.GetPlayerHealthManager().RestoreHealth(lifeSteal);
+            GameManager.instance.GetPlayerController().GetHealthManager().RestoreHealth(lifeSteal);
         }
         
     }

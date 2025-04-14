@@ -10,10 +10,6 @@ public class GameManager : MonoBehaviour
 
     #region Player Script
     private PlayerController playerController;
-    private PlayerMovement playerMovement;
-    private PlayerHealthManager healthManager;
-    private ExperienceManager xpManager;
-    private GunManager gunManager;
     private GameObject player;
     #endregion
 
@@ -61,7 +57,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            score = xpManager.GetExperience();
+            score = playerController.GetXpManager().GetExperience();
         }
     }
 
@@ -74,13 +70,9 @@ public class GameManager : MonoBehaviour
         if (player != null)
         {
             // Get a reference of all player script
-            xpManager = player.GetComponent<ExperienceManager>();
-            healthManager = player.GetComponent<PlayerHealthManager>();
-            gunManager = player.GetComponent<GunManager>();
             playerController = player.GetComponent<PlayerController>();
-            playerMovement = player.GetComponent<PlayerMovement>();
 
-            score = xpManager.GetExperience();
+            score = playerController.GetXpManager().GetExperience();
 
             isPlayerFound = true;
         }
@@ -155,13 +147,13 @@ public class GameManager : MonoBehaviour
 
     public int GetCurrentLevel()
     {
-        if (xpManager == null)
+        if (playerController.GetXpManager() == null)
         {
             return 0;
         }
         else
         {
-            return xpManager.GetCurrentLevel();
+            return playerController.GetXpManager().GetCurrentLevel();
         }
     }
 
@@ -169,45 +161,30 @@ public class GameManager : MonoBehaviour
     {
         return this.enemyKilled;
     }
+
     public int GetEnemyCount()
     {
         return this.enemyCount;
     }
+
     public void IncreaseEnemyKilled()
     {
         this.enemyKilled++;
     }
+
     public void IncreaseEnemyCount()
     {
         this.enemyCount++;
     }
+
     public void DecreaseEnemyCount()
     {
         this.enemyCount--;
     }
 
-    public PlayerHealthManager GetPlayerHealthManager()
-    {
-        return healthManager;
-    }
-
-    public GunManager GetGunManager()
-    {
-        return gunManager;
-    }
-
     public PlayerController GetPlayerController()
     {
         return playerController;
-    }
-    public PlayerMovement GetPlayerMovement()
-    {
-        return this.playerMovement;
-    }
-
-    public ExperienceManager GetExperienceManager()
-    {
-        return xpManager;
     }
 
     public void SetPlayerFound(bool isPlayerFound)

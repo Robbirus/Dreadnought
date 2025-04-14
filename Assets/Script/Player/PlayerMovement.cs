@@ -132,15 +132,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     /// <summary>
-    /// Move forward or backward the player
-    /// </summary>
-    private void MovePlayer()
-    {
-        moveDirection = transform.forward * verticalInput;
-        rb.AddForce(moveDirection.normalized * force * 50f, ForceMode.Force);
-    }
-
-    /// <summary>
     /// Rotate the player on himself
     /// </summary>
     private void TurnPlayer()
@@ -150,18 +141,6 @@ public class PlayerMovement : MonoBehaviour
         rb.MoveRotation(rb.rotation * rotate);
     }
 
-    /// <summary>
-    /// Limit the gain of acceleration
-    /// </summary>
-    private void ControlSpeed()
-    {
-        Vector3 flatVel = new Vector3(rb.linearVelocity.x, 0f, rb.linearVelocity.z);
-        if(flatVel.magnitude > velocity)
-        {
-            Vector3 limitedVel = flatVel.normalized * velocity;
-            rb.linearVelocity = new Vector3(limitedVel.x, rb.linearVelocity.y, limitedVel.z);
-        }
-    }
     private void UpdateNeedle()
     {
         desiredPosition = startPosition - endPosition;

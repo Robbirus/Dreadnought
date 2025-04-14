@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 
 [ExecuteAlways]
+[RequireComponent (typeof(BoxCollider))]
 public class HitZone : MonoBehaviour
 {
 
