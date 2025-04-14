@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: DamageIncrease
   m_EditorClassIdentifier: 
   perkImage: {fileID: 21300000, guid: f03fd92d50643cf4bbfb8bb9bb5a0ab4, type: 3}
-  perkText: +10% Damage
   effectType: 7
-  effectValue: 1.1
-  isUnique: 0
+  perkText: +10% Damage
+  effectValue: 10
   unlockLevel: 0
+  isPercentage: 1
+  isUnique: 0

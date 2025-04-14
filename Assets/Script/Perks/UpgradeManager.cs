@@ -99,41 +99,53 @@ public class UpgradeManager : MonoBehaviour
         switch (selectedPerk.effectType)
         {
             case PerkEffect.TopSpeedIncrease:
-                ApplyTopSpeedIncrease(selectedPerk);
+                float speed = ModifyStat(GameManager.instance.GetPlayerController().GetMovement().GetMaxSpeed(), selectedPerk);
+                GameManager.instance.GetPlayerController().GetMovement().SetMaxSpeed(speed);
                 break;
 
-            case PerkEffect.AccelerationSpeed:
-                ApplyAccelerationSpeed(selectedPerk);
-                break;
-
+                // A verifier
             case PerkEffect.CritsDamageIncrease:
-                ApplyCritsDamageIncrease(selectedPerk);
+                float critDamage = ModifyStat(GameManager.instance.GetPlayerController().GetGunManager().GetCritCoef(), selectedPerk);
+                GameManager.instance.GetPlayerController().GetGunManager().SetCritCoef(critDamage);
                 break;
 
+                // A verifier
             case PerkEffect.CritsChanceIncrease:
-                ApplyCritsChanceIncrease(selectedPerk);
+                int critChance = ModifyStat(GameManager.instance.GetPlayerController().GetGunManager().GetCritChance(), selectedPerk);
+                GameManager.instance.GetPlayerController().GetGunManager().SetCritChance(critChance);
                 break;
 
             case PerkEffect.DefenseIncrease:
-                ApplyDefenseIncrease(selectedPerk);
+                Debug.Log("Defense Increased");
                 break;
 
             case PerkEffect.ExperienceIncrease:
-                ApplyExperienceIncrease(selectedPerk);
+                int xpBonus = ModifyStat(GameManager.instance.GetPlayerController().GetXpManager().GetBonus(), selectedPerk);
+                GameManager.instance.GetPlayerController().GetXpManager().SetBonus(xpBonus);
                 break;
 
             case PerkEffect.HealthIncrease:
-                ApplyHealthIncrease(selectedPerk);
+                float life = ModifyStat(GameManager.instance.GetPlayerController().GetHealthManager().GetMaxHealth(), selectedPerk);
+                GameManager.instance.GetPlayerController().GetHealthManager().SetMaxHealth(life);
                 break;
 
+                // N'augmente que l'obus actuellement charger
             case PerkEffect.DamageIncrease:
-                ApplyDamageIncrease(selectedPerk);
+                float damage = ModifyStat(GameManager.instance.GetPlayerController().GetGunManager().GetDamage(), selectedPerk);
+                GameManager.instance.GetPlayerController().GetGunManager().SetDamage(damage);
                 break;
     
             case PerkEffect.ReloadDecrease:
-                ApplyReloadDecrease(selectedPerk);
+                float reloadTime = ModifyStat(GameManager.instance.GetPlayerController().GetGunManager().GetReloadTime(), selectedPerk);
+                GameManager.instance.GetPlayerController().GetGunManager().SetReloadTime(reloadTime);
                 break;
-            
+
+
+            case PerkEffect.IncreaseCaliber:
+                int caliber = ModifyStat(GameManager.instance.GetPlayerController().GetGunManager().GetCaliber(), selectedPerk);
+                GameManager.instance.GetPlayerController().GetGunManager().SetCaliber(caliber);
+                break;
+
             case PerkEffect.Bloodbath:
                 ApplyBloodBath(selectedPerk);
                 break;
@@ -146,6 +158,37 @@ public class UpgradeManager : MonoBehaviour
     }
 
     #region Apply Upgrades  
+    private int ModifyStat(int stat, PerkSO perk)
+    {
+        bool isPercent = perk.isPercentage;
+
+        if (isPercent)
+        {
+            stat += (int)(stat * (perk.effectValue / 100f));
+        }
+        else
+        {
+            stat += (int)perk.effectValue;
+        }
+        return stat;
+    }
+
+    private float ModifyStat(float stat, PerkSO perk)
+    {
+        bool isPercent = perk.isPercentage;
+
+        if (isPercent)
+        {
+            stat += (stat * (perk.effectValue / 100f));
+        }
+        else
+        {
+            stat += perk.effectValue;
+        }
+        return stat;
+    }
+
+    /*
     private void ApplyTopSpeedIncrease(PerkSO selectedPerk)
     {
         float maxSpeed = GameManager.instance.GetPlayerController().GetMovement().GetMaxSpeed();
@@ -209,12 +252,12 @@ public class UpgradeManager : MonoBehaviour
         reloadTime *= selectedPerk.effectValue;
         GameManager.instance.GetPlayerController().GetGunManager().SetReloadTime(reloadTime);
     }
+    */
 
     private void ApplyBloodBath(PerkSO selectedPerk)
     {
         GameManager.instance.GetPlayerController().GetHealthManager().SetBloodbathObtained(true);
         selectedPerk.isUnique = true;
-
     }
 
     private void ApplyLifeRip(PerkSO selectedPerk)

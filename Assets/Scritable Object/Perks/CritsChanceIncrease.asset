@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: CritsChanceIncrease
   m_EditorClassIdentifier: 
   perkImage: {fileID: 21300000, guid: 979fbbba82e7e9f4c8194829afaba053, type: 3}
-  perkText: Increase crits chance by 1%
   effectType: 3
+  perkText: Increase crits chance by 1%
   effectValue: 1
-  isUnique: 0
   unlockLevel: 0
+  isPercentage: 1
+  isUnique: 0

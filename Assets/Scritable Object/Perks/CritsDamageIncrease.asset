@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: CritsDamageIncrease
   m_EditorClassIdentifier: 
   perkImage: {fileID: 21300000, guid: f1a2befe139438143a2681438c99cd54, type: 3}
-  perkText: Crits Damage +5%
   effectType: 2
-  effectValue: 1.05
-  isUnique: 0
+  perkText: Crits Damage +5%
+  effectValue: 5
   unlockLevel: 0
+  isPercentage: 1
+  isUnique: 0

@@ -1,11 +1,8 @@
-
-using System;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] private int velocity = 50;
     [Tooltip("Base player's rotation speed in degrees")]
     [SerializeField] private float rotationSpeed = 25f;
     [Tooltip("Base player's engine power in hp")]

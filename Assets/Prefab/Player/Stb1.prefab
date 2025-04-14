@@ -7454,6 +7454,7 @@ GameObject:
   - component: {fileID: 7831459546902106030}
   - component: {fileID: 5907006434065355240}
   - component: {fileID: 381973614354999236}
+  - component: {fileID: 4871632609242717212}
   m_Layer: 0
   m_Name: Stb1
   m_TagString: Player
@@ -7514,7 +7515,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5b9e5c465596647beb52c18921de8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 50
   rotationSpeed: 50
   power: 950
   accelerationTime: 5
@@ -7883,6 +7883,27 @@ MonoBehaviour:
   m_DefaultActionMap: Tank
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!65 &4871632609242717212
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8485314063673384991}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 2, y: 2.5, z: 7}
+  m_Center: {x: 0, y: 1.5, z: -1.2}
 --- !u!1 &8560491949915542463
 GameObject:
   m_ObjectHideFlags: 0

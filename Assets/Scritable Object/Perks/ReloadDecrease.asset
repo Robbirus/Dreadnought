@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ReloadDecrease
   m_EditorClassIdentifier: 
   perkImage: {fileID: 21300000, guid: 05ba91e35693cd84d91bca236007b442, type: 3}
-  perkText: Reload 10% Faster
   effectType: 8
-  effectValue: 0.9
-  isUnique: 0
+  perkText: Reload 10% Faster
+  effectValue: -10
   unlockLevel: 0
+  isPercentage: 1
+  isUnique: 0

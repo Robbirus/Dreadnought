@@ -3635,10 +3635,8 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 6f3d6d505bbb1524fb9f53fc437167aa, type: 2}
   bgmTextValue: {fileID: 1560399616}
   bgmSlider: {fileID: 370981201}
-  defaultBGM: 0.7
   sfxTextValue: {fileID: 313023252}
   sfxSlider: {fileID: 939795892}
-  defaultSFX: 0.5
   confirmationPrompt: {fileID: 209371764}
 --- !u!1 &878036994
 GameObject:
@@ -9332,6 +9330,63 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &1968043025
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1852245274802387325, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
+      propertyPath: m_Name
+      value: Experience Drop
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416750047302282236, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416750047302282236, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416750047302282236, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416750047302282236, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416750047302282236, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416750047302282236, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416750047302282236, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416750047302282236, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416750047302282236, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6416750047302282236, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
 --- !u!1 &1971603991
 GameObject:
   m_ObjectHideFlags: 0
@@ -10442,7 +10497,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9190513568571667389, guid: a903d305fee387c4ba6263f9a9a294d0, type: 3}
       propertyPath: spawnDelay
-      value: 10
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 9190513568571667389, guid: a903d305fee387c4ba6263f9a9a294d0, type: 3}
       propertyPath: maximumSpawnTime
@@ -10456,6 +10511,18 @@ PrefabInstance:
       propertyPath: spawnHeightOffset
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 9190513568571667389, guid: a903d305fee387c4ba6263f9a9a294d0, type: 3}
+      propertyPath: enemyTypes.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9190513568571667389, guid: a903d305fee387c4ba6263f9a9a294d0, type: 3}
+      propertyPath: 'enemyTypes.Array.data[1]'
+      value: 
+      objectReference: {fileID: 11400000, guid: b41ce439e2ed5494d8c495551409af8b, type: 2}
+    - target: {fileID: 9190513568571667389, guid: a903d305fee387c4ba6263f9a9a294d0, type: 3}
+      propertyPath: 'enemyTypes.Array.data[2]'
+      value: 
+      objectReference: {fileID: 11400000, guid: c18c0fa0235d8d948a59c44abc342ffb, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10550,6 +10617,7 @@ SceneRoots:
   - {fileID: 4227451305423962531}
   - {fileID: 498385888}
   - {fileID: 564210801}
+  - {fileID: 1968043025}
   - {fileID: 1440023696}
   - {fileID: 871588491}
   - {fileID: 209371767}

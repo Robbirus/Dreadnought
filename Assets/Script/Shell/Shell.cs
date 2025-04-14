@@ -58,7 +58,7 @@ public class Shell : MonoBehaviour
         Destroy(gameObject, lifeTime);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {        
         Vector3 nextPos = transform.position + direction * velocity * Time.deltaTime;
         Vector3 move = nextPos - transform.position;
@@ -115,18 +115,17 @@ public class Shell : MonoBehaviour
         float angle = GetAngle(hit, zone);
         ricochetAngle = ObtainRicochetAngle(zone);
 
-        if(angle < ricochetAngle)
+        Debug.Log($"Hit : {zone.zoneName}, Angle : {angle}");
+        if (angle < ricochetAngle)
         {
             if(CanPenetrate(zone.armorThickness, this.penetration, angle))
             {
-                Debug.Log("Tir pénétrant");
                 PenetrateTarget(target, team);
             }
             else
             {
                 if(team == Team.Player)
                 {
-                    Debug.Log("Non pénétrant");
                     GameManager.instance.IncreaseNonPenetrativeShot();
                 }
                 Destroy(gameObject);
@@ -134,7 +133,7 @@ public class Shell : MonoBehaviour
         }
         else
         {
-            Debug.Log("Ricochet !");
+            Debug.Log("Ricochet !"); 
             Ricochet(hit);
         }
     }
@@ -161,57 +160,18 @@ public class Shell : MonoBehaviour
         if(target is EnemyController enemy)
         {
             enemy.GetHealthManager().TakeDamage(finalDamage);
+            ApplyLifeRip(GameManager.instance.GetPlayerController().GetHealthManager().GetLifeRip() * finalDamage);
         }
         else if(target is PlayerController player)
         {
             player.GetHealthManager().TakeDamage(finalDamage);
         }
 
-        ApplyLifeRip(lifeSteal);
-
         if(team == Team.Player)
         {
             GameManager.instance.IncreasePenetrativeShot();
         }
         Destroy(gameObject);
-    }
-
-    /// <summary>
-    /// When an enemy is hit, compute if its penetrated, or if the shell do a ricochet
-    /// </summary>
-    /// <param name="hit"></param>
-    /// <param name="zone"></param>
-    private void OnHittingEnemy(RaycastHit hit, HitZone zone)
-    {
-        EnemyController enemy = hit.collider.GetComponentInParent<EnemyController>();
-        if (enemy == null) return;
-
-        float angle = GetAngle(hit, zone);
-
-        ricochetAngle = ObtainRicochetAngle(zone);
-
-        if (angle < ricochetAngle)
-        {
-            Debug.Log($"Hit : {zone.zoneName}, Angle : {angle}");
-
-            if (CanPenetrate(zone.armorThickness, this.penetration, angle))
-            {
-                Debug.Log("Tir penetrant");
-                PenetrateEnemy(enemy);
-            }
-            else
-            {
-                Debug.Log("Non penetrant");
-                GameManager.instance.IncreaseNonPenetrativeShot();
-                Destroy(gameObject);
-             
-            }
-        }
-        else
-        {
-            Debug.Log("Ricochet");
-            Ricochet(hit);
-        }
     }
 
     /// <summary>
@@ -305,101 +265,6 @@ public class Shell : MonoBehaviour
         }
 
         return normalizationAngle;
-    }
-
-    /// <summary>
-    /// Return true if we want to hit
-    /// False if we want to go through
-    /// </summary>
-    /// <param name="gameObject">The gameObject the hit saw</param>
-    /// <returns>True if the shell has to hit</returns>
-    private bool CheckColliderTag(GameObject gameObject)
-    {
-        bool goThrough = false;
-
-        switch (gameObject.tag) 
-        {
-            case "XP": 
-                goThrough = false;
-                break;
-
-            case "Heal":
-                goThrough = false;
-                break;
-
-            case "Ground":
-                goThrough = false;
-                break;
-
-            case "Ennemy": 
-                goThrough = true;
-                break;
-
-            default:
-                goThrough = false;
-            break;
-        }
-        return goThrough;
-    }
-
-    /// <summary>
-    /// The shell penetrates the enemy, compute the critical damage and the liferip
-    /// Destroy the shell after
-    /// </summary>
-    /// <param name="enemy">The enemy hit</param>
-    private void PenetrateEnemy(EnemyController enemy)
-    {
-        if (UnityEngine.Random.Range(1, 100 - this.pity) <= this.critChance)
-        {
-            Debug.Log("critical hit");
-            ApplyCriticalDamage(enemy);
-        }
-        else
-        {
-            ApplyDamage(enemy);
-        }
-
-        GameManager.instance.IncreasePenetrativeShot();
-
-        // Apply the lifeSteal
-        ApplyLifeRip(lifeSteal);
-
-        // Destroy the shell
-        Destroy(gameObject);
-    }
-
-    /// <summary>
-    /// Apply Damage to the enemy, compute liferip and increase pity value
-    /// </summary>
-    /// <param name="enemy">The enemy hit</param>
-    private void ApplyDamage(EnemyController enemy)
-    {
-        // Get the life steal proportion
-        lifeSteal = GameManager.instance.GetPlayerController().GetHealthManager().GetLifeRip() * this.damage;
-
-        // Apply the damage to the enemy
-        enemy.GetHealthManager().TakeDamage(this.damage * this.critCoef);
-
-        // Reset the pity when a crit happened
-        IncreasePity();
-    }
-
-    /// <summary>
-    /// Apply critical damage to the enemy, compute liferip and reset pity value to 0
-    /// </summary>
-    /// <param name="enemy">The enemy hit</param>
-    private void ApplyCriticalDamage(EnemyController enemy)
-    {
-        // Get the life steal proportion
-        lifeSteal = GameManager.instance.GetPlayerController().GetHealthManager().GetLifeRip() * this.damage * this.critCoef;
-
-        // Apply the damage to the enemy
-        enemy.GetHealthManager().TakeDamage(this.damage * this.critCoef);
-
-        // enemy.GetComponent<EnemyHealthManager>().TakeDamage(this.damage * this.critCoef);
-
-        // Reset the pity when a crit happened
-        ResetPity();
     }
 
     /// <summary>

@@ -111,24 +111,14 @@ public class PlayerHealthManager : MonoBehaviour
     }
 
     #region Getter / Setter
-    public void SetHealth(float maxHealth)
+    public void SetMaxHealth(float maxHealth)
     {
         this.maxHealth = maxHealth;
     }
 
-    public float GetHealth()
+    public float GetMaxHealth()
     {
-        return health;
-    }
-
-    public void SetArmor(int armor)
-    {
-        this.armor = armor;
-    }
-
-    public int GetArmor()
-    {
-        return this.armor;
+        return this.maxHealth;
     }
 
     public void SetBloodbathObtained(bool bloodbathObtained)

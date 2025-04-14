@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: ExperienceIncrease
   m_EditorClassIdentifier: 
   perkImage: {fileID: 21300000, guid: 5c93053658b912944b5e407e069e044d, type: 3}
-  perkText: Increase the xp drop by enemy
   effectType: 5
+  perkText: Increase the xp drop by enemy
   effectValue: 3
-  isUnique: 0
   unlockLevel: 0
+  isPercentage: 0
+  isUnique: 0

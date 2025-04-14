@@ -28,13 +28,11 @@ public class MenuPause : MonoBehaviour
 
     [SerializeField] private TMP_Text bgmTextValue = null;
     [SerializeField] private Slider bgmSlider = null;
-    [SerializeField] private float defaultBGM = 0.5f;
 
     [Space(5)]
 
     [SerializeField] private TMP_Text sfxTextValue = null;
     [SerializeField] private Slider sfxSlider = null;
-    [SerializeField] private float defaultSFX = 0.5f;
     [Space(10)]
 
     [Header("Confirmation Image")]

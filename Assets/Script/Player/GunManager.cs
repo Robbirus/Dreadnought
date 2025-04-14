@@ -24,6 +24,7 @@ public class GunManager : MonoBehaviour
 
     [Header("Gun Propreties")]
     [Tooltip("Gun caliber in mm")]
+    [Range(50, 250)]
     [SerializeField] private int caliber = 105;
     [Tooltip("The projectile prefab")]
     [SerializeField] private GameObject shellPrefab;
@@ -34,6 +35,7 @@ public class GunManager : MonoBehaviour
     [Tooltip("The base critical damage coefficient")]
     [SerializeField] private float critCoef = 1.1f;
     [Tooltip("The pity allows to temporarily up the crit chance")]
+    [Range(0, 100)]
     [SerializeField] private int pity = 0;
     [Tooltip("All the shell type in the turret")]
     [SerializeField] private List<ShellSO> ammo;
@@ -45,6 +47,7 @@ public class GunManager : MonoBehaviour
 
     [Header("Reload Properties")]
     [Tooltip("Reload Time in seconds")]
+    [Range(1, 30)]
     [SerializeField] private float reloadTime = 4f;
     [Tooltip("The reload circle image")]
     [SerializeField] private Image reloadCircle;
@@ -212,6 +215,10 @@ public class GunManager : MonoBehaviour
     public int GetCaliber()
     {
         return this.caliber;
+    }
+    public void SetCaliber(int caliber)
+    {
+        this.caliber = caliber;
     }
     #endregion
 }

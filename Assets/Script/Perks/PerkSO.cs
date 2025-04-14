@@ -4,11 +4,12 @@ using UnityEngine;
 public class PerkSO : ScriptableObject
 {
     public Sprite perkImage;
-    public string perkText;
     public PerkEffect effectType;
+    public string perkText;
     public float effectValue;
-    public bool isUnique;
     public int unlockLevel;
+    public bool isPercentage;
+    public bool isUnique;
 }
 
 public enum PerkEffect
@@ -23,5 +24,6 @@ public enum PerkEffect
     DamageIncrease,
     ReloadDecrease,
     Bloodbath,
-    LifeRip
+    LifeRip,
+    IncreaseCaliber
 }

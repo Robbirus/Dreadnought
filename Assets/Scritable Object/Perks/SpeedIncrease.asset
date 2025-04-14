@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SpeedIncrease
   m_EditorClassIdentifier: 
   perkImage: {fileID: 21300000, guid: abfc5f137258781459186b56fd219399, type: 3}
-  perkText: Top Speed 2 km/h
+  perkText: Top Speed +2 km/h
   effectType: 0
   effectValue: 2
   isUnique: 0

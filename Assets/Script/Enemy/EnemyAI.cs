@@ -18,7 +18,6 @@ public class EnemyAI : MonoBehaviour
     [SerializeField] private ShellSO currentShell;
 
     [Header("Behaviour Properties")]
-    [SerializeField] private float chaseRange = 15f;
     [SerializeField] private float attackRange = 8f;
     [SerializeField] private float attackCooldown = 10f;
 
@@ -30,7 +29,6 @@ public class EnemyAI : MonoBehaviour
 
     private void Start()
     {
-        player = enemyController.GetPlayer().transform;
         agent = GetComponent<NavMeshAgent>();
         agent.speed = 10 * enemyController.GetSpeed();
         agent.angularSpeed = 100 * enemyController.GetAngularSpeed();
@@ -39,6 +37,7 @@ public class EnemyAI : MonoBehaviour
         agent.radius = enemyController.GetRadius();
         agent.height = enemyController.GetHeight();
 
+        player = enemyController.GetPlayer().transform;
         currentState = EnemyState.Chase;
     }
 
