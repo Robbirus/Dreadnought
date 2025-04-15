@@ -1,12 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum EnemyState
-{
-    Chase,
-    Attack
-}
-
 public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private NavMeshAgent agent;
@@ -94,7 +88,7 @@ public class EnemyAI : MonoBehaviour
     private void InstantiateShell()
     {
         GameObject shell = Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
-        shell.GetComponent<Shell>().Setup(currentShell, Team.Enemy, enemyController.GetCaliber());
+        shell.GetComponent<Shell>().Setup(currentShell, Team.Enemy, enemyController.GetCaliber(), false);
     }
 
     #region Getter / Setter
@@ -113,4 +107,10 @@ public class EnemyAI : MonoBehaviour
         return this.attackRange;
     }
     #endregion
+}
+
+public enum EnemyState
+{
+    Chase,
+    Attack
 }

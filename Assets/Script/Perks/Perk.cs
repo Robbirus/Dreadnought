@@ -19,7 +19,6 @@ public class Perk : MonoBehaviour
 
     public void SelectedPerk()
     {
-        Debug.Log("Clicked");
         UpgradeManager.instance.SelectPerk(perkInfo);
     }
 }

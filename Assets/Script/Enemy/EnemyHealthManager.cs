@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
 
 public class EnemyHealthManager : MonoBehaviour
@@ -23,17 +22,19 @@ public class EnemyHealthManager : MonoBehaviour
         healthBar.UpdateHealthBar(health, maxHealth);
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-
-    }
-
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool isCrit)
     {
         health -= damage;
         healthBar.UpdateHealthBar(health, maxHealth);
-        gameObject.GetComponent<EnemySoundManager>().PlayHitSound();
+
+        if (isCrit)
+        {
+            gameObject.GetComponent<EnemySoundManager>().PlayHitCritSound();
+        }
+        else
+        {
+            gameObject.GetComponent<EnemySoundManager>().PlayHitSound();
+        }
 
         CheckDeath();
     }
@@ -61,7 +62,7 @@ public class EnemyHealthManager : MonoBehaviour
     {
         foreach (GameObject drop in drops)
         {
-            Instantiate(drop, transform.position + new Vector3(0, 2.5f, 0), Quaternion.identity);
+            Instantiate(drop, gameObject.transform.position - new Vector3(0f, 0.5f, 0f), Quaternion.identity);
         }
     }
 

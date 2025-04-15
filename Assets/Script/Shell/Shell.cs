@@ -6,6 +6,7 @@ public class Shell : MonoBehaviour
     private float damage;
     private int critChance;
     private float critCoef;
+    private bool isCrit = false;
     private int pity;
     private int penetration;
     private int velocity;
@@ -34,7 +35,7 @@ public class Shell : MonoBehaviour
     /// Instantiate a shell depending of the type in the SO
     /// </summary>
     /// <param name="currentShell">The SO shell used this time</param>
-    public void Setup(ShellSO currentShell, Team team, int caliber)
+    public void Setup(ShellSO currentShell, Team team, int caliber, bool isCrit)
     {
         float damageVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
         float penetrationVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
@@ -44,7 +45,8 @@ public class Shell : MonoBehaviour
         velocity = currentShell.velocity;
         lifeTime = currentShell.lifeTime;
         type = currentShell.ShellType;
-        this.caliber = caliber; 
+        this.caliber = caliber;
+        this.isCrit = isCrit;
         owner = team;
 
         Gradient gradient = new Gradient();
@@ -140,11 +142,9 @@ public class Shell : MonoBehaviour
 
     private void PenetrateTarget(MonoBehaviour target, Team team)
     {
-        bool isCrit = false;
         float finalDamage = damage;
         if (team == Team.Player) 
-        {
-            isCrit = UnityEngine.Random.Range(1, 100 - this.pity) <= this.critChance;
+        {            
             finalDamage = isCrit ? damage * critCoef : damage;
 
             if (isCrit)
@@ -159,7 +159,7 @@ public class Shell : MonoBehaviour
 
         if(target is EnemyController enemy)
         {
-            enemy.GetHealthManager().TakeDamage(finalDamage);
+            enemy.GetHealthManager().TakeDamage(finalDamage, isCrit);
             ApplyLifeRip(GameManager.instance.GetPlayerController().GetHealthManager().GetLifeRip() * finalDamage);
         }
         else if(target is PlayerController player)
@@ -274,7 +274,6 @@ public class Shell : MonoBehaviour
     /// <returns>The angle relative to normal of the collider</returns>
     private float GetAngle(RaycastHit hit, HitZone zone)
     {
-        Debug.Log(Vector3.Angle(-direction, hit.normal));
         float angle =  Vector3.Angle(-direction, hit.normal);
         return NormalizeShell(angle, zone);
     }

@@ -29,11 +29,7 @@ public class Spawner : MonoBehaviour
 
     private void InstantiateEnemy(EnemySO type)
     {
-        float x, y, z;
-        x = transform.position.x;
-        y = transform.position.y;
-        z = transform.position.z;
-        GameObject enemy = Instantiate(type.enemyPrefab, new Vector3(x, y, z), Quaternion.identity);
+        GameObject enemy = Instantiate(type.enemyPrefab, transform.position, Quaternion.identity);
         enemy.GetComponentInChildren<EnemyController>().Setup(type);
     }
 }

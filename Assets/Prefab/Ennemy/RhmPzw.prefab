@@ -572,14 +572,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3056391004325685843}
   - component: {fileID: 3036279537306303742}
-  - component: {fileID: 767698943411005375}
   - component: {fileID: 3970703385283668930}
   - component: {fileID: -58375516227824668}
-  - component: {fileID: -5470973133985627680}
   - component: {fileID: -4066574760231860066}
   - component: {fileID: -2831180742716210259}
   - component: {fileID: 7134958558877615759}
-  - component: {fileID: 4511057695105767823}
   - component: {fileID: 3721318474763345401}
   - component: {fileID: -8346628603126683139}
   - component: {fileID: -7132063009396424676}
@@ -626,18 +623,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   healthManager: {fileID: -58375516227824668}
---- !u!114 &767698943411005375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486456276200469354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 49693d3e65f09f14e8b194f94de2c31d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &3970703385283668930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -666,18 +651,6 @@ MonoBehaviour:
   healthBar: {fileID: 7134958558877615759}
   drops:
   - {fileID: 1852245274802387325, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
---- !u!114 &-5470973133985627680
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486456276200469354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a90aaf059579684e9fe27e335c408f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!82 &-4066574760231860066
 AudioSource:
   m_ObjectHideFlags: 0
@@ -791,6 +764,7 @@ MonoBehaviour:
   actionAudio: {fileID: -4066574760231860066}
   movementSound: {fileID: 8300000, guid: 385a4a5ee91421b4e9053b12ebe0105e, type: 3}
   hitSound: {fileID: 8300000, guid: 1544f73371922f444a45453b0ef47150, type: 3}
+  hitCritSound: {fileID: 8300000, guid: 670b59bfbdd2e1e41bc620146aef4fef, type: 3}
   deathSound: {fileID: 8300000, guid: f21d837076d42994da738b3c3ce5ce78, type: 3}
 --- !u!114 &7134958558877615759
 MonoBehaviour:
@@ -805,18 +779,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 8740288502402785805}
---- !u!114 &4511057695105767823
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1486456276200469354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a90aaf059579684e9fe27e335c408f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &3721318474763345401
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -884,7 +846,6 @@ MonoBehaviour:
   shellSpawnPoint: {fileID: 6165496726491701208}
   shellPrefab: {fileID: 3633209065182094968, guid: 48d518da0597a9e418d03349ad9bc941, type: 3}
   currentShell: {fileID: 11400000, guid: bb443511de31107489a46789b7b16357, type: 2}
-  chaseRange: 200
   attackRange: 75
   attackCooldown: 2
   enemyController: {fileID: 3036279537306303742}

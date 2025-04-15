@@ -24,7 +24,7 @@ public class CollectableTriggerHandler : MonoBehaviour
     private void ProcessCollision(GameObject collision)
     {
         // If the collectable touches the player
-        if (collision.transform.CompareTag("Player") && gameObject != null)
+        if (collision.transform.parent.gameObject.transform.CompareTag("Player") && gameObject != null)
         {
             ContactWithPlayer(collision);
         }
@@ -33,7 +33,7 @@ public class CollectableTriggerHandler : MonoBehaviour
     private void ContactWithPlayer(GameObject collider)
     {
         gameObject.GetComponent<CollectableSoundManager>().PlayCollectSound();
-        collectable.Collect(collider.gameObject);
+        collectable.Collect(collider.transform.parent.gameObject);
         Destroy(gameObject);
     }
 }

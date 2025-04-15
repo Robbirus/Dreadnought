@@ -4,8 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(CollectableTriggerHandler))]
 public class Collectable : MonoBehaviour
 {
-    [SerializeField]
-    private CollectableSO collectable;
+    [SerializeField] private CollectableSO collectable;
 
     private void Reset()
     {

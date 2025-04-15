@@ -13,6 +13,7 @@ public class PlayerSoundManager : MonoBehaviour
     [Header("Audio Clip")]
     public AudioClip movementSound;
     public AudioClip gunShotSound;
+    public AudioClip gunShotCritSound;
     public AudioClip reloadSound;
 
     private void Awake()
@@ -33,6 +34,12 @@ public class PlayerSoundManager : MonoBehaviour
     {
         actionAudio.PlayOneShot(gunShotSound);
     }
+
+    public void PlayGunShotCrit()
+    {
+        actionAudio.PlayOneShot(gunShotCritSound);
+    }
+
     public void PlayReload()
     {
         actionAudio.PlayOneShot(reloadSound);

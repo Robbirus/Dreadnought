@@ -1,5 +1,4 @@
 using UnityEngine;
-using System;
 
 public class EnemyController : MonoBehaviour
 {
@@ -51,21 +50,19 @@ public class EnemyController : MonoBehaviour
         healthManager.SetMaxHealth(maxHealth);
     }
 
-    // Update is called once per frame
-    private void FixedUpdate()
+    private void OnEnable()
     {
-        // CheckMovement();
+        EnemyManager.instance.RegisterEnemy(this);
     }
 
-    private void CheckMovement()
+    private void OnDisable()
     {
-        Vector3 direction = player.transform.position - transform.position;
-        direction.y = 0;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(direction), 0.1f);
-        transform.Translate(0, 0, 10 * moveSpeed * Time.fixedDeltaTime);
-        Quaternion orientation = Quaternion.LookRotation(direction, Vector3.up);
+        EnemyManager.instance.UnregisterEnemy(this);
+    }
 
-        transform.rotation = orientation;
+    public void ManagedUpdate()
+    {
+
     }
 
     #region Getter Setter

@@ -13,6 +13,8 @@ public class EnemySoundManager : MonoBehaviour
     public AudioClip movementSound;
     [Tooltip("The sound made by the enemy when it receives a shell")]
     public AudioClip hitSound;
+    [Tooltip("The sound made by the enemy when it receives a critical hit")]
+    public AudioClip hitCritSound;
     [Tooltip("The sound made by the enemy when it dies")]
     public AudioClip deathSound;
 
@@ -40,6 +42,11 @@ public class EnemySoundManager : MonoBehaviour
     {
         actionAudio.PlayOneShot(hitSound);
     }
+    public void PlayHitCritSound()
+    {
+        actionAudio.PlayOneShot(hitCritSound);
+    }
+
     public void PlayDeathSound()
     {
         actionAudio.PlayOneShot(deathSound);
