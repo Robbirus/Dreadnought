@@ -8,8 +8,11 @@ public class Spawner : MonoBehaviour
         [Tooltip("The differents types of enemies")]
         [SerializeField] private EnemySO[] enemyTypes;
 
-        [Header("Spawn Settings")]
-        [SerializeField] private float spawnDelay = 2f;
+    [Header("Spawn Settings")]
+    [Tooltip("Time before the first enemy spawn")]
+    [Range(0, 60)] [SerializeField] private float startSpawnTime = 10f;
+    [Tooltip("Time between each spawn")]
+    [Range(0, 100)] [SerializeField] private float spawnDelay = 2f;
 
     private void Start()
     {

@@ -623,6 +623,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   healthManager: {fileID: -58375516227824668}
+  enemyAI: {fileID: -7132063009396424676}
 --- !u!114 &3970703385283668930
 MonoBehaviour:
   m_ObjectHideFlags: 0

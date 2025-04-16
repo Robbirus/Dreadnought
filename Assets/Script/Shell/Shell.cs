@@ -56,8 +56,6 @@ public class Shell : MonoBehaviour
         );
 
         gameObject.GetComponent<TrailRenderer>().colorGradient = gradient;
-
-        Destroy(gameObject, lifeTime);
     }
 
     private void FixedUpdate()
@@ -130,7 +128,7 @@ public class Shell : MonoBehaviour
                 {
                     GameManager.instance.IncreaseNonPenetrativeShot();
                 }
-                Destroy(gameObject);
+                gameObject.SetActive(false);
             }
         }
         else
@@ -171,7 +169,7 @@ public class Shell : MonoBehaviour
         {
             GameManager.instance.IncreasePenetrativeShot();
         }
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 
     /// <summary>

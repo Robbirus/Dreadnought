@@ -8,6 +8,8 @@ public class EnemyController : MonoBehaviour
     [Header("Script instance")]
     [Tooltip("Health Manager")]
     [SerializeField] private EnemyHealthManager healthManager;
+    [Tooltip("AI")]
+    [SerializeField] private EnemyAI enemyAI;
 
     private Rigidbody rigibidbody;
     private Vector3 direction;
@@ -62,7 +64,7 @@ public class EnemyController : MonoBehaviour
 
     public void ManagedUpdate()
     {
-
+        enemyAI.CallUpdate();
     }
 
     #region Getter Setter

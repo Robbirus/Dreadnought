@@ -24,7 +24,7 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = 10 * enemyController.GetSpeed();
+        agent.speed = 100 * enemyController.GetSpeed();
         agent.angularSpeed = 100 * enemyController.GetAngularSpeed();
 
         agent.baseOffset = enemyController.GetBaseOffset();
@@ -35,7 +35,7 @@ public class EnemyAI : MonoBehaviour
         currentState = EnemyState.Chase;
     }
 
-    private void Update()
+    public void CallUpdate()
     {
         float distance = Vector3.Distance(transform.position, player.position);
 
@@ -53,6 +53,7 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackingBehaviour(float distance)
     {
+        agent.speed = 0;
         agent.SetDestination(transform.position);
 
         Vector3 direction = (player.position + new Vector3(0f, 2.5f, -2f)) - turret.position;
@@ -73,6 +74,7 @@ public class EnemyAI : MonoBehaviour
 
     private void ChasingBehaviour(float distance)
     {
+        agent.speed = 10 * enemyController.GetSpeed();
         agent.SetDestination(player.position);
         if (distance <= attackRange)
         {
@@ -89,6 +91,18 @@ public class EnemyAI : MonoBehaviour
     {
         GameObject shell = Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
         shell.GetComponent<Shell>().Setup(currentShell, Team.Enemy, enemyController.GetCaliber(), false);
+
+        /*
+        GameObject shell = ObjectPoolManager.instance.GetPooledObject();
+
+        if (shell != null)
+        {
+            shell.transform.position = shellSpawnPoint.transform.position;
+            shell.transform.rotation = shellSpawnPoint.transform.rotation;
+            shell.GetComponent<Shell>().Setup(currentShell, Team.Player, enemyController.GetCaliber(), false);
+            shell.SetActive(true);
+        }
+        */
     }
 
     #region Getter / Setter

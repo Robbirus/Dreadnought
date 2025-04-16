@@ -92,6 +92,7 @@
     <Compile Include="Assets\Script\Enemy\EnemyAI.cs" />
     <Compile Include="Assets\Script\Collectable\Experience Item\ExperienceCollectableSO.cs" />
     <Compile Include="Assets\Script\Perks\Perk.cs" />
+    <Compile Include="Assets\Script\Game\ObjectPoolManager.cs" />
     <Compile Include="Assets\Script\Game\Sound\MusicManager.cs" />
     <Compile Include="Assets\Script\Shell\ShellSO.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
