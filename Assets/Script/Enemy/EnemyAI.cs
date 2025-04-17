@@ -24,7 +24,7 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        agent.speed = 100 * enemyController.GetSpeed();
+        agent.speed = 1000 * enemyController.GetSpeed();
         agent.angularSpeed = 100 * enemyController.GetAngularSpeed();
 
         agent.baseOffset = enemyController.GetBaseOffset();
@@ -74,7 +74,7 @@ public class EnemyAI : MonoBehaviour
 
     private void ChasingBehaviour(float distance)
     {
-        agent.speed = 10 * enemyController.GetSpeed();
+        agent.speed = 1000 * enemyController.GetSpeed();
         agent.SetDestination(player.position);
         if (distance <= attackRange)
         {
