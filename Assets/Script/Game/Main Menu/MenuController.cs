@@ -13,25 +13,21 @@ public class MenuController : MonoBehaviour
     [Space(5)]
     
     [Header("Volume Setting")]
-    [SerializeField] private AudioMixer audioMixer;
-    // [SerializeField] private TMP_Text masterTextValue = null;
-    // [SerializeField] private Slider masterSlider = null;
-    // [SerializeField] private float defaultMaster = 0.7f;
-    
+    [SerializeField] private AudioMixer audioMixer;    
     [Space(5)]
 
     [SerializeField] private TMP_Text bgmTextValue = null;
     [SerializeField] private Slider bgmSlider = null;
-    [SerializeField] private float defaultBGM = 0.5f;
+    [SerializeField] private int defaultBGM = 5;
 
     [Space(5)]
 
     [SerializeField] private TMP_Text sfxTextValue = null;
     [SerializeField] private Slider sfxSlider = null;
-    [SerializeField] private float defaultSFX = 0.5f;
+    [SerializeField] private int defaultSFX = 5;
 
-    private float bgmVolume = 0.7f;
-    private float sfxVolume = 0.5f;
+    private int bgmVolume = 7;
+    private int sfxVolume = 5;
 
     [Header("Gameplay Setting")]
     [SerializeField] private TMP_Text controllerSenTextValue = null;
@@ -111,11 +107,6 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    public void CreditButton()
-    {
-
-    }
-
     public void ExitButton()
     {
         Application.Quit();
@@ -133,13 +124,13 @@ public class MenuController : MonoBehaviour
                 masterTextValue.text = defaultMaster.ToString("0.0");
                 */
 
-                audioMixer.SetFloat("BGM", Mathf.Log10(defaultBGM) * 20);
+                audioMixer.SetFloat("BGM", Mathf.Log10(defaultBGM/10f) * 20);
                 bgmSlider.value = defaultBGM;
-                bgmTextValue.text = defaultBGM.ToString("0.0");
+                bgmTextValue.text = defaultBGM.ToString("0");
 
-                audioMixer.SetFloat("SFX", Mathf.Log10(defaultSFX) * 20);
+                audioMixer.SetFloat("SFX", Mathf.Log10(defaultSFX/10f) * 20);
                 sfxSlider.value = defaultSFX;
-                sfxTextValue.text = defaultSFX.ToString("0.0");
+                sfxTextValue.text = defaultSFX.ToString("0");
 
 
                 ApplyVolume();
@@ -178,37 +169,70 @@ public class MenuController : MonoBehaviour
     #endregion
 
     #region Audio Setting Methods
-    public void SetMaster()
-    {
-        /*
-        AudioListener.volume = volume;
-        audioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
-        masterTextValue.text = volume.ToString("0.0");
-        */
-    }
     public void SetBGM()
     {
-        bgmVolume = bgmSlider.value;
+        bgmVolume = (int)bgmSlider.value;
 
         //AudioListener.volume = volume;
-        audioMixer.SetFloat("BGM", Mathf.Log10(bgmVolume) * 20);
-        bgmTextValue.text = bgmVolume.ToString("0.0");
+        audioMixer.SetFloat("BGM", Mathf.Log10(bgmVolume/10f) * 20);
+        bgmTextValue.text = bgmVolume.ToString("0");
     }
+    
     public void SetSFX()
     {
-        sfxVolume = sfxSlider.value;
+        sfxVolume = (int)sfxSlider.value;
 
         //AudioListener.volume = volume;
-        audioMixer.SetFloat("SFX", Mathf.Log10(sfxVolume) * 20);
-        sfxTextValue.text = sfxVolume.ToString("0.0");
+        audioMixer.SetFloat("SFX", Mathf.Log10(sfxVolume/10f) * 20);
+        sfxTextValue.text = sfxVolume.ToString("0");
     }
 
     public void ApplyVolume()
     {
-        PlayerPrefs.SetFloat("BGMVolume", bgmVolume);
-        PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
+        PlayerPrefs.SetInt("BGMVolume", bgmVolume);
+        PlayerPrefs.SetInt("SFXVolume", sfxVolume);
+
         // Show Prompt
         StartCoroutine(ConfirmationBox());
+    }
+
+    public void IncreaseBGM()
+    {
+        if(bgmVolume < 10)
+        {
+            bgmVolume++;
+        }
+        audioMixer.SetFloat("BGM", Mathf.Log10(bgmVolume / 10f) * 20);
+        bgmTextValue.text = bgmVolume.ToString("0");
+    }
+
+    public void DecreaseBGM()
+    {
+        if(bgmVolume > 0)
+        {
+            bgmVolume--;
+        }
+
+        if (bgmVolume == 0)
+        {
+            audioMixer.SetFloat("BGM", Mathf.Log10(-1 * 20));
+        }
+        else
+        {
+            audioMixer.SetFloat("BGM", Mathf.Log10(bgmVolume / 10f) * 20);
+        }
+
+        bgmTextValue.text = bgmVolume.ToString("0");
+    }
+
+    public void IncreaseSFX()
+    {
+
+    }
+
+    public void DecreaseSFX()
+    {
+
     }
     #endregion
 

@@ -4,5 +4,6 @@ public enum SceneIndex
 {
     MENU = 0,
     GAME = 1,
-    GAME_OVER = 2
+    TUTO = 2,
+    GAME_OVER = 3
 }

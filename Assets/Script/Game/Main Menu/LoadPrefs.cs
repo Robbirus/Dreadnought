@@ -59,11 +59,11 @@ public class LoadPrefs : MonoBehaviour
             #region Load Volume
             if (PlayerPrefs.HasKey("BGMVolume"))
             {
-                float localVolume = PlayerPrefs.GetFloat("BGMVolume");
+                int localVolume = PlayerPrefs.GetInt("BGMVolume");
 
-                bgmVolumeTextValue.text = localVolume.ToString("0.0");
+                bgmVolumeTextValue.text = localVolume.ToString("0");
                 bgmVolumeSlider.value = localVolume;
-                audioMixer.SetFloat("BGM", Mathf.Log10(localVolume) * 20);
+                audioMixer.SetFloat("BGM", Mathf.Log10((localVolume != 0 ? localVolume / 10f : 0f) * 20));
             }
             else
             {
@@ -72,11 +72,11 @@ public class LoadPrefs : MonoBehaviour
 
             if (PlayerPrefs.HasKey("SFXVolume"))
             {
-                float localVolume = PlayerPrefs.GetFloat("SFXVolume");
+                int localVolume = PlayerPrefs.GetInt("SFXVolume");
 
-                sfxVolumeTextValue.text = localVolume.ToString("0.0");
+                sfxVolumeTextValue.text = localVolume.ToString("0");
                 sfxVolumeSlider.value = localVolume;
-                audioMixer.SetFloat("SFX", Mathf.Log10(localVolume) * 20);
+                audioMixer.SetFloat("SFX", Mathf.Log10((localVolume != 0 ? localVolume / 10f : 0f) * 20));
             }
             else
             {

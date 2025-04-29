@@ -98,6 +98,9 @@ public class GameManager : MonoBehaviour
             case GameState.Menu:
                 ApplyMenu();
                 break;
+            case GameState.Tuto:
+                ApplyTuto();
+                break;
             case GameState.GameOver:
                 ApplyGameOver();
                 break;
@@ -123,6 +126,11 @@ public class GameManager : MonoBehaviour
     private void ApplyMenu()
     {
         MusicManager.instance.PlayMenuMusic();
+    }
+
+    private void ApplyTuto()
+    {
+        throw new NotImplementedException();
     }
 
     private void ApplyGameOver()
@@ -235,6 +243,7 @@ public class GameManager : MonoBehaviour
     {
         Menu,
         Playing,
+        Tuto,
         GameOver,
         PerkSelection
     }

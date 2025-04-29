@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Game.unity
     guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
+    path: Assets/Scenes/Tuto.unity
+    guid: 2088ed37036f63e498f7089faf65696e
+  - enabled: 1
     path: Assets/Scenes/Game Over Screen.unity
     guid: dc696a3f50d54d44a9d289a411164e55
   m_configObjects:

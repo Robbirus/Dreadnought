@@ -15,6 +15,12 @@ public class LoadingController : MonoBehaviour
     public void ApplyMenu()
     {
         levelLoader.LoadLevel((int)SceneIndex.MENU);
+    }    
+    
+    // Apply Tuto
+    public void ApplyTuto()
+    {
+        levelLoader.LoadLevel((int)SceneIndex.TUTO);
     }
 
     // Apply Game Over
