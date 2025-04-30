@@ -13789,8 +13789,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2040640167}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: NewGameDialogYes
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: LaunchTutoDialogYes
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

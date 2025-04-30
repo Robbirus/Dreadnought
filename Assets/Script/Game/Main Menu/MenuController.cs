@@ -1,6 +1,5 @@
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -40,10 +39,11 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Slider brightnessSlider = null;
     [SerializeField] private TMP_Text brightnessTextValue = null;
     [SerializeField] private float defaultBrightness = 1f;
-    [Space(10)]
+    [Space(5)]
 
     [SerializeField] private TMP_Dropdown qualityDropdown;
     [SerializeField] private Toggle fullScreenToggle;
+    [Space(10)]
 
     private int qualityLevel;
     private bool isFullScreen;
@@ -51,14 +51,17 @@ public class MenuController : MonoBehaviour
 
     [Header("Confirmation Image")]
     [SerializeField] private GameObject confirmationPrompt = null;
+    [Space(10)]
 
     [Header("Levels to Load")]
     [SerializeField] private string newGameLevel;
     [SerializeField] private GameObject noSavedGameDialog = null;
+    [Space(10)]
 
     [Header("Resolution Dropdown")]
     public TMP_Dropdown resolutionDropDown;
     private Resolution[] resolutions;
+    [Space(10)]
 
     private string levelToLoad;
 
@@ -133,6 +136,7 @@ public class MenuController : MonoBehaviour
             noSavedGameDialog.SetActive(true);
         }
     }
+    
     public void LaunchTutoDialogYes()
     {
         loadingController.ApplyTuto();
