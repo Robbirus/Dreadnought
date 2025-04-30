@@ -7587,7 +7587,6 @@ GameObject:
   - component: {fileID: 262215776773178212}
   - component: {fileID: 7831459546902106030}
   - component: {fileID: 5907006434065355240}
-  - component: {fileID: 381973614354999236}
   m_Layer: 0
   m_Name: Stb1
   m_TagString: Player
@@ -7658,11 +7657,7 @@ MonoBehaviour:
   playerHeight: 3
   groundDrag: 5
   needle: {fileID: 0}
-  acceleration: 0
-  maxSpeed: 50
-  reverseSpeed: 23
-  currentSpeed: 0
-  deceleration: 1
+  movementActionReference: {fileID: -2455035216646587266, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
 --- !u!114 &2683492071193335968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7724,6 +7719,10 @@ MonoBehaviour:
   pity: 0
   ammo: []
   shootActionReference: {fileID: -3527412392891031929, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+  ammo1ActionReference: {fileID: 5056225996315226369, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+  ammo2ActionReference: {fileID: -1092916887256095865, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+  ammo3ActionReference: {fileID: -4198802318625874828, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+  ammo4ActionReference: {fileID: 2058028255682984446, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
   reloadTime: 4
   reloadCircle: {fileID: 0}
 --- !u!114 &1746672064193953181
@@ -7992,36 +7991,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &381973614354999236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8485314063673384991}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
-  m_NotificationBehavior: 0
-  m_UIInputModule: {fileID: 0}
-  m_DeviceLostEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_DeviceRegainedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ControlsChangedEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_ActionEvents: []
-  m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
-  m_DefaultActionMap: Tank
-  m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
 --- !u!1 &8560491949915542463
 GameObject:
   m_ObjectHideFlags: 0

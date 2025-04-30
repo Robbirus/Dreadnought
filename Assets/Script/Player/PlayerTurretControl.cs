@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerTurretControl : MonoBehaviour
 {
@@ -35,7 +36,6 @@ public class PlayerTurretControl : MonoBehaviour
     private float currentXRotation = 0;
     private float currentYAngle = 0;
 
-
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
@@ -44,7 +44,6 @@ public class PlayerTurretControl : MonoBehaviour
 
     private void Update()
     {
-
         if (!MenuPause.isGamePaused)
         {
             float mouseX = Input.GetAxis("Mouse X") * sensX;

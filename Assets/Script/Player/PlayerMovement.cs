@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,6 +21,12 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("GameObject UI Instance")]
     [SerializeField] private GameObject needle;
+    [Space(10)]
+    
+    [Header("Input Action Reference")]
+    [SerializeField] private InputActionReference movementActionReference;
+    [Space(5)]
+
 
     #region Needle attributes
     private float startPosition = 220f;
@@ -31,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded;
     private Rigidbody rb;
     private float mass;
-    public float acceleration;
+    private float acceleration;
     private Vector3 moveDirection;
     private float force = 0f;
     #endregion
@@ -42,10 +49,10 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Speed value
-    public float maxSpeed = 50f;
-    public float reverseSpeed = 23f;
-    public float currentSpeed = 0f;
-    public float deceleration = 1f;
+    private float maxSpeed = 50f;
+    private float reverseSpeed = 23f;
+    private float currentSpeed = 0f;
+    private float deceleration = 1f;
     #endregion
 
     private void Awake()
@@ -124,8 +131,11 @@ public class PlayerMovement : MonoBehaviour
 
     private void DetectInput()
     {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        Vector2 movement = movementActionReference.action.ReadValue<Vector2>();
+
+        horizontalInput = movement.x;
+        verticalInput = movement.y;
+
     }
 
     /// <summary>

@@ -45,6 +45,12 @@ public class GunManager : MonoBehaviour
 
     [Header("Input Action Reference")]
     [SerializeField] private InputActionReference shootActionReference;
+    [Space(5)]
+
+    [SerializeField] private InputActionReference ammo1ActionReference;
+    [SerializeField] private InputActionReference ammo2ActionReference;
+    [SerializeField] private InputActionReference ammo3ActionReference;
+    [SerializeField] private InputActionReference ammo4ActionReference;
     [Space(10)]
 
     [Header("Reload Properties")]
@@ -117,23 +123,23 @@ public class GunManager : MonoBehaviour
     }
 
     private void SwitchShell()
-    {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+    {        
+        if (ammo1ActionReference.action.IsPressed())
         {
             currentShell = ammo[0];
             currentShellImage.sprite = ammo[0].shellImage;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha2)) 
+        if (ammo2ActionReference.action.IsPressed()) 
         { 
             currentShell = ammo[1];
             currentShellImage.sprite = ammo[1].shellImage;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
+        if (ammo3ActionReference.action.IsPressed())
         {
             currentShell = ammo[2];
             currentShellImage.sprite = ammo[2].shellImage;
         }
-        if (Input.GetKeyDown(KeyCode.Alpha4))
+        if (ammo4ActionReference.action.IsPressed())
         {
             currentShell = ammo[3];
             currentShellImage.sprite = ammo[3].shellImage;

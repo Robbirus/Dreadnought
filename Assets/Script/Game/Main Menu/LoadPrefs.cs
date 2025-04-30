@@ -16,19 +16,12 @@ public class LoadPrefs : MonoBehaviour
     [SerializeField] private AudioMixer audioMixer;
     [Space(5)]
 
-    // Master Volume
-    // [SerializeField] private TMP_Text masterVolumeTextValue;
-    // [SerializeField] private Slider masterVolumeSlider = null;
-    // [Space(5)]
-
     // BGM Volume
     [SerializeField] private TMP_Text bgmVolumeTextValue;
-    [SerializeField] private Slider bgmVolumeSlider = null;
     [Space(5)]
 
     // SFX Volume
     [SerializeField] private TMP_Text sfxVolumeTextValue;
-    [SerializeField] private Slider sfxVolumeSlider = null;
     [Space(10)]
 
     [Header("Brightness Setting")]
@@ -57,31 +50,7 @@ public class LoadPrefs : MonoBehaviour
         if (canUse) 
         {
             #region Load Volume
-            if (PlayerPrefs.HasKey("BGMVolume"))
-            {
-                int localVolume = PlayerPrefs.GetInt("BGMVolume");
 
-                bgmVolumeTextValue.text = localVolume.ToString("0");
-                bgmVolumeSlider.value = localVolume;
-                audioMixer.SetFloat("BGM", Mathf.Log10((localVolume != 0 ? localVolume / 10f : 0f) * 20));
-            }
-            else
-            {
-                menuController.ResetButton("Audio");
-            }
-
-            if (PlayerPrefs.HasKey("SFXVolume"))
-            {
-                int localVolume = PlayerPrefs.GetInt("SFXVolume");
-
-                sfxVolumeTextValue.text = localVolume.ToString("0");
-                sfxVolumeSlider.value = localVolume;
-                audioMixer.SetFloat("SFX", Mathf.Log10((localVolume != 0 ? localVolume / 10f : 0f) * 20));
-            }
-            else
-            {
-                menuController.ResetButton("Audio");
-            }
             #endregion
 
             #region Load Graphics

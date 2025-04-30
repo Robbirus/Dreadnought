@@ -2,7 +2,7 @@
     "name": "TankInput",
     "maps": [
         {
-            "name": "Tank",
+            "name": "Movement",
             "id": "a7f122b4-5aa1-491d-bc3c-eff537ac2333",
             "actions": [
                 {
@@ -15,18 +15,45 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "MoveTurret",
-                    "type": "Value",
-                    "id": "2f96eb05-62df-4671-b636-b82be1889845",
-                    "expectedControlType": "Vector3",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
-                },
-                {
                     "name": "GunKeybind",
                     "type": "Button",
                     "id": "03f10f91-d3eb-458d-8aea-483f069ef274",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeAmmo1",
+                    "type": "Button",
+                    "id": "5842eae9-7a4f-4566-9f08-e4d8fe656e66",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeAmmo2",
+                    "type": "Button",
+                    "id": "d3953230-ba2e-4b36-ba87-57b2773c3be4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeAmmo3",
+                    "type": "Button",
+                    "id": "6207931c-2ac2-43c8-81d8-c08308f5e70a",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeAmmo4",
+                    "type": "Button",
+                    "id": "bfa4d7de-445a-4729-bae3-0e42916bf887",
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -90,46 +117,85 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "1D Axis",
-                    "id": "7c77c674-2634-4924-8820-d4ca7d3d8dfc",
-                    "path": "1DAxis",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MoveTurret",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "negative",
-                    "id": "27979adb-2445-4e80-85b7-1d74ffbf9024",
-                    "path": "<Keyboard>/l",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MoveTurret",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "positive",
-                    "id": "50406030-31f2-4a37-848c-a4036cc5eead",
-                    "path": "<Keyboard>/semicolon",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "MoveTurret",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
-                    "id": "d045ba04-e03e-49f6-b4ed-79f68116664e",
-                    "path": "<Keyboard>/space",
+                    "id": "4dcaaa4d-7984-44e0-8fa1-4d904228e078",
+                    "path": "<Mouse>/press",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "GunKeybind",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ecf3c49c-ab78-40b8-90b0-012101863aab",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeAmmo1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de3984f3-c533-45ca-a0f9-7be53eb9b00b",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeAmmo2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "97d2f38f-1ae3-4e27-881e-64604e26af68",
+                    "path": "<Keyboard>/3",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeAmmo3",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "94377017-e4df-47e1-aa01-7eaf3cc84a23",
+                    "path": "<Keyboard>/4",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChangeAmmo4",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Gun Handling",
+            "id": "f53734a2-4b69-455e-b0ba-e533a9083450",
+            "actions": [
+                {
+                    "name": "MousePosition",
+                    "type": "Value",
+                    "id": "c177ba9f-c816-448b-88a3-1d432ff569cd",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1b8816f9-9ed4-4719-99d2-e7a6856ab83e",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePosition",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

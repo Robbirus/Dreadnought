@@ -17,17 +17,15 @@ public class MenuController : MonoBehaviour
     [Space(5)]
 
     [SerializeField] private TMP_Text bgmTextValue = null;
-    [SerializeField] private Slider bgmSlider = null;
     [SerializeField] private int defaultBGM = 5;
 
     [Space(5)]
 
     [SerializeField] private TMP_Text sfxTextValue = null;
-    [SerializeField] private Slider sfxSlider = null;
     [SerializeField] private int defaultSFX = 5;
 
-    private int bgmVolume = 7;
-    private int sfxVolume = 5;
+    public static int bgmVolume;
+    public static int sfxVolume;
 
     [Header("Gameplay Setting")]
     [SerializeField] private TMP_Text controllerSenTextValue = null;
@@ -66,13 +64,15 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
+        LoadSoundPreference();
+
         resolutions = Screen.resolutions;
         resolutionDropDown.ClearOptions();
 
         List<string> options = new List<string>();
         int currentResolutionIndex = 0;
 
-        for (int i = 0; i < resolutions.Length; i++) 
+        for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
@@ -86,6 +86,33 @@ public class MenuController : MonoBehaviour
         resolutionDropDown.AddOptions(options);
         resolutionDropDown.value = currentResolutionIndex;
         resolutionDropDown.RefreshShownValue();
+    }
+
+    private void LoadSoundPreference()
+    {
+        if (PlayerPrefs.HasKey("BGMVolume"))
+        {
+            int localVolume = PlayerPrefs.GetInt("BGMVolume");
+            MenuController.bgmVolume = localVolume;
+            bgmTextValue.text = localVolume.ToString("0");
+            audioMixer.SetFloat("BGM", Mathf.Log10(localVolume / 10f) * 20);
+        }
+        else
+        {
+            ResetButton("Audio");
+        }
+
+        if (PlayerPrefs.HasKey("SFXVolume"))
+        {
+            int localVolume = PlayerPrefs.GetInt("SFXVolume");
+            MenuController.sfxVolume = localVolume;
+            sfxTextValue.text = localVolume.ToString("0");
+            audioMixer.SetFloat("SFX", Mathf.Log10(localVolume / 10f) * 20);
+        }
+        else
+        {
+            ResetButton("Audio");
+        }
     }
 
     #region Dialog Methods
@@ -106,6 +133,10 @@ public class MenuController : MonoBehaviour
             noSavedGameDialog.SetActive(true);
         }
     }
+    public void LaunchTutoDialogYes()
+    {
+        loadingController.ApplyTuto();
+    }
 
     public void ExitButton()
     {
@@ -117,19 +148,11 @@ public class MenuController : MonoBehaviour
         switch (MenuType)
         {
             case "Audio":
-                /*
-                AudioListener.volume = defaultMaster;
-                audioMixer.SetFloat("Master", Mathf.Log10(defaultBGM) * 20);
-                masterSlider.value = defaultMaster;
-                masterTextValue.text = defaultMaster.ToString("0.0");
-                */
 
                 audioMixer.SetFloat("BGM", Mathf.Log10(defaultBGM/10f) * 20);
-                bgmSlider.value = defaultBGM;
                 bgmTextValue.text = defaultBGM.ToString("0");
 
                 audioMixer.SetFloat("SFX", Mathf.Log10(defaultSFX/10f) * 20);
-                sfxSlider.value = defaultSFX;
                 sfxTextValue.text = defaultSFX.ToString("0");
 
 
@@ -169,24 +192,6 @@ public class MenuController : MonoBehaviour
     #endregion
 
     #region Audio Setting Methods
-    public void SetBGM()
-    {
-        bgmVolume = (int)bgmSlider.value;
-
-        //AudioListener.volume = volume;
-        audioMixer.SetFloat("BGM", Mathf.Log10(bgmVolume/10f) * 20);
-        bgmTextValue.text = bgmVolume.ToString("0");
-    }
-    
-    public void SetSFX()
-    {
-        sfxVolume = (int)sfxSlider.value;
-
-        //AudioListener.volume = volume;
-        audioMixer.SetFloat("SFX", Mathf.Log10(sfxVolume/10f) * 20);
-        sfxTextValue.text = sfxVolume.ToString("0");
-    }
-
     public void ApplyVolume()
     {
         PlayerPrefs.SetInt("BGMVolume", bgmVolume);
@@ -227,12 +232,31 @@ public class MenuController : MonoBehaviour
 
     public void IncreaseSFX()
     {
-
+        if (sfxVolume < 10)
+        {
+            sfxVolume++;
+        }
+        audioMixer.SetFloat("BGM", Mathf.Log10(sfxVolume / 10f) * 20);
+        sfxTextValue.text = sfxVolume.ToString("0");
     }
 
     public void DecreaseSFX()
     {
+        if (sfxVolume > 0)
+        {
+            sfxVolume--;
+        }
 
+        if (sfxVolume == 0)
+        {
+            audioMixer.SetFloat("BGM", Mathf.Log10(-1 * 20));
+        }
+        else
+        {
+            audioMixer.SetFloat("BGM", Mathf.Log10(sfxVolume / 10f) * 20);
+        }
+
+         sfxTextValue.text = sfxVolume.ToString("0");
     }
     #endregion
 

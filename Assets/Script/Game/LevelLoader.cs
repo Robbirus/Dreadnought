@@ -24,15 +24,19 @@ public class LevelLoader : MonoBehaviour
         // If loading Game, Initiate the player stats (not working)
         switch (levelToLoad)
         {
+            case (int)SceneIndex.MENU:
+                GameManager.instance.ChangeState(GameManager.GameState.Menu);
+                break;
             case (int)SceneIndex.GAME:
                 GameManager.instance.InitiatePlayer();
                 GameManager.instance.ChangeState(GameManager.GameState.Playing);
                 break;
+            case (int)SceneIndex.TUTO:
+                GameManager.instance.InitiatePlayer();
+                GameManager.instance.ChangeState(GameManager.GameState.Tuto);
+                break;
             case (int)SceneIndex.GAME_OVER:
                 GameManager.instance.ChangeState(GameManager.GameState.GameOver);
-                break;
-            case (int)SceneIndex.MENU:
-                GameManager.instance.ChangeState(GameManager.GameState.Menu);
                 break;
         }
 

@@ -20,30 +20,19 @@ public class MenuPause : MonoBehaviour
     
     [Header("Volume Setting")]
     [SerializeField] private AudioMixer audioMixer;
-    // [SerializeField] private TMP_Text masterTextValue = null;
-    // [SerializeField] private Slider masterSlider = null;
-    // [SerializeField] private float defaultMaster = 0.7f;
-
     [Space(5)]
 
     [SerializeField] private TMP_Text bgmTextValue = null;
-    [SerializeField] private Slider bgmSlider = null;
-
     [Space(5)]
 
     [SerializeField] private TMP_Text sfxTextValue = null;
-    [SerializeField] private Slider sfxSlider = null;
     [Space(10)]
 
     [Header("Confirmation Image")]
     [SerializeField] private GameObject confirmationPrompt = null;
 
-    private float bgmVolume = 0.7f;
-    private float sfxVolume = 0.5f;
-
     private void Update()
     {
-
         if (Input.GetKeyDown(KeyCode.P))
         {
             if (isGamePaused) 
@@ -97,35 +86,68 @@ public class MenuPause : MonoBehaviour
     }
 
     #region Audio Volume
-    public void SetMaster()
+    public void IncreaseBGM()
     {
-        /*
-        AudioListener.volume = volume;
-        audioMixer.SetFloat("Master", Mathf.Log10(volume) * 20);
-        masterTextValue.text = volume.ToString("0.0");
-        */
+        if (MenuController.bgmVolume < 10)
+        {
+            MenuController.bgmVolume++;
+        }
+        audioMixer.SetFloat("BGM", Mathf.Log10(MenuController.bgmVolume / 10f) * 20);
+        bgmTextValue.text = MenuController.bgmVolume.ToString("0");
     }
-    public void SetBGM()
-    {
-        bgmVolume = bgmSlider.value;
 
-        //AudioListener.volume = volume;
-        audioMixer.SetFloat("BGM", Mathf.Log10(bgmVolume) * 20);
-        bgmTextValue.text = bgmVolume.ToString("0.0");
+    public void DecreaseBGM()
+    {
+        if (MenuController.bgmVolume > 0)
+        {
+            MenuController.bgmVolume--;
+        }
+
+        if (MenuController.bgmVolume == 0)
+        {
+            audioMixer.SetFloat("BGM", Mathf.Log10(-1 * 20));
+        }
+        else
+        {
+            audioMixer.SetFloat("BGM", Mathf.Log10(MenuController.bgmVolume / 10f) * 20);
+        }
+
+        bgmTextValue.text = MenuController.bgmVolume.ToString("0");
     }
-    public void SetSFX()
-    {
-        sfxVolume = sfxSlider.value;
 
-        //AudioListener.volume = volume;
-        audioMixer.SetFloat("SFX", Mathf.Log10(sfxVolume) * 20);
-        sfxTextValue.text = sfxVolume.ToString("0.0");
+    public void IncreaseSFX()
+    {
+        if (MenuController.sfxVolume < 10)
+        {
+            MenuController.sfxVolume++;
+        }
+        audioMixer.SetFloat("BGM", Mathf.Log10(MenuController.sfxVolume / 10f) * 20);
+        sfxTextValue.text = MenuController.sfxVolume.ToString("0");
+    }
+
+    public void DecreaseSFX()
+    {
+        if (MenuController.sfxVolume > 0)
+        {
+            MenuController.sfxVolume--;
+        }
+
+        if (MenuController.sfxVolume == 0)
+        {
+            audioMixer.SetFloat("BGM", Mathf.Log10(-1 * 20));
+        }
+        else
+        {
+            audioMixer.SetFloat("BGM", Mathf.Log10(MenuController.sfxVolume / 10f) * 20);
+        }
+
+        sfxTextValue.text = MenuController.sfxVolume.ToString("0");
     }
 
     public void ApplyVolume()
     {
-        PlayerPrefs.SetFloat("BGMVolume", bgmVolume);
-        PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
+        PlayerPrefs.SetFloat("BGMVolume", MenuController.bgmVolume);
+        PlayerPrefs.SetFloat("SFXVolume", MenuController.sfxVolume);
         // Show Prompt
         StartCoroutine(ConfirmationBox());
     }
