@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class MenuPause : MonoBehaviour
@@ -28,14 +30,47 @@ public class MenuPause : MonoBehaviour
     [SerializeField] private TMP_Text sfxTextValue = null;
     [Space(10)]
 
+    [Header("Input Action Reference")]
+    [SerializeField] private InputActionReference pauseActionReference;
+    [Space(10)]
+
     [Header("Confirmation Image")]
     [SerializeField] private GameObject confirmationPrompt = null;
 
+    private void Awake()
+    {
+        pauseActionReference.action.Enable();
+    }
+
+    private void Start()
+    {
+        LoadSoundPreference();
+    }
+
+    private void LoadSoundPreference()
+    {
+        if (PlayerPrefs.HasKey("BGMVolume"))
+        {
+            int localVolume = PlayerPrefs.GetInt("BGMVolume");
+            MenuController.bgmVolume = localVolume;
+            bgmTextValue.text = localVolume.ToString("0");
+            audioMixer.SetFloat("BGM", Mathf.Log10(localVolume / 10f) * 20);
+        }
+
+        if (PlayerPrefs.HasKey("SFXVolume"))
+        {
+            int localVolume = PlayerPrefs.GetInt("SFXVolume");
+            MenuController.sfxVolume = localVolume;
+            sfxTextValue.text = localVolume.ToString("0");
+            audioMixer.SetFloat("SFX", Mathf.Log10(localVolume / 10f) * 20);
+        }
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+        if (pauseActionReference.action.IsPressed())
         {
-            if (isGamePaused) 
+            if (isGamePaused)
             {
                 ResumeGame();
             }
@@ -78,11 +113,6 @@ public class MenuPause : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
-    }
-
-    public void ShowOptions()
-    {
-        Time.timeScale = 1f;
     }
 
     #region Audio Volume
@@ -146,8 +176,8 @@ public class MenuPause : MonoBehaviour
 
     public void ApplyVolume()
     {
-        PlayerPrefs.SetFloat("BGMVolume", MenuController.bgmVolume);
-        PlayerPrefs.SetFloat("SFXVolume", MenuController.sfxVolume);
+        PlayerPrefs.SetInt("BGMVolume", MenuController.bgmVolume);
+        PlayerPrefs.SetInt("SFXVolume", MenuController.sfxVolume);
         // Show Prompt
         StartCoroutine(ConfirmationBox());
     }

@@ -4,9 +4,9 @@ using UnityEngine.Rendering;
 
 public class Spawner : MonoBehaviour
 {
-        [Header("Enemy Properties")]
-        [Tooltip("The differents types of enemies")]
-        [SerializeField] private EnemySO[] enemyTypes;
+    [Header("Enemy Properties")]
+    [Tooltip("The differents types of enemies")]
+    [SerializeField] private EnemySO[] enemyTypes;
 
     [Header("Spawn Settings")]
     [Tooltip("Time before the first enemy spawn")]
@@ -16,7 +16,7 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        InvokeRepeating(nameof(SpawnEnemy), 10f, spawnDelay);
+        InvokeRepeating(nameof(SpawnEnemy), startSpawnTime, spawnDelay);
     }
 
     private void SpawnEnemy()

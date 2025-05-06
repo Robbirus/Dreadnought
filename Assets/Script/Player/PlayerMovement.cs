@@ -25,7 +25,10 @@ public class PlayerMovement : MonoBehaviour
     
     [Header("Input Action Reference")]
     [SerializeField] private InputActionReference movementActionReference;
-    [Space(5)]
+    [Space(10)]
+
+    [Header("Player Physics")]
+    [SerializeField] private Rigidbody rigidbody;
 
 
     #region Needle attributes
@@ -36,7 +39,6 @@ public class PlayerMovement : MonoBehaviour
 
     #region Physics Attributs
     private bool isGrounded;
-    private Rigidbody rb;
     private float mass;
     private float acceleration;
     private Vector3 moveDirection;
@@ -57,12 +59,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
+        movementActionReference.action.Enable();
     }
 
     private void Start()
     {
-        mass = rb.mass;
+        mass = rigidbody.mass;
         acceleration = (2 * power) / (mass * accelerationTime);
         force = acceleration * mass;
     }
@@ -110,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
     private void MovingPlayer()
     {
         Vector3 move = moveDirection * currentSpeed * Time.fixedDeltaTime;
-        rb.MovePosition(rb.position + move);
+        rigidbody.MovePosition(rigidbody.position + move);
     }
 
     private void LimitSpeed()
@@ -145,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float turnInput = horizontalInput * rotationSpeed * Time.deltaTime;
         Quaternion rotate = Quaternion.Euler(0f, turnInput, 0f);
-        rb.MoveRotation(rb.rotation * rotate);
+        rigidbody.MoveRotation(rigidbody.rotation * rotate);
     }
 
     private void UpdateNeedle()

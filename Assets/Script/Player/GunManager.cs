@@ -65,6 +65,11 @@ public class GunManager : MonoBehaviour
     private void Awake()
     {
         shootActionReference.action.Enable();
+
+        ammo1ActionReference.action.Enable();
+        ammo2ActionReference.action.Enable();
+        ammo3ActionReference.action.Enable();
+        ammo4ActionReference.action.Enable();
     }
 
     private void Start()
@@ -83,7 +88,7 @@ public class GunManager : MonoBehaviour
         {
             // Wait for Input Shoot
             ChangeReloadTimeColor(true);
-            yield return new WaitUntil(() => shootActionReference.action.IsPressed());
+            yield return new WaitUntil(() => shootActionReference.action.IsPressed() && !MenuPause.isGamePaused);
 
             Shoot();
 
@@ -95,7 +100,7 @@ public class GunManager : MonoBehaviour
             reloadCircle.fillAmount = 0;
             float elapsed = 0f;
 
-            while (elapsed < reloadTime) 
+            while (elapsed < reloadTime)
             {
                 elapsed += Time.deltaTime;
                 reloadCircle.fillAmount = Mathf.Clamp01(elapsed / reloadTime);

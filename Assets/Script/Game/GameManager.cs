@@ -32,15 +32,16 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (instance == null)
+        if (instance != null && instance != this)
         {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+            Destroy(this.gameObject);
+            return;
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
+            instance = this;
         }
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
