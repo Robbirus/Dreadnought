@@ -37,11 +37,6 @@ public class MenuPause : MonoBehaviour
     [Header("Confirmation Image")]
     [SerializeField] private GameObject confirmationPrompt = null;
 
-    private void Awake()
-    {
-        pauseActionReference.action.Enable();
-    }
-
     private void Start()
     {
         LoadSoundPreference();
@@ -66,18 +61,26 @@ public class MenuPause : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        if (pauseActionReference.action.IsPressed())
+        pauseActionReference.action.performed += OnPausePressed;
+        pauseActionReference.action.Enable();
+    }
+    private void OnDisable()
+    {
+        pauseActionReference.action.performed -= OnPausePressed;
+        pauseActionReference.action.Disable();
+    }
+
+    private void OnPausePressed(InputAction.CallbackContext context)
+    {
+        if (isGamePaused)
         {
-            if (isGamePaused)
-            {
-                ResumeGame();
-            }
-            else
-            {
-                PauseGame();
-            }
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
         }
     }
 

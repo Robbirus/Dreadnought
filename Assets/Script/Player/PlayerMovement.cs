@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     [Space(10)]
 
     [Header("Player Physics")]
-    [SerializeField] private Rigidbody rigidbody;
+    [SerializeField] private Rigidbody playerRigidbody;
 
 
     #region Needle attributes
@@ -64,7 +64,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        mass = rigidbody.mass;
+        mass = playerRigidbody.mass;
         acceleration = (2 * power) / (mass * accelerationTime);
         force = acceleration * mass;
     }
@@ -112,7 +112,7 @@ public class PlayerMovement : MonoBehaviour
     private void MovingPlayer()
     {
         Vector3 move = moveDirection * currentSpeed * Time.fixedDeltaTime;
-        rigidbody.MovePosition(rigidbody.position + move);
+        playerRigidbody.MovePosition(playerRigidbody.position + move);
     }
 
     private void LimitSpeed()
@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float turnInput = horizontalInput * rotationSpeed * Time.deltaTime;
         Quaternion rotate = Quaternion.Euler(0f, turnInput, 0f);
-        rigidbody.MoveRotation(rigidbody.rotation * rotate);
+        playerRigidbody.MoveRotation(playerRigidbody.rotation * rotate);
     }
 
     private void UpdateNeedle()

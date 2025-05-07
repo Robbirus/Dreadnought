@@ -9568,6 +9568,10 @@ PrefabInstance:
       value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 325563445029884473, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: playerRigidbody
+      value: 
+      objectReference: {fileID: 3929474751686394586}
+    - target: {fileID: 325563445029884473, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
       propertyPath: accelerationTime
       value: 100
       objectReference: {fileID: 0}
