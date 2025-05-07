@@ -240,7 +240,7 @@ public class MenuController : MonoBehaviour
         {
             sfxVolume++;
         }
-        audioMixer.SetFloat("BGM", Mathf.Log10(sfxVolume / 10f) * 20);
+        audioMixer.SetFloat("SFX", Mathf.Log10(sfxVolume / 10f) * 20);
         sfxTextValue.text = sfxVolume.ToString("0");
     }
 
@@ -253,11 +253,11 @@ public class MenuController : MonoBehaviour
 
         if (sfxVolume == 0)
         {
-            audioMixer.SetFloat("BGM", Mathf.Log10(-1 * 20));
+            audioMixer.SetFloat("SFX", Mathf.Log10(-1 * 20));
         }
         else
         {
-            audioMixer.SetFloat("BGM", Mathf.Log10(sfxVolume / 10f) * 20);
+            audioMixer.SetFloat("SFX", Mathf.Log10(sfxVolume / 10f) * 20);
         }
 
          sfxTextValue.text = sfxVolume.ToString("0");
