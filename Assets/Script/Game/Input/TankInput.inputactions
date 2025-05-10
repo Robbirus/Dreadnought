@@ -2,7 +2,7 @@
     "name": "TankInput",
     "maps": [
         {
-            "name": "Movement",
+            "name": "GameAction",
             "id": "a7f122b4-5aa1-491d-bc3c-eff537ac2333",
             "actions": [
                 {
@@ -13,6 +13,60 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "GunShot",
+                    "type": "Button",
+                    "id": "4ef1618f-24ae-45a0-b718-576d7792921c",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeAmmo1",
+                    "type": "Button",
+                    "id": "abb69849-6941-4f13-8bb0-fc66e60401e7",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeAmmo2",
+                    "type": "Button",
+                    "id": "98a62266-902f-44d1-b28d-0872433bb1ee",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeAmmo3",
+                    "type": "Button",
+                    "id": "f426fec0-027c-4224-89a6-d52244f8447d",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "ChangeAmmo4",
+                    "type": "Button",
+                    "id": "768edb88-7c5f-47f1-a7f6-2800740238f4",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "a2cb630f-e6f9-463a-82e4-54fce750cfbe",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -70,63 +124,10 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
-                }
-            ]
-        },
-        {
-            "name": "Gun Handling",
-            "id": "f53734a2-4b69-455e-b0ba-e533a9083450",
-            "actions": [
-                {
-                    "name": "GunShot",
-                    "type": "Button",
-                    "id": "88de5d3a-06df-46ce-8ad0-04e6a02dee56",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 },
-                {
-                    "name": "ChangeAmmo1",
-                    "type": "Button",
-                    "id": "2bb6b156-8a78-43eb-8374-c1e3a275fa2a",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ChangeAmmo2",
-                    "type": "Button",
-                    "id": "326b4d4c-6fa4-493b-98e7-c1e9e0e433e5",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ChangeAmmo3",
-                    "type": "Button",
-                    "id": "ae321d6e-87a5-4b05-bf03-a6bd1303f9cc",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "ChangeAmmo4",
-                    "type": "Button",
-                    "id": "d0ebe1dd-2989-4146-a10d-6c5810352932",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
                 {
                     "name": "",
-                    "id": "d5067b06-c5cd-4294-bbb3-27bee033bf3a",
+                    "id": "8d9622d7-0c8e-4f4c-80ad-150caf222221",
                     "path": "<Mouse>/press",
                     "interactions": "",
                     "processors": "",
@@ -137,7 +138,7 @@
                 },
                 {
                     "name": "",
-                    "id": "afe21388-9c36-4c84-9b3e-f53c9f281404",
+                    "id": "72da5988-7c34-4aaf-a9c5-a01a496cdb15",
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
@@ -148,7 +149,7 @@
                 },
                 {
                     "name": "",
-                    "id": "9375296a-261b-4a15-b9cf-4c3ff5ce7d06",
+                    "id": "cf60ed11-aed0-4d1e-8bbd-f65091ed8ad8",
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
@@ -159,7 +160,7 @@
                 },
                 {
                     "name": "",
-                    "id": "d0c75f37-8544-4483-a71a-df8ebd8acccc",
+                    "id": "7d5028c5-09d3-4d95-8419-6035339d2674",
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
@@ -170,7 +171,7 @@
                 },
                 {
                     "name": "",
-                    "id": "af073347-4123-4e4c-bccc-2fa014862e8a",
+                    "id": "fddbf3ea-56f2-453d-8097-59dc1e9f8ea9",
                     "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
@@ -178,27 +179,10 @@
                     "action": "ChangeAmmo4",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Game Control",
-            "id": "bfc4766d-b219-4fae-b7e3-488155ce5e63",
-            "actions": [
-                {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "0e68d3f2-edd4-4bbe-897d-a75b6306daaf",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "b57adc89-c380-43e7-8a59-2a6ef6ecf329",
+                    "id": "fafa03bd-2c2a-4593-a2c7-3007977da4fe",
                     "path": "<Keyboard>/p",
                     "interactions": "",
                     "processors": "",
@@ -209,7 +193,7 @@
                 },
                 {
                     "name": "",
-                    "id": "4133d821-4869-4cdb-93b6-9028425f2e0d",
+                    "id": "75fed6a3-668f-417f-a3c6-d793595db3c9",
                     "path": "<Keyboard>/backspace",
                     "interactions": "",
                     "processors": "",
@@ -221,5 +205,16 @@
             ]
         }
     ],
-    "controlSchemes": []
+    "controlSchemes": [
+        {
+            "name": "Keyboard",
+            "bindingGroup": "Keyboard",
+            "devices": []
+        },
+        {
+            "name": "Gamepad",
+            "bindingGroup": "Gamepad",
+            "devices": []
+        }
+    ]
 }

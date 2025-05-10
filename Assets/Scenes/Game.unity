@@ -3479,7 +3479,7 @@ MonoBehaviour:
   audioMixer: {fileID: 24100000, guid: 6f3d6d505bbb1524fb9f53fc437167aa, type: 2}
   bgmTextValue: {fileID: 608152157}
   sfxTextValue: {fileID: 589438056}
-  pauseActionReference: {fileID: 8234901661558986381, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+  pauseActionReference: {fileID: -8504556375723183259, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
   confirmationPrompt: {fileID: 209371764}
 --- !u!1 &878036994
 GameObject:
@@ -9866,23 +9866,23 @@ PrefabInstance:
     - target: {fileID: 6373239541653378979, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
       propertyPath: ammo1ActionReference
       value: 
-      objectReference: {fileID: 8223954620315868288, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+      objectReference: {fileID: -1489806594382330552, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
     - target: {fileID: 6373239541653378979, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
       propertyPath: ammo2ActionReference
       value: 
-      objectReference: {fileID: -6896927972580666922, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+      objectReference: {fileID: -5896322505977866508, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
     - target: {fileID: 6373239541653378979, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
       propertyPath: ammo3ActionReference
       value: 
-      objectReference: {fileID: 3103768655119798255, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+      objectReference: {fileID: 3016244473598261442, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
     - target: {fileID: 6373239541653378979, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
       propertyPath: ammo4ActionReference
       value: 
-      objectReference: {fileID: 4365490638785107049, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+      objectReference: {fileID: -1102327238341624780, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
     - target: {fileID: 6373239541653378979, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
       propertyPath: shootActionReference
       value: 
-      objectReference: {fileID: -9011076740434151677, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+      objectReference: {fileID: 1938186118840056826, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
     - target: {fileID: 6716516855504018407, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
       propertyPath: m_Enabled
       value: 1

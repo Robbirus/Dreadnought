@@ -79,6 +79,7 @@
     <Compile Include="Assets\Script\Enemy\EnemyCollision.cs" />
     <Compile Include="Assets\Script\Game\Main Menu\MenuPause.cs" />
     <Compile Include="Assets\Script\Game\GameManager.cs" />
+    <Compile Include="Assets\Script\Game\Input\ResetDeviceBindings.cs" />
     <Compile Include="Assets\Script\Game\CenterOfMass.cs" />
     <Compile Include="Assets\Script\Game\SceneIndex.cs" />
     <Compile Include="Assets\Script\Building\Spawner\Spawner.cs" />
