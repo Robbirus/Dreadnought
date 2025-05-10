@@ -171,6 +171,10 @@ public class MenuController : MonoBehaviour
                 ApplyGameplay();
                 break;
 
+            case "Controls":
+                
+                break;
+
             case "Graphics":
                 // Reset brightness value
                 brightnessSlider.value = defaultBrightness;
@@ -283,6 +287,11 @@ public class MenuController : MonoBehaviour
         }
 
         PlayerPrefs.SetFloat("Sensitivity", mainControllerSen);
+        StartCoroutine(ConfirmationBox());
+    }
+
+    public void ApplyControl()
+    {
         StartCoroutine(ConfirmationBox());
     }
 

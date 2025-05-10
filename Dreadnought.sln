@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.PlayerPrefsEditor.Edi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{2D1291BB-2176-F8CA-3324-E371581DD2E0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.InputSystem.RebindingUI", "Unity.InputSystem.RebindingUI.csproj", "{0BD89990-165C-6B45-4675-A20855BC1585}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FastScriptReload.Runtime", "FastScriptReload.Runtime.csproj", "{DE8596A6-49E4-7D38-1DE9-70486D32A97E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Unity.PlayerPrefsEditor.EditorResources", "Unity.PlayerPrefsEditor.EditorResources.csproj", "{92E6E374-6637-4272-1539-4E3EA6CCB946}"
@@ -37,6 +39,10 @@ Global
 		{2D1291BB-2176-F8CA-3324-E371581DD2E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D1291BB-2176-F8CA-3324-E371581DD2E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D1291BB-2176-F8CA-3324-E371581DD2E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BD89990-165C-6B45-4675-A20855BC1585}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BD89990-165C-6B45-4675-A20855BC1585}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BD89990-165C-6B45-4675-A20855BC1585}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD89990-165C-6B45-4675-A20855BC1585}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DE8596A6-49E4-7D38-1DE9-70486D32A97E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DE8596A6-49E4-7D38-1DE9-70486D32A97E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE8596A6-49E4-7D38-1DE9-70486D32A97E}.Release|Any CPU.ActiveCfg = Release|Any CPU
