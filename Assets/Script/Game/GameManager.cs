@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        ChangeState(GameState.Menu);   
+        ChangeState(GameState.Menu);
     }
 
     private void FixedUpdate()
@@ -106,7 +106,7 @@ public class GameManager : MonoBehaviour
                 ApplyGameOver();
                 break;
             case GameState.PerkSelection:
-                ApplyPerkSelection();  
+                ApplyPerkSelection();
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(currentState), currentState, null);
@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
             UpgradeManager.instance.HidePerkSelection();
         }
     }
-   
+
     private void ApplyMenu()
     {
         MusicManager.instance.PlayMenuMusic();

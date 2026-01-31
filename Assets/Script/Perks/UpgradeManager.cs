@@ -20,16 +20,21 @@ public class UpgradeManager : MonoBehaviour
     {
         //RandomizeNewPerks();
     }
- 
+
     private void Awake()
     {
-        instance = this;
-
-        if (GameManager.instance != null)
+        if (instance != null && instance != this)
         {
-            GameManager.instance.OnStateChanged += HandleGameStateChanged;
+            Destroy(this.gameObject);
+            return;
         }
+        else
+        {
+            instance = this;
+        }
+        DontDestroyOnLoad(gameObject);
     }
+
 
     private void OnDisable()
     {
