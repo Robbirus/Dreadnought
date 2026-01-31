@@ -259,74 +259,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!1 &483563504135139581
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1468568027765644958}
-  - component: {fileID: 4657760635990422274}
-  - component: {fileID: 6400815361110977023}
-  m_Layer: 0
-  m_Name: Hull Hitbox
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1468568027765644958
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483563504135139581}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.25, z: -1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8718966680680742688}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &4657760635990422274
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483563504135139581}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 3.5, y: 1, z: 7}
-  m_Center: {x: 0.06, y: 0, z: -0.21}
---- !u!114 &6400815361110977023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 483563504135139581}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c79f35133f6314a8371a018a4ca9d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoneName: Zone
-  armorThickness: 80
 --- !u!1 &869659129592012871
 GameObject:
   m_ObjectHideFlags: 0
@@ -6264,10 +6196,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3448159115488989741}
-  - component: {fileID: 9164399781478496303}
   - component: {fileID: 2241702601151887930}
   m_Layer: 0
-  m_Name: Tracks Hitbox
+  m_Name: HullHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6282,26 +6213,12 @@ Transform:
   m_GameObject: {fileID: 2983846725712855075}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -1.2}
+  m_LocalPosition: {x: 0, y: 1.27, z: -1.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 8718966680680742688}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9164399781478496303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2983846725712855075}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c79f35133f6314a8371a018a4ca9d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoneName: Tracks Hitbox
-  armorThickness: 20
 --- !u!65 &2241702601151887930
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6321,7 +6238,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3.5, y: 1, z: 7}
+  m_Size: {x: 3.5, y: 1.5, z: 7}
   m_Center: {x: 0.06, y: -0.4, z: 0.05}
 --- !u!1 &3213796076329084971
 GameObject:
@@ -6831,7 +6748,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6739190511794535520}
   - component: {fileID: 8925373383526975086}
-  - component: {fileID: 6874792855918492816}
   m_Layer: 0
   m_Name: UpperGlacis
   m_TagString: Untagged
@@ -6875,20 +6791,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1, z: 0.4}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6874792855918492816
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5457673504318409168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c79f35133f6314a8371a018a4ca9d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoneName: Upper Glacis
-  armorThickness: 80
 --- !u!1 &5878586554951077939
 GameObject:
   m_ObjectHideFlags: 0
@@ -6931,7 +6833,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2871713086318979737}
   - component: {fileID: 6754415690483914087}
-  - component: {fileID: 3788620026639755870}
   m_Layer: 0
   m_Name: PivotTurret
   m_TagString: Untagged
@@ -6976,20 +6877,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.9, y: 1, z: 4.5}
   m_Center: {x: 0, y: 0.5, z: -0.15}
---- !u!114 &3788620026639755870
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6297071800644591404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c79f35133f6314a8371a018a4ca9d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoneName: Zone
-  armorThickness: 222
 --- !u!1 &6385918521233931245
 GameObject:
   m_ObjectHideFlags: 0
@@ -7423,7 +7310,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9853220799697301}
   - component: {fileID: 3364194169624282644}
-  - component: {fileID: 1580700460227213021}
   m_Layer: 0
   m_Name: LowerGlacis
   m_TagString: Untagged
@@ -7467,20 +7353,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 1, z: 0.1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1580700460227213021
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8067713609361926387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48c79f35133f6314a8371a018a4ca9d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  zoneName: Zone
-  armorThickness: 80
 --- !u!1 &8084925106184637634
 GameObject:
   m_ObjectHideFlags: 0
@@ -7607,7 +7479,6 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1468568027765644958}
   - {fileID: 3448159115488989741}
   - {fileID: 5295245346577002606}
   - {fileID: 4234153057587963221}
@@ -7658,6 +7529,7 @@ MonoBehaviour:
   groundDrag: 5
   needle: {fileID: 0}
   movementActionReference: {fileID: -2455035216646587266, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+  playerRigidbody: {fileID: 0}
 --- !u!114 &2683492071193335968
 MonoBehaviour:
   m_ObjectHideFlags: 0

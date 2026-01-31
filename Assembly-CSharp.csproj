@@ -83,6 +83,7 @@
     <Compile Include="Assets\Script\Game\CenterOfMass.cs" />
     <Compile Include="Assets\Script\Game\SceneIndex.cs" />
     <Compile Include="Assets\Script\Building\Spawner\Spawner.cs" />
+    <Compile Include="Assets\Script\Game\IDamageable.cs" />
     <Compile Include="Assets\Script\Shell\ShellType.cs" />
     <Compile Include="Assets\Script\Collectable\CollectableTriggerHandler.cs" />
     <Compile Include="Assets\Script\Collectable\Heal Item\HealCollectableSO.cs" />

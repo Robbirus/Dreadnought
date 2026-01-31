@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyHealthManager : MonoBehaviour
+public class EnemyHealthManager : MonoBehaviour, IDamageable
 {
 
     [Header("Enemy Health Stat")]
     [SerializeField] private int maxHealth;
+    [SerializeField] private int armor = 5;
     [SerializeField] private HealthBar healthBar;
     [Space(10)]
 
@@ -20,6 +21,27 @@ public class EnemyHealthManager : MonoBehaviour
         healthBar = GetComponentInChildren<HealthBar>();
         health = maxHealth;
         healthBar.UpdateHealthBar(health, maxHealth);
+    }
+
+    public void HandleHit(Shell shell, RaycastHit hit)
+    {
+        int penetration = shell.GetPenetration();
+        float damage = shell.GetFinalDamage();
+
+        float finalDamage;
+
+        // Armor
+        if(penetration > armor)
+        {
+            finalDamage = damage;
+        }
+        else
+        {
+            finalDamage = 1;
+        }
+
+        bool isCrit = shell.GetOwner() == Team.Player && damage > shell.GetFinalDamage() * 0.99f;
+        TakeDamage(finalDamage, isCrit);
     }
 
     public void TakeDamage(float damage, bool isCrit)
@@ -58,6 +80,9 @@ public class EnemyHealthManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Generates items this enemy may drop
+    /// </summary>
     private void GenerateDrop()
     {
         foreach (GameObject drop in drops)

@@ -1,8 +1,8 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealthManager : MonoBehaviour
+public class PlayerHealthManager : MonoBehaviour, IDamageable
 {
     [Header("Health Properties")]
     [Tooltip("Max player's life")]
@@ -45,7 +45,7 @@ public class PlayerHealthManager : MonoBehaviour
         // Debug Key heal / damage
         if (Input.GetKey(KeyCode.X))
         {
-            TakeDamage(Random.Range(15, 110));
+            TakeDamage(Random.Range(15, 110), false);
         }
         if (Input.GetKey(KeyCode.V))
         {
@@ -81,19 +81,37 @@ public class PlayerHealthManager : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, bool isCrit)
     {
-        if(damage <= armor)
+        this.health -= damage;
+        UpdateHealthUI();
+        CheckDeath();
+    }
+
+    public void HandleHit(Shell shell, RaycastHit hit)
+    {
+        int penetration = shell.GetPenetration();
+        float baseDamage = shell.GetFinalDamage();
+
+        float finalDamage;
+
+        // Armor
+        if (penetration > armor)
         {
-            health -= 1;
+            finalDamage = baseDamage;
         }
         else
         {
-            health -= (damage - armor);
+            finalDamage = 1f;
         }
-        lerpTimer = 0f;
 
-        CheckDeath();
+        TakeDamage(finalDamage, false);
+
+        // LifeRip
+        if (IsLifeRipObtained())
+        {
+            RestoreHealth(finalDamage * GetLifeRip());
+        }
     }
 
     private void CheckDeath()
