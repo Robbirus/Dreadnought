@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Script\Enemy\EnemyHealthManager.cs" />
+    <Compile Include="Assets\Script\Perks\CritsDamagePerk.cs" />
     <Compile Include="Assets\Script\Game\LevelLoader.cs" />
     <Compile Include="Assets\Script\Player\PlayerCollision.cs" />
     <Compile Include="Assets\Script\Game\Sound\AudioManager.cs" />
@@ -94,16 +95,25 @@
     <Compile Include="Assets\Script\Enemy\EnemyAI.cs" />
     <Compile Include="Assets\Script\Collectable\Experience Item\ExperienceCollectableSO.cs" />
     <Compile Include="Assets\Script\Perks\Perk.cs" />
+    <Compile Include="Assets\Script\Perks\LifeRipPerk.cs" />
     <Compile Include="Assets\Script\Game\ObjectPoolManager.cs" />
     <Compile Include="Assets\Script\Game\Sound\MusicManager.cs" />
+    <Compile Include="Assets\Script\Perks\CaliberIncreasePerk.cs" />
     <Compile Include="Assets\Script\Shell\ShellSO.cs" />
+    <Compile Include="Assets\Script\Perks\BloodBathPerk.cs" />
+    <Compile Include="Assets\Script\Perks\CritsChancePerk.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Script\Game\HitZone.cs" />
     <Compile Include="Assets\Script\Building\BuildingCollision.cs" />
+    <Compile Include="Assets\Script\Perks\HealthIncreasePerk.cs" />
     <Compile Include="Assets\Script\Collectable\CollectableSoundManager.cs" />
     <Compile Include="Assets\Script\Game\Main Menu\LoadPrefs.cs" />
+    <Compile Include="Assets\Script\Perks\ReloadDecreasePerk.cs" />
+    <Compile Include="Assets\Script\Perks\DamageIncreasePerk.cs" />
+    <Compile Include="Assets\Script\Perks\ExperienceIncreasePerk.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Script\Player\GunManager.cs" />
+    <Compile Include="Assets\Script\Perks\TopSpeedPerk.cs" />
     <Compile Include="Assets\Script\Enemy\HealthBar.cs" />
     <Compile Include="Assets\Script\Shell\Team.cs" />
     <Compile Include="Assets\Script\Enemy\EnemySoundManager.cs" />
@@ -111,6 +121,7 @@
     <Compile Include="Assets\Script\Shell\Shell.cs" />
     <Compile Include="Assets\Script\Scene\GameOverScreen.cs" />
     <Compile Include="Assets\Script\Player\PlayerHealthManager.cs" />
+    <Compile Include="Assets\Script\Perks\DefenseIncreasePerk.cs" />
     <Compile Include="Assets\Script\Player\PlayerExperienceManager.cs" />
     <Compile Include="Assets\Script\Perks\UpgradeManager.cs" />
   </ItemGroup>

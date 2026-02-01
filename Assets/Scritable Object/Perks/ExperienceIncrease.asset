@@ -9,12 +9,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ffb0827e9f8bcf418e32cd2296f97b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 1466a6a87b3be2a4483177fe83752efc, type: 3}
   m_Name: ExperienceIncrease
   m_EditorClassIdentifier: 
   perkImage: {fileID: 21300000, guid: 5c93053658b912944b5e407e069e044d, type: 3}
-  effectType: 5
-  perkText: Increase the xp drop by enemy
+  perkText: Increase xp drop by enemies
   effectValue: 3
   unlockLevel: 0
   isPercentage: 0

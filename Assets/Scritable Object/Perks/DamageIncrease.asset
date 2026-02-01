@@ -9,13 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ffb0827e9f8bcf418e32cd2296f97b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 764356bd472ca8c4585443cc8b7d84c2, type: 3}
   m_Name: DamageIncrease
   m_EditorClassIdentifier: 
   perkImage: {fileID: 21300000, guid: f03fd92d50643cf4bbfb8bb9bb5a0ab4, type: 3}
-  effectType: 7
-  perkText: +10% Damage
-  effectValue: 10
+  perkText: Damage +5%
+  effectValue: 5
   unlockLevel: 0
   isPercentage: 1
   isUnique: 0

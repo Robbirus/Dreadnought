@@ -8,7 +8,7 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     [Tooltip("Max player's life")]
     [SerializeField] private float maxHealth = 1950f;
     [Tooltip("Base player's armor")]
-    [SerializeField] private int armor = 10;
+    [SerializeField] private int armor = 222;
 
     [Header("GameObject Player")]
     [SerializeField] private float chipSpeed = 2f;
@@ -167,6 +167,16 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     public bool IsLifeRipObtained()
     {
         return this.lifeRipObtained;
+    }
+
+    public int GetArmor()
+    {
+        return this.armor;
+    }
+
+    public void SetArmor(int armor)
+    {
+        this.armor = armor;
     }
     #endregion
 }

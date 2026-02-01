@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ffb0827e9f8bcf418e32cd2296f97b9, type: 3}
-  m_Name: Bloodbath
+  m_Script: {fileID: 11500000, guid: 0a2df8b998c44e7469bcb60e35c7c265, type: 3}
+  m_Name: BloodBath
   m_EditorClassIdentifier: 
   perkImage: {fileID: 21300000, guid: d3d333a3121ed5b48b21150f648c85db, type: 3}
-  perkText: Kills Heal you 360 hp over 4 sec
-  effectType: 9
+  perkText: Kills heal you 360 hp over 4 sec
   effectValue: 0
-  isUnique: 0
   unlockLevel: 5
+  isPercentage: 0
+  isUnique: 0

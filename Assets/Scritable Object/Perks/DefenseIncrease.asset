@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ffb0827e9f8bcf418e32cd2296f97b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 764356bd472ca8c4585443cc8b7d84c2, type: 3}
   m_Name: DefenseIncrease
   m_EditorClassIdentifier: 
   perkImage: {fileID: 21300000, guid: 188d61c55530e5f40bab2705483e812a, type: 3}
-  perkText: Increase your armor value by 1 (DO NOTHING)
-  effectType: 4
+  perkText: Increase your armor by 1 mm
   effectValue: 1
-  isUnique: 0
   unlockLevel: 0
+  isPercentage: 1
+  isUnique: 0

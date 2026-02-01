@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ffb0827e9f8bcf418e32cd2296f97b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c5c3e16bda2db849a7a4c73a8e9117a, type: 3}
   m_Name: LifeRip
   m_EditorClassIdentifier: 
-  perkImage: {fileID: 21300000, guid: 3e7597ba00a2269498727c68b25c0b96, type: 3}
-  perkText: Your shot gains 20% life steal
-  effectType: 10
+  perkImage: {fileID: 0}
+  perkText: Your shots gains 20% life steal
   effectValue: 0.2
+  unlockLevel: 0
+  isPercentage: 0
   isUnique: 0
-  unlockLevel: 2
+  maxStacks: 3
