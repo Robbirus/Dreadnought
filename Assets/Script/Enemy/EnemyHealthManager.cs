@@ -15,12 +15,15 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
     [SerializeField] List<GameObject> drops;
 
     private float health;
+    private EnemySoundManager soundManager;
 
     private void Awake()
     {
         healthBar = GetComponentInChildren<HealthBar>();
         health = maxHealth;
         healthBar.UpdateHealthBar(health, maxHealth);
+
+        soundManager = gameObject.GetComponent<EnemySoundManager>();
     }
 
     public void HandleHit(Shell shell, RaycastHit hit)
@@ -55,11 +58,11 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
 
         if (damageInfo.isCrit)
         {
-            gameObject.GetComponent<EnemySoundManager>().PlayHitCritSound();
+            soundManager.PlayHitCritSound();
         }
         else
         {
-            gameObject.GetComponent<EnemySoundManager>().PlayHitSound();
+            soundManager.PlayHitSound();
         }
 
         CheckDeath();
