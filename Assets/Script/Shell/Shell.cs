@@ -85,19 +85,6 @@ public class Shell : MonoBehaviour
         transform.position = nextPos;
     }
 
-    /// <summary>
-    /// Check if LifeSteal Perk is obtained, if true, restore Health to the player equal of the life stolen
-    /// if false, do nothing
-    /// </summary>
-    /// <param name="lifeSteal">The value of the life stole from the enemy</param>
-    private void ApplyLifeRip(float lifeSteal)
-    {
-        if (GameManager.instance.GetPlayerController().GetHealthManager().IsLifeRipObtained())
-        {
-            GameManager.instance.GetPlayerController().GetHealthManager().RestoreHealth(lifeSteal);
-        }
-    }
-
     #region Getter / Setter
     public void SetPenetration(int penetration)
     {
@@ -119,21 +106,6 @@ public class Shell : MonoBehaviour
         this.critChance = critChance;
     }
 
-    public int GetPity()
-    {
-        return this.pity;
-    }
-
-    public void ResetPity()
-    {
-        GameManager.instance.GetPlayerController().GetGunManager().ResetPity();
-    }
-
-    public void IncreasePity()
-    {
-        GameManager.instance.GetPlayerController().GetGunManager().IncreasePity();
-    }
-
     public float GetCritCoef()
     {
         return critCoef;
@@ -148,18 +120,7 @@ public class Shell : MonoBehaviour
     {
         if(this.owner == Team.Player)
         {
-            float finalDamage = isCrit ? damage * critCoef : damage;
-
-            if(isCrit)
-            {
-                ResetPity();
-            }
-            else
-            {
-                IncreasePity();
-            }
-
-            return finalDamage;
+            return isCrit ? damage * critCoef : damage;
         }
 
         return damage;

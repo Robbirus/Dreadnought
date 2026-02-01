@@ -34,8 +34,6 @@ public class GunManager : MonoBehaviour
     [SerializeField] private int critChance = 2;
     [Tooltip("The base critical damage coefficient")]
     [SerializeField] private float critCoef = 1.1f;
-    [Tooltip("If true, then it's a critical hit")]
-    [SerializeField] private bool isCrit = false;
     [Tooltip("The pity allows to temporarily up the crit chance")]
     [Range(0, 100)]
     [SerializeField] private int pity = 0;
@@ -110,6 +108,22 @@ public class GunManager : MonoBehaviour
         }
     }
 
+    private bool RollCrit()
+    {
+        int roll = UnityEngine.Random.Range(0, 100);
+
+        if(roll < critChance + pity)
+        {
+            ResetPity();
+            return true;
+        }
+        else
+        {
+            IncreasePity();
+            return false;
+        }
+    }
+
     private void ChangeReloadTimeColor(bool done)
     {
         if (!done)
@@ -155,9 +169,9 @@ public class GunManager : MonoBehaviour
     {
         if (currentShell == null) return;
 
-        InstantiateShell();
-        isCrit = UnityEngine.Random.Range(1, 100 - this.pity) <= this.critChance;
-
+        bool isCrit = RollCrit();
+        InstantiateShell(isCrit);
+        
         GameManager.instance.IncreaseShot();
 
         if (isCrit)
@@ -172,11 +186,10 @@ public class GunManager : MonoBehaviour
         shootParticle.Play();
     }
 
-    private void InstantiateShell()
+    private void InstantiateShell(bool isCrit)
     {
         GameObject shell = Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
         shell.GetComponent<Shell>().Setup(currentShell, Team.Player, this.caliber, isCrit);
-        // GameObject shell = ObjectPoolManager.instance.GetPooledObject();  
     }
 
     #region Getter / Setter
