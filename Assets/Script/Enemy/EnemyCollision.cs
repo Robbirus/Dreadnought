@@ -30,7 +30,11 @@ public class EnemyCollision : MonoBehaviour
     private void ContactWithPlayer(GameObject collider)
     {
         float damage = gameObject.GetComponent<EnemyController>().GetDamage();
-        collider.transform.GetComponent<PlayerHealthManager>().TakeDamage(damage, false);
+        collider.transform.GetComponent<PlayerHealthManager>().TakeDamage(new DamageInfo
+        {
+            damage = damage,
+            isCrit = false
+        });
 
         GameManager.instance.IncreaseEnemyKilled();
         Destroy(gameObject);

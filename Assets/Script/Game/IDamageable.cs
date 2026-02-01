@@ -2,7 +2,15 @@ using UnityEngine;
 
 public interface IDamageable
 {
-    void TakeDamage(float damage, bool isCrit);
+    void TakeDamage(DamageInfo damageInfo);
 
     void HandleHit(Shell shell, RaycastHit hit);
+}
+
+public struct DamageInfo
+{
+    public float damage;
+    public int penetration;
+    public bool isCrit;
+    public Team sourceTeam;
 }

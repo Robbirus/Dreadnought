@@ -41,15 +41,19 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
         }
 
         bool isCrit = shell.GetOwner() == Team.Player && damage > shell.GetFinalDamage() * 0.99f;
-        TakeDamage(finalDamage, isCrit);
+        TakeDamage(new DamageInfo
+        {
+            damage = finalDamage,
+            isCrit = false
+        });
     }
 
-    public void TakeDamage(float damage, bool isCrit)
+    public void TakeDamage(DamageInfo damageInfo)
     {
-        health -= damage;
+        health -= damageInfo.damage;
         healthBar.UpdateHealthBar(health, maxHealth);
 
-        if (isCrit)
+        if (damageInfo.isCrit)
         {
             gameObject.GetComponent<EnemySoundManager>().PlayHitCritSound();
         }

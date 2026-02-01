@@ -61,8 +61,8 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\Enemy\EnemyHealthManager.cs" />
     <Compile Include="Assets\Script\Perks\CritsDamagePerk.cs" />
+    <Compile Include="Assets\Script\Enemy\EnemyHealthManager.cs" />
     <Compile Include="Assets\Script\Game\LevelLoader.cs" />
     <Compile Include="Assets\Script\Player\PlayerCollision.cs" />
     <Compile Include="Assets\Script\Game\Sound\AudioManager.cs" />

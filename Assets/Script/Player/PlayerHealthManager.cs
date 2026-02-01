@@ -45,7 +45,13 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
         // Debug Key heal / damage
         if (Input.GetKey(KeyCode.X))
         {
-            TakeDamage(Random.Range(15, 110), false);
+            TakeDamage(new DamageInfo
+            {
+                damage = Random.Range(15, 110),
+                penetration = 0,
+                isCrit = false,
+                sourceTeam = Team.Enemy
+            });
         }
         if (Input.GetKey(KeyCode.V))
         {
@@ -81,9 +87,9 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
         }
     }
 
-    public void TakeDamage(float damage, bool isCrit)
+    public void TakeDamage(DamageInfo damageInfo)
     {
-        this.health -= damage;
+        this.health -= damageInfo.damage;
         UpdateHealthUI();
         CheckDeath();
     }
@@ -105,7 +111,11 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
             finalDamage = 1f;
         }
 
-        TakeDamage(finalDamage, false);
+        TakeDamage(new DamageInfo
+        {
+            damage = finalDamage,
+            isCrit = false
+        });
 
         // LifeRip
         if (IsLifeRipObtained())

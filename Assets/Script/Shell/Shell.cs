@@ -68,13 +68,17 @@ public class Shell : MonoBehaviour
 
         if (Physics.Raycast(transform.position, direction, out RaycastHit hit, move.magnitude))
         {
-            IDamageable damageable = hit.collider.GetComponentInParent<IDamageable>();
-
-            if (damageable != null) 
+            if(hit.collider.GetComponentInParent<IDamageable>() is IDamageable target)
             {
-                damageable.HandleHit(this, hit);
+                target.TakeDamage(new DamageInfo
+                {
+                    damage = damage,
+                    penetration = penetration,
+                    isCrit = isCrit,
+                    sourceTeam = owner
+                });
+
                 Destroy(gameObject);
-                return;
             }
         }
 
