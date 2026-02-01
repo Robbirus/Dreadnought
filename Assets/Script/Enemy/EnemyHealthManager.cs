@@ -7,7 +7,7 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
 
     [Header("Enemy Health Stat")]
     [SerializeField] private int maxHealth;
-    [SerializeField] private int armor = 5;
+    [SerializeField] private int armor = 150;
     [SerializeField] private HealthBar healthBar;
     [Space(10)]
 
@@ -29,26 +29,43 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
     public void HandleHit(Shell shell, RaycastHit hit)
     {
         int penetration = shell.GetPenetration();
-        float damage = shell.GetFinalDamage();
+        float baseDamage = shell.GetFinalDamage();
 
         float finalDamage;
 
-        // Armor
-        if(penetration > armor)
+        // Armor Check
+        if (penetration > this.armor)
         {
-            finalDamage = damage;
+            finalDamage = baseDamage;
         }
         else
         {
             finalDamage = 1;
         }
 
-        bool isCrit = shell.GetOwner() == Team.Player && damage > shell.GetFinalDamage() * 0.99f;
+        bool isCrit = shell.IsCrit();
+
+        // Apply Damage
         TakeDamage(new DamageInfo
         {
             damage = finalDamage,
-            isCrit = false
+            isCrit = isCrit,
+            sourceTeam = shell.GetOwner()
         });
+
+        // Apply Liferip from player
+        if (shell.GetOwner() == Team.Player)
+        {
+            PlayerHealthManager playerHealth = GameManager.instance
+                .GetPlayerController()
+                .GetHealthManager();
+
+            if (playerHealth.IsLifeRipObtained())
+            {
+                float heal = finalDamage * playerHealth.GetLifeRip();
+                playerHealth.RestoreHealth(heal);
+            }
+        }
     }
 
     public void TakeDamage(DamageInfo damageInfo)
@@ -72,7 +89,7 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
     {
         if (health <= 0)
         {
-            gameObject.GetComponent<EnemySoundManager>().PlayDeathSound();
+            soundManager.PlayDeathSound();
             GameManager.instance.DecreaseEnemyCount();
             GameManager.instance.IncreaseEnemyKilled();
 

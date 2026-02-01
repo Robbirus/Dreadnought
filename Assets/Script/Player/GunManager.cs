@@ -108,6 +108,10 @@ public class GunManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Shoot a random number to know if the shot is a crit or not
+    /// </summary>
+    /// <returns>True if the shot is a crit, false otherwise</returns>
     private bool RollCrit()
     {
         int roll = UnityEngine.Random.Range(0, 100);

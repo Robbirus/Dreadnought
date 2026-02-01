@@ -13,7 +13,6 @@ public class Shell : MonoBehaviour
     private float lifeTime;
 
     private Vector3 direction;
-    private float lifeSteal;
     private int caliber;
     private ShellType type;
 
@@ -36,6 +35,9 @@ public class Shell : MonoBehaviour
     /// Instantiate a shell depending of the type in the SO
     /// </summary>
     /// <param name="currentShell">The SO shell used this time</param>
+    /// <param name="team">The team where the shell comes from</param>
+    /// <param name="caliber">The shell's caliber</param>
+    /// <param name="isCrit">True if the shot was a critical hit</param>
     public void Setup(ShellSO currentShell, Team team, int caliber, bool isCrit)
     {
         float damageVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
@@ -70,13 +72,7 @@ public class Shell : MonoBehaviour
         {
             if(hit.collider.GetComponentInParent<IDamageable>() is IDamageable target)
             {
-                target.TakeDamage(new DamageInfo
-                {
-                    damage = damage,
-                    penetration = penetration,
-                    isCrit = isCrit,
-                    sourceTeam = owner
-                });
+                target.HandleHit(this, hit);
 
                 Destroy(gameObject);
             }
@@ -134,6 +130,11 @@ public class Shell : MonoBehaviour
     public Team GetOwner()
     {
         return owner;
+    }
+   
+    public bool IsCrit() 
+    { 
+        return isCrit; 
     }
     #endregion
 }

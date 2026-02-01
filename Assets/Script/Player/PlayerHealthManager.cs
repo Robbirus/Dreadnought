@@ -7,6 +7,8 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     [Header("Health Properties")]
     [Tooltip("Max player's life")]
     [SerializeField] private float maxHealth = 1950f;
+    [Tooltip("Current player's life")]
+    [SerializeField] private float health;
     [Tooltip("Base player's armor")]
     [SerializeField] private int armor = 222;
 
@@ -17,16 +19,15 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     [SerializeField] private Image frontHealthBar;
     [SerializeField] private Image backHealthBar;
 
-    private float health;
     private float lerpTimer;
 
     #region BloodBath
-    private bool bloodbathObtained = false;
+    [SerializeField] private bool bloodbathObtained = false;
     #endregion
 
     #region Life Rip
-    private float lifeRip = 0;
-    private bool lifeRipObtained = false;
+    [SerializeField] private float lifeRip = 0;
+    [SerializeField] private bool lifeRipObtained = false;
     #endregion
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -114,14 +115,9 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
         TakeDamage(new DamageInfo
         {
             damage = finalDamage,
-            isCrit = false
+            isCrit = shell.IsCrit(),
+            sourceTeam = shell.GetOwner()
         });
-
-        // LifeRip
-        if (IsLifeRipObtained())
-        {
-            RestoreHealth(finalDamage * GetLifeRip());
-        }
     }
 
     private void CheckDeath()
