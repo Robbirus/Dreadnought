@@ -15,5 +15,7 @@ public class ReloadDecreasePerk : PerkSO
         {
             reloadTime += effectValue;
         }
+
+        player.GetGunManager().SetReloadTime(reloadTime);
     }
 }
