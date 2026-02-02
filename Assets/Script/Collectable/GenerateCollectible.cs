@@ -10,7 +10,7 @@ public class GenerateCollectible : MonoBehaviour
     [Range(1.0f, 120.0f)]
     public float spawnTimer;
     private GameObject newCollectible;
-    private bool _canSpawn;
+    private bool canSpawn;
 
     private void Start()
     {
@@ -18,18 +18,18 @@ public class GenerateCollectible : MonoBehaviour
     }
 
     private void Update()
-    {
-        
-        if(newCollectible == null && _canSpawn)
+    {        
+        if(newCollectible == null && canSpawn)
         {
             Invoke("SpawnCollectible", spawnTimer);
-            _canSpawn=false;
+            canSpawn=false;
         }
     }
+
     private void SpawnCollectible()
     {
         newCollectible = Instantiate(collectible,transform.position + new Vector3(0,4,0), Quaternion.identity);
-        _canSpawn = true;
+        canSpawn = true;
         
     }
 }

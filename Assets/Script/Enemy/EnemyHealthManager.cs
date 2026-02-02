@@ -26,6 +26,13 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
         soundManager = gameObject.GetComponent<EnemySoundManager>();
     }
 
+    /// <summary>
+    /// When hit, compute penetration and armor value
+    /// compute life steal
+    /// Then apply damage
+    /// </summary>
+    /// <param name="shell">The shell that hit this enemy</param>
+    /// <param name="hit">Where does the shell hit</param>
     public void HandleHit(Shell shell, RaycastHit hit)
     {
         int penetration = shell.GetPenetration();
@@ -85,6 +92,11 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
         CheckDeath();
     }
 
+    /// <summary>
+    /// Verify if this enemy should be dead,
+    /// if true, generates drops and activate bloodbath
+    /// if obtained
+    /// </summary>
     private void CheckDeath()
     {
         if (health <= 0)
@@ -111,7 +123,7 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
     {
         foreach (GameObject drop in drops)
         {
-            Instantiate(drop, gameObject.transform.position - new Vector3(0f, 0.5f, 0f), Quaternion.identity);
+            Instantiate(drop, new Vector3(gameObject.transform.position.x, 3f, gameObject.transform.position.z), Quaternion.identity);
         }
     }
 

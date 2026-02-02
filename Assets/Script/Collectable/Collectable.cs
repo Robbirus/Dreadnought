@@ -1,18 +1,49 @@
+using System;
 using UnityEngine;
 
 [RequireComponent (typeof(BoxCollider))]
-[RequireComponent(typeof(CollectableTriggerHandler))]
-public class Collectable : MonoBehaviour
+public class Collectable : MonoBehaviour, ICollectable
 {
-    [SerializeField] private CollectableSO collectable;
+    [SerializeField] private CollectableSO data;
+    [SerializeField] private CollectableSoundManager soundManager;
 
-    private void Reset()
+    public void Collect(GameObject collector)
     {
-        GetComponent<BoxCollider>().isTrigger = true;
+        PlayerController player = collector.GetComponent<PlayerController>();
+        if (player == null)
+        {
+            Debug.Log("No PlayerController found on collector");
+            return;
+        }
+
+        Debug.Log("player isn't null : " + player);
+
+        ApplyEffect(player);
+
+        if (soundManager != null && data.collectSound != null)
+        {
+            soundManager.Play(data.collectSound);
+        }
+
+        Destroy(gameObject);
     }
 
-    public void Collect(GameObject objectCollected)
+    private void ApplyEffect(PlayerController player)
     {
-        collectable.Collect(objectCollected);
+        switch(data.type)
+        {
+            case CollectableType.Health:
+                player.GetHealthManager().RestoreHealth(data.value);
+                break;
+
+            case CollectableType.XP:
+                player.GetXpManager().GainExperience((int)data.value);
+                break;
+
+            case CollectableType.Armor:
+                int armor = player.GetHealthManager().GetArmor();
+                player.GetHealthManager().SetArmor(armor + (int)data.value);
+                break;
+        }
     }
 }

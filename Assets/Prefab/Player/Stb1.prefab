@@ -6747,7 +6747,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6739190511794535520}
-  - component: {fileID: 8925373383526975086}
   m_Layer: 0
   m_Name: UpperGlacis
   m_TagString: Untagged
@@ -6770,27 +6769,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8718966680680742688}
   m_LocalEulerAnglesHint: {x: -60, y: 0, z: 0}
---- !u!65 &8925373383526975086
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5457673504318409168}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 2, y: 1, z: 0.4}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &5878586554951077939
 GameObject:
   m_ObjectHideFlags: 0
@@ -7309,7 +7287,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9853220799697301}
-  - component: {fileID: 3364194169624282644}
   m_Layer: 0
   m_Name: LowerGlacis
   m_TagString: Untagged
@@ -7332,27 +7309,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 8718966680680742688}
   m_LocalEulerAnglesHint: {x: 61, y: 0, z: 0}
---- !u!65 &3364194169624282644
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8067713609361926387}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Size: {x: 2, y: 1, z: 0.1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8084925106184637634
 GameObject:
   m_ObjectHideFlags: 0
@@ -7459,6 +7415,7 @@ GameObject:
   - component: {fileID: 262215776773178212}
   - component: {fileID: 7831459546902106030}
   - component: {fileID: 5907006434065355240}
+  - component: {fileID: 8282591759203158885}
   m_Layer: 0
   m_Name: Stb1
   m_TagString: Player
@@ -7543,10 +7500,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  health: 0
   armor: 10
   chipSpeed: 2
   frontHealthBar: {fileID: 0}
   backHealthBar: {fileID: 0}
+  bloodbathObtained: 0
+  lifeRip: 0
+  lifeRipObtained: 0
 --- !u!114 &1852586442385084052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7587,7 +7548,6 @@ MonoBehaviour:
   shellSpawnPoint: {fileID: 2551777122646263899}
   critChance: 2
   critCoef: 1.01
-  isCrit: 0
   pity: 0
   ammo: []
   shootActionReference: {fileID: -3527412392891031929, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
@@ -7863,6 +7823,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8282591759203158885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8485314063673384991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11e26c2dcd317d5459aaf25850f8b1c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8560491949915542463
 GameObject:
   m_ObjectHideFlags: 0

@@ -420,6 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 1700
+  armor: 200
   healthBar: {fileID: 7134958558877615759}
   drops:
   - {fileID: 1852245274802387325, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
