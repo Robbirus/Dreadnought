@@ -9876,6 +9876,10 @@ PrefabInstance:
       value: 1.1
       objectReference: {fileID: 0}
     - target: {fileID: 6373239541653378979, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: currentGun
+      value: 
+      objectReference: {fileID: 11400000, guid: 014b73a644062a241b2cb35227eadc84, type: 2}
+    - target: {fileID: 6373239541653378979, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
       propertyPath: shellPrefab
       value: 
       objectReference: {fileID: 3633209065182094968, guid: 48d518da0597a9e418d03349ad9bc941, type: 3}

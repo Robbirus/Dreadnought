@@ -36,18 +36,20 @@ public class Shell : MonoBehaviour
     /// </summary>
     /// <param name="currentShell">The SO shell used this time</param>
     /// <param name="team">The team where the shell comes from</param>
-    /// <param name="caliber">The shell's caliber</param>
+    /// <param name="caliber">The gun's caliber</param>
     /// <param name="isCrit">True if the shot was a critical hit</param>
-    public void Setup(ShellSO currentShell, Team team, int caliber, bool isCrit)
+    /// <param name="damage">The damage dealt by the gun</param>
+    /// <param name="penetration">The base penetration</param>
+    public void Setup(ShellSO currentShell, Team team, int caliber, bool isCrit, int penetration, float damage)
     {
         float damageVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
         float penetrationVariation = 1 + UnityEngine.Random.Range(-25, 25) / 100;
 
-        penetration = (int)(currentShell.penetration * penetrationVariation);
-        damage      = currentShell.damage * damageVariation;
-        velocity    = currentShell.velocity;
-        lifeTime    = currentShell.lifeTime;
-        type        = currentShell.ShellType;
+        this.penetration = (int)(currentShell.penetrationCoefficient * penetrationVariation * penetration);
+        this.damage      = currentShell.damageCoefficient * damageVariation * damage;
+        this.velocity    = currentShell.velocity;
+        this.lifeTime    = currentShell.lifeTime;
+        this.type        = currentShell.ShellType;
 
         this.caliber = caliber;
         this.isCrit = isCrit;

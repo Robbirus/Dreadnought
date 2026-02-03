@@ -16,6 +16,7 @@ MonoBehaviour:
   maxHealth: 2400
   caliber: 130
   damage: 490
+  penetration: 250
   baseOffset: 4.5
   radius: 10
   height: 7

@@ -8,6 +8,7 @@ public class EnemySO : ScriptableObject
     public int maxHealth;
     public int caliber;
     public int damage;
+    public int penetration;
     [Space(10)]
 
     [Header("NavMeshAgent Properties")]

@@ -21,6 +21,10 @@ public class EnemyAI : MonoBehaviour
     private EnemyState currentState;
     private float lastShootTime;
 
+    private int caliber;
+    private float damage;
+    private int penetration;
+
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -33,6 +37,10 @@ public class EnemyAI : MonoBehaviour
 
         player = enemyController.GetPlayer().transform;
         currentState = EnemyState.Chase;
+
+        this.caliber = enemyController.GetCaliber();
+        this.damage = enemyController.GetDamage();
+        this.penetration = enemyController.GetPenetration();
     }
 
     public void CallUpdate()
@@ -90,19 +98,7 @@ public class EnemyAI : MonoBehaviour
     private void InstantiateShell()
     {
         GameObject shell = Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
-        shell.GetComponent<Shell>().Setup(currentShell, Team.Enemy, enemyController.GetCaliber(), false);
-
-        /*
-        GameObject shell = ObjectPoolManager.instance.GetPooledObject();
-
-        if (shell != null)
-        {
-            shell.transform.position = shellSpawnPoint.transform.position;
-            shell.transform.rotation = shellSpawnPoint.transform.rotation;
-            shell.GetComponent<Shell>().Setup(currentShell, Team.Player, enemyController.GetCaliber(), false);
-            shell.SetActive(true);
-        }
-        */
+        shell.GetComponent<Shell>().Setup(currentShell, Team.Enemy, this.caliber, false, this.penetration, this.damage);
     }
 
     #region Getter / Setter

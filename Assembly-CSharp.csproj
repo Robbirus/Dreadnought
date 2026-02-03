@@ -63,9 +63,11 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Perks\CritsDamagePerk.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyHealthManager.cs" />
+    <Compile Include="Assets\Script\Player\Gun\GunSO.cs" />
     <Compile Include="Assets\Script\Game\LevelLoader.cs" />
     <Compile Include="Assets\Script\Player\PlayerCollision.cs" />
     <Compile Include="Assets\Script\Game\Sound\AudioManager.cs" />
+    <Compile Include="Assets\Script\Player\Gun\GunManager.cs" />
     <Compile Include="Assets\Script\Game\Main Menu\LoadingController.cs" />
     <Compile Include="Assets\Script\Perks\PerkSO.cs" />
     <Compile Include="Assets\Script\Collectable\Collectable.cs" />
@@ -87,7 +89,6 @@
     <Compile Include="Assets\Script\Building\Spawner\Spawner.cs" />
     <Compile Include="Assets\Script\Game\IDamageable.cs" />
     <Compile Include="Assets\Script\Shell\ShellType.cs" />
-    <Compile Include="Assets\Script\Player\PlayerState\PlayerBaseState.cs" />
     <Compile Include="Assets\Script\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Script\Enemy\EnemySO.cs" />
     <Compile Include="Assets\Script\Building\Spawner\SpawnerSoundManager.cs" />
@@ -112,7 +113,6 @@
     <Compile Include="Assets\Script\Collectable\Drops\HealCollectableSO.cs" />
     <Compile Include="Assets\Script\Perks\ExperienceIncreasePerk.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyManager.cs" />
-    <Compile Include="Assets\Script\Player\GunManager.cs" />
     <Compile Include="Assets\Script\Perks\TopSpeedPerk.cs" />
     <Compile Include="Assets\Script\Enemy\HealthBar.cs" />
     <Compile Include="Assets\Script\Player\Collector.cs" />

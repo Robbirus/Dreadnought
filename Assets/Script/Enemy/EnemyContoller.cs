@@ -20,6 +20,7 @@ public class EnemyController : MonoBehaviour
     private int maxHealth;
     private int damage;
     private int caliber;
+    private int penetration;
 
     private float radius;
     private float height;
@@ -48,6 +49,7 @@ public class EnemyController : MonoBehaviour
         height = enemySO.height;
         baseOffset = enemySO.baseOffset;
         caliber = enemySO.caliber;
+        this.penetration = enemySO.penetration;
 
         healthManager.SetMaxHealth(maxHealth);
     }
@@ -86,6 +88,11 @@ public class EnemyController : MonoBehaviour
     public float GetAngularSpeed()
     {
         return this.rotationSpeed;
+    }
+
+    public int GetPenetration()
+    {
+        return this.penetration;
     }
 
     public GameObject GetPlayer()

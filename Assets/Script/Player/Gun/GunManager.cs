@@ -23,9 +23,7 @@ public class GunManager : MonoBehaviour
     [Space(10)]
 
     [Header("Gun Propreties")]
-    [Tooltip("Gun caliber in mm")]
-    [Range(50, 250)]
-    [SerializeField] private int caliber = 105;
+    [SerializeField] private GunSO currentGun;
     [Tooltip("The projectile prefab")]
     [SerializeField] private GameObject shellPrefab;
     [Tooltip("The point where the projectile will be launched")]
@@ -36,9 +34,7 @@ public class GunManager : MonoBehaviour
     [SerializeField] private float critCoef = 1.1f;
     [Tooltip("The pity allows to temporarily up the crit chance")]
     [Range(0, 100)]
-    [SerializeField] private int pity = 0;
-    [Tooltip("All the shell type in the turret")]
-    [SerializeField] private List<ShellSO> ammo;
+    [SerializeField] private int pity = 0;    
     [Space(10)]
 
     [Header("Input Action Reference")]
@@ -52,13 +48,16 @@ public class GunManager : MonoBehaviour
     [Space(10)]
 
     [Header("Reload Properties")]
-    [Tooltip("Reload Time in seconds")]
-    [Range(1, 30)]
-    [SerializeField] private float reloadTime = 4f;
     [Tooltip("The reload circle image")]
     [SerializeField] private Image reloadCircle;
 
+
     private ShellSO currentShell;
+    private float damage;
+    private float reloadTime;
+    private int penetration;
+    private int caliber; 
+    private List<ShellSO> ammo;
 
     private void Awake()
     {
@@ -68,13 +67,24 @@ public class GunManager : MonoBehaviour
         ammo2ActionReference.action.Enable();
         ammo3ActionReference.action.Enable();
         ammo4ActionReference.action.Enable();
+
+        Setup(currentGun);
+    }
+
+    private void Setup(GunSO currentGun)
+    {
+        this.caliber = currentGun.caliber;
+        this.damage = currentGun.damage;
+        this.reloadTime = currentGun.reloadTime;
+        this.penetration = currentGun.penetration;
+        this.ammo = currentGun.ammo;
     }
 
     private void Start()
     {
         currentShell = ammo[0];
         currentShellImage.sprite = ammo[0].shellImage;
-        reloadTimeText.text = reloadTime.ToString("0.00");
+        reloadTimeText.text = this.reloadTime.ToString("0.00");
         ChangeReloadTimeColor(true);
         reloadCircle.enabled = true;
         StartCoroutine(Shooting());
@@ -98,10 +108,10 @@ public class GunManager : MonoBehaviour
             reloadCircle.fillAmount = 0;
             float elapsed = 0f;
 
-            while (elapsed < reloadTime)
+            while (elapsed < this.reloadTime)
             {
                 elapsed += Time.deltaTime;
-                reloadCircle.fillAmount = Mathf.Clamp01(elapsed / reloadTime);
+                reloadCircle.fillAmount = Mathf.Clamp01(elapsed / this.reloadTime);
                 reloadTimeText.text = elapsed.ToString("0.00");
                 yield return null;
             }
@@ -193,7 +203,7 @@ public class GunManager : MonoBehaviour
     private void InstantiateShell(bool isCrit)
     {
         GameObject shell = Instantiate(shellPrefab, shellSpawnPoint.transform.position, shellSpawnPoint.transform.rotation);
-        shell.GetComponent<Shell>().Setup(currentShell, Team.Player, this.caliber, isCrit);
+        shell.GetComponent<Shell>().Setup(currentShell, Team.Player, this.caliber, isCrit, this.penetration, this.damage);
     }
 
     #region Getter / Setter
@@ -224,12 +234,12 @@ public class GunManager : MonoBehaviour
 
     public float GetDamage()
     {
-        return this.currentShell.damage;
+        return this.damage;
     }
 
     public void SetDamage(float damage)
     {
-        this.currentShell.damage = damage;
+        this.damage = damage;
     }
 
     public int GetCritChance()

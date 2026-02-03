@@ -8,7 +8,7 @@ public class ShellSO : ScriptableObject
     public ShellType ShellType;
     public Sprite shellImage;
     public int velocity;
-    public float damage;
-    public int penetration;
+    public float damageCoefficient;
+    public float penetrationCoefficient;
     public float lifeTime;
 }
