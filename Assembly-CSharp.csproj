@@ -94,6 +94,7 @@
     <Compile Include="Assets\Script\Building\Spawner\SpawnerSoundManager.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyAI.cs" />
     <Compile Include="Assets\Script\Collectable\Drops\XPCollectableSO.cs" />
+    <Compile Include="Assets\Script\Player\PlayerStatsSO.cs" />
     <Compile Include="Assets\Script\Perks\Perk.cs" />
     <Compile Include="Assets\Script\Perks\LifeRipPerk.cs" />
     <Compile Include="Assets\Script\Game\ObjectPoolManager.cs" />

@@ -12,6 +12,15 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GunManager gunManager;
     [SerializeField] private ExperienceManager xpManager;
     [SerializeField] private PlayerMovement movement;
+    [SerializeField] private PlayerStatsSO playerData;
+
+    private void Start()
+    {
+        healthManager.SetMaxHealth(playerData.maxHealth);
+        healthManager.SetArmor(playerData.armor);
+        movement.SetMaxSpeed(playerData.maxSpeed);
+        movement.SetRotationSpeed(playerData.rotationSpeed);
+    }
 
 
     #region Getter / Setter

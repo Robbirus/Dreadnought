@@ -184,10 +184,17 @@ public class PlayerMovement : MonoBehaviour
     {
         return this.maxSpeed;
     }
+
     public void SetReverseSpeed(float reverseSpeed)
     {
         this.reverseSpeed = reverseSpeed;
     }
+
+    public void SetRotationSpeed(float rotationSpeed)
+    {
+        this.rotationSpeed = rotationSpeed;
+    }
+
     #endregion
 
 }

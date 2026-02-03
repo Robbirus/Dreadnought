@@ -9996,6 +9996,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6760180264871636764}
     - target: {fileID: 7810643869418750730, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
+      propertyPath: playerData
+      value: 
+      objectReference: {fileID: 11400000, guid: e8767ed9318bcc447bc7bac187d7cfa7, type: 2}
+    - target: {fileID: 7810643869418750730, guid: e5ada266cdcab7249a2c0717279161b7, type: 3}
       propertyPath: rotationSpeed
       value: 25
       objectReference: {fileID: 0}
