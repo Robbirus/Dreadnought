@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 498bcc0522a20ce47a54ca5dfa96f32a, type: 3}
-  m_Name: XPDrop
+  m_Script: {fileID: 11500000, guid: 3c2dd6179f00adf4eb6758bc05a5244d, type: 3}
+  m_Name: XP
   m_EditorClassIdentifier: 
-  type: 1
-  value: 100
   collectSound: {fileID: 8300000, guid: 9cfceaa958e18f640af18a16a7137286, type: 3}
+  xpAmount: 100

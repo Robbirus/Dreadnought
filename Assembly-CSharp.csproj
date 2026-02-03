@@ -92,15 +92,14 @@
     <Compile Include="Assets\Script\Enemy\EnemySO.cs" />
     <Compile Include="Assets\Script\Building\Spawner\SpawnerSoundManager.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyAI.cs" />
+    <Compile Include="Assets\Script\Collectable\Drops\XPCollectableSO.cs" />
     <Compile Include="Assets\Script\Perks\Perk.cs" />
     <Compile Include="Assets\Script\Perks\LifeRipPerk.cs" />
     <Compile Include="Assets\Script\Game\ObjectPoolManager.cs" />
     <Compile Include="Assets\Script\Game\Sound\MusicManager.cs" />
     <Compile Include="Assets\Script\Perks\CaliberIncreasePerk.cs" />
     <Compile Include="Assets\Script\Shell\ShellSO.cs" />
-    <Compile Include="Assets\Script\Collectable\Drops\XpDrop.cs" />
     <Compile Include="Assets\Script\Perks\BloodBathPerk.cs" />
-    <Compile Include="Assets\Script\Collectable\Drops\HealthDrop.cs" />
     <Compile Include="Assets\Script\Perks\CritsChancePerk.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Script\Game\HitZone.cs" />
@@ -110,6 +109,7 @@
     <Compile Include="Assets\Script\Game\Main Menu\LoadPrefs.cs" />
     <Compile Include="Assets\Script\Perks\ReloadDecreasePerk.cs" />
     <Compile Include="Assets\Script\Perks\DamageIncreasePerk.cs" />
+    <Compile Include="Assets\Script\Collectable\Drops\HealCollectableSO.cs" />
     <Compile Include="Assets\Script\Perks\ExperienceIncreasePerk.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyManager.cs" />
     <Compile Include="Assets\Script\Player\GunManager.cs" />

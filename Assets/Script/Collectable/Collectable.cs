@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [RequireComponent (typeof(BoxCollider))]
@@ -18,7 +17,6 @@ public class Collectable : MonoBehaviour, ICollectable
 
         Debug.Log("player isn't null : " + player);
 
-        ApplyEffect(player);
 
         if (soundManager != null && data.collectSound != null)
         {
@@ -26,24 +24,5 @@ public class Collectable : MonoBehaviour, ICollectable
         }
 
         Destroy(gameObject);
-    }
-
-    private void ApplyEffect(PlayerController player)
-    {
-        switch(data.type)
-        {
-            case CollectableType.Health:
-                player.GetHealthManager().RestoreHealth(data.value);
-                break;
-
-            case CollectableType.XP:
-                player.GetXpManager().GainExperience((int)data.value);
-                break;
-
-            case CollectableType.Armor:
-                int armor = player.GetHealthManager().GetArmor();
-                player.GetHealthManager().SetArmor(armor + (int)data.value);
-                break;
-        }
     }
 }
