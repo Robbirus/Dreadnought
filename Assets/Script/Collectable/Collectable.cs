@@ -11,17 +11,15 @@ public class Collectable : MonoBehaviour, ICollectable
         PlayerController player = collector.GetComponent<PlayerController>();
         if (player == null)
         {
-            Debug.Log("No PlayerController found on collector");
             return;
         }
-
-        Debug.Log("player isn't null : " + player);
-
 
         if (soundManager != null && data.collectSound != null)
         {
             soundManager.Play(data.collectSound);
         }
+
+        data.Apply(player);
 
         Destroy(gameObject);
     }
