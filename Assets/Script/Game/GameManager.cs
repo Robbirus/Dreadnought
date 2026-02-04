@@ -8,11 +8,11 @@ public class GameManager : MonoBehaviour
     private PerkSelectionUI perkSelectionUI;
     private RunStats currentRunStats;
 
-    private int score = 0;
-    private int enemyKilled = 0;
-    private int shotFired = 0;
-    private int penetrativeShot = 0;
-    private int nonePenetrativeShot = 0;
+    public int score = 0;
+    public int enemyKilled = 0;
+    public int shotFired = 0;
+    public int penetrativeShot = 0;
+    public int nonePenetrativeShot = 0;
 
     private GameState currentState;
 
@@ -122,6 +122,7 @@ public class GameManager : MonoBehaviour
 
     private void ApplyGameOver()
     {
+        Destroy(playerController.gameObject);
         MusicManager.instance.PlayGameOverMusic();
         SceneManager.LoadScene((int)SceneIndex.GAME_OVER);
     }
@@ -152,6 +153,11 @@ public class GameManager : MonoBehaviour
     public PlayerController GetPlayerController()
     {
         return playerController;
+    }
+
+    public void AddScore(int xpAmount)
+    {
+        this.score += xpAmount;
     }
 
     public int GetScore()

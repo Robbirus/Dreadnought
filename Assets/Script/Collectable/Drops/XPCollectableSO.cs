@@ -8,5 +8,6 @@ public class XPCollectableSO : CollectableSO
     public override void Apply(PlayerController player)
     {
         player.GetXpManager().GainExperience(xpAmount);
+        GameManager.instance.AddScore(xpAmount);
     }
 }

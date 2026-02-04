@@ -69,14 +69,9 @@ public class EnemyController : MonoBehaviour
 
     private void OnDisable()
     {
-        IncreaseEnemyKilled();
         EnemyManager.instance.UnregisterEnemy(this);
     }
 
-    private void IncreaseEnemyKilled()
-    {
-        GameManager.instance.IncreaseEnemyKilled();
-    }
 
     public void ManagedUpdate()
     {

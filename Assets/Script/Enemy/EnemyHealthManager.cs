@@ -119,8 +119,13 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
                 StartCoroutine(Bloodbath());
             }
 
+            IncreaseEnemyKilled();
             Destroy(gameObject);
         }
+    }
+    private void IncreaseEnemyKilled()
+    {
+        GameManager.instance.IncreaseEnemyKilled();
     }
 
     /// <summary>

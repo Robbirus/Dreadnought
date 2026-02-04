@@ -32,21 +32,14 @@ public class GameOverScreen : MonoBehaviour
 
         this.allContactsShots = this.nonePenetrativeShot + this.penetrativeShot;
 
-        if (scoreTotal != null)
-        {
-            if (this.shotFired == 0) 
-            {
-                this.precision = 0f;
-            }
-            this.precision = this.allContactsShots / this.shotFired;
+        if (this.shotFired > 0) this.precision = (float)this.allContactsShots / this.shotFired;
 
-            scoreTotal.text = "Score : " + GameManager.instance.GetScore() + " points.";
-            enemyKilled.text = "Enemy Killed : " + GameManager.instance.GetEnemyKilled();
-            accuracy.text = "Accuracy : " + (this.precision * 100f).ToString("0.0") + " %";
-            shot.text = "Shots fired : " + this.shotFired;
-            penetratingShot.text = "Penetrating shots : " + this.penetrativeShot;
-            nonPenetratingShot.text = "Non penetrating shots : " + this.nonePenetrativeShot;
-        }
+        scoreTotal.text = "Score : " + GameManager.instance.GetScore() + " points.";
+        enemyKilled.text = "Enemy Killed : " + GameManager.instance.GetEnemyKilled();
+        accuracy.text = "Accuracy : " + (this.precision * 100f).ToString("0.0") + " %";
+        shot.text = "Shots fired : " + this.shotFired;
+        penetratingShot.text = "Penetrating shots : " + this.penetrativeShot;
+        nonPenetratingShot.text = "Non penetrating shots : " + this.nonePenetrativeShot;
 
         PlayerController player = GameManager.instance.GetPlayerController();
         Destroy(player);
