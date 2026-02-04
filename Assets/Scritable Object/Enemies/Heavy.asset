@@ -17,6 +17,7 @@ MonoBehaviour:
   caliber: 130
   damage: 490
   penetration: 250
+  armor: 200
   baseOffset: 4.5
   radius: 10
   height: 7

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 360
   reloadTime: 4
-  penetration: 260
+  penetration: 300
   caliber: 105
   ammo:
   - {fileID: 11400000, guid: bb443511de31107489a46789b7b16357, type: 2}
