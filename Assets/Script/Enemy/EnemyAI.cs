@@ -50,7 +50,6 @@ public class EnemyAI : MonoBehaviour
         if (this.player == null) return;
 
         float distance = Vector3.Distance(transform.position, player.transform.position);
-        Debug.Log(distance);
 
         switch (currentState)
         {
