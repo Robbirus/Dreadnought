@@ -183,6 +183,8 @@ public class GunManager : MonoBehaviour
     {
         if (currentShell == null) return;
 
+        GameManager.instance.IncreaseShotFired();
+
         bool isCrit = RollCrit();
         InstantiateShell(isCrit);
         

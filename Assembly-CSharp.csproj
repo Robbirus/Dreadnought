@@ -105,7 +105,6 @@
     <Compile Include="Assets\Script\Perks\BloodBathPerk.cs" />
     <Compile Include="Assets\Script\Perks\CritsChancePerk.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\Script\Game\HitZone.cs" />
     <Compile Include="Assets\Script\Game\RunStats.cs" />
     <Compile Include="Assets\Script\Building\BuildingCollision.cs" />
     <Compile Include="Assets\Script\Perks\HealthIncreasePerk.cs" />

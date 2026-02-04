@@ -51,10 +51,10 @@ public class Shell : MonoBehaviour
         this.lifeTime    = currentShell.lifeTime;
         this.type        = currentShell.ShellType;
 
-        this.caliber = caliber;
-        this.isCrit = isCrit;
+        this.caliber     = caliber;
+        this.isCrit      = isCrit;
 
-        owner = team;
+        this.owner       = team;
 
         Gradient gradient = new Gradient();
         gradient.SetKeys(

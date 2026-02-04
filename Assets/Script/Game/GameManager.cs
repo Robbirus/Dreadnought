@@ -8,7 +8,11 @@ public class GameManager : MonoBehaviour
     private PerkSelectionUI perkSelectionUI;
     private RunStats currentRunStats;
 
-    public int score = 0;
+    private int score = 0;
+    private int enemyKilled = 0;
+    private int shotFired = 0;
+    private int penetrativeShot = 0;
+    private int nonePenetrativeShot = 0;
 
     private GameState currentState;
 
@@ -46,6 +50,7 @@ public class GameManager : MonoBehaviour
             playerController = null;
         }
     }
+    
     public void RegisterPerksUI(PerkSelectionUI perkSelectionUI)
     {
         this.perkSelectionUI = perkSelectionUI;
@@ -132,11 +137,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region Getter / Setter
-    public int GetScore()
-    {
-        return score;
-    }
-
     public int GetCurrentLevel()
     {
         if (playerController.GetXpManager() == null)
@@ -152,6 +152,51 @@ public class GameManager : MonoBehaviour
     public PlayerController GetPlayerController()
     {
         return playerController;
+    }
+
+    public int GetScore()
+    {
+        return this.score;
+    }
+
+    public void IncreaseEnemyKilled()
+    {
+        enemyKilled++;
+    }
+
+    public int GetEnemyKilled()
+    {
+        return this.enemyKilled;
+    }
+
+    public void IncreaseShotFired()
+    {
+        this.shotFired++;
+    }
+
+    public void IncreasePenetrativeShot()
+    {
+        this.penetrativeShot++;
+    }
+
+    public void IncreaseNonePenetrativeShot()
+    {
+        this.nonePenetrativeShot++;
+    }
+
+    public int GetShotFired()
+    {
+        return this.shotFired;
+    }
+
+    public int GetNonePenetrativeShot()
+    {
+        return this.nonePenetrativeShot;
+    }
+
+    public int GetPenetrativeShot()
+    {
+        return this.penetrativeShot;
     }
     #endregion
 }

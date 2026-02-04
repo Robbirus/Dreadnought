@@ -15,35 +15,40 @@ public class GameOverScreen : MonoBehaviour
     [Header("Loading Controller")]
     [SerializeField] private LoadingController loadingController;
 
+    private int shotFired = 0;
+    private int penetrativeShot = 0;
+    private int nonePenetrativeShot = 0;
+    private int allContactsShots = 0;
+    private float precision = 0f;
+
     private void Start()
     {
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
 
+        this.shotFired = GameManager.instance.GetShotFired();
+        this.penetrativeShot = GameManager.instance.GetPenetrativeShot();
+        this.nonePenetrativeShot = GameManager.instance.GetNonePenetrativeShot();
+
+        this.allContactsShots = this.nonePenetrativeShot + this.penetrativeShot;
+
         if (scoreTotal != null)
         {
-            float allShotFired = 0;
-            float shotsFired = 0;
-
-            float precision = allShotFired / shotsFired;
-            if (shotsFired == 0) 
+            if (this.shotFired == 0) 
             {
-                precision = 0f;
+                this.precision = 0f;
             }
-            else
-            {
-                precision = allShotFired / shotsFired;
-            }
+            this.precision = this.allContactsShots / this.shotFired;
 
-            scoreTotal.text = "Score : " + GameManager.instance.score + " points.";
-            enemyKilled.text = "Enemy Killed : " + 0;
-            accuracy.text = "Accuracy : " + (precision * 100f).ToString("0.0") + " %";
-            shot.text = "Shots fired : " + 0;
-            penetratingShot.text = "Penetrating shots : " + 0;
-            nonPenetratingShot.text = "Non penetrating shots : " + 0;
+            scoreTotal.text = "Score : " + GameManager.instance.GetScore() + " points.";
+            enemyKilled.text = "Enemy Killed : " + GameManager.instance.GetEnemyKilled();
+            accuracy.text = "Accuracy : " + (this.precision * 100f).ToString("0.0") + " %";
+            shot.text = "Shots fired : " + this.shotFired;
+            penetratingShot.text = "Penetrating shots : " + this.penetrativeShot;
+            nonPenetratingShot.text = "Non penetrating shots : " + this.nonePenetrativeShot;
         }
 
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        PlayerController player = GameManager.instance.GetPlayerController();
         Destroy(player);
     }
 
