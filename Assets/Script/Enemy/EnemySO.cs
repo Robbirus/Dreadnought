@@ -9,6 +9,7 @@ public class EnemySO : ScriptableObject
     public int caliber;
     public int damage;
     public int penetration;
+    public int armor;
     [Space(10)]
 
     [Header("NavMeshAgent Properties")]
@@ -20,8 +21,8 @@ public class EnemySO : ScriptableObject
     [Space(10)]
 
     [Header("Behaviour Properties")]
-    public float attackRange = 8f;
-    public float attackCooldown = 10f;
+    public float attackRange;
+    public float attackCooldown;
     [Space(10)]
 
     [Header("Enemy Model")]

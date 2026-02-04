@@ -1,29 +1,36 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyHealthManager : MonoBehaviour, IDamageable
 {
-
     [Header("Enemy Health Stat")]
-    [SerializeField] private int maxHealth;
-    [SerializeField] private int armor = 150;
     [SerializeField] private HealthBar healthBar;
     [Space(10)]
 
     [Header("Drop List")]
     [SerializeField] List<GameObject> drops;
 
-    private float health;
+    public float health;
+    public float maxHealth;
+    public int armor;
     private EnemySoundManager soundManager;
 
     private void Awake()
     {
         healthBar = GetComponentInChildren<HealthBar>();
-        health = maxHealth;
+        soundManager = gameObject.GetComponent<EnemySoundManager>(); 
+    }
+
+    public void Setup(int maxHealth, int armor)
+    {
+        this.maxHealth = maxHealth;
+        this.health = maxHealth;
         healthBar.UpdateHealthBar(health, maxHealth);
 
-        soundManager = gameObject.GetComponent<EnemySoundManager>();
+        this.armor = armor;
     }
 
     /// <summary>
@@ -44,10 +51,12 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
         if (penetration > this.armor)
         {
             finalDamage = baseDamage;
+            GameManager.instance.IncreasePenetrativeShot();
         }
         else
         {
             finalDamage = 1;
+            GameManager.instance.IncreaseNonePenetrativeShot();
         }
 
         bool isCrit = shell.IsCrit();
@@ -140,9 +149,17 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
     }
 
     #region Getter / Setter
-    public void SetMaxHealth(int health)
+    public void SetMaxHealth(int maxHealth)
     {
-        this.maxHealth = health;
+        this.maxHealth = maxHealth;
+        healthBar.UpdateHealthBar(health, maxHealth);
     }
+
+    public void SetArmor(int armor)
+    {
+        this.armor = armor;
+    }
+
+
     #endregion
 }

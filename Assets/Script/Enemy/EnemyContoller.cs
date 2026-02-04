@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class EnemyController : MonoBehaviour
@@ -20,6 +21,7 @@ public class EnemyController : MonoBehaviour
     private int penetration;
     private float attackRange;
     private float attackCooldown;
+    private int armor;
 
     private float radius;
     private float height;
@@ -53,8 +55,9 @@ public class EnemyController : MonoBehaviour
         this.penetration = enemySO.penetration;
         this.attackRange = enemySO.attackRange;
         this.attackCooldown = enemySO.attackCooldown;
+        this.armor = enemySO.armor;
 
-        healthManager.SetMaxHealth(maxHealth);
+        healthManager.Setup(enemySO.maxHealth, enemySO.armor);
 
         enemyAI.Init(this.player, this);
     }
@@ -66,7 +69,13 @@ public class EnemyController : MonoBehaviour
 
     private void OnDisable()
     {
+        IncreaseEnemyKilled();
         EnemyManager.instance.UnregisterEnemy(this);
+    }
+
+    private void IncreaseEnemyKilled()
+    {
+        GameManager.instance.IncreaseEnemyKilled();
     }
 
     public void ManagedUpdate()
