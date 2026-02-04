@@ -7550,11 +7550,11 @@ MonoBehaviour:
   critChance: 2
   critCoef: 1.01
   pity: 0
-  shootActionReference: {fileID: -3527412392891031929, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
-  ammo1ActionReference: {fileID: 5056225996315226369, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
-  ammo2ActionReference: {fileID: -1092916887256095865, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
-  ammo3ActionReference: {fileID: -4198802318625874828, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
-  ammo4ActionReference: {fileID: 2058028255682984446, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+  shootActionReference: {fileID: 1938186118840056826, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+  ammo1ActionReference: {fileID: -1489806594382330552, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+  ammo2ActionReference: {fileID: -5896322505977866508, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+  ammo3ActionReference: {fileID: 3016244473598261442, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
+  ammo4ActionReference: {fileID: -1102327238341624780, guid: 76f3bc77419a09e409e13bc783af953c, type: 3}
   reloadCircle: {fileID: 0}
 --- !u!114 &1746672064193953181
 MonoBehaviour:

@@ -7,15 +7,10 @@ public class GameManager : MonoBehaviour
     public const int ENEMY_LIMIT = 100;
     private int enemyCount = 0;
 
-    #region Player Script
     private PlayerController playerController;
-    private GameObject player;
-    #endregion
+    private PerkSelectionUI perkSelectionUI;
 
-    #region player Attributes
     public int score = 0;
-    private bool isPlayerFound = false;
-    #endregion
 
     private GameState currentState;
 
@@ -49,41 +44,34 @@ public class GameManager : MonoBehaviour
         ChangeState(GameState.Menu);
     }
 
-    private void FixedUpdate()
+    public void RegisterPlayer(PlayerController player)
     {
-        if (!isPlayerFound)
-        {
-            InitiatePlayer();
-        }
-        else
-        {
-            score = playerController.GetXpManager().GetExperience();
-        }
+        playerController = player;
     }
 
-    /// <summary>
-    /// Try to find the player with his tag, when found get all script component.
-    /// Then stop searching for player
-    /// </summary>
-    public void InitiatePlayer()
+    public void UnregisterPlayer(PlayerController player)
     {
-        if (player != null)
+        if(playerController == player)
         {
-            // Get a reference of all player script
-            playerController = player.GetComponent<PlayerController>();
-
-            score = playerController.GetXpManager().GetExperience();
-
-            isPlayerFound = true;
+            playerController = null;
         }
-        else
+    }
+    public void RegisterPerksUI(PerkSelectionUI perkSelectionUI)
+    {
+        this.perkSelectionUI = perkSelectionUI;
+    }
+
+    public void UnregisterPerksUI(PerkSelectionUI perkSelectionUI)
+    {
+        if (this.perkSelectionUI == perkSelectionUI)
         {
-            player = GameObject.FindWithTag("Player");
+            this.perkSelectionUI = null;
         }
     }
 
     public void ChangeState(GameState newState)
     {
+        Debug.Log("STATE : " + newState);
         currentState = newState;
         OnStateChanged?.Invoke(currentState);
         HandleStateChanged();
@@ -117,11 +105,13 @@ public class GameManager : MonoBehaviour
     private void ApplyPlaying()
     {
         MusicManager.instance.PlayBackgroundMusic();
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
-        if (UpgradeManager.instance != null)
-        {
-            UpgradeManager.instance.HidePerkSelection();
-        }
+        if (perkSelectionUI == null) return;
+        
+        perkSelectionUI.Hide();
     }
 
     private void ApplyMenu()
@@ -136,14 +126,17 @@ public class GameManager : MonoBehaviour
 
     private void ApplyGameOver()
     {
-        isPlayerFound = false;
         MusicManager.instance.PlayGameOverMusic();
         SceneManager.LoadScene((int)SceneIndex.GAME_OVER);
     }
 
     private void ApplyPerkSelection()
     {
-        UpgradeManager.instance.ShowPerkSelection();
+        perkSelectionUI.ShowPerks();
+        Time.timeScale = 0f; 
+        MusicManager.instance.PlayLevelUp();
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
     }
     #endregion
 
@@ -195,11 +188,6 @@ public class GameManager : MonoBehaviour
         return playerController;
     }
 
-    public void SetPlayerFound(bool isPlayerFound)
-    {
-        this.isPlayerFound = isPlayerFound;
-    }
-
     public void IncreaseShot()
     {
         this.shot++;
@@ -240,12 +228,5 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    public enum GameState
-    {
-        Menu,
-        Playing,
-        Tuto,
-        GameOver,
-        PerkSelection
-    }
+
 }

@@ -124,7 +124,7 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     {
         if(health <= 0)
         {
-            GameManager.instance.ChangeState(GameManager.GameState.GameOver);
+            GameManager.instance.ChangeState(GameState.GameOver);
         }
     }
 

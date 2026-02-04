@@ -14,6 +14,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerMovement movement;
     [SerializeField] private PlayerStatsSO playerData;
 
+    private void Awake()
+    {
+        GameManager.instance.RegisterPlayer(this);
+    }
+
+    private void OnDestroy()
+    {
+        GameManager.instance.UnregisterPlayer(this);
+    }
+
     private void Start()
     {
         healthManager.SetMaxHealth(playerData.maxHealth);

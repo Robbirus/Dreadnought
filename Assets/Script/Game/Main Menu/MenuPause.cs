@@ -107,7 +107,7 @@ public class MenuPause : MonoBehaviour
     public void LoadMenu()
     {
         Time.timeScale = 1f;
-        GameManager.instance.ChangeState(GameManager.GameState.Menu);
+        GameManager.instance.ChangeState(GameState.Menu);
         Destroy(GameObject.FindWithTag("Player"));
         levelLoader.LoadLevel((int)SceneIndex.MENU);
 

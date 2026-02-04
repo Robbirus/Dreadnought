@@ -37,7 +37,7 @@ public class ExperienceManager : MonoBehaviour
             UpdateLevel();
 
             // Level Up Scene
-            GameManager.instance.ChangeState(GameManager.GameState.PerkSelection);
+            GameManager.instance.ChangeState(GameState.PerkSelection);
         }
         else
         {

@@ -25,18 +25,16 @@ public class LevelLoader : MonoBehaviour
         switch (levelToLoad)
         {
             case (int)SceneIndex.MENU:
-                GameManager.instance.ChangeState(GameManager.GameState.Menu);
+                GameManager.instance.ChangeState(GameState.Menu);
                 break;
             case (int)SceneIndex.GAME:
-                GameManager.instance.InitiatePlayer();
-                GameManager.instance.ChangeState(GameManager.GameState.Playing);
+                GameManager.instance.ChangeState(GameState.Playing);
                 break;
             case (int)SceneIndex.TUTO:
-                GameManager.instance.InitiatePlayer();
-                GameManager.instance.ChangeState(GameManager.GameState.Tuto);
+                GameManager.instance.ChangeState(GameState.Tuto);
                 break;
             case (int)SceneIndex.GAME_OVER:
-                GameManager.instance.ChangeState(GameManager.GameState.GameOver);
+                GameManager.instance.ChangeState(GameState.GameOver);
                 break;
         }
 

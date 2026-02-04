@@ -2093,7 +2093,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecabd6837eef0a94198c894e3554b47a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 256d09a7d5234b547a1fe866609ab0dc, type: 2}
+  data: {fileID: 11400000, guid: b7ae716e486a42b4abfbf99c92342f66, type: 2}
   soundManager: {fileID: 564210806}
 --- !u!65 &564210804
 BoxCollider:
@@ -4133,9 +4133,10 @@ GameObject:
   - component: {fileID: 986460623}
   - component: {fileID: 986460624}
   - component: {fileID: 986460625}
+  - component: {fileID: 986460626}
   m_Layer: 0
   m_Name: Perk Selection UI
-  m_TagString: Untagged
+  m_TagString: PerkUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4225,6 +4226,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &986460626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 986460621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3f5ed54e28c1846bd9b661601520bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  perkPrefab: {fileID: 5320138294835858859, guid: 5718a2545b2f9574fa8a2c32e3443a1b, type: 3}
+  perkPositionOne: {fileID: 1601664663}
+  perkPositionTwo: {fileID: 1698281956}
+  perkPositionThree: {fileID: 1945865846}
 --- !u!1 &996882675
 GameObject:
   m_ObjectHideFlags: 0
@@ -6225,11 +6242,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25034f39fafa10b48a466a6bb1d44dd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perkSelectionUI: {fileID: 986460621}
-  perkPrefab: {fileID: 5320138294835858859, guid: 5718a2545b2f9574fa8a2c32e3443a1b, type: 3}
-  perkPositionOne: {fileID: 1601664663}
-  perkPositionTwo: {fileID: 1698281956}
-  perkPositionThree: {fileID: 1945865846}
   deck:
   - {fileID: 11400000, guid: 977f8e6e4025e454491d2254abe6fb8e, type: 2}
   - {fileID: 11400000, guid: 778c39ed936fd7f4cac7145e8141fd1b, type: 2}

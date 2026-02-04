@@ -51,13 +51,11 @@ public class GameOverScreen : MonoBehaviour
     public void RestartGame()
     {
         loadingController.ApplyGame();
-        GameManager.instance.SetPlayerFound(false);
     }
 
     public void ReturnToMenu()
     {
         loadingController.ApplyMenu();
-        GameManager.instance.SetPlayerFound(false);
     }
 
     public void QuitGame()

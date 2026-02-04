@@ -8,8 +8,7 @@ TagManager:
   - Shell
   - Building
   - Ground
-  - XP
-  - Heal
+  - PerkUI
   layers:
   - Default
   - TransparentFX

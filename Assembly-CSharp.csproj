@@ -69,6 +69,7 @@
     <Compile Include="Assets\Script\Game\Sound\AudioManager.cs" />
     <Compile Include="Assets\Script\Player\Gun\GunManager.cs" />
     <Compile Include="Assets\Script\Game\Main Menu\LoadingController.cs" />
+    <Compile Include="Assets\Script\Game\GameState.cs" />
     <Compile Include="Assets\Script\Perks\PerkSO.cs" />
     <Compile Include="Assets\Script\Collectable\Collectable.cs" />
     <Compile Include="Assets\Script\Collectable\GenerateCollectible.cs" />
@@ -108,12 +109,14 @@
     <Compile Include="Assets\Script\Building\BuildingCollision.cs" />
     <Compile Include="Assets\Script\Perks\HealthIncreasePerk.cs" />
     <Compile Include="Assets\Script\Collectable\CollectableSoundManager.cs" />
+    <Compile Include="Assets\Script\Game\PlayerSpawner.cs" />
     <Compile Include="Assets\Script\Game\Main Menu\LoadPrefs.cs" />
     <Compile Include="Assets\Script\Perks\ReloadDecreasePerk.cs" />
     <Compile Include="Assets\Script\Perks\DamageIncreasePerk.cs" />
     <Compile Include="Assets\Script\Collectable\Drops\HealCollectableSO.cs" />
     <Compile Include="Assets\Script\Perks\ExperienceIncreasePerk.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyManager.cs" />
+    <Compile Include="Assets\Script\Game\UI\PerkSelectionUI.cs" />
     <Compile Include="Assets\Script\Perks\TopSpeedPerk.cs" />
     <Compile Include="Assets\Script\Enemy\HealthBar.cs" />
     <Compile Include="Assets\Script\Player\Collector.cs" />
