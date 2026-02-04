@@ -106,9 +106,11 @@
     <Compile Include="Assets\Script\Perks\CritsChancePerk.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\Script\Game\HitZone.cs" />
+    <Compile Include="Assets\Script\Game\RunStats.cs" />
     <Compile Include="Assets\Script\Building\BuildingCollision.cs" />
     <Compile Include="Assets\Script\Perks\HealthIncreasePerk.cs" />
     <Compile Include="Assets\Script\Collectable\CollectableSoundManager.cs" />
+    <Compile Include="Assets\Script\Game\GameConfigSO.cs" />
     <Compile Include="Assets\Script\Game\PlayerSpawner.cs" />
     <Compile Include="Assets\Script\Game\Main Menu\LoadPrefs.cs" />
     <Compile Include="Assets\Script\Perks\ReloadDecreasePerk.cs" />

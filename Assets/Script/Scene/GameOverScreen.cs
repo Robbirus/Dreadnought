@@ -22,8 +22,8 @@ public class GameOverScreen : MonoBehaviour
 
         if (scoreTotal != null)
         {
-            float allShotFired = GameManager.instance.GetAllShotFired();
-            float shotsFired = GameManager.instance.GetShotFired();
+            float allShotFired = 0;
+            float shotsFired = 0;
 
             float precision = allShotFired / shotsFired;
             if (shotsFired == 0) 
@@ -35,13 +35,12 @@ public class GameOverScreen : MonoBehaviour
                 precision = allShotFired / shotsFired;
             }
 
-
-                scoreTotal.text = "Score : " + GameManager.instance.score + " points.";
-            enemyKilled.text = "Enemy Killed : " + GameManager.instance.GetEnemyKilled();
+            scoreTotal.text = "Score : " + GameManager.instance.score + " points.";
+            enemyKilled.text = "Enemy Killed : " + 0;
             accuracy.text = "Accuracy : " + (precision * 100f).ToString("0.0") + " %";
-            shot.text = "Shots fired : " + GameManager.instance.GetShotFired();
-            penetratingShot.text = "Penetrating shots : " + GameManager.instance.GetPenetratingShot();
-            nonPenetratingShot.text = "Non penetrating shots : " + GameManager.instance.GetNonePenetratingShot();
+            shot.text = "Shots fired : " + 0;
+            penetratingShot.text = "Penetrating shots : " + 0;
+            nonPenetratingShot.text = "Non penetrating shots : " + 0;
         }
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");

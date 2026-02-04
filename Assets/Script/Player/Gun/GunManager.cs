@@ -186,8 +186,6 @@ public class GunManager : MonoBehaviour
         bool isCrit = RollCrit();
         InstantiateShell(isCrit);
         
-        GameManager.instance.IncreaseShot();
-
         if (isCrit)
         {
             PlayerSoundManager.instance.PlayGunShotCrit();

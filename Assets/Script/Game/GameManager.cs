@@ -4,23 +4,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public const int ENEMY_LIMIT = 100;
-    private int enemyCount = 0;
-
     private PlayerController playerController;
     private PerkSelectionUI perkSelectionUI;
+    private RunStats currentRunStats;
 
     public int score = 0;
 
     private GameState currentState;
-
-    #region Player Stats
-    private int enemyKilled = 0;
-    private int shot = 0;
-    private int penetrativeShot = 0;
-    private int nonePenetrativeShot = 0;
-    private int damageBlocked = 0;
-    #endregion
 
     public static GameManager instance = null;
     public event Action<GameState> OnStateChanged;
@@ -109,6 +99,8 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        currentRunStats = new RunStats();
+
         if (perkSelectionUI == null) return;
         
         perkSelectionUI.Hide();
@@ -158,75 +150,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public int GetEnemyKilled()
-    {
-        return this.enemyKilled;
-    }
-
-    public int GetEnemyCount()
-    {
-        return this.enemyCount;
-    }
-
-    public void IncreaseEnemyKilled()
-    {
-        this.enemyKilled++;
-    }
-
-    public void IncreaseEnemyCount()
-    {
-        this.enemyCount++;
-    }
-
-    public void DecreaseEnemyCount()
-    {
-        this.enemyCount--;
-    }
-
     public PlayerController GetPlayerController()
     {
         return playerController;
     }
-
-    public void IncreaseShot()
-    {
-        this.shot++;
-    }
-
-    public void IncreasePenetrativeShot()
-    {
-        this.penetrativeShot++;
-    }
-
-    public void IncreaseNonPenetrativeShot()
-    {
-        this.nonePenetrativeShot++;
-    }
-
-    public void AddDamageBlocked(int damageBlocked)
-    {
-        this.damageBlocked += damageBlocked;
-    }
-
-    public int GetAllShotFired()
-    {
-        return this.penetrativeShot + this.nonePenetrativeShot;
-    }
-
-    public int GetShotFired()
-    {
-        return this.shot;
-    }
-    public int GetNonePenetratingShot()
-    {
-        return this.nonePenetrativeShot;
-    }
-
-    public int GetPenetratingShot()
-    {
-        return this.penetrativeShot;
-    }
     #endregion
-
-
 }

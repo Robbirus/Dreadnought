@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [Header("Player Instance")]
-    [SerializeField] private GameObject player;
-
     [Header("Script instance")]
     [Tooltip("Health Manager")]
     [SerializeField] private EnemyHealthManager healthManager;
@@ -21,10 +18,13 @@ public class EnemyController : MonoBehaviour
     private int damage;
     private int caliber;
     private int penetration;
+    private float attackRange;
+    private float attackCooldown;
 
     private float radius;
     private float height;
     private float baseOffset;
+    private PlayerController player;
 
     private void Awake()
     {
@@ -34,12 +34,13 @@ public class EnemyController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
         direction = transform.forward;
     }
 
-    public void Setup(EnemySO enemySO)
+    public void Setup(EnemySO enemySO, PlayerController player)
     {
+        this.player = player;
+
         enemyName = enemySO.enemyName;
         moveSpeed = enemySO.moveSpeed;
         rotationSpeed = enemySO.rotationSpeed;
@@ -50,8 +51,12 @@ public class EnemyController : MonoBehaviour
         baseOffset = enemySO.baseOffset;
         caliber = enemySO.caliber;
         this.penetration = enemySO.penetration;
+        this.attackRange = enemySO.attackRange;
+        this.attackCooldown = enemySO.attackCooldown;
 
         healthManager.SetMaxHealth(maxHealth);
+
+        enemyAI.Init(this.player, this);
     }
 
     private void OnEnable()
@@ -95,7 +100,7 @@ public class EnemyController : MonoBehaviour
         return this.penetration;
     }
 
-    public GameObject GetPlayer()
+    public PlayerController GetPlayer()
     {
         return this.player;
     }
@@ -118,6 +123,16 @@ public class EnemyController : MonoBehaviour
     public float GetBaseOffset()
     {
         return this.baseOffset;
+    }
+
+    public float GetAttackRange()
+    {
+        return this.attackRange;
+    }
+
+    public float GetAttackCooldown()
+    {
+        return this.attackCooldown;
     }
     #endregion
 }

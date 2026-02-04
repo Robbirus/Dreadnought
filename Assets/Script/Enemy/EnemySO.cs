@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Enemy", menuName = "Enemy System/new Enemy")]
 public class EnemySO : ScriptableObject
 {
-    [Header("Enemy ÅNProperties")]
+    [Header("Enemy Properties")]
     public string enemyName;
     public int maxHealth;
     public int caliber;
@@ -17,6 +17,11 @@ public class EnemySO : ScriptableObject
     public float height;
     public float moveSpeed;
     public float rotationSpeed;
+    [Space(10)]
+
+    [Header("Behaviour Properties")]
+    public float attackRange = 8f;
+    public float attackCooldown = 10f;
     [Space(10)]
 
     [Header("Enemy Model")]

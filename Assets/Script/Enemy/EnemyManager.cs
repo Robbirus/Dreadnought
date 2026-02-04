@@ -5,7 +5,11 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager instance = null;
 
-    private List<EnemyController> activeEnemies = new List<EnemyController>();
+    private int enemyCount;
+
+    [SerializeField] private GameConfigSO config;
+
+    private List<EnemyController> enemies = new();
 
     private void Awake()
     {
@@ -21,27 +25,24 @@ public class EnemyManager : MonoBehaviour
 
     public void RegisterEnemy(EnemyController enemy)
     {
-        if (!activeEnemies.Contains(enemy))
-        {
-            activeEnemies.Add(enemy);
-        }
+        enemies.Add(enemy);
     }
 
     public void UnregisterEnemy(EnemyController enemy)
     {
-        if (activeEnemies.Contains(enemy))
-        {
-            activeEnemies.Remove(enemy);
-        }
+        enemies.Remove(enemy);
     }
 
     private void Update()
     {
-        foreach(EnemyController enemy in activeEnemies)
+        foreach (EnemyController enemy in enemies)
         {
             enemy.ManagedUpdate();
         }
     }
 
-
+    public bool CanSpawn()
+    {
+        return enemyCount < config.enemyLimit;
+    }
 }

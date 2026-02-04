@@ -36,7 +36,6 @@ public class EnemyCollision : MonoBehaviour
             isCrit = false
         });
 
-        GameManager.instance.IncreaseEnemyKilled();
         Destroy(gameObject);
     }
 }

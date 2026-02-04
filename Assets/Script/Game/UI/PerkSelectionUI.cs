@@ -20,7 +20,10 @@ public class PerkSelectionUI : MonoBehaviour
 
     private void OnDestroy()
     {
-        GameManager.instance.UnregisterPerksUI(this);
+        if(GameManager.instance != null)
+        {
+            GameManager.instance.UnregisterPerksUI(this);
+        }
     }
 
     public void Show()
@@ -34,7 +37,6 @@ public class PerkSelectionUI : MonoBehaviour
         gameObject.SetActive(false);
         Clear();
     }
-
 
     public void ShowPerks()
     {

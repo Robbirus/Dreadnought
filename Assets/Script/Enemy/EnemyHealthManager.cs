@@ -102,8 +102,6 @@ public class EnemyHealthManager : MonoBehaviour, IDamageable
         if (health <= 0)
         {
             soundManager.PlayDeathSound();
-            GameManager.instance.DecreaseEnemyCount();
-            GameManager.instance.IncreaseEnemyKilled();
 
             GenerateDrop();
 

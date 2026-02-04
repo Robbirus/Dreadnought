@@ -20,6 +20,8 @@ MonoBehaviour:
   baseOffset: 2.5
   radius: 5
   height: 4
-  moveSpeed: 1.5
-  rotationSpeed: 1.5
+  moveSpeed: 1500
+  rotationSpeed: 1500
+  attackRange: 80
+  attackCooldown: 5
   enemyPrefab: {fileID: 1486456276200469354, guid: 331e88dadd9928942a25920b1dc285c2, type: 3}

@@ -1,6 +1,4 @@
 using UnityEngine;
-using UnityEngine.AI;
-using UnityEngine.Rendering;
 
 public class Spawner : MonoBehaviour
 {
@@ -21,18 +19,20 @@ public class Spawner : MonoBehaviour
 
     private void SpawnEnemy()
     {
-        if (GameManager.instance.GetEnemyCount() >= GameManager.ENEMY_LIMIT) return;
+        if (!EnemyManager.instance.CanSpawn()) return;
 
         gameObject.GetComponent<SpawnerSoundManager>().PlaySpawnSound();
 
         EnemySO type = enemyTypes[Random.Range(0, enemyTypes.Length)];
         InstantiateEnemy(type);
-        GameManager.instance.IncreaseEnemyCount();
     }
 
     private void InstantiateEnemy(EnemySO type)
     {
-        GameObject enemy = Instantiate(type.enemyPrefab, transform.position, Quaternion.identity);
-        enemy.GetComponentInChildren<EnemyController>().Setup(type);
+        GameObject enemyGO = Instantiate(type.enemyPrefab, transform.position, Quaternion.identity);
+        
+        EnemyController enemy = enemyGO.GetComponent<EnemyController>();
+
+        enemy.Setup(type, GameManager.instance.GetPlayerController());
     }
 }
