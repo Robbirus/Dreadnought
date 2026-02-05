@@ -69,10 +69,7 @@ public class ExperienceManager : MonoBehaviour
     {
         return currentlevel;
     }
-    public int GetExperience()
-    {
-        return totalExperience;
-    }
+
     public int GetBonus()
     {
         return bonus;
