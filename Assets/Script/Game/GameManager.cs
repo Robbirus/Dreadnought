@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        currentRunStats = new RunStats();
         ChangeState(GameState.Menu);
     }
 
@@ -103,7 +104,6 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        currentRunStats = new RunStats();
 
         if (perkSelectionUI == null) return;
         
@@ -129,6 +129,8 @@ public class GameManager : MonoBehaviour
 
     private void ApplyPerkSelection()
     {
+        if(perkSelectionUI == null) return;
+
         perkSelectionUI.ShowPerks();
         Time.timeScale = 0f; 
         MusicManager.instance.PlayLevelUp();
@@ -158,6 +160,7 @@ public class GameManager : MonoBehaviour
     public void AddScore(int xpAmount)
     {
         this.score += xpAmount;
+        Debug.Log(this.score);
     }
 
     public int GetScore()

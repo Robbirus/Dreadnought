@@ -13,12 +13,12 @@ public class PerkSelectionUI : MonoBehaviour
     private GameObject p2;
     private GameObject p3;
 
-    private void Awake()
+    private void OnEnable()
     {
         GameManager.instance.RegisterPerksUI(this);
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
         if(GameManager.instance != null)
         {
