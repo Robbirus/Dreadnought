@@ -64,6 +64,7 @@
     <Compile Include="Assets\Script\Perks\CritsDamagePerk.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyHealthManager.cs" />
     <Compile Include="Assets\Script\Player\Gun\GunSO.cs" />
+    <Compile Include="Assets\Script\Player\SpeedometerUI.cs" />
     <Compile Include="Assets\Script\Game\LevelLoader.cs" />
     <Compile Include="Assets\Script\Player\PlayerCollision.cs" />
     <Compile Include="Assets\Script\Game\Sound\AudioManager.cs" />
