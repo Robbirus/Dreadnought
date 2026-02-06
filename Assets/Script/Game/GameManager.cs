@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance = null;
     public event Action<GameState> OnStateChanged;
+    public event Action<PlayerController> OnPlayerRegisterd;
 
     private void Awake()
     {
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     public void RegisterPlayer(PlayerController player)
     {
         playerController = player;
+        OnPlayerRegisterd?.Invoke(player);
     }
 
     public void UnregisterPlayer(PlayerController player)
@@ -160,7 +162,6 @@ public class GameManager : MonoBehaviour
     public void AddScore(int xpAmount)
     {
         this.score += xpAmount;
-        Debug.Log(this.score);
     }
 
     public int GetScore()

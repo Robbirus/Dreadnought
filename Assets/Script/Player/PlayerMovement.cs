@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,31 +20,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float groundDrag;
     [Space(10)]
 
-    [Header("GameObject UI Instance")]
-    [SerializeField] private GameObject needle;
-    [Space(10)]
-    
-    [Header("Input Action Reference")]
-    [SerializeField] private InputActionReference movementActionReference;
+    [Header("Speed")]
+    [SerializeField] private float maxSpeed = 60f;
+    [SerializeField] private float deceleration = 1f;
     [Space(10)]
 
-    [Header("Player Physics")]
+    [Header("Physics")]
     [SerializeField] private Rigidbody playerRigidbody;
+    [SerializeField] private InputActionReference movementActionReference;
 
-
-    #region Needle attributes
-    private float startPosition = 220f;
-    private float endPosition = -41f;
-    private float desiredPosition;
-    #endregion
-
-    #region Physics Attributs
     private bool isGrounded;
-    private float mass;
     private float acceleration;
-    private Vector3 moveDirection;
-    private float force = 0f;
-    #endregion
 
     #region Old Input System variables
     private float horizontalInput;
@@ -51,10 +38,7 @@ public class PlayerMovement : MonoBehaviour
     #endregion
 
     #region Speed value
-    private float maxSpeed = 50f;
-    private float reverseSpeed = 23f;
     private float currentSpeed = 0f;
-    private float deceleration = 1f;
     #endregion
 
     private void Awake()
@@ -64,71 +48,47 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
-        mass = playerRigidbody.mass;
-        acceleration = (2 * power) / (mass * accelerationTime);
-        force = acceleration * mass;
+        ComputeAcceleration();
     }
 
-    
+    private void ComputeAcceleration()
+    {
+        acceleration = (2 * power) / (playerRigidbody.mass * accelerationTime);
+    }
+
     private void Update()
     {
-        acceleration = (2 * power) / (mass * accelerationTime);
-
-        if (isGrounded)
-        {
-            DetectInput();
-
-            if (verticalInput != 0)
-            {
-                moveDirection = transform.forward * verticalInput;
-                if (moveDirection.magnitude > 0)
-                {
-                    currentSpeed += acceleration;
-                }
-            }   
-            else
-            {
-                if(currentSpeed != 0)
-                {
-                    currentSpeed -= deceleration;
-                }
-            }
-
-            LimitSpeed();
-        }
-
-        UpdateNeedle();
+        DetectInput();
     }
 
     private void FixedUpdate()
     {
-        if (isGrounded) 
+        if (!isGrounded) return;
+
+        UpdateSpeed();
+        MovingPlayer();
+        TurnPlayer();
+        
+    }
+
+    private void UpdateSpeed()
+    {
+        if(Mathf.Abs(verticalInput) > 0.01f)
         {
-            MovingPlayer();
-            TurnPlayer();
+            currentSpeed += verticalInput * acceleration;
         }
+        else
+        {
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, deceleration);
+        }
+
+        currentSpeed = Mathf.Clamp(currentSpeed, -maxSpeed, maxSpeed);
     }
 
     private void MovingPlayer()
     {
-        Vector3 move = moveDirection * currentSpeed * Time.fixedDeltaTime;
+        Vector3 move = transform.forward * currentSpeed * Time.fixedDeltaTime;
         playerRigidbody.MovePosition(playerRigidbody.position + move);
-    }
-
-    private void LimitSpeed()
-    {
-        if (currentSpeed > maxSpeed)
-        {
-            currentSpeed = maxSpeed;
-        }
-        else if(currentSpeed < -maxSpeed)
-        {
-            currentSpeed = -maxSpeed;
-        }
-        else if(verticalInput == 0 && currentSpeed < 0)
-        {
-            currentSpeed = 0;
-        }
     }
 
     private void DetectInput()
@@ -150,13 +110,6 @@ public class PlayerMovement : MonoBehaviour
         playerRigidbody.MoveRotation(playerRigidbody.rotation * rotate);
     }
 
-    private void UpdateNeedle()
-    {
-        desiredPosition = startPosition - endPosition;
-        float temp = currentSpeed / 180;
-        needle.transform.eulerAngles = new Vector3(0, 0, (startPosition - temp * desiredPosition));
-    }
-
     #region Getter / Setter
     public void SetGrounded(bool isGrounded)
     {
@@ -172,29 +125,25 @@ public class PlayerMovement : MonoBehaviour
     {
         return this.currentSpeed;
     }
+
     public float GetMaxSpeed()
     {
         return this.maxSpeed;
     }
+
     public void SetMaxSpeed(float maxSpeed)
     {
         this.maxSpeed = maxSpeed;
     }
+
     public float GetReverseSpeed()
     {
         return this.maxSpeed;
-    }
-
-    public void SetReverseSpeed(float reverseSpeed)
-    {
-        this.reverseSpeed = reverseSpeed;
     }
 
     public void SetRotationSpeed(float rotationSpeed)
     {
         this.rotationSpeed = rotationSpeed;
     }
-
     #endregion
-
 }
