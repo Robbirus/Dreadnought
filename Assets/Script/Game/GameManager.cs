@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
     public static GameManager instance = null;
     public event Action<GameState> OnStateChanged;
-    public event Action<PlayerController> OnPlayerRegisterd;
+    public event Action<PlayerController> OnPlayerRegistered;
 
     private void Awake()
     {
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
     public void RegisterPlayer(PlayerController player)
     {
         playerController = player;
-        OnPlayerRegisterd?.Invoke(player);
+        OnPlayerRegistered?.Invoke(player);
     }
 
     public void UnregisterPlayer(PlayerController player)
@@ -69,6 +69,8 @@ public class GameManager : MonoBehaviour
 
     public void ChangeState(GameState newState)
     {
+        Debug.Log($"STATE CHANGE: {currentState} -> {newState}"); 
+        Debug.Log("PerkUI ref = " + perkSelectionUI);
         currentState = newState;
         OnStateChanged?.Invoke(currentState);
         HandleStateChanged();
@@ -131,7 +133,11 @@ public class GameManager : MonoBehaviour
 
     private void ApplyPerkSelection()
     {
-        if(perkSelectionUI == null) return;
+        if (perkSelectionUI == null)
+        {
+            Debug.LogError("PerkSelectionUI is NULL");
+            return;
+        }
 
         perkSelectionUI.ShowPerks();
         Time.timeScale = 0f; 

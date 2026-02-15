@@ -16,13 +16,13 @@ public class SpeedometerUI : MonoBehaviour
             RegisterPlayer(GameManager.instance.GetPlayerController());
         }
 
-        GameManager.instance.OnPlayerRegisterd += RegisterPlayer;
+        GameManager.instance.OnPlayerRegistered += RegisterPlayer;
     }
 
 
     private void OnDisable()
     {
-        GameManager.instance.OnPlayerRegisterd -= RegisterPlayer;
+        GameManager.instance.OnPlayerRegistered -= RegisterPlayer;
     }
 
     private void RegisterPlayer(PlayerController playerController)
