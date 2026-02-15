@@ -21,8 +21,8 @@ public class PlayerMovement : MonoBehaviour
     [Space(10)]
 
     [Header("Speed")]
-    [SerializeField] private float maxSpeed = 60f;
-    [SerializeField] private float deceleration = 1f;
+    [SerializeField] private float maxSpeed;
+    [SerializeField] private float deceleration;
     [Space(10)]
 
     [Header("Physics")]
