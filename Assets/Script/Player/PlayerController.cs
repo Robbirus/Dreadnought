@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
     [Header("Script instance")]
     [SerializeField] private PlayerHealthManager healthManager;
     [SerializeField] private GunManager gunManager;
-    [SerializeField] private ExperienceManager xpManager;
+    [SerializeField] private PlayerExperienceManager xpManager;
     [SerializeField] private PlayerMovement movement;
     [SerializeField] private PlayerStatsSO playerData;
 
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         return this.healthManager;
     }
 
-    public ExperienceManager GetXpManager()
+    public PlayerExperienceManager GetXpManager()
     {
         return this.xpManager;
     }

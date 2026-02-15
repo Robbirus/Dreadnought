@@ -63,6 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Perks\CritsDamagePerk.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyHealthManager.cs" />
+    <Compile Include="Assets\Script\Player\ExperienceUI.cs" />
     <Compile Include="Assets\Script\Player\Gun\GunSO.cs" />
     <Compile Include="Assets\Script\Player\SpeedometerUI.cs" />
     <Compile Include="Assets\Script\Game\LevelLoader.cs" />
