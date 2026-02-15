@@ -1,34 +1,84 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ExperienceManager : MonoBehaviour
+public class PlayerExperienceManager : MonoBehaviour
 {
-    [Header("Experience")]
-    [SerializeField]
-    private AnimationCurve experienceCurve;
+    [Header("Experience Settings")]
+    [SerializeField] private int baseXP = 100;
+    [SerializeField] private int linearXP = 100;
+    [Space(10)]
 
-    [Header("Interface")]
-    [SerializeField]
-    private Image frontExperienceBar;
-
-    private int currentlevel = 0;
-    private int totalExperience;
-    private int previousLevelsExperience;
-    private int nextLevelsExperience;
+    private int currentLevel = 0;
+    private int totalExperience = 0;
     private int bonus = 0;
 
+    // Events
+    public event Action<float> OnExperienceChanged;
+    public event Action<int> OnLevelUp;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Start()
     {
-        UpdateLevel();
+        // UpdateLevel();
+        NotifyUI();
     }
 
     public void GainExperience(int xpAmount)
     {
         totalExperience += xpAmount + bonus;
-        CheckChange();
+        CheckLevelUp();
+        NotifyUI();
     }
 
+    private void CheckLevelUp()
+    {
+        bool isLeveledUp = false;
+
+        while(totalExperience > GetXPForLevel(currentLevel + 1))
+        {
+            currentLevel++;
+            isLeveledUp = true;
+            OnLevelUp?.Invoke(currentLevel);
+        }
+
+        if (isLeveledUp)
+        {
+            GameManager.instance.ChangeState(GameState.PerkSelection);
+        }
+    }
+
+    /// <summary>
+    /// Use a quadratic formula to compute xp for a specific level
+    /// </summary>
+    /// <param name="level">The level number used to compute xp amout</param>
+    /// <returns>The amount of mandatory xp for this level</returns>
+    private int GetXPForLevel(int level)
+    {
+        return baseXP * level * level + linearXP * level;
+    }
+
+    private void NotifyUI()
+    {
+        // This level
+        int currentLevelXP = GetXPForLevel(currentLevel);
+        // The next level
+        int nextLevelXP = GetXPForLevel(currentLevel + 1);
+
+        float progress = 
+            (float)(totalExperience - currentLevelXP) / 
+            (nextLevelXP - currentLevelXP);
+
+        OnExperienceChanged?.Invoke(progress);
+    }
+
+    /*
+    public void GainExperience(int xpAmount)
+    {
+        totalExperience += xpAmount + bonus;
+        CheckChange();
+    }
+    
     private void CheckChange()
     {
         if (totalExperience >= nextLevelsExperience)
@@ -63,17 +113,19 @@ public class ExperienceManager : MonoBehaviour
     {
         frontExperienceBar.fillAmount = 0;
     }
+*/
 
     #region Getter / Setter
     public int GetCurrentLevel()
     {
-        return currentlevel;
+        return this.currentLevel;
     }
 
     public int GetBonus()
     {
-        return bonus;
+        return this.bonus;
     }
+
     public void SetBonus(int bonus)
     {
         this.bonus = bonus;
