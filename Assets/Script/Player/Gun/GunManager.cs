@@ -15,13 +15,6 @@ public class GunManager : MonoBehaviour
     [SerializeField] private ParticleSystem shootParticle;
     [Space(10)]
 
-    [Header("HUD")]
-    [Tooltip("The frame where the shell image will be")]
-    [SerializeField] private Image currentShellImage;
-    [Tooltip("The reload Time display text")]
-    [SerializeField] private TMP_Text reloadTimeText;
-    [Space(10)]
-
     [Header("Gun Propreties")]
     [SerializeField] private GunSO currentGun;
     [Tooltip("The projectile prefab")]
@@ -39,18 +32,18 @@ public class GunManager : MonoBehaviour
 
     [Header("Input Action Reference")]
     [SerializeField] private InputActionReference shootActionReference;
-    [Space(5)]
+    [Space(10)]
 
     [SerializeField] private InputActionReference ammo1ActionReference;
     [SerializeField] private InputActionReference ammo2ActionReference;
     [SerializeField] private InputActionReference ammo3ActionReference;
     [SerializeField] private InputActionReference ammo4ActionReference;
-    [Space(10)]
 
-    [Header("Reload Properties")]
-    [Tooltip("The reload circle image")]
-    [SerializeField] private Image reloadCircle;
-
+    #region Events
+    public event Action<ShellSO> OnShellChanged;
+    public event Action<float, float> OnReloadProgress;
+    public event Action<bool> OnReloadStateChanged;
+    #endregion
 
     private ShellSO currentShell;
     private float damage;
@@ -83,10 +76,6 @@ public class GunManager : MonoBehaviour
     private void Start()
     {
         currentShell = ammo[0];
-        currentShellImage.sprite = ammo[0].shellImage;
-        reloadTimeText.text = this.reloadTime.ToString("0.00");
-        ChangeReloadTimeColor(true);
-        reloadCircle.enabled = true;
         StartCoroutine(Shooting());
     }
     
@@ -94,25 +83,24 @@ public class GunManager : MonoBehaviour
     {
         while (true)
         {
+            OnReloadStateChanged?.Invoke(true);
+
             // Wait for Input Shoot
-            ChangeReloadTimeColor(true);
             yield return new WaitUntil(() => shootActionReference.action.IsPressed() && !MenuPause.isGamePaused);
 
             Shoot();
 
-            ChangeReloadTimeColor(false);
+            OnReloadStateChanged?.Invoke(false);
 
             // Wait For ReloadTime
             PlayerSoundManager.instance.PlayReload();
 
-            reloadCircle.fillAmount = 0;
             float elapsed = 0f;
 
             while (elapsed < this.reloadTime)
             {
                 elapsed += Time.deltaTime;
-                reloadCircle.fillAmount = Mathf.Clamp01(elapsed / this.reloadTime);
-                reloadTimeText.text = elapsed.ToString("0.00");
+                OnReloadProgress?.Invoke(elapsed, reloadTime);
                 yield return null;
             }
         }
@@ -138,18 +126,6 @@ public class GunManager : MonoBehaviour
         }
     }
 
-    private void ChangeReloadTimeColor(bool done)
-    {
-        if (!done)
-        {
-            reloadTimeText.color = Color.red;
-        }
-        else
-        {
-            reloadTimeText.color = Color.green;
-        }
-    }
-
     private void Update()
     {
         SwitchShell();
@@ -159,24 +135,26 @@ public class GunManager : MonoBehaviour
     {        
         if (ammo1ActionReference.action.IsPressed())
         {
-            currentShell = ammo[0];
-            currentShellImage.sprite = ammo[0].shellImage;
+            SetShell(0);
         }
         if (ammo2ActionReference.action.IsPressed()) 
         { 
-            currentShell = ammo[1];
-            currentShellImage.sprite = ammo[1].shellImage;
+            SetShell(1);
         }
         if (ammo3ActionReference.action.IsPressed())
         {
-            currentShell = ammo[2];
-            currentShellImage.sprite = ammo[2].shellImage;
+            SetShell(2);
         }
         if (ammo4ActionReference.action.IsPressed())
         {
-            currentShell = ammo[3];
-            currentShellImage.sprite = ammo[3].shellImage;
+            SetShell(3);
         }
+    }
+
+    private void SetShell(int index)
+    {
+        currentShell = ammo[index];
+        OnShellChanged?.Invoke(currentShell);
     }
 
     private void Shoot()

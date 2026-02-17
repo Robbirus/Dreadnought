@@ -62,7 +62,6 @@ public class GameManager : MonoBehaviour
     public void ChangeState(GameState newState)
     {
         Debug.Log($"STATE CHANGE: {currentState} -> {newState}"); 
-        Debug.Log("PerkUI ref = " + perkSelectionUI);
         currentState = newState;
         OnStateChanged?.Invoke(currentState);
         HandleStateChanged();

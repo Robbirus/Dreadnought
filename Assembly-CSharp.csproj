@@ -63,9 +63,7 @@
   <ItemGroup>
     <Compile Include="Assets\Script\Perks\CritsDamagePerk.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyHealthManager.cs" />
-    <Compile Include="Assets\Script\Player\ExperienceUI.cs" />
     <Compile Include="Assets\Script\Player\Gun\GunSO.cs" />
-    <Compile Include="Assets\Script\Player\SpeedometerUI.cs" />
     <Compile Include="Assets\Script\Game\LevelLoader.cs" />
     <Compile Include="Assets\Script\Player\PlayerCollision.cs" />
     <Compile Include="Assets\Script\Game\Sound\AudioManager.cs" />
@@ -93,6 +91,7 @@
     <Compile Include="Assets\Script\Game\IDamageable.cs" />
     <Compile Include="Assets\Script\Shell\ShellType.cs" />
     <Compile Include="Assets\Script\Player\PlayerMovement.cs" />
+    <Compile Include="Assets\Script\Player\PlayerUI\ShellStatusUI.cs" />
     <Compile Include="Assets\Script\Enemy\EnemySO.cs" />
     <Compile Include="Assets\Script\Building\Spawner\SpawnerSoundManager.cs" />
     <Compile Include="Assets\Script\Enemy\EnemyAI.cs" />
@@ -100,6 +99,7 @@
     <Compile Include="Assets\Script\Player\PlayerStatsSO.cs" />
     <Compile Include="Assets\Script\Perks\Perk.cs" />
     <Compile Include="Assets\Script\Perks\LifeRipPerk.cs" />
+    <Compile Include="Assets\Script\Player\PlayerUI\ExperienceUI.cs" />
     <Compile Include="Assets\Script\Game\ObjectPoolManager.cs" />
     <Compile Include="Assets\Script\Game\Sound\MusicManager.cs" />
     <Compile Include="Assets\Script\Perks\CaliberIncreasePerk.cs" />
@@ -107,6 +107,7 @@
     <Compile Include="Assets\Script\Perks\BloodBathPerk.cs" />
     <Compile Include="Assets\Script\Perks\CritsChancePerk.cs" />
     <Compile Include="Assets\TutorialInfo\Scripts\Readme.cs" />
+    <Compile Include="Assets\Script\Player\PlayerUI\ReticleUI.cs" />
     <Compile Include="Assets\Script\Game\RunStats.cs" />
     <Compile Include="Assets\Script\Building\BuildingCollision.cs" />
     <Compile Include="Assets\Script\Perks\HealthIncreasePerk.cs" />
@@ -129,6 +130,7 @@
     <Compile Include="Assets\Script\Shell\Shell.cs" />
     <Compile Include="Assets\Script\Scene\GameOverScreen.cs" />
     <Compile Include="Assets\Script\Player\PlayerHealthManager.cs" />
+    <Compile Include="Assets\Script\Player\PlayerUI\SpeedometerUI.cs" />
     <Compile Include="Assets\Script\Perks\DefenseIncreasePerk.cs" />
     <Compile Include="Assets\Script\Player\PlayerExperienceManager.cs" />
     <Compile Include="Assets\Script\Perks\UpgradeManager.cs" />
@@ -666,6 +668,14 @@
     </Reference>
     <Reference Include="System.Runtime.CompilerServices.Unsafe">
       <HintPath>Assets\FastScriptReload\Plugins\Roslyn\2021+\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Types">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Types.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Android.Gradle">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.0.32f1\Editor\Data\PlaybackEngines\AndroidPlayer\Unity.Android.Gradle.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="netstandard">
