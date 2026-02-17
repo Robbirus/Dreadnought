@@ -59,14 +59,6 @@ public class GameManager : MonoBehaviour
         this.perkSelectionUI = perkSelectionUI;
     }
 
-    public void UnregisterPerksUI(PerkSelectionUI perkSelectionUI)
-    {
-        if (this.perkSelectionUI == perkSelectionUI)
-        {
-            this.perkSelectionUI = null;
-        }
-    }
-
     public void ChangeState(GameState newState)
     {
         Debug.Log($"STATE CHANGE: {currentState} -> {newState}"); 
@@ -135,11 +127,18 @@ public class GameManager : MonoBehaviour
     {
         if (perkSelectionUI == null)
         {
+            perkSelectionUI = FindAnyObjectByType<PerkSelectionUI>(
+                FindObjectsInactive.Include    
+            );
+        }
+
+        if (perkSelectionUI == null)
+        {
             Debug.LogError("PerkSelectionUI is NULL");
             return;
         }
 
-        perkSelectionUI.ShowPerks();
+        perkSelectionUI.Show();
         Time.timeScale = 0f; 
         MusicManager.instance.PlayLevelUp();
         Cursor.lockState = CursorLockMode.Confined;

@@ -18,14 +18,6 @@ public class PerkSelectionUI : MonoBehaviour
         GameManager.instance.RegisterPerksUI(this);
     }
 
-    private void OnDisable()
-    {
-        if(GameManager.instance != null)
-        {
-            GameManager.instance.UnregisterPerksUI(this);
-        }
-    }
-
     public void Show()
     {
         gameObject.SetActive(true);
