@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class GunManager : MonoBehaviour
 {
@@ -54,14 +52,14 @@ public class GunManager : MonoBehaviour
 
     private void Awake()
     {
+        Setup(currentGun);
+        
         shootActionReference.action.Enable();
 
         ammo1ActionReference.action.Enable();
         ammo2ActionReference.action.Enable();
         ammo3ActionReference.action.Enable();
         ammo4ActionReference.action.Enable();
-
-        Setup(currentGun);
     }
 
     private void Setup(GunSO currentGun)
@@ -75,7 +73,7 @@ public class GunManager : MonoBehaviour
 
     private void Start()
     {
-        currentShell = ammo[0];
+        SetShell(0);
         StartCoroutine(Shooting());
     }
     
@@ -100,7 +98,7 @@ public class GunManager : MonoBehaviour
             while (elapsed < this.reloadTime)
             {
                 elapsed += Time.deltaTime;
-                OnReloadProgress?.Invoke(elapsed, reloadTime);
+                OnReloadProgress?.Invoke(elapsed, this.reloadTime);
                 yield return null;
             }
         }
