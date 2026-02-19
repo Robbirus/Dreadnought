@@ -17,6 +17,8 @@ public class HealthBarUI : MonoBehaviour
     {
         healthManager = GameManager.instance.GetPlayerController().GetHealthManager();
 
+        UpdateBar(healthManager.GetHealth(), healthManager.GetMaxHealth());
+
         healthManager.OnHealthChanged += UpdateBar;
     }
 

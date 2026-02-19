@@ -113,6 +113,11 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
         return this.maxHealth;
     }
 
+    public float GetHealth()
+    {
+        return this.health;
+    }
+
     public void SetBloodbathObtained(bool bloodbathObtained)
     {
         this.bloodbathObtained = bloodbathObtained;
