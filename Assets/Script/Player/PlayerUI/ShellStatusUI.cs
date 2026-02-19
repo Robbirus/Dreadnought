@@ -5,7 +5,8 @@ public class ShellStatusUI : MonoBehaviour
 {
     [Header("HUD")]
     [Tooltip("The frame where the shell image will be")]
-    [SerializeField] private Image currentShellImage;
+    [SerializeField] private Image shellFrame;
+    [SerializeField] private Sprite baseShell;
 
     private GunManager gunManager;
 
@@ -14,6 +15,8 @@ public class ShellStatusUI : MonoBehaviour
         gunManager = GameManager.instance
             .GetPlayerController()
             .GetGunManager();
+
+        shellFrame.sprite = baseShell;
 
         gunManager.OnShellChanged += UpdateShell;
     }
@@ -25,6 +28,6 @@ public class ShellStatusUI : MonoBehaviour
 
     private void UpdateShell(ShellSO shell)
     {
-        currentShellImage.sprite = shell.shellImage;
+        shellFrame.sprite = shell.shellImage;
     }
 }
