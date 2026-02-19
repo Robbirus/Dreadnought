@@ -1001,7 +1001,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a73e53d25a5e4e4da6d32b7decffff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentShellImage: {fileID: 1241057076}
+  shellFrame: {fileID: 1241057076}
+  baseShell: {fileID: 21300000, guid: edb2cbbb87b07a346a8a6c5d67887bea, type: 3}
 --- !u!1 &209371764
 GameObject:
   m_ObjectHideFlags: 0
