@@ -1,6 +1,5 @@
-﻿using System.Collections;
+﻿using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerHealthManager : MonoBehaviour, IDamageable
 {
@@ -12,14 +11,8 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     [Tooltip("Base player's armor")]
     [SerializeField] private int armor = 222;
 
-    [Header("GameObject Player")]
-    [SerializeField] private float chipSpeed = 2f;
-
-    [Header("Health Bar UI")]
-    [SerializeField] private Image frontHealthBar;
-    [SerializeField] private Image backHealthBar;
-
-    private float lerpTimer;
+    // Events
+    public event Action<float, float> OnHealthChanged;
 
     #region BloodBath
     [SerializeField] private bool bloodbathObtained = false;
@@ -33,22 +26,25 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        health = maxHealth/2;
+        health = maxHealth/2; 
+        NotifyUI();
+    }
+
+    private void NotifyUI()
+    {
+        health = Mathf.Clamp(health, 0, maxHealth);
+        OnHealthChanged?.Invoke(health, maxHealth);
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        // UI
-        health = Mathf.Clamp(health, 0, maxHealth);
-        UpdateHealthUI();
-
         // Debug Key heal / damage
         if (Input.GetKey(KeyCode.X))
         {
             TakeDamage(new DamageInfo
             {
-                damage = Random.Range(15, 110),
+                damage = UnityEngine.Random.Range(15, 110),
                 penetration = 0,
                 isCrit = false,
                 sourceTeam = Team.Enemy
@@ -56,42 +52,14 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
         }
         if (Input.GetKey(KeyCode.V))
         {
-            RestoreHealth(Random.Range(15, 110));
-        }
-    }
-
-    public void UpdateHealthUI()
-    {
-        float fillFront = frontHealthBar.fillAmount;
-        float fillBack = backHealthBar.fillAmount;
-        float healthFraction = health / maxHealth;
-
-        if (fillBack > healthFraction)
-        {
-            frontHealthBar.fillAmount = healthFraction;
-            backHealthBar.color = Color.red;
-            lerpTimer += Time.fixedDeltaTime;
-            float percentComplete = lerpTimer / chipSpeed;
-            percentComplete = percentComplete * percentComplete;
-            backHealthBar.fillAmount = Mathf.Lerp(fillBack, healthFraction, percentComplete);
-        }
-
-        if (fillFront < healthFraction)
-        {
-            backHealthBar.color = Color.green;
-            backHealthBar.fillAmount = healthFraction;
-            lerpTimer += Time.fixedDeltaTime;
-            float percentComplete = lerpTimer / chipSpeed;
-            percentComplete = percentComplete * percentComplete;
-            frontHealthBar.fillAmount = Mathf.Lerp(fillFront, backHealthBar.fillAmount, percentComplete);
-
+            RestoreHealth(UnityEngine.Random.Range(15, 110));
         }
     }
 
     public void TakeDamage(DamageInfo damageInfo)
     {
         this.health -= damageInfo.damage;
-        UpdateHealthUI();
+        NotifyUI();
         CheckDeath();
     }
 
@@ -131,7 +99,7 @@ public class PlayerHealthManager : MonoBehaviour, IDamageable
     public void RestoreHealth(float healAmount)
     {
         health += healAmount;
-        lerpTimer = 0f;
+        NotifyUI();
     }
 
     #region Getter / Setter
