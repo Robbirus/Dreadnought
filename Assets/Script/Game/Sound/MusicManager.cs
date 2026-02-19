@@ -9,10 +9,7 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioSource musicSource;
 
     [Header("Audio Clip")]
-    public AudioClip backgroundMusic;
-    public AudioClip levelUpMusic;
-    public AudioClip menuMusic;
-    public AudioClip gameOverMusic;
+    [SerializeField] private GameMusicContainerSO musics;
 
     private void Awake()
     {
@@ -40,27 +37,23 @@ public class MusicManager : MonoBehaviour
     #region Play Specific Music Methods
     public void PlayMenuMusic()
     {
-        PlayMusic(menuMusic);
+        PlayMusic(musics.menuMusic);
     }
 
     public void PlayLevelUp()
     {
-        PlayMusic(levelUpMusic);
+        //PlayMusic(levelUpMusic);
     }
 
     public void PlayBackgroundMusic()
     {
-        PlayMusic(backgroundMusic);
+        //PlayMusic(backgroundMusic);
     }
 
     public void PlayGameOverMusic()
     {
-        PlayMusic(gameOverMusic);
+        //PlayMusic(gameOverMusic);
     }
     #endregion 
 
-    private void TransitionBetweenMusic(AudioClip musicPlayed, AudioClip musicToPlay)
-    {
-
-    }
 }

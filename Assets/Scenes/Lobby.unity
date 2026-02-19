@@ -8839,6 +8839,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  enemyKilled: 0
+  shotFired: 0
+  penetrativeShot: 0
+  nonePenetrativeShot: 0
 --- !u!4 &961895625
 Transform:
   m_ObjectHideFlags: 0
@@ -9415,10 +9419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 1027077126}
-  backgroundMusic: {fileID: 8300000, guid: 7ed230d54b810f841b79f7401c5fee8b, type: 3}
-  levelUpMusic: {fileID: 8300000, guid: 17f443e0d2a221e4888cd48652bdc9be, type: 3}
-  menuMusic: {fileID: 8300000, guid: 387f771cd660e6d4d99558162f77205a, type: 3}
-  gameOverMusic: {fileID: 8300000, guid: 88f285576cfcfe54ea396218c9eb86c3, type: 3}
+  musics: {fileID: 11400000, guid: c88f4271fd6fcd64ca6d34d1a7fb84f7, type: 2}
 --- !u!82 &1027077126
 AudioSource:
   m_ObjectHideFlags: 0

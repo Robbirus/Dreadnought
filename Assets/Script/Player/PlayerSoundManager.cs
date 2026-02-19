@@ -11,7 +11,6 @@ public class PlayerSoundManager : MonoBehaviour
     [SerializeField] private AudioSource actionAudio;
 
     [Header("Audio Clip")]
-    public AudioClip movementSound;
     public AudioClip gunShotSound;
     public AudioClip gunShotCritSound;
     public AudioClip reloadSound;
@@ -29,7 +28,6 @@ public class PlayerSoundManager : MonoBehaviour
         }
     }
 
-    #region action Sound
     public void PlayGunShot()
     {
         actionAudio.PlayOneShot(gunShotSound);
@@ -44,19 +42,4 @@ public class PlayerSoundManager : MonoBehaviour
     {
         actionAudio.PlayOneShot(reloadSound);
     }
-    #endregion
-
-    #region movement Sound
-    public void PlayMovement()
-    {
-        movementAudio.clip = movementSound;
-        movementAudio.loop = true;
-        movementAudio.Play();
-    }
-
-    public void StopMovement()
-    {
-        movementAudio.Stop();   
-    }
-    #endregion
 }
