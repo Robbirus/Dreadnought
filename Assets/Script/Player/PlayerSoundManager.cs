@@ -11,9 +11,7 @@ public class PlayerSoundManager : MonoBehaviour
     [SerializeField] private AudioSource actionAudio;
 
     [Header("Audio Clip")]
-    public AudioClip gunShotSound;
-    public AudioClip gunShotCritSound;
-    public AudioClip reloadSound;
+    [SerializeField] private GunAudioContainerSO gunAudioContainer;
 
     private void Awake()
     {
@@ -30,16 +28,16 @@ public class PlayerSoundManager : MonoBehaviour
 
     public void PlayGunShot()
     {
-        actionAudio.PlayOneShot(gunShotSound);
+        actionAudio.PlayOneShot(gunAudioContainer.shoot);
     }
 
     public void PlayGunShotCrit()
     {
-        actionAudio.PlayOneShot(gunShotCritSound);
+        actionAudio.PlayOneShot(gunAudioContainer.shootCrit);
     }
 
     public void PlayReload()
     {
-        actionAudio.PlayOneShot(reloadSound);
+        actionAudio.PlayOneShot(gunAudioContainer.reload);
     }
 }

@@ -75,6 +75,7 @@
     <Compile Include="Assets\Script\Collectable\GenerateCollectible.cs" />
     <Compile Include="Assets\Script\Player\PlayerTurretControl.cs" />
     <Compile Include="Assets\Script\Collectable\CollectableSO.cs" />
+    <Compile Include="Assets\Script\Game\Sound\EnemyAudioContainerSO.cs" />
     <Compile Include="Assets\Script\Player\PlayerController.cs" />
     <Compile Include="Assets\Script\Player\PlayerSoundManager.cs" />
     <Compile Include="Assets\Script\Game\Main Menu\MenuController.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Assets\Script\Collectable\Drops\XPCollectableSO.cs" />
     <Compile Include="Assets\Script\Player\PlayerStatsSO.cs" />
     <Compile Include="Assets\Script\Perks\Perk.cs" />
+    <Compile Include="Assets\Script\Game\Sound\GunAudioContainerSO.cs" />
     <Compile Include="Assets\Script\Perks\LifeRipPerk.cs" />
     <Compile Include="Assets\Script\Player\PlayerUI\ExperienceUI.cs" />
     <Compile Include="Assets\Script\Game\ObjectPoolManager.cs" />
