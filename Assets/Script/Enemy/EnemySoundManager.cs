@@ -9,47 +9,22 @@ public class EnemySoundManager : MonoBehaviour
     [SerializeField] private AudioSource actionAudio;
 
     [Header("Audio Clip")]
-    [Tooltip("The sound made by the enemy when it moves")]
-    public AudioClip movementSound;
-    [Tooltip("The sound made by the enemy when it receives a shell")]
-    public AudioClip hitSound;
-    [Tooltip("The sound made by the enemy when it receives a critical hit")]
-    public AudioClip hitCritSound;
-    [Tooltip("The sound made by the enemy when it dies")]
-    public AudioClip deathSound;
+    [SerializeField] private EnemyAudioContainerSO audioData;
 
-    private void Start()
-    {
-        // PlayMovement();
-    }
-
-    #region Movement Sound
-    public void PlayMovement()
-    {
-        movementAudio.clip = movementSound;
-        movementAudio.loop = true;
-        movementAudio.Play();
-    }
-
-    public void StopMovement()
-    {
-        movementAudio.Stop();
-    }
-    #endregion
 
     #region Action Sound
     public void PlayHitSound()
     {
-        actionAudio.PlayOneShot(hitSound);
+        actionAudio.PlayOneShot(audioData.hitSound);
     }
     public void PlayHitCritSound()
     {
-        actionAudio.PlayOneShot(hitCritSound);
+        actionAudio.PlayOneShot(audioData.hitCritSound);
     }
 
     public void PlayDeathSound()
     {
-        actionAudio.PlayOneShot(deathSound);
+        actionAudio.PlayOneShot(audioData.deathSound);
     }
     #endregion
 }

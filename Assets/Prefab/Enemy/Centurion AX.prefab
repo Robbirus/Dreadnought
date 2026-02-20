@@ -392,7 +392,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daa5316cab085734fbef439a6b62bbb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   healthManager: {fileID: -58375516227824668}
   enemyAI: {fileID: -5873919405121430124}
 --- !u!114 &3970703385283668930
@@ -419,11 +418,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ca6aadc63bc396448de75028498c071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1700
-  armor: 200
   healthBar: {fileID: 7134958558877615759}
   drops:
   - {fileID: 1852245274802387325, guid: 12a8ce3abc6d80343986513d1d13108a, type: 3}
+  health: 0
+  maxHealth: 1700
+  armor: 200
 --- !u!82 &-4066574760231860066
 AudioSource:
   m_ObjectHideFlags: 0
@@ -535,10 +535,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementAudio: {fileID: -4066574760231860066}
   actionAudio: {fileID: -4066574760231860066}
-  movementSound: {fileID: 8300000, guid: 385a4a5ee91421b4e9053b12ebe0105e, type: 3}
-  hitSound: {fileID: 8300000, guid: 1544f73371922f444a45453b0ef47150, type: 3}
-  hitCritSound: {fileID: 8300000, guid: 670b59bfbdd2e1e41bc620146aef4fef, type: 3}
-  deathSound: {fileID: 8300000, guid: f21d837076d42994da738b3c3ce5ce78, type: 3}
+  audioData: {fileID: 11400000, guid: c30822dec3ed1a34e91869961167e09c, type: 2}
 --- !u!114 &7134958558877615759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,14 +588,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5984763186bdfa94b9ed5b0f0ad5bec8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agent: {fileID: 4915986801078441937}
-  player: {fileID: 0}
   turret: {fileID: 5669547439451268259}
   shellSpawnPoint: {fileID: 1854133154288166917}
   shellPrefab: {fileID: 3633209065182094968, guid: 48d518da0597a9e418d03349ad9bc941, type: 3}
   currentShell: {fileID: 11400000, guid: bb443511de31107489a46789b7b16357, type: 2}
-  attackRange: 75
-  attackCooldown: 2
   enemyController: {fileID: 3036279537306303742}
 --- !u!195 &4915986801078441937
 NavMeshAgent:

@@ -113,6 +113,7 @@
     <Compile Include="Assets\Script\Player\PlayerUI\ReticleUI.cs" />
     <Compile Include="Assets\Script\Game\RunStats.cs" />
     <Compile Include="Assets\Script\Player\PlayerUI\HealthBarUI.cs" />
+    <Compile Include="Assets\Script\Building\FactoryDataSoundSO.cs" />
     <Compile Include="Assets\Script\Building\BuildingCollision.cs" />
     <Compile Include="Assets\Script\Perks\HealthIncreasePerk.cs" />
     <Compile Include="Assets\Script\Collectable\CollectableSoundManager.cs" />

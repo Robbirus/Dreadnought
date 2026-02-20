@@ -8,9 +8,8 @@ public class SpawnerSoundManager : MonoBehaviour
     [SerializeField] private AudioSource factoryLoopSource;
     [SerializeField] private AudioSource spawnSoundSource;
 
-    [Header("Audio Clip")]
-    public AudioClip factoryLoopSound;
-    public AudioClip spawnSound;
+    [Header("Audio Data")]
+    [SerializeField] private FactoryDataSoundSO factorySounds;
 
     private void Start()
     {
@@ -19,12 +18,12 @@ public class SpawnerSoundManager : MonoBehaviour
 
     public void PlaySpawnSound()
     {
-        spawnSoundSource.PlayOneShot(spawnSound);
+        spawnSoundSource.PlayOneShot(factorySounds.spawnSound);
     }
 
     public void PlayFactory()
     {
-        factoryLoopSource.clip = factoryLoopSound;
+        factoryLoopSource.clip = factorySounds.factoryLoopSound;
         factoryLoopSource.loop = true;
         factoryLoopSource.Play();
     }

@@ -1015,6 +1015,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 03cc6d836dae3aa43955ed8dc05ffd3b, type: 2}
   - {fileID: 11400000, guid: c18c0fa0235d8d948a59c44abc342ffb, type: 2}
   - {fileID: 11400000, guid: b41ce439e2ed5494d8c495551409af8b, type: 2}
+  startSpawnTime: 10
   spawnDelay: 2
 --- !u!82 &6422740305884154916
 AudioSource:
@@ -1224,8 +1225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   factoryLoopSource: {fileID: 6422740305884154916}
   spawnSoundSource: {fileID: 1879200329417449600}
-  factoryLoopSound: {fileID: 8300000, guid: 2e6a4b036d73d974fbbd2a3ed527449e, type: 3}
-  spawnSound: {fileID: 8300000, guid: 0bef411844124374297e4df2c4b26892, type: 3}
+  factorySounds: {fileID: 11400000, guid: 420df61b7b5696b40a4a5818d272bc2f, type: 2}
 --- !u!114 &4713531544652690433
 MonoBehaviour:
   m_ObjectHideFlags: 0
