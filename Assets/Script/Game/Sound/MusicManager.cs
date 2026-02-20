@@ -42,17 +42,17 @@ public class MusicManager : MonoBehaviour
 
     public void PlayLevelUp()
     {
-        //PlayMusic(levelUpMusic);
+        PlayMusic(musics.levelUpMusic);
     }
 
-    public void PlayBackgroundMusic()
+    public void PlayCombatMusic()
     {
-        //PlayMusic(backgroundMusic);
+        PlayMusic(musics.combatMusic);
     }
 
     public void PlayGameOverMusic()
     {
-        //PlayMusic(gameOverMusic);
+        PlayMusic(musics.gameOverMusic);
     }
     #endregion 
 

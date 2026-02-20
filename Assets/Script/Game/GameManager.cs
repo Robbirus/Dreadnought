@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
     #region Play State Methods    
     private void ApplyPlaying()
     {
-        MusicManager.instance.PlayBackgroundMusic();
+        MusicManager.instance.PlayCombatMusic();
         Time.timeScale = 1f;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
