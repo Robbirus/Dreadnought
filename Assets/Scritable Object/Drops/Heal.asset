@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: Heal
   m_EditorClassIdentifier: 
   collectSound: {fileID: 8300000, guid: 9cfceaa958e18f640af18a16a7137286, type: 3}
+  volume: 0.2
+  pitch: 1
+  spatialBlend: 0
   healAmount: 500

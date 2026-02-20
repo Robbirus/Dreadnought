@@ -16,7 +16,7 @@ public class Collectable : MonoBehaviour, ICollectable
 
         if (soundManager != null && data.collectSound != null)
         {
-            soundManager.Play(data.collectSound);
+            soundManager.Play(data);
         }
 
         data.Apply(player);

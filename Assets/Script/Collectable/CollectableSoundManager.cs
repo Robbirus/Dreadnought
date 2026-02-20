@@ -11,13 +11,17 @@ public class CollectableSoundManager : MonoBehaviour
             collectableSource = GetComponent<AudioSource>();
     }
 
-    public void Play(AudioClip clip)
+    public void Play(CollectableSO data)
     {
         GameObject temp = new GameObject("CollectSound");
         collectableSource = temp.AddComponent<AudioSource>();
-        collectableSource.spatialBlend = 0f;
-        collectableSource.volume = 0.6f;
-        collectableSource.PlayOneShot(clip);
-        Destroy(temp, clip.length);
+
+        collectableSource.spatialBlend = data.spatialBlend;
+        collectableSource.volume = data.volume;
+        collectableSource.pitch = data.pitch;
+
+        collectableSource.PlayOneShot(data.collectSound);
+
+        Destroy(temp, data.collectSound.length);
     }
 }
